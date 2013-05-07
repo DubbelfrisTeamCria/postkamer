@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <script src="script.js"></script>
+    <title>De Postkamer</title>
+</head>
+<body>
+<div data-ng-app="desktop">
+<!--    <div ng-controller="TestController">
+        naam:
+        <br />
+        <input type="text" data-ng-model="inputData.naam" placeholder="naam" />
+        <br />
+        stad:<br />
+        <input type="text" data-ng-model="inputData.stad" placeholder="stad" />
+        <br />
+        <button class="btn btn-primary" data-ng-click="voegKlantToe()">klant toevoegen</button>
+        <br />
+        zoek:
+        <input type="text" data-ng-model="naamText" placeholder="zoek" />
+        <ul>
+            <li data-ng-repeat="klant in klanten | filter:naamText | orderBy:'naam'">{{ klant.naam }} - {{ klant.stad }}</li>
+        </ul>
+    </div>-->
+
+
+    <div ng-controller="MongoLabController">
+        Klant toevoegen:
+        <br />
+        <input type="text" ng-model="klantnaam" ng-model-instant placeholder="naam"/>
+        <br />
+        <input type="text" ng-model="klantstad" ng-model-instant placeholder="stad"/>
+        <br />
+        <button ng-click="addKlant();">voeg klant toe</button>
+    </div>
+</div>
+</body>
+</html>
