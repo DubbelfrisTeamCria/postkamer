@@ -31,15 +31,21 @@ function TestController($scope) {
  * @constructor
  */
 function MongoLabController($scope, $http) {
+    var url = 'https://api.mongolab.com/api/1/databases/dubbelfris/collections/klanten?apiKey=9uG9lRHWlBDQeeLLotE_5FDaxUVUuGQC';
+
     $scope.addKlant = function() {
         var data = {
             naam:$scope.klantnaam,
             stad:$scope.klantstad
         };
-        var url = 'https://api.mongolab.com/api/1/databases/dubbelfris/collections/klanten?apiKey=9uG9lRHWlBDQeeLLotE_5FDaxUVUuGQC';
-
         $http.post(url, data);
     }
+//    $scope.getKlanten = function() {              //Werkt nog niet
+//        var klanten = $http.get(url);
+//        angular.forEach(klanten,(function(value, key) {
+//            document.write(key + " " + value);
+//        }));
+//    }
 }
 
 desktop.controller('TestController', TestController);
