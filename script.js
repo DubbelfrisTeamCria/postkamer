@@ -40,12 +40,13 @@ function MongoLabController($scope, $http) {
         };
         $http.post(url, data);
     }
-//    $scope.getKlanten = function() {              //Werkt nog niet
-//        var klanten = $http.get(url);
-//        angular.forEach(klanten,(function(value, key) {
-//            document.write(key + " " + value);
-//        }));
-//    }
+    $scope.getKlanten = function() {              //Werkt nog niet
+        $http.get(url).success(successCallback);
+        function successCallback(data) {
+            console.log(data);
+        }
+
+    }
 }
 
 desktop.controller('TestController', TestController);
