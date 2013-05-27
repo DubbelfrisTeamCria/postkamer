@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c66f66dd-f041-421e-9b5a-07b57fad36f5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/easeljs-0.6.0.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/postkamer.html" afterPath="$PROJECT_DIR$/postkamer.html" />
     </list>
@@ -60,7 +59,7 @@
       <file leaf-file-name="postkamer.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/postkamer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="45" selection-start="1609" selection-end="1609" vertical-scroll-proportion="0.89099526">
+            <state line="24" column="14" selection-start="1208" selection-end="1208" vertical-scroll-proportion="0.83886254">
               <folding />
             </state>
           </provider>
@@ -394,7 +393,11 @@
       <created>1369646355586</created>
       <updated>1369646355586</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added easeljs lib">
+      <created>1369646642768</created>
+      <updated>1369646642768</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -458,7 +461,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted demos" />
+    <option name="LAST_COMMIT_MESSAGE" value="added easeljs lib" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -472,6 +475,7 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="deleted demos" />
+    <MESSAGE value="added easeljs lib" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -588,7 +592,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/postkamer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="45" selection-start="1609" selection-end="1609" vertical-scroll-proportion="0.89099526">
+        <state line="24" column="14" selection-start="1208" selection-end="1208" vertical-scroll-proportion="0.83886254">
           <folding />
         </state>
       </provider>
