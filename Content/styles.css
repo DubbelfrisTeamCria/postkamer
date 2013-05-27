@@ -4,8 +4,6 @@
 
 #canvas {
     margin: auto;
-    width: 500px;
-    height: 300px;
     display: block;
     background-color: #ffffff;
     border: 1px grey solid;
