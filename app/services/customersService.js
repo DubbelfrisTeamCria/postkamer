@@ -1,9 +1,6 @@
 //This handles retrieving data and is used by controllers. 3 options (server, factory, provider) with
 //each doing the same thing just structuring the functions/data differently.
 
-
-
-
 app.factory('myService', function($http) {
     var url = "https://api.mongolab.com/api/1/databases/postkamer/collections/templates?apiKey=9uG9lRHWlBDQeeLLotE_5FDaxUVUuGQC";
 
