@@ -1,10 +1,10 @@
 //This handles retrieving data and is used by controllers. 3 options (server, factory, provider) with
 //each doing the same thing just structuring the functions/data differently.
 
-app.factory('myService', function($http) {
+app.factory('service', function($http) {
     var url = "https://api.mongolab.com/api/1/databases/postkamer/collections/templates?apiKey=9uG9lRHWlBDQeeLLotE_5FDaxUVUuGQC";
 
-    var myService = {
+    var service = {
         async: function() {
             // $http returns a promise, which has a then function, which also returns a promise
             var promise = $http.get(url).then(function (response) {
@@ -18,7 +18,7 @@ app.factory('myService', function($http) {
             return promise;
         }
     };
-    return myService;
+    return service;
 });
 
 
