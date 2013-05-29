@@ -53,3 +53,15 @@ OntwerpObject.prototype.resize = function() {
 OntwerpObject.prototype.verwijder = function() {
 //Verwijderen van OntwerpObject
 }
+
+OntwerpObject.prototype.roteer = function() {
+//Roteren van OntwerpObject
+}
+
+OntwerpObject.prototype.selecteer = function() {
+//Selecteren van OntwerpObject
+}
+
+OntwerpObject.prototype.verplaats = function() {
+//Verplaatsen van OntwerpObject
+}
