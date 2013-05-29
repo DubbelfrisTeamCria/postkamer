@@ -22,5 +22,17 @@ function addImage(src) {
     }
 }
 
+function askText(){
+    var text = prompt("wat wilt u erin zetten?");
+    addText(text);
+}
+
+function addText(ingevuldTxt){
+    var text = new Text();
+    text.text = ingevuldTxt;
+    console.log(text);
+
+}
+
 
 
