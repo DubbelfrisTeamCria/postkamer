@@ -1,14 +1,14 @@
 
 function Icoon() {
-    this.naam = null;
+    this._naam = null;
 }
 
 Icoon.prototype = new OntwerpObject;
 
 Icoon.prototype.getNaam = function() {
-    return this.naam;
+    return this._naam;
 }
 
 Icoon.prototype.setNaam = function(naam) {
-    this.naam = naam;
+    this._naam = naam;
 }

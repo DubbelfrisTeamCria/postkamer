@@ -3491,7 +3491,7 @@ function Browser(window, document, $log, $sniffer) {
    * @param {string} url New url (when used as setter)
    * @param {boolean=} replace Should new url replace current history record ?
    */
-  self.url = function(url, replace) {
+  self._url = function(url, replace) {
     // setter
     if (url) {
       if (lastBrowserUrl == url) return;
@@ -3519,11 +3519,11 @@ function Browser(window, document, $log, $sniffer) {
       urlChangeInit = false;
 
   function fireUrlChange() {
-    if (lastBrowserUrl == self.url()) return;
+    if (lastBrowserUrl == self._url()) return;
 
-    lastBrowserUrl = self.url();
+    lastBrowserUrl = self._url();
     forEach(urlChangeListeners, function(listener) {
-      listener(self.url());
+      listener(self._url());
     });
   }
 
@@ -4917,7 +4917,7 @@ function $CompileProvider($provide) {
           linkQueue = null;
         }).
         error(function(response, code, headers, config) {
-          throw Error('Failed to load template: ' + config.url);
+          throw Error('Failed to load template: ' + config._url);
         });
 
       return function delayedNodeLinkFn(ignoreChildLinkFn, scope, node, rootElement, controller) {
@@ -5662,7 +5662,7 @@ LocationUrl.prototype = {
    * @param {string=} url New url without base prefix (e.g. `/path?a=b#hash`)
    * @return {string} url
    */
-  url: function(url, replace) {
+  _url: function(url, replace) {
     if (isUndefined(url))
       return this.$$url;
 
@@ -5919,7 +5919,7 @@ function $LocationProvider(){
     var $location,
         basePath,
         pathPrefix,
-        initUrl = $browser.url(),
+        initUrl = $browser._url(),
         initUrlParts = matchUrl(initUrl),
         appBaseUrl;
 
@@ -5979,7 +5979,7 @@ function $LocationProvider(){
 
     // rewrite hashbang url <> html5 url
     if ($location.absUrl() != initUrl) {
-      $browser.url($location.absUrl(), true);
+      $browser._url($location.absUrl(), true);
     }
 
     // update $location when $browser url changes
@@ -5998,7 +5998,7 @@ function $LocationProvider(){
     // update browser
     var changeCounter = 0;
     $rootScope.$watch(function $locationWatch() {
-      var oldUrl = $browser.url();
+      var oldUrl = $browser._url();
       var currentReplace = $location.$$replace;
 
       if (!changeCounter || oldUrl != $location.absUrl()) {
@@ -6008,7 +6008,7 @@ function $LocationProvider(){
               defaultPrevented) {
             $location.$$parse(oldUrl);
           } else {
-            $browser.url($location.absUrl(), currentReplace);
+            $browser._url($location.absUrl(), currentReplace);
             afterLocationChange(oldUrl);
           }
         });
@@ -7914,7 +7914,7 @@ function $RouteProvider(){
               $location.path(interpolate(next.redirectTo, next.params)).search(next.params)
                        .replace();
             } else {
-              $location.url(next.redirectTo(next.pathParams, $location.path(), $location.search()))
+              $location._url(next.redirectTo(next.pathParams, $location.path(), $location.search()))
                        .replace();
             }
           }
@@ -9733,7 +9733,7 @@ function $HttpProvider() {
           defaults.headers[lowercase(config.method)],
           requestConfig.headers);
 
-      var xsrfValue = isSameDomain(config.url, $browser.url())
+      var xsrfValue = isSameDomain(config._url, $browser._url())
           ? $browser.cookies()[config.xsrfCookieName || defaults.xsrfCookieName]
           : undefined;
       if (xsrfValue) {
@@ -9911,7 +9911,7 @@ function $HttpProvider() {
         $http[name] = function(url, config) {
           return $http(extend(config || {}, {
             method: name,
-            url: url
+            _url: url
           }));
         };
       });
@@ -9923,7 +9923,7 @@ function $HttpProvider() {
         $http[name] = function(url, data, config) {
           return $http(extend(config || {}, {
             method: name,
-            url: url,
+            _url: url,
             data: data
           }));
         };
@@ -9942,7 +9942,7 @@ function $HttpProvider() {
           promise = deferred.promise,
           cache,
           cachedResp,
-          url = buildUrl(config.url, config.params);
+          url = buildUrl(config._url, config.params);
 
       $http.pendingRequests.push(config);
       promise.then(removePendingReq, removePendingReq);
@@ -10086,7 +10086,7 @@ function createHttpBackend($browser, XHR, $browserDefer, callbacks, rawDocument,
   // TODO(vojta): fix the signature
   return function(method, url, post, callback, headers, timeout, withCredentials, responseType) {
     $browser.$$incOutstandingRequestCount();
-    url = url || $browser.url();
+    url = url || $browser._url();
 
     if (lowercase(method) == 'jsonp') {
       var callbackId = '_' + (callbacks.counter++).toString(36);
@@ -12313,7 +12313,7 @@ var inputType = {
         </doc:scenario>
       </doc:example>
    */
-  'url': urlInputType,
+  "_url": urlInputType,
 
 
   /**
@@ -12668,10 +12668,10 @@ function urlInputType(scope, element, attr, ctrl, $sniffer, $browser) {
 
   var urlValidator = function(value) {
     if (isEmpty(value) || URL_REGEXP.test(value)) {
-      ctrl.$setValidity('url', true);
+      ctrl.$setValidity('_url', true);
       return value;
     } else {
-      ctrl.$setValidity('url', false);
+      ctrl.$setValidity('_url', false);
       return undefined;
     }
   };
@@ -13187,7 +13187,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
  *    - {@link ng.directive:input.radio radio}
  *    - {@link ng.directive:input.number number}
  *    - {@link ng.directive:input.email email}
- *    - {@link ng.directive:input.url url}
+ *    - {@link ng.directive:input._url url}
  *  - {@link ng.directive:select select}
  *  - {@link ng.directive:textarea textarea}
  *

@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c66f66dd-f041-421e-9b5a-07b57fad36f5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/Icoon.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/postkamer.html" afterPath="$PROJECT_DIR$/postkamer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/lib/angular.js" afterPath="$PROJECT_DIR$/Scripts/lib/angular.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/lib/jquery.min.js" afterPath="$PROJECT_DIR$/Scripts/lib/jquery.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Foto.js" afterPath="$PROJECT_DIR$/app/models/Foto.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Icoon.js" afterPath="$PROJECT_DIR$/app/models/Icoon.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/OntwerpObject.js" afterPath="$PROJECT_DIR$/app/models/OntwerpObject.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Text.js" afterPath="$PROJECT_DIR$/app/models/Text.js" />
     </list>
     <ignored path="AngularJSDemos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,16 +64,16 @@
       <file leaf-file-name="OntwerpObject.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/OntwerpObject.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="0" selection-end="1051" vertical-scroll-proportion="0.0">
+            <state line="5" column="9" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Text.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Text.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/Text.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
+            <state line="11" column="9" selection-start="233" selection-end="233" vertical-scroll-proportion="0.22427441">
               <folding />
             </state>
           </provider>
@@ -78,16 +82,16 @@
       <file leaf-file-name="Foto.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/Foto.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="19" selection-start="0" selection-end="202" vertical-scroll-proportion="0.0">
+            <state line="13" column="1" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="postkamer.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="postkamer.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/postkamer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="2462" selection-end="2462" vertical-scroll-proportion="0.84985834">
+            <state line="53" column="43" selection-start="2505" selection-end="2505" vertical-scroll-proportion="-23.307692">
               <folding />
             </state>
           </provider>
@@ -96,7 +100,7 @@
       <file leaf-file-name="Icoon.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/Icoon.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="1" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
+            <state line="2" column="9" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -155,12 +159,12 @@
         <option value="$PROJECT_DIR$/app/controllers/editorController.js" />
         <option value="$PROJECT_DIR$/Content/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/app/partials/Editor.html" />
-        <option value="$PROJECT_DIR$/app/models/OntwerpObject.js" />
         <option value="$PROJECT_DIR$/Scripts/main.js" />
-        <option value="$PROJECT_DIR$/app/models/Text.js" />
+        <option value="$PROJECT_DIR$/postkamer.html" />
         <option value="$PROJECT_DIR$/app/models/Foto.js" />
         <option value="$PROJECT_DIR$/app/models/Icoon.js" />
-        <option value="$PROJECT_DIR$/postkamer.html" />
+        <option value="$PROJECT_DIR$/app/models/OntwerpObject.js" />
+        <option value="$PROJECT_DIR$/app/models/Text.js" />
       </list>
     </option>
   </component>
@@ -483,14 +487,19 @@
       <created>1369830806836</created>
       <updated>1369830806836</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added Icoon model">
+      <created>1369830909580</created>
+      <updated>1369830909580</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27272728" sideWeight="0.4909091" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27272728" sideWeight="0.4909091" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933104" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -506,7 +515,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -547,7 +555,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Foto model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Icoon model" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -572,6 +580,7 @@
     <MESSAGE value="canvas text" />
     <MESSAGE value="OntwerpObject model gemaakt en text prototyped" />
     <MESSAGE value="Added Foto model" />
+    <MESSAGE value="Added Icoon model" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -641,13 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/OntwerpObject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="0" selection-end="1051" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Web.config">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="337" selection-end="337" vertical-scroll-proportion="0.0">
@@ -655,30 +657,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Text.js">
+    <entry file="file://$PROJECT_DIR$/postkamer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
+        <state line="53" column="43" selection-start="2505" selection-end="2505" vertical-scroll-proportion="-23.307692">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Foto.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="19" selection-start="0" selection-end="202" vertical-scroll-proportion="0.0">
+        <state line="13" column="1" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Icoon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="1" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
+        <state line="2" column="9" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/postkamer.html">
+    <entry file="file://$PROJECT_DIR$/app/models/OntwerpObject.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="2462" selection-end="2462" vertical-scroll-proportion="0.84985834">
+        <state line="5" column="9" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Text.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="9" selection-start="233" selection-end="233" vertical-scroll-proportion="0.22427441">
           <folding />
         </state>
       </provider>

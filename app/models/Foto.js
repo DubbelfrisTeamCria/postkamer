@@ -1,14 +1,14 @@
 
 function Foto() {
-    this.url = null;
+    this._url = null;
 }
 
 Foto.prototype = new OntwerpObject;
 
 Foto.prototype.getUrl = function() {
-    return this.url;
+    return this._url;
 }
 
 Foto.prototype.setUrl = function(url) {
-    this.url = url;
+    this._url = url;
 }

@@ -7,33 +7,33 @@
  */
 
 function Text() {
-    this.tekst = null;
-    this.kleur = null;
-    this.tekstStyle = null;
+    this._tekst = null;
+    this._kleur = null;
+    this._tekstStyle = null;
 }
 
 Text.prototype = new OntwerpObject;
 
 Text.prototype.getTekst = function () {
-    return this.tekst;
+    return this._tekst;
 };
 
 Text.prototype.setTekst = function (tekst) {
-    this.tekst = tekst;
+    this._tekst = tekst;
 };
 
 Text.prototype.getKleur = function () {
-    return this.kleur;
+    return this._kleur;
 };
 
 Text.prototype.setKleur = function (kleur) {
-    this.kleur = kleur;
+    this._kleur = kleur;
 };
 
 Text.prototype.getTekstStyle = function () {
-    return this.tekstStyle;
+    return this._tekstStyle;
 };
 
 Text.prototype.setTekstStyle = function (tekstStyle) {
-    this.tekstStyle = tekstStyle;
+    this._tekstStyle = tekstStyle;
 };
