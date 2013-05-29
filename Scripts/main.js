@@ -28,9 +28,14 @@ function askText(){
 }
 
 function addText(ingevuldTxt){
+    canvas = document.getElementById('canvas');
+    context = canvas.getContext('2d');
     var text = new Text();
     text.setTekst(ingevuldTxt);
-    console.log(text);
+    text.setTekstStyle("30px Comic sans");
+    context.font = text.getTekstStyle();
+    context.fillText(text.getTekst(),1,60);
+
 
 }
 

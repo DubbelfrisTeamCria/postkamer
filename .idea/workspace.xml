@@ -3,27 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="c66f66dd-f041-421e-9b5a-07b57fad36f5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/lib/angular.js" afterPath="$PROJECT_DIR$/Scripts/lib/angular.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/lib/jquery.min.js" afterPath="$PROJECT_DIR$/Scripts/lib/jquery.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Foto.js" afterPath="$PROJECT_DIR$/app/models/Foto.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Icoon.js" afterPath="$PROJECT_DIR$/app/models/Icoon.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/OntwerpObject.js" afterPath="$PROJECT_DIR$/app/models/OntwerpObject.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Text.js" afterPath="$PROJECT_DIR$/app/models/Text.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/main.js" afterPath="$PROJECT_DIR$/Scripts/main.js" />
     </list>
     <ignored path="AngularJSDemos.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/orders.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369221714108" ignored="false" />
-    <file path="/sdadasd.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369224024752" ignored="false" />
-    <file path="/customersService.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369600101700" ignored="false" />
-    <file path="/customers.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369226524314" ignored="false" />
-    <file path="/CustomerManagementApp.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599895780" ignored="false" />
-    <file path="/controllers.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639969212" ignored="false" />
-    <file path="/app.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369598910896" ignored="false" />
-    <file path="/Homepage.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639787914" ignored="false" />
-    <file path="/Editor.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639514211" ignored="false" />
-    <file path="/Overzicht.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599407649" ignored="false" />
-    <file path="/Templates.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599429486" ignored="false" />
     <file path="/customerManagementStyles.css" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599778974" ignored="false" />
+    <file path="/Templates.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599429486" ignored="false" />
+    <file path="/Overzicht.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599407649" ignored="false" />
+    <file path="/Editor.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639514211" ignored="false" />
+    <file path="/Homepage.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639787914" ignored="false" />
+    <file path="/app.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369598910896" ignored="false" />
+    <file path="/controllers.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639969212" ignored="false" />
+    <file path="/CustomerManagementApp.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599895780" ignored="false" />
+    <file path="/customers.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369226524314" ignored="false" />
+    <file path="/customersService.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369600101700" ignored="false" />
+    <file path="/sdadasd.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369224024752" ignored="false" />
+    <file path="/orders.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369221714108" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Scripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="0" selection-start="880" selection-end="880" vertical-scroll-proportion="0.0">
+            <state line="43" column="0" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.8175313">
               <folding />
             </state>
           </provider>
@@ -70,10 +65,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Text.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Text.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/Text.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="9" selection-start="233" selection-end="233" vertical-scroll-proportion="0.22427441">
+            <state line="36" column="28" selection-start="670" selection-end="683" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -91,7 +86,7 @@
       <file leaf-file-name="postkamer.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/postkamer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="43" selection-start="2505" selection-end="2505" vertical-scroll-proportion="-23.307692">
+            <state line="53" column="43" selection-start="2505" selection-end="2505" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -159,12 +154,12 @@
         <option value="$PROJECT_DIR$/app/controllers/editorController.js" />
         <option value="$PROJECT_DIR$/Content/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/app/partials/Editor.html" />
-        <option value="$PROJECT_DIR$/Scripts/main.js" />
         <option value="$PROJECT_DIR$/postkamer.html" />
         <option value="$PROJECT_DIR$/app/models/Foto.js" />
         <option value="$PROJECT_DIR$/app/models/Icoon.js" />
         <option value="$PROJECT_DIR$/app/models/OntwerpObject.js" />
         <option value="$PROJECT_DIR$/app/models/Text.js" />
+        <option value="$PROJECT_DIR$/Scripts/main.js" />
       </list>
     </option>
   </component>
@@ -230,38 +225,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="postkamer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="postkamer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="postkamer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="postkamer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -377,13 +340,13 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.VCSs.Git" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
+    <property name="options.lastSelected" value="project.propVCSSupport.VCSs.Git" />
     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHub/PortableGit_ca477551eeb4aea0e4ae9fcd3358bd96720bb5c8/cmd/git.exe" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -496,26 +459,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27272728" sideWeight="0.4909091" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933104" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5007576" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32761577" sideWeight="0.4939394" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933104" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27226028" sideWeight="0.4909091" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25757575" sideWeight="0.72727275" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5555556" sideWeight="0.72773975" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5007576" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32761577" sideWeight="0.4939394" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933104" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933104" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -617,9 +580,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Content/customerManagementStyles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="828" selection-end="828" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="66" column="0" selection-start="828" selection-end="828" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/Editor.html">
@@ -643,13 +604,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="880" selection-end="880" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Web.config">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="337" selection-end="337" vertical-scroll-proportion="0.0">
@@ -659,7 +613,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/postkamer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="43" selection-start="2505" selection-end="2505" vertical-scroll-proportion="-23.307692">
+        <state line="53" column="43" selection-start="2505" selection-end="2505" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -687,7 +641,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Text.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="9" selection-start="233" selection-end="233" vertical-scroll-proportion="0.22427441">
+        <state line="36" column="28" selection-start="670" selection-end="683" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="0" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.8175313">
           <folding />
         </state>
       </provider>
