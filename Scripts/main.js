@@ -10,8 +10,15 @@ function askURL() {
     addImage(url);
 }
 
+function vulKleur(){
+   var c = document.getElementById('canvas');
+    var ctx = c.getContext('2d');
+    ctx.rect(188, 50, 200, 100);
+    ctx.fillStyle="red";
+    console.log(ctx.fillStyle);
+    console.log(ctx.fill);
+}
 function addImage(src) {
-
     var image = new Image();
     image.src = src;
     image.onload = function(){

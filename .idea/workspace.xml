@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c66f66dd-f041-421e-9b5a-07b57fad36f5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/main.js" afterPath="$PROJECT_DIR$/Scripts/main.js" />
-    </list>
+    <list default="true" id="c66f66dd-f041-421e-9b5a-07b57fad36f5" name="Default" comment="" />
     <ignored path="AngularJSDemos.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/orders.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369221714108" ignored="false" />
-    <file path="/sdadasd.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369224024752" ignored="false" />
-    <file path="/customersService.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369600101700" ignored="false" />
-    <file path="/customers.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369226524314" ignored="false" />
-    <file path="/CustomerManagementApp.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599895780" ignored="false" />
-    <file path="/controllers.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639969212" ignored="false" />
-    <file path="/app.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369598910896" ignored="false" />
-    <file path="/Homepage.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639787914" ignored="false" />
-    <file path="/Editor.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639514211" ignored="false" />
-    <file path="/Overzicht.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599407649" ignored="false" />
-    <file path="/Templates.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599429486" ignored="false" />
     <file path="/customerManagementStyles.css" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599778974" ignored="false" />
+    <file path="/Templates.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599429486" ignored="false" />
+    <file path="/Overzicht.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599407649" ignored="false" />
+    <file path="/Editor.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639514211" ignored="false" />
+    <file path="/Homepage.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639787914" ignored="false" />
+    <file path="/app.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369598910896" ignored="false" />
+    <file path="/controllers.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369639969212" ignored="false" />
+    <file path="/CustomerManagementApp.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369599895780" ignored="false" />
+    <file path="/customers.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369226524314" ignored="false" />
+    <file path="/customersService.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369600101700" ignored="false" />
+    <file path="/sdadasd.js" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369224024752" ignored="false" />
+    <file path="/orders.html" changelist="c66f66dd-f041-421e-9b5a-07b57fad36f5" time="1369221714108" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,30 +35,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="service.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/services/service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="944" selection-end="944" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="3" selection-end="3" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="postkamer.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/postkamer.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="43" selection-start="2308" selection-end="2308" vertical-scroll-proportion="-10.192307">
+            <state line="8" column="14" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -79,7 +56,16 @@
       <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Scripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="69" selection-start="161" selection-end="161" vertical-scroll-proportion="0.1356383">
+            <state line="17" column="31" selection-start="477" selection-end="477" vertical-scroll-proportion="0.5361781">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap.min.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Content/bootstrap.min.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="689" column="0" selection-start="10878" selection-end="10878" vertical-scroll-proportion="-12.12">
               <folding />
             </state>
           </provider>
@@ -88,25 +74,7 @@
       <file leaf-file-name="styles.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Content/styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="22" selection-start="158" selection-end="165" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Editor.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/partials/Editor.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="20" selection-start="119" selection-end="119" vertical-scroll-proportion="-1.9615384">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="overzichtController.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/overzichtController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="43" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0">
+            <state line="5" column="17" selection-start="121" selection-end="128" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -124,7 +92,34 @@
       <file leaf-file-name="editorController.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/editorController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="249" selection-end="249" vertical-scroll-proportion="0.0">
+            <state line="7" column="0" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="overzichtController.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/overzichtController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="43" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Editor.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/partials/Editor.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="42" selection-start="194" selection-end="196" vertical-scroll-proportion="-2.6153846">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="postkamer.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/postkamer.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="0" selection-start="1705" selection-end="1705" vertical-scroll-proportion="-6.6538463">
               <folding />
             </state>
           </provider>
@@ -146,7 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/services/customersService.js" />
         <option value="$PROJECT_DIR$/app/controllers/navBarController.js" />
         <option value="$PROJECT_DIR$/app/controllers/controllers.js" />
         <option value="$PROJECT_DIR$/app/partials/Homepage.html" />
@@ -161,6 +155,7 @@
         <option value="$PROJECT_DIR$/postkamer.html" />
         <option value="$PROJECT_DIR$/app/controllers/editorController.js" />
         <option value="$PROJECT_DIR$/app/partials/Editor.html" />
+        <option value="$PROJECT_DIR$/Content/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/Scripts/main.js" />
       </list>
     </option>
@@ -241,6 +236,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AngularJSDemos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="postkamer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -338,12 +351,12 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="preferences.general" />
+    <property name="options.lastSelected" value="project.propVCSSupport.VCSs.Git" />
     <property name="last_opened_file_path" value="$USER_HOME$/Dropbox/CRIA Project 11/WT/Tutorials/AngularJSDemos" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -439,27 +452,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27787307" sideWeight="0.4939394" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27787307" sideWeight="0.5007576" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933104" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27739727" sideWeight="0.4939394" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2780303" sideWeight="0.7221269" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15757576" sideWeight="0.95719177" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27739727" sideWeight="0.5007576" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933104" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -528,47 +541,38 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/partials/Overzicht.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="7" selection-start="0" selection-end="54" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
+        <state line="0" column="7" selection-start="0" selection-end="54" vertical-scroll-proportion="-0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/directives/animatedView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/Templates.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="9" selection-start="421" selection-end="421" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="14" column="9" selection-start="421" selection-end="421" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/Homepage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="11" selection-start="0" selection-end="48" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
+        <state line="0" column="11" selection-start="0" selection-end="48" vertical-scroll-proportion="-0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/homepageController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state line="6" column="0" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/postkamer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="1705" selection-end="1705" vertical-scroll-proportion="-6.6538463">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -579,9 +583,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/overzichtController.js">
+    <entry file="file://$PROJECT_DIR$/Content/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="43" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0">
+        <state line="5" column="17" selection-start="121" selection-end="128" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -593,53 +597,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/postkamer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="43" selection-start="2308" selection-end="2308" vertical-scroll-proportion="-10.192307">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="944" selection-end="944" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="3" selection-end="3" vertical-scroll-proportion="0.0">
+        <state line="8" column="14" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/editorController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="249" selection-end="249" vertical-scroll-proportion="0.0">
+        <state line="7" column="0" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/overzichtController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="43" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/Editor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="20" selection-start="119" selection-end="119" vertical-scroll-proportion="-1.9615384">
+        <state line="4" column="42" selection-start="194" selection-end="196" vertical-scroll-proportion="-2.6153846">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Content/styles.css">
+    <entry file="file://$PROJECT_DIR$/Content/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="22" selection-start="158" selection-end="165" vertical-scroll-proportion="0.0">
+        <state line="689" column="0" selection-start="10878" selection-end="10878" vertical-scroll-proportion="-12.12">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="69" selection-start="161" selection-end="161" vertical-scroll-proportion="0.1356383">
+        <state line="17" column="31" selection-start="477" selection-end="477" vertical-scroll-proportion="0.5361781">
           <folding />
         </state>
       </provider>

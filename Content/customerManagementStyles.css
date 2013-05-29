@@ -1,11 +1,13 @@
 ﻿body {
     padding: 65px;
 }
-#logo{
+
+#logo {
 
     width: 100px;
-    height:60px;
+    height: 60px;
 }
+
 .view {
     left: 60px;
     position: relative;
@@ -13,28 +15,28 @@
 }
 
 .card {
-    background-color:#efefef;
+    background-color: #efefef;
     border: 1px solid black;
-    height:75px;
+    height: 75px;
     width: 225px;
     margin-bottom: 20px;
 }
 
 .cardHeader {
     background-color: #006dcc;
-    font-size:14pt;
-    color:white;
-    padding:5px;
+    font-size: 14pt;
+    color: white;
+    padding: 5px;
 }
 
 .cardClose {
     color: white;
-    font-weight:bold;
-    margin-right:5px;
+    font-weight: bold;
+    margin-right: 5px;
 }
 
 .cardContainer {
-    width:90%;
+    width: 90%;
 }
 
 .cardBody {
@@ -46,16 +48,16 @@
 }
 
 .indent {
-    margin-left:20px;
+    margin-left: 20px;
 }
 
 .ordersTable {
-    width:800px;
-    margin-left:20px;
+    width: 800px;
+    margin-left: 20px;
 }
 
 .orders th, .customerOrders th {
-    width:25%;
+    width: 25%;
     cursor: pointer;
 }
 
@@ -65,17 +67,15 @@
     font-weight: bold;
 }
 
-
 #submitCustomer {
-    margin-left:50px;
+    margin-left: 50px;
     margin-top: -8px;
 }
 
 footer {
-    margin-top:10px;
+    margin-top: 10px;
     font-weight: bold;
 }
-
 
 /* Bootstrap overrides */
 .navbar-inner {
@@ -84,8 +84,8 @@ footer {
 }
 
 .navbar .nav {
-    margin-left:50px;
-    margin-top:15px;
+    margin-left: 50px;
+    margin-top: 15px;
 }
 
 .close {
