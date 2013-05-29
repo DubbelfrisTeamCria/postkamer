@@ -6,17 +6,34 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function Text(){
-
-    this.text = null;
-
+function Text() {
+    this.tekst = null;
     this.kleur = null;
-
-    this.grootte = null;
-
-    this.positieY = null;
-
-    this.positieX = null;
-
-    this.textStyle = null;
+    this.tekstStyle = null;
 }
+
+Text.prototype = new OntwerpObject;
+
+Text.prototype.getTekst = function () {
+    return this.tekst;
+};
+
+Text.prototype.setTekst = function (tekst) {
+    this.tekst = tekst;
+};
+
+Text.prototype.getKleur = function () {
+    return this.kleur;
+};
+
+Text.prototype.setKleur = function (kleur) {
+    this.kleur = kleur;
+};
+
+Text.prototype.getTekstStyle = function () {
+    return this.tekstStyle;
+};
+
+Text.prototype.setTekstStyle = function (tekstStyle) {
+    this.tekstStyle = tekstStyle;
+};

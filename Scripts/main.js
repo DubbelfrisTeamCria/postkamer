@@ -29,7 +29,7 @@ function askText(){
 
 function addText(ingevuldTxt){
     var text = new Text();
-    text.text = ingevuldTxt;
+    text.setTekst(ingevuldTxt);
     console.log(text);
 
 }
