@@ -1,4 +1,4 @@
-﻿/*lala         la
+﻿/*
 app.controller('CustomersController', function ($scope, customersService) {
 
     //I like to have an init() for controllers that need to perform some initialization. Keeps things in
