@@ -65,3 +65,7 @@ OntwerpObject.prototype.selecteer = function() {
 OntwerpObject.prototype.verplaats = function() {
 //Verplaatsen van OntwerpObject
 }
+
+OntwerpObject().prototype.findXPos = function() {
+
+}
