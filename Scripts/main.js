@@ -35,7 +35,7 @@ function addText(ingevuldTxt){
     text.setTekstStyle("30px Comic sans");
     context.font = text.getTekstStyle();
     context.fillText(text.getTekst(),1,60);
-
+    //hellow amber
 
 }
 
