@@ -68,4 +68,5 @@ OntwerpObject.prototype.verplaats = function() {
 
 OntwerpObject().prototype.findXPos = function() {
 
+
 }
