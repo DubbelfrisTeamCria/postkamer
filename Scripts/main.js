@@ -3,12 +3,11 @@ function askURL() {
     addImage(url);
 }
 
-function vulKleur(){
+function vulKleur(kleur){
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     context.rect(0, 0, canvas.width, canvas.height);
-    var achtergrondkleur = "006DCC";                //kleur uit colorpicker halen wanneer deze bestaat.
-    context.fillStyle = colorpicker();
+    context.fillStyle = kleur;
     context.fill();
 }
 
@@ -106,34 +105,20 @@ function colorpicker(){
     image.onload = function(){
         ctx.drawImage(image,1,1)
     }
- //   var kleurPixel;
-//    console.log(kleurPixel);
 
     //hier kies je een kleur eventhandler
     $('#picker').click(function(e){
-
         //cordinaten van momentele positie
         var canvasOffset = $(c).offset();
         var canvasX = Math.floor(e.pageX-canvasOffset.left);
         var canvasY = Math.floor(e.pageY-canvasOffset.top);
-        //momenteel pixel
+        //momenteel pixel (rgba in array)
         var imageData = ctx.getImageData(canvasX,canvasY,1,1);
         var pixel = imageData.data;
-        //pixel
+        //rgb
        var kleurPixel = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
-        console.log(kleurPixel);
-        var canvas = document.getElementById('canvas');
-        var context = canvas.getContext('2d');
-        context.rect(0, 0, canvas.width, canvas.height);
-   //     var achtergrondkleur = "006DCC";                //kleur uit colorpicker halen wanneer deze bestaat.
-        context.fillStyle = kleurPixel;
-        context.fill();
+        vulKleur(kleurPixel);
     })
-
-//    $('#picker').click(function(e){
-//        console.log(kleurPixel);
-//    })
-
 }
 
 
