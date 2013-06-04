@@ -75,6 +75,20 @@
     -webkit-box-align:center;
 }
 
+.left {
+    /*display:-webkit-box;*/
+    /*-webkit-box-pack:start;*/
+    /*-webkit-box-align:start;*/
+    float:left;
+}
+
+.right {
+    /*display:-webkit-box;*/
+    /*-webkit-box-pack:end;*/
+    /*-webkit-box-align:end;*/
+    float:right;
+}
+
 #templateForm label img {
     margin: 0 10px;
 }

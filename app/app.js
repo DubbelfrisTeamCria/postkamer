@@ -41,6 +41,18 @@ app.config(function ($routeProvider) {
             templateUrl: '/postkamer/app/partials/OverOns.html'
         })
 
+        .when('/hoeWerktHet',
+        {
+            controller: '',
+            templateUrl: '/postkamer/app/partials/HoeWerktHet.html'
+        })
+
+        .when('/contact',
+        {
+            controller: '',
+            templateUrl: '/postkamer/app/partials/Contact.html'
+        })
+
         .otherwise({ redirectTo: '/home' });
 });
 
