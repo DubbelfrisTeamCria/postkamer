@@ -1,1 +1,38 @@
-<header><h4>this is the templates page!</h4></header>
+<header><h2 class="center">Kies hier een stijl uit voor jouw kaart!</h2></header>
+
+<div class="center">
+
+    <button onclick="selectTemplate();" class="templateLiggend template">liggende template</button>
+    <button onclick="selectTemplate();" class="templateLiggend template">liggende template</button>
+    <button onclick="selectTemplate();" class="templateLiggend template">liggende template</button>
+    <button onclick="selectTemplate();" class="templateLiggend template">liggende template</button>
+    <button onclick="selectTemplate();" class="templateLiggend template">liggende template</button>
+</div>
+
+
+<div class="center">
+    <button onclick="selectTemplate();" class="templateStaand template">Staande template</button>
+    <button onclick="selectTemplate();" class="templateStaand template">Staande template</button>
+    <button onclick="selectTemplate();" class="templateStaand template">Staande template</button>
+    <button onclick="selectTemplate();" class="templateStaand template">Staande template</button>
+    <button onclick="selectTemplate();" class="templateStaand template">Staande template</button>
+</div>
+
+
+<h4 class="center">Wil je een enkele of een dubbele kaart?</h4>
+<form action="" class="center" id="templateForm">
+    <input type="radio" name="kaart" value="enkel" id="enkel" checked="checked">
+    <label for="enkel">
+        <img src="./Content/images/enkel.png">
+    </label>
+
+    <input type="radio" name="kaart" value="dubbel" id="dubbel">
+    <label for="dubbel">
+        <img src="./Content/images/dubbele-kaart.png">
+    </label>
+</form>
+
+<footer id="templateFooter">
+    <a href="#/editor" data-ng-class="{'active':getClass('/editor')}"><button onclick="getTemplateChoice();">Kaart maken</button></a>
+</footer>
+

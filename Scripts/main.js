@@ -37,5 +37,33 @@ function addText(ingevuldTxt){
     context.fillText(text.getTekst(),1,60);
 }
 
+function selectTemplate() {
+    $('.template').click(function() {               //fout
+        $('.template').removeAttr("id");
+        $(this).attr('id', 'selectedTemplate');
+        console.log("bla");
+    });
+}
+
+(function() {                                       //werkt niet
+    $('.template').click(function() {
+        alert("onclick op class toegevoegd");
+    });
+})();
+
+function getTemplateChoice() {
+    var type = null;
+    var selectedTemplate = null;
+    if (document.getElementById('enkel').checked) {
+        console.log("enkel");
+        type = "enkel";
+    }
+    else if (document.getElementById('dubbel').checked) {
+        console.log("dubbel");
+        type = "dubbel";
+    }
+    return type, selectedTemplate;
+}
+
 
 

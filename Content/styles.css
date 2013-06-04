@@ -2,6 +2,7 @@
     background-image: url('../Content/images/freeseams-20.jpg'); /*example*/
 }
 
+/*Editor partial:*/
 #canvas {
     margin: auto;
     display: block;
@@ -9,21 +10,65 @@
     border: 1px grey solid;
 }
 
+/*Homepage partial:*/
 .kiesthemaknop {
-    width: 120px;
-    height: 160px;
+    width: 180px;
+    height: 240px;
     margin: 10px;
     background-color: #ffffff;      /*temp*/
 }
 
 #verhuizen {
-
+    -webkit-transform:rotate(30deg); /* Safari and Chrome */
 }
 
 #samenwonen {
-
+    -webkit-transform:rotate(10deg); /* Safari and Chrome */
 }
 
-#houswarming {
+#housewarming {
+    -webkit-transform:rotate(-15deg); /* Safari and Chrome */
+}
 
+#buttonSection {
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+
+/*Template Partial:*/
+
+#selectedTemplate {
+    box-shadow: 5px 5px 5px #ffffff;
+}
+
+.template {
+    background-color: #ffffff;
+    margin: 10px;
+}
+
+.templateLiggend {
+    width: 166px;
+    height: 120px;
+}
+
+.templateStaand {
+    width: 120px;
+    height: 166px;
+}
+
+.center {
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+
+#templateForm label img {
+    margin: 0 10px;
+}
+
+#templateFooter {
+    display:-webkit-box;
+    -webkit-box-pack:end;
+    -webkit-box-align:end;
 }
