@@ -2,6 +2,11 @@
     background-image: url('../Content/images/freeseams-20.jpg'); /*example*/
 }
 
+#logo {
+    height: 25%;
+    width: 25%;
+}
+
 /*Editor partial:*/
 #canvas {
     margin: auto;

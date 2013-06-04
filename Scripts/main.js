@@ -51,18 +51,50 @@ function selectTemplate() {
     });
 })();
 
-function getTemplateChoice() {
-    var type = null;
-    var selectedTemplate = null;
+function enkelCanvas() {
+    var enkel = null;
     if (document.getElementById('enkel').checked) {
-        console.log("enkel");
-        type = "enkel";
+        enkel = true;
     }
     else if (document.getElementById('dubbel').checked) {
-        console.log("dubbel");
-        type = "dubbel";
+        enkel = false;
     }
-    return type, selectedTemplate;
+    return enkel;
+}
+
+function templateKeus() {
+    enkelCanvas();
+    console.log("enkel = " + enkelCanvas());
+    if (!document.getElementById('selectedTemplate')) {
+        alert("kies eerst een template");
+    }
+    else {
+        staandCanvas();
+        console.log("staand = " + staandCanvas());
+        staandOfLiggendCanvas();
+    }
+}
+
+function staandOfLiggendCanvas() {
+    if (staandCanvas()) {
+        $('#templateFooter > a').attr({href:"#/editorStaand",'data-ng-class':"{'active':getClass('/editorStaand')}"});
+    }
+    else if (!staandCanvas()) {
+        $('#templateFooter > a').attr({href:"#/editor",'data-ng-class':"{'active':getClass('/editor')}"});
+    }
+}
+
+function staandCanvas() {
+
+    var selected = document.getElementById('selectedTemplate');
+    var staand = null;
+    if (selected.className === "templateLiggend template") {
+        staand = false;
+    }
+    else if (selected.className === "templateStaand template") {
+        staand = true;
+    }
+    return staand;
 }
 
 

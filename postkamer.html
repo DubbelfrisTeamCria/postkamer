@@ -9,21 +9,25 @@
 </head>
 <body>
 
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand " href="#/">
-                    <img id="logo" src="Content/images/postcard.gif" alt="logo"> PostKamer
-                </a>
-                <ul class="nav nav-pills" data-ng-controller="NavbarController">
-                    <li data-ng-class="{'active':getClass('/home')}"><a href="#/home">Home</a></li>
-                    <li data-ng-class="{'active':getClass('/templates')}"><a href="#/templates">Templates</a></li>
-                    <li data-ng-class="{'active':getClass('/editor')}"><a href="#/editor">Editor</a></li>
-                    <li data-ng-class="{'active':getClass('/overzicht')}"><a href="#/overzicht">Overzicht</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<a class="center " data-ng-class="{'active':getClass('/home')}" href="#/home">
+    <img class="center" id="logo" src="Content/images/postcard.gif" alt="logo">
+</a>
+
+    <!--<div class="navbar navbar-fixed-top">-->
+        <!--<div class="navbar-inner">-->
+            <!--<div class="container">-->
+                <!--<a class="brand " href="#/">-->
+                    <!--<img id="logo" src="Content/images/postcard.gif" alt="logo"> PostKamer-->
+                <!--</a>-->
+                <!--<ul class="nav nav-pills" data-ng-controller="NavbarController">-->
+                    <!--<li data-ng-class="{'active':getClass('/home')}"><a href="#/home">Home</a></li>-->
+                    <!--&lt;!&ndash;<li data-ng-class="{'active':getClass('/templates')}"><a href="#/templates">Templates</a></li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li data-ng-class="{'active':getClass('/editor')}"><a href="#/editor">Editor</a></li>&ndash;&gt;-->
+                    <!--<li data-ng-class="{'active':getClass('/overzicht')}"><a href="#/overzicht">Overzicht</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <!-- Note that AngularJS 1.1.4 now has a built-in ng-animation direction. Left in animated-view to show a 
          custom directive -->
