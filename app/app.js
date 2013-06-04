@@ -35,6 +35,12 @@ app.config(function ($routeProvider) {
             templateUrl: '/postkamer/app/partials/Overzicht.html'
         })
 
+        .when('/overOns',
+        {
+            controller: '',
+            templateUrl: '/postkamer/app/partials/OverOns.html'
+        })
+
         .otherwise({ redirectTo: '/home' });
 });
 

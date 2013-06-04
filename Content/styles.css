@@ -3,9 +3,15 @@
     padding: 40px;
 }
 
+#homeNav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
 #logo {
-    height: 25%;
-    width: 25%;
+    height: 15%;
+    width: 15%;
 }
 
 /*Editor partial:*/
