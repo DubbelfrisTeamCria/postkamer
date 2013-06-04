@@ -97,5 +97,36 @@ function staandCanvas() {
     return staand;
 }
 
+function colorpicker(){
+    var c = document.getElementById("picker");
+    var ctx = c.getContext('2d');
+
+    var image = new Image();
+    image.src = "Content/images/colorwheel.png";
+    image.onload = function(){
+        ctx.drawImage(image,1,1)
+    }
+//    var kleurPixel;
+//    console.log(kleurPixel);
+
+    //hier kies je een kleur eventhandler
+    $('#picker').click(function(e){
+        //cordinaten van momentele positie
+        var canvasOffset = $(c).offset();
+        var canvasX = Math.floor(e.pageX-canvasOffset.left);
+        var canvasY = Math.floor(e.pageY-canvasOffset.top);
+        //momenteel pixel
+        var imageData = ctx.getImageData(canvasX,canvasY,1,1);
+        var pixel = imageData.data;
+        //pixel
+        var kleurPixel = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
+        console.log(kleurPixel);
+    })
+
+//    $('#picker').click(function(e){
+//        console.log(kleurPixel);
+//    })
+
+}
 
 
