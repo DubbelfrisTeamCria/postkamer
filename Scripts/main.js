@@ -36,19 +36,16 @@ function addText(ingevuldTxt){
     context.fillText(text.getTekst(),1,60);
 }
 
-function selectTemplate() {
-    $('.template').click(function() {               //fout
+/**
+ * Selecteer een template
+ */
+function selecteerTemplate() {
+    $('.template').click(function() {
         $('.template').removeAttr("id");
         $(this).attr('id', 'selectedTemplate');
         console.log("bla");
     });
-}
-
-(function() {                                       //werkt niet
-    $('.template').click(function() {
-        alert("onclick op class toegevoegd");
-    });
-})();
+};
 
 function enkelCanvas() {
     var enkel = null;
@@ -116,9 +113,13 @@ function colorpicker(){
         var imageData = ctx.getImageData(canvasX,canvasY,1,1);
         var pixel = imageData.data;
         //rgb
-       var kleurPixel = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
+        var kleurPixel = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
         vulKleur(kleurPixel);
     })
 }
 
 
+//if (!canvas.id === "bestaat") {
+//    canvas = blabbla;
+//    canvas.id = "bestaat";
+//}

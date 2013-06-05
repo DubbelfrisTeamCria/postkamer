@@ -3,6 +3,10 @@
     padding: 40px;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 #homeNav a {
     text-decoration: none;
     color: white;

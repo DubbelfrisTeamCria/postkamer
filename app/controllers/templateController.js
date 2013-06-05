@@ -3,4 +3,6 @@ app.controller('TemplateCtrl', function( service,$scope) {
     service.async().then(function(data) {
         $scope.customers = data;
     });
+
+    selecteerTemplate();
 });
