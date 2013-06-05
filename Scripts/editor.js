@@ -98,8 +98,11 @@ function editor() {
     }
 
     this.achtergrondImage = function() {
-        canvas.backgroundColor = 'none';
-        canvas.setBackgroundImage(prompt('kies een ahtergrond image url'), function() {
+        var image=prompt("kies een ahtergrond image url");
+        canvas.setBackgroundImage(image, function() {
+            if(image[1]!=null){
+                canvas.backgroundColor = 'none';
+            }
             canvas.renderAll();
         });
     }
