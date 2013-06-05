@@ -98,6 +98,7 @@ function editor() {
     }
 
     this.achtergrondImage = function() {
+        canvas.backgroundColor = 'none';
         canvas.setBackgroundImage(prompt('kies een ahtergrond image url'), function() {
             canvas.renderAll();
         });
