@@ -9,7 +9,7 @@
 function editor() {
     var canvas = new fabric.Canvas('canvas');
 
-    function printNaarConsole() {
+    this.printNaarConsole = function() {
         console.log(JSON.stringify(canvas));
     }
 
@@ -103,7 +103,8 @@ function editor() {
         });
     }
 
-    function vulKleur(kleur) {
+    var vulKleur = function(kleur) {
+        canvas.backgroundImage = 'none';
         canvas.backgroundColor = kleur;
         canvas.renderAll();
     }
