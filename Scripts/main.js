@@ -1,33 +1,3 @@
-function askURL() {
-    var url = prompt("Please give the url of the image");
-    addImage(url);
-}
-
-function addImage(src) {
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    var image = new Image();
-    image.src = src;
-    image.onload = function(){
-        context.drawImage(image, 2, 2);
-    }
-}
-
-function askText(){
-    var text = prompt("wat wilt u erin zetten?");
-    addText(text);
-}
-
-function addText(ingevuldTxt){
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    var text = new Text();
-    text.setTekst(ingevuldTxt);
-    text.setTekstStyle("30px Comic sans");
-    context.font = text.getTekstStyle();
-    context.fillText(text.getTekst(),1,60);
-}
-
 /**
  * Selecteer een template
  */
@@ -85,40 +55,3 @@ function staandCanvas() {
     return staand;
 }
 
-function editor() {
-    var canvas = new fabric.Canvas('canvas');
-
-    function colorpicker(){
-        var c = document.getElementById("picker");
-        var ctx = c.getContext('2d');
-        var image = new Image();
-        image.src = "Content/images/colorwheel.png";
-
-        image.onload = function(){
-            ctx.drawImage(image,1,1)
-        }
-
-        //hier kies je een kleur eventhandler
-        $('#picker').click(function(e){
-            //cordinaten van momentele positie
-            var canvasOffset = $(c).offset();
-            var canvasX = Math.floor(e.pageX-canvasOffset.left);
-            var canvasY = Math.floor(e.pageY-canvasOffset.top);
-            //momenteel pixel (rgba in array)
-            var imageData = ctx.getImageData(canvasX,canvasY,1,1);
-            var pixel = imageData.data;
-            //rgb
-            var kleurPixel = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
-            vulKleur(kleurPixel);
-        })
-    }
-    colorpicker();
-    function vulKleur(kleur){
-        canvas.backgroundColor = kleur;
-        canvas.renderAll();
-    }
-
-    $('body').append('<button>print canvas naar console</button>').click(function() {
-        console.log(JSON.stringify(canvas));
-    })
-}

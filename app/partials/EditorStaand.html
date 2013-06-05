@@ -1,10 +1,13 @@
 <header><h4>this is the editor page!</h4></header>
+<div>
+    <input type="file" id="imgLoader">
+    <button onclick="vulKleur();">vul achtergrond</button>
+    <button onclick="askText();">add Text</button>
 
-<button onclick="askURL();">add Image</button>
-<button onclick="vulKleur();">vul achtergrond</button>
-<button onclick="askText();">add Text</button>
+    <button onclick="editText();">Edit Text</button>
+</div>
 
 <canvas id="canvas" width="450px" heigth="650px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
-<canvas id="picker" onclick="colorpicker();" width="300" height="300" name="kleurkiezer" model="textInput" class="ng-scope"></canvas>
+<canvas id="picker" width="300" height="300" name="kleurkiezer" model="textInput" class="ng-scope"></canvas>
 
 

@@ -5,6 +5,7 @@ app.controller('EditorCtrl', function( service,$scope) {
     });
 
     editor();
+    colorpicker();
 });
 
 
