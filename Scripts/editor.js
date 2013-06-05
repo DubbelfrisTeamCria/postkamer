@@ -9,9 +9,9 @@
 function editor() {
     var canvas = new fabric.Canvas('canvas');
 
-    $('body').append('<button>print canvas naar console</button>').click(function() {
+    function printNaarConsole() {
         console.log(JSON.stringify(canvas));
-    });
+    }
 
     /*canvas.on('object:selected', function(e) {
      alert(" IM SELECTED");
