@@ -93,6 +93,16 @@ html {
     float:right;
 }
 
+#editorTools {
+    background-color: white;
+}
+
+#editorTools button {
+    display:-webkit-box;
+    -webkit-box-pack:end;
+    -webkit-box-align:end;
+}
+
 #templateForm label img {
     margin: 0 10px;
 }

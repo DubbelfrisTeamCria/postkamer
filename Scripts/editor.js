@@ -11,24 +11,13 @@ function editor() {
 
     $('body').append('<button>print canvas naar console</button>').click(function() {
         console.log(JSON.stringify(canvas));
-    })
-
-
-
-
-
-
-
+    });
 
     /*canvas.on('object:selected', function(e) {
      alert(" IM SELECTED");
      var activeObject = e.target;
      canvas.remove(activeObject);
      });*/
-
-
-
-
 
     document.getElementById('imgLoader').onchange = function handleImage(e) {
         var reader = new FileReader();
@@ -51,11 +40,9 @@ function editor() {
 
                 // end fabricJS stuff
             }
-
         }
         reader.readAsDataURL(e.target.files[0]);
     }
-
 
     this.askText = function(){
         var text = prompt("wat wilt u erin zetten?");
@@ -63,16 +50,12 @@ function editor() {
         addText2(text);
     }
 
-
-
     function addText2(ingevuldtxt){
         var text = new fabric.Text(ingevuldtxt, { left: 100, top: 100 });
         canvas.add(text);
-
     }
 
     this.editText =function(){
-
         canvas.on('object:selected', function(e) {
             var text = prompt("wat wilt u erin zetten?");
 
@@ -82,22 +65,12 @@ function editor() {
         })
     }
 
-
-
-
     this.setBold = function(){
         canvas.on('object:selected', function(e) {
-
-
             var activeObject = e.target;
             activeObject.fontWeight = "Bold";
-        })
+        });
     }
-
-
-
-
-
 
     this.colorpicker =function(){
         var c = document.getElementById("picker");
@@ -124,11 +97,13 @@ function editor() {
         })
     }
 
+    this.achtergrondImage = function() {
+        canvas.setBackgroundImage(prompt('kies een ahtergrond image url'), function() {
+            canvas.renderAll();
+        });
+    }
 
-
-
-
-    this.vulKleur =function(kleur){
+    function vulKleur(kleur) {
         canvas.backgroundColor = kleur;
         canvas.renderAll();
     }
