@@ -3,14 +3,6 @@ function askURL() {
     addImage(url);
 }
 
-function vulKleur(kleur){
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    context.rect(0, 0, canvas.width, canvas.height);
-    context.fillStyle = kleur;
-    context.fill();
-}
-
 function addImage(src) {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
@@ -93,33 +85,40 @@ function staandCanvas() {
     return staand;
 }
 
-function colorpicker(){
-    var c = document.getElementById("picker");
-    var ctx = c.getContext('2d');
+function editor() {
+    var canvas = new fabric.Canvas('canvas');
 
-    var image = new Image();
-    image.src = "Content/images/colorwheel.png";
-    image.onload = function(){
-        ctx.drawImage(image,1,1)
+    function colorpicker(){
+        var c = document.getElementById("picker");
+        var ctx = c.getContext('2d');
+        var image = new Image();
+        image.src = "Content/images/colorwheel.png";
+
+        image.onload = function(){
+            ctx.drawImage(image,1,1)
+        }
+
+        //hier kies je een kleur eventhandler
+        $('#picker').click(function(e){
+            //cordinaten van momentele positie
+            var canvasOffset = $(c).offset();
+            var canvasX = Math.floor(e.pageX-canvasOffset.left);
+            var canvasY = Math.floor(e.pageY-canvasOffset.top);
+            //momenteel pixel (rgba in array)
+            var imageData = ctx.getImageData(canvasX,canvasY,1,1);
+            var pixel = imageData.data;
+            //rgb
+            var kleurPixel = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
+            vulKleur(kleurPixel);
+        })
+    }
+    colorpicker();
+    function vulKleur(kleur){
+        canvas.backgroundColor = kleur;
+        canvas.renderAll();
     }
 
-    //hier kies je een kleur eventhandler
-    $('#picker').click(function(e){
-        //cordinaten van momentele positie
-        var canvasOffset = $(c).offset();
-        var canvasX = Math.floor(e.pageX-canvasOffset.left);
-        var canvasY = Math.floor(e.pageY-canvasOffset.top);
-        //momenteel pixel (rgba in array)
-        var imageData = ctx.getImageData(canvasX,canvasY,1,1);
-        var pixel = imageData.data;
-        //rgb
-        var kleurPixel = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
-        vulKleur(kleurPixel);
+    $('body').append('<button>print canvas naar console</button>').click(function() {
+        console.log(JSON.stringify(canvas));
     })
 }
-
-
-//if (!canvas.id === "bestaat") {
-//    canvas = blabbla;
-//    canvas.id = "bestaat";
-//}

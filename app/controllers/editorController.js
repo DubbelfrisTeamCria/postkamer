@@ -3,6 +3,8 @@ app.controller('EditorCtrl', function( service,$scope) {
     service.async().then(function(data) {
         $scope.customers = data;
     });
+
+    editor();
 });
 
 

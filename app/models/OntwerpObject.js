@@ -3,8 +3,13 @@ function OntwerpObject(){
     this._breedte = null;
     this._positieY = null;
     this._positieX = null;
-    this._transparantie = null;
+    this._transparantie = null; //weg moet alleen bij foto
+    //rotatie erbij
 }
+
+//maak eigenschappenObject met daarin verwijzing naar foto/icoon/tekst.
+
+//kaart kan ook eigenschappen hebben, bv eigenschap vorm, eigenschap achtergrond die kan bestaan uit foto of kleur.
 
 OntwerpObject.prototype.getHoogte = function() {
     return this._hoogte;
