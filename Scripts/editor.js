@@ -61,7 +61,7 @@ function editor() {
 
             var activeObject = e.target;
             activeObject.text = text;
-            canvas.add(activeObject);
+            canvas.renderAll();
         })
     }
 
@@ -108,7 +108,10 @@ function editor() {
     }
 
     var vulKleur = function(kleur) {
-        canvas.backgroundImage = 'none';
+        console.log("image "+ canvas.backgroundImage);
+        if(canvas.backgroundImage) {
+            canvas.backgroundImage = 'none';
+        }
         canvas.backgroundColor = kleur;
         canvas.renderAll();
     }
