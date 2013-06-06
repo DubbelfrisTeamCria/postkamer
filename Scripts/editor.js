@@ -121,6 +121,8 @@ function editor() {
         var text = canvas.getActiveObject();
         if (text)
         {
+            var oudeKleur = text.fill;
+            text.fill = "rgb(255,0,0)";
             var newText = '';
             var stillTyping = true;
             if (e.which == 27) //esc
@@ -183,6 +185,7 @@ function editor() {
                 this.text.originalText = null;
             }
         }
+        text.fill = oudeKleur;
     });
 
 
