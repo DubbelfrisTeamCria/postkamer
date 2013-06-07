@@ -55,21 +55,37 @@ function editor() {
         canvas.add(text);
     }
 
-    this.editText =function(){
-        canvas.on('object:selected', function(e) {
-            var text = prompt("wat wilt u erin zetten?");
-
-            var activeObject = e.target;
-            activeObject.text = text;
-            canvas.renderAll();
-        })
-    }
-
     this.setBold = function(){
-        canvas.on('object:selected', function(e) {
-            var activeObject = e.target;
-            activeObject.fontWeight = "Bold";
-        });
+        var text = canvas.getActiveObject();
+        if(text){
+            if(text.fontWeight == "bold"){
+                text.fontWeight = "normal";
+            }
+            else{
+                text.fontWeight = "bold";
+
+                console.log(text);
+            }
+            canvas.renderAll();
+        }
+        else{
+            alert("u moet eerst een tekst selecteren!!");
+        }
+    }
+    this.setItalic = function(){
+        var text = canvas.getActiveObject();
+        if(text){
+            if(text.fontStyle === "italic"){
+                text.fontStyle = "normal";
+            }
+            else{
+                text.fontStyle = "italic";
+            }
+            canvas.renderAll();
+        }
+        else{
+            alert("u moet eerst een tekst selecteren!!");
+        }
     }
 
     this.colorpicker =function(){
