@@ -127,7 +127,13 @@ function editor() {
             var pixel = imageData.data;
             //rgb
             var kleurPixel = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
-            vulKleur(kleurPixel);
+
+            if (canvas.getActiveObject() && canvas.getActiveObject().type === "text") {
+                console.log("text object selected");
+            } else {
+                console.log("no text object selected");
+                vulKleur(kleurPixel);
+            }
         })
     }
 
