@@ -1,5 +1,5 @@
 ﻿body {
-    background-image: url('../Content/images/freeseams-20.jpg'); /*example*/
+    background-image: url('../Content/images/achtergrondwebsite.jpg'); /*example*/
     padding: 40px;
 }
 
@@ -24,6 +24,9 @@ html {
     display: block;
     background-color: #ffffff;
     border: 1px grey solid;
+    -moz-box-shadow: 10px 10px 30px #888;
+    -webkit-box-shadow: 10px 10px 30px #888;
+    box-shadow: 10px 10px 30px #888;
 }
 
 /*Homepage partial:*/

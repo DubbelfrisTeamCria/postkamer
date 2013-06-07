@@ -205,4 +205,53 @@ function editor() {
     });
 
 
+    this.reset =function(){
+        canvas.clear();
+    }
+
+
+    this.removeObject =function(){
+        var objectSelected = canvas.getActiveObject();
+        canvas.remove(objectSelected);
+
+    }
+
+
+
+
+    this.bringToFront= function(){
+        var objectSelected = canvas.getActiveObject();
+        objectSelected.bringToFront();
+    }
+
+
+
+    document.getElementById('transSlider').onchange = function(){
+        var value =this.value/100;
+
+        var objectSelected = canvas.getActiveObject();
+        objectSelected.setOpacity(value);
+        canvas.renderAll();
+
+    }
+
+
+
+    /* Selection opcity hover
+
+     canvas.on('mouse:move', function(options) {
+
+     var p = canvas.getPointer(options.e);
+
+     canvas.forEachObject(function(obj) {
+     var distX = Math.abs(p.x - obj.left),
+     distY = Math.abs(p.y - obj.top),
+     dist = Math.round(Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2)));
+
+     obj.setOpacity(2 / (dist / 100));
+     });
+
+     canvas.renderAll();
+     });
+     */
 }
