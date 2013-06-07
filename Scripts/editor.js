@@ -88,6 +88,24 @@ function editor() {
         }
     }
 
+    this.setUnderline = function(){
+        var text = canvas.getActiveObject();
+        if(text){
+            if(text.textDecoration == "underline"){
+                text.textDecoration = "normal";
+            }
+            else{
+                text.textDecoration = "underline";
+
+                console.log(text);
+            }
+            canvas.renderAll();
+        }
+        else{
+            alert("u moet eerst een tekst selecteren!!");
+        }
+    }
+
     this.colorpicker =function(){
         var c = document.getElementById("picker");
         var ctx = c.getContext('2d');
