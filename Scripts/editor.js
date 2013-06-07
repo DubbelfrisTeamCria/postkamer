@@ -55,55 +55,32 @@ function editor() {
         canvas.add(text);
     }
 
-    this.setBold = function(){
+    this.setChange = function(style,input){
         var text = canvas.getActiveObject();
         if(text){
-            if(text.fontWeight == "bold"){
-                text.fontWeight = "normal";
+            if(text[style] == input){
+                text[style] = "normal";
             }
             else{
-                text.fontWeight = "bold";
+                text[style] = input;
 
                 console.log(text);
             }
             canvas.renderAll();
+        }else{
+            alert("u moet eerst een tekst selecteren!!")
         }
-        else{
-            alert("u moet eerst een tekst selecteren!!");
-        }
+
+    }
+    this.setBold = function(){
+        setChange("fontWeight","bold");
     }
     this.setItalic = function(){
-        var text = canvas.getActiveObject();
-        if(text){
-            if(text.fontStyle === "italic"){
-                text.fontStyle = "normal";
-            }
-            else{
-                text.fontStyle = "italic";
-            }
-            canvas.renderAll();
-        }
-        else{
-            alert("u moet eerst een tekst selecteren!!");
-        }
+        setChange("fontStyle","italic");
     }
 
     this.setUnderline = function(){
-        var text = canvas.getActiveObject();
-        if(text){
-            if(text.textDecoration == "underline"){
-                text.textDecoration = "normal";
-            }
-            else{
-                text.textDecoration = "underline";
-
-                console.log(text);
-            }
-            canvas.renderAll();
-        }
-        else{
-            alert("u moet eerst een tekst selecteren!!");
-        }
+        setChange("textDecoration","underline");
     }
 
     this.colorpicker =function(){
@@ -239,22 +216,16 @@ function editor() {
         canvas.clear();
     }
 
-
     this.removeObject =function(){
         var objectSelected = canvas.getActiveObject();
         canvas.remove(objectSelected);
 
     }
 
-
-
-
     this.bringToFront= function(){
         var objectSelected = canvas.getActiveObject();
         objectSelected.bringToFront();
     }
-
-
 
     document.getElementById('transSlider').onchange = function(){
         var value =this.value/100;
@@ -262,10 +233,31 @@ function editor() {
         var objectSelected = canvas.getActiveObject();
         objectSelected.setOpacity(value);
         canvas.renderAll();
-
     }
 
+    document.getElementById('brightnessSlider').onchange = function(){
+        var value = parseInt(this.value);
+        var objectSelected = canvas.getActiveObject();
+        if(!objectSelected.filters[0]) {
+            objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness: value }));
+        }
+        else {
+            objectSelected.filters[0]['brightness'] = value;
+        }
+        objectSelected.applyFilters(canvas.renderAll.bind(canvas));
+    }
 
+//    document.getElementById('tint').onchange = function(){
+////        var value = parseInt(this.value);
+//        var objectSelected = canvas.getActiveObject();
+//        if(!objectSelected.filters[1]) {
+//            objectSelected.filters.push(new fabric.Image.filters.Tint({ color: '00FF00'}));
+//        }
+//        else {
+//            objectSelected.filters[1]['tint'] = 'rgb(255,0,0)';
+//        }
+//        objectSelected.applyFilters(canvas.renderAll.bind(canvas));
+//    }
 
     /* Selection opcity hover
 
@@ -284,4 +276,18 @@ function editor() {
      canvas.renderAll();
      });
      */
+    $('#combo').click(function (e){
+        var text = canvas.getActiveObject();
+        if(text){
+            this.setFont = function(){
+                var combobox = document.getElementById("combo");
+                var selected = combobox.options[combobox.selectedIndex].text;
+                setChange("fontFamily",selected);
+            }
+        }
+        else{
+//            alert("u moet eerst een tekst selecteren!!");
+        }
+    });
 }
+

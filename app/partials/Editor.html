@@ -21,9 +21,20 @@
     <button onclick="removeObject();">Remove</button>
     <button onclick="bringToFront();">Bring To Front</button>
 
+    <label>transparency<input type="checkbox" id="brightness"></label>
     <input id="transSlider" type="range" min="0" max="100" value="10" />
+    <label>brightness</label>
+    <input type="range" id="brightnessSlider" value="0" min="-255" max="255">
+    <label>Tint:</label>
+    <input type="range" id="tint" value="0" min="-255" max="255">
 
-
+    <select name="font" id="combo" class="myfont" onchange="setFont();">
+        <option>Arial</option>
+        <option>Verdana</option>
+        <option>Calibri</option>
+        <option>Lucida Calligraphy</option>
+        <option>Broadway</option>
+    </select>
 </div>
 
 
