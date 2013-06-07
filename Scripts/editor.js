@@ -130,6 +130,7 @@ function editor() {
 
             if (canvas.getActiveObject() && canvas.getActiveObject().type === "text") {
                 console.log("text object selected");
+                kleurtext(canvas.getActiveObject(), kleurPixel);
             } else {
                 console.log("no text object selected");
                 vulKleur(kleurPixel);
@@ -147,8 +148,13 @@ function editor() {
         });
     }
 
+    var kleurtext = function(text, kleur) {
+        text.fill = kleur;
+        canvas.renderAll();
+
+    }
+
     var vulKleur = function(kleur) {
-        console.log("image "+ canvas.backgroundImage);
         if(canvas.backgroundImage) {
             canvas.backgroundImage = 'none';
         }
