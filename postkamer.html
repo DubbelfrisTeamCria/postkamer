@@ -10,22 +10,24 @@
 <body>
 
 
-<nav id="homeNav">
-    <a class="left" data-ng-class="{'active':getClass('/home')}" href="#/home">
-        Home
-    </a>
-    <a class="left" data-ng-class="{'active':getClass('/overOns')}" href="#/overOns">
-        Over ons
-    </a>
-    <a class="right" data-ng-class="{'active':getClass('/hoeWerktHet')}" href="#/hoeWerktHet">
-        Hoe Werkt Het?
-    </a>
-    <a class="right" data-ng-class="{'active':getClass('/contact')}" href="#/contact">
-        Contact
-    </a>
-    <a class="center" data-ng-class="{'active':getClass('/home')}" href="#/home">
-        <img class="center" id="logo" src="Content/images/postcard.gif" alt="logo">
-    </a>
+<nav id="homeNav" class="center">
+    <ul class="center">
+        <li><a  data-ng-class="{'active':getClass('/home')}" href="#/home">
+            Home
+        </a></li>
+        <li><a  data-ng-class="{'active':getClass('/overOns')}" href="#/overOns">
+            Over ons
+        </a></li>
+        <li><a data-ng-class="{'active':getClass('/home')}" href="#/home">
+            <img id="logo" src="Content/images/logo.png" alt="logo">
+        </a></li>
+        <li> <a  data-ng-class="{'active':getClass('/hoeWerktHet')}" href="#/hoeWerktHet">
+            Hoe Werkt Het?
+        </a></li>
+        <li><a  data-ng-class="{'active':getClass('/contact')}" href="#/contact">
+            Contact
+        </a></li>
+    </ul>
 </nav>
 
 <!--<div class="navbar navbar-fixed-top">-->
@@ -46,7 +48,7 @@
 
 <!-- Note that AngularJS 1.1.4 now has a built-in ng-animation direction. Left in animated-view to show a
      custom directive -->
-<div animated-view></div>
+<div animated-view id="animated-view"></div>
 
 <!-- Vendor Libs: jQuery only used for Bootstrap functionality -->
 <script src="Scripts/lib/angular.js"></script>
