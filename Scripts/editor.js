@@ -7,8 +7,8 @@
  */
 
 function editor() {
+    var TAB;
     var canvas = new fabric.Canvas('canvas');
-
     this.printNaarConsole = function() {
         console.log(JSON.stringify(canvas));
     }
@@ -19,6 +19,29 @@ function editor() {
      canvas.remove(activeObject);
      });*/
 
+    $('li').click(function (e){
+        TAB = this.id;
+        e.preventDefault();
+        if(this.id == "Bewerken1" || this.id == "Bewerken4"){
+            $('#canvasPicker').show();
+        }
+        else{
+            $('#canvasPicker').hide();
+        }
+        for(var i=1; i<5; i++){
+            var temp = "Bewerken"+i;
+            var tab = document.getElementById("Bewerken"+i);
+            var content = document.getElementById("tabpage_"+i);
+            if(tab.id === this.id){
+                content.style.display = "block";
+                console.log("zet em op block");
+            }
+            else{
+                content.style.display = "none";
+                console.log("zet em op none");
+            }
+        }
+    });
     document.getElementById('imgLoader').onchange = function handleImage(e) {
         var reader = new FileReader();
         reader.onload = function (event) { console.log('fdsf');
@@ -72,8 +95,13 @@ function editor() {
         }
 
     }
-    this.setBold = function(){
+
+    this.setImage = function(e,button){
+        console.log(button);
+    }
+    this.setBold = function(e){
         setChange("fontWeight","bold");
+        setImage(e,this);
     }
     this.setItalic = function(){
         setChange("fontStyle","italic");
@@ -93,8 +121,7 @@ function editor() {
             ctx.drawImage(image,1,1)
         }
 
-        //hier kies je een kleur eventhandler
-        $('#picker').click(function(e){
+        function geefKleur(e){
             //cordinaten van momentele positie
             var canvasOffset = $(c).offset();
             var canvasX = Math.floor(e.pageX-canvasOffset.left);
@@ -104,12 +131,19 @@ function editor() {
             var pixel = imageData.data;
             //rgb
             var kleurPixel = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
-
+            return kleurPixel;
+        }
+        //hier kies je een kleur eventhandler
+        $('#picker').click(function(e){
+            var kleurPixel = geefKleur(e);
+            if(TAB == "Bewerken1"){
             if (canvas.getActiveObject() && canvas.getActiveObject().type === "text") {
                 console.log("text object selected");
                 kleurtext(canvas.getActiveObject(), kleurPixel);
-            } else {
-                console.log("no text object selected");
+            }else{
+                console.log("no text object selected");}
+            }
+            else if(TAB == "Bewerken4"){
                 vulKleur(kleurPixel);
             }
         })

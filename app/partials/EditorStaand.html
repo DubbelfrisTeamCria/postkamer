@@ -1,13 +1,53 @@
 <header><h4>this is the editor page!</h4></header>
-<div>
-    <input type="file" id="imgLoader">
-    <button onclick="vulKleur();">vul achtergrond</button>
-    <button onclick="askText();">add Text</button>
 
-    <button onclick="editText();">Edit Text</button>
+<div class="left">
+    <canvas id="canvas" width="450px" height="650px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
+    <button onclick="printNaarConsole();">print canvas naar console</button>
 </div>
 
-<canvas id="canvas" width="450px" heigth="650px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
-<canvas id="picker" width="300" height="300" name="kleurkiezer" model="textInput" class="ng-scope"></canvas>
 
+<div id="editorTools" class="right">
+    <div id="tabContainer">
+        <div class="tabs">
+            <ul>
+                <li id="TekstBewerken">Tekst</li>
+                <li id="PlaatjesBewerken">Plaatjes</li>
+                <li id="FotoBewerken">Foto</li>
+                <li id="KleurBewerken">kleur</li>
+            </ul>
+        </div>
+        <div class="tabscontent">
+            <div class="tabpage" id="tabpage_1"></div>
+            <div class="tabpage" id="tabpage_2"></div>
+            <div class="tabpage" id="tabpage_3"></div>
+            <div class="tabpage" id="tabpage_4"></div>
+        </div>
+    </div>
+    <div>
+        <canvas id="picker" width="300" height="300" name="kleurkiezer" model="textInput" class="ng-scope"></canvas></div>
 
+    <input type="file" id="imgLoader">
+    <button onclick="askText();">add Text</button>
+    <button onclick="achtergrondImage();">add achtergrond image</button>
+    <button onclick="setItalic();">ITALIC</button>
+    <button onclick="setBold();">BOLLDDDDD</button>
+    <button onclick="setUnderline();">UNDERLINE</button>
+    <button onclick="reset();">CLEAN START</button>
+    <button onclick="removeObject();">Remove</button>
+    <button onclick="bringToFront();">Bring To Front</button>
+
+    <label>transparency<input type="checkbox" id="brightness"></label>
+    <input id="transSlider" type="range" min="0" max="100" value="10" />
+    <label>brightness</label>
+    <input type="range" id="brightnessSlider" value="0" min="-255" max="255">
+    <label>Tint:</label>
+    <input type="range" id="tint" value="0" min="-255" max="255">
+
+    <select name="font" id="combo" class="myfont" onchange="setFont();">
+        <option>Arial</option>
+        <option>Verdana</option>
+        <option>Calibri</option>
+        <option>Lucida Calligraphy</option>
+        <option>Broadway</option>
+    </select>
+</div>

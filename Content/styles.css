@@ -98,12 +98,16 @@ html {
 
 #editorTools {
     background-color: white;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
 }
 
 #editorTools button {
     display:-webkit-box;
     -webkit-box-pack:end;
     -webkit-box-align:end;
+
 }
 
 #templateForm label img {
@@ -115,3 +119,17 @@ html {
     -webkit-box-pack:end;
     -webkit-box-align:end;
 }
+
+#tabContainer {
+    width: 352px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+.tabs>li{
+    float:left;
+    list-style: none;
+}
+
+
