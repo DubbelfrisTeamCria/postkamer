@@ -281,9 +281,9 @@ function editor() {
         objectSelected.applyFilters(canvas.renderAll.bind(canvas));
     }
 
-//    document.getElementById('tint').onchange = function(){
-////        var value = parseInt(this.value);
-//        var objectSelected = canvas.getActiveObject();
+    document.getElementById('tint').onchange = function(){
+//        var value = parseInt(this.value);
+        var objectSelected = canvas.getActiveObject();
 //        if(!objectSelected.filters[1]) {
 //            objectSelected.filters.push(new fabric.Image.filters.Tint({ color: '00FF00'}));
 //        }
@@ -291,7 +291,7 @@ function editor() {
 //            objectSelected.filters[1]['tint'] = 'rgb(255,0,0)';
 //        }
 //        objectSelected.applyFilters(canvas.renderAll.bind(canvas));
-//    }
+    }
 
     /* Selection opcity hover
 
