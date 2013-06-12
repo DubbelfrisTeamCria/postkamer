@@ -16,6 +16,24 @@ function editor() {
        return JSON.stringify(canvas);
     }
 
+    $('#bold').click(function(e){
+        setBold(this);
+    });
+    $('#italic').click(function(e){
+        setItalic(this);
+    });
+    $('#underline').click(function(e){
+        setUnderline(this);
+    });
+//    $('#alignLeft').click(function(e){
+//        setAlignLeft(this);
+//    });
+//    $('#alignCenter').click(function(e){
+//        setAlignCenter(this);
+//    });
+//    $('#alignRight').click(function(e){
+//        setAlignRight(this);
+//    });
 
     $('li').click(function (e){
         TAB = this.id;
@@ -109,16 +127,16 @@ function editor() {
         canvas.add(text);
     }
 
-    this.setChange = function(style,input){
+    this.setChange = function(style,input,image){
         var text = canvas.getActiveObject();
         if(text){
             if(text[style] == input){
                 text[style] = "normal";
+                image.src = "Content/images/"+input+".png";
             }
             else{
                 text[style] = input;
-
-                console.log(text);
+                image.src = "Content/images/"+input+"Select.png";
             }
             canvas.renderAll();
         }else{
@@ -126,20 +144,15 @@ function editor() {
         }
 
     }
-
-    this.setImage = function(e,button){
-        console.log(button);
+    this.setBold = function(image){
+        setChange("fontWeight","bold",image);
     }
-    this.setBold = function(e){
-        setChange("fontWeight","bold");
-        setImage(e,this);
-    }
-    this.setItalic = function(){
-        setChange("fontStyle","italic");
+    this.setItalic = function(image){
+        setChange("fontStyle","italic",image);
     }
 
-    this.setUnderline = function(){
-        setChange("textDecoration","underline");
+    this.setUnderline = function(image){
+        setChange("textDecoration","underline",image);
     }
 
     this.setAlignLeft = function() {
