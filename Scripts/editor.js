@@ -220,7 +220,7 @@ function editor() {
                 if (canvas.getActiveObject() && canvas.getActiveObject().type === "text") {
                     console.log("text object selected");
                     kleurtext(canvas.getActiveObject(), kleurPixel);
-                }else{
+                } else {
                     console.log("no text object selected");}
             }
             else if(TAB == "Bewerken4"){
@@ -229,6 +229,9 @@ function editor() {
         })
     }
 
+    /**
+     * Verander het achtergrond plaatje en verwijder de achtergrondkleur.
+     */
     this.achtergrondImage = function() {
         var image=prompt("kies een ahtergrond image url");
         canvas.setBackgroundImage(image, function() {
@@ -240,17 +243,7 @@ function editor() {
     }
 
     /**
-     *
-     * @param text
-     * @param kleur
-     */
-    var kleurtext = function(text, kleur) {
-        text.fill = kleur;
-        canvas.renderAll();
-    }
-
-    /**
-     * Verander de kleur van de achtergrond.
+     * Verander de kleur van de achtergrond en verwijder het achtergrondplaatje.
      * @param kleur de kleur van de achtergrond
      */
     var vulKleur = function(kleur) {
@@ -258,6 +251,16 @@ function editor() {
             canvas.backgroundImage = 'none';
         }
         canvas.backgroundColor = kleur;
+        canvas.renderAll();
+    }
+
+    /**
+     * Verander de kleur van de tekst
+     * @param text
+     * @param kleur de kleur van de tekst
+     */
+    var kleurtext = function(text, kleur) {
+        text.fill = kleur;
         canvas.renderAll();
     }
 
