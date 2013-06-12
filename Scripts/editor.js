@@ -49,7 +49,6 @@ function editor() {
             if(tab.id === TAB) {
                 this.firstChild.src= "Content/images/tab"+i+"Select.png";
                 content.style.display = "block";
-
             }
             else {
                 tab.firstChild.src= "Content/images/tab"+i+".png";

@@ -12,23 +12,28 @@
 
 <nav id="homeNav" class="center">
     <ul class="center">
-        <li><a  data-ng-class="{'active':getClass('/home')}" href="#/home">
+        <li id="home"><a data-ng-class="{'active':getClass('/home')}" href="#/home">
             Home
-        </a></li>
-        <li><a  data-ng-class="{'active':getClass('/overOns')}" href="#/overOns">
+        </a>
+            <div class="bottomlineBlock"></div></li>
+        <li id="overons"><a data-ng-class="{'active':getClass('/overOns')}" href="#/overOns">
             Over ons
-        </a></li>
-        <li><a data-ng-class="{'active':getClass('/home')}" href="#/home">
+        </a>
+            <div class="bottomlineBlock"></div></li>
+        <li id="homeLogo"><a data-ng-class="{'active':getClass('/home')}" href="#/home">
             <img id="logo" src="Content/images/logo.png" alt="logo">
         </a></li>
-        <li> <a  data-ng-class="{'active':getClass('/hoeWerktHet')}" href="#/hoeWerktHet">
+        <li id="hoeWerktHet"> <a data-ng-class="{'active':getClass('/hoeWerktHet')}" href="#/hoeWerktHet">
             Hoe Werkt Het?
-        </a></li>
-        <li><a  data-ng-class="{'active':getClass('/contact')}" href="#/contact">
+        </a>
+            <div class="bottomlineBlock"></div></li>
+        <li id="contact"><a data-ng-class="{'active':getClass('/contact')}" href="#/contact">
             Contact
-        </a></li>
+        </a>
+            <div class="bottomlineBlock"></div></li>
     </ul>
 </nav>
+<div id="bottomline"></div>
 
 <!--<div class="navbar navbar-fixed-top">-->
 <!--<div class="navbar-inner">-->
