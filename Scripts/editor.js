@@ -15,7 +15,6 @@ function editor() {
     this.getJSON = function() {
         return JSON.stringify(canvas);
     }
-
     $('#bold').click(function(e){
         setBold(this);
     });
@@ -25,15 +24,6 @@ function editor() {
     $('#underline').click(function(e){
         setUnderline(this);
     });
-//    $('#alignLeft').click(function(e){
-//        setAlignLeft(this);
-//    });
-//    $('#alignCenter').click(function(e){
-//        setAlignCenter(this);
-//    });
-//    $('#alignRight').click(function(e){
-//        setAlignRight(this);
-//    });
 
     $('li').click(function (e){
         TAB = this.id;
@@ -129,7 +119,7 @@ function editor() {
 
     this.setChange = function(style,input,image){
         var text = canvas.getActiveObject();
-        if(text){
+        if(text.type === "text"){
             if(text[style] == input){
                 text[style] = "normal";
                 image.src = "Content/images/"+input+".png";
@@ -350,7 +340,23 @@ function editor() {
         var objectSelected = canvas.getActiveObject();
         objectSelected.bringToFront();
     }
+    document.getElementById('tekstSlider').onchange = function(){
+        var value = this.value;
+        var selectedObject = canvas.getActiveObject();
+        if(selectedObject.type === "text"){
+            selectedObject.fontSize = value;
+            canvas.renderAll();
+        }
 
+    }
+    document.getElementById('transSlider').onchange = function(){
+        var value =this.value/100;
+        var objectSelected = canvas.getActiveObject();
+        if(objectSelected.type === "image") {
+            objectSelected.setOpacity(value);
+            canvas.renderAll();
+        }
+    }
     /**
      * Zet de transparantie van het geselecteerde plaatje.
      * Moet niet werken bij tekst.
