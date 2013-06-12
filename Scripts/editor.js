@@ -13,7 +13,6 @@ function editor() {
     this.getJSON = function() {
         return JSON.stringify(canvas);
     }
-
     // Onclick functies van bold, italic en underline.
     $('#bold').click(function(e){setBold(this);});
     $('#italic').click(function(e){setItalic(this);});
@@ -139,8 +138,8 @@ function editor() {
      */
     this.setChange = function(style,input,image) {
         var text = canvas.getActiveObject();
-        if(text){
-            if(text[style] == input) {
+        if(text.type === "text"){
+            if(text[style] == input){
                 text[style] = "normal";
                 image.src = "Content/images/"+input+".png";
             }
@@ -372,7 +371,15 @@ function editor() {
         var objectSelected = canvas.getActiveObject();
         objectSelected.bringToFront();
     }
+    document.getElementById('tekstSlider').onchange = function(){
+        var value = this.value;
+        var selectedObject = canvas.getActiveObject();
+        if(selectedObject.type === "text"){
+            selectedObject.fontSize = value;
+            canvas.renderAll();
+        }
 
+    }
     /**
      * Zet de transparantie van het geselecteerde plaatje.
      * Moet niet werken bij tekst.
