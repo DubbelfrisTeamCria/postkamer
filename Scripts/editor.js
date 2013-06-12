@@ -225,12 +225,20 @@ function editor() {
         });
     }
 
+    /**
+     *
+     * @param text
+     * @param kleur
+     */
     var kleurtext = function(text, kleur) {
         text.fill = kleur;
         canvas.renderAll();
-
     }
 
+    /**
+     * Verander de kleur van de achtergrond.
+     * @param kleur de kleur van de achtergrond
+     */
     var vulKleur = function(kleur) {
         if(canvas.backgroundImage) {
             canvas.backgroundImage = 'none';
@@ -239,50 +247,43 @@ function editor() {
         canvas.renderAll();
     }
 
+    /**
+     * Wijzig de tekst van het geselecteerde tekst object wanneer er getyped wordt.
+     */
     $(document).keydown(function(e){
         var keyPressed = String.fromCharCode(e.which);
         var text = canvas.getActiveObject();
-        if (text)
-        {
+        if (text) {
             var oudeKleur = text.fill;
             text.fill = "rgb(255,0,0)";
             var newText = '';
             var stillTyping = true;
-            if (e.which == 27) //esc
-            {
+            if (e.which == 27)  { //27 = esc
                 if (!text.originalText) return; //if there is no original text, there is nothing to undo
                 newText = text.originalText;
                 stillTyping = false;
             }
-            //if the user wants to make a correction
-            else
-            {
-                //Store the original text before beginning to type
-                if (!text.originalText)
-                {
+            else { //if the user wants to make a correction
+                if (!text.originalText) {//Store the original text before beginning to type
                     text.originalText = text.text;
                 }
                 //if the user wants to remove all text, or the element entirely
-                if (e.which == 46) //delete
-                {
+                if (e.which == 46) { // 46 = delete
                     activeObject.element.remove(true);
                     return;
                 }
-                else if (e.which == 16) { //shift
+                else if (e.which == 16) { //16 = shift
                     newText = text.text;
                 }
-                else if (e.which == 8) //backspace
-                {
+                else if (e.which == 8) {//8 = backspace
                     e.preventDefault();
                     newText = text.text.substr(0, text.text.length - 1);
                 }
-                else if (e.which == 13) //enter
-                {
+                else if (e.which == 13){ //13 = enter
                     //canvas clear selection
                     canvas.discardActiveObject();
                     canvas.renderAll();
                     canvasBeforeSelectionCleared({ memo: { target: text} });
-
                     newText = text.text;
                     stillTyping = false;
                 }
@@ -292,8 +293,7 @@ function editor() {
                         (e.which > 47 && e.which < 58) || //0-9
                         (e.which == 32) || //Space
                         (keyPressed.match(/[!&()"'?-]/)) //Accepted special characters
-                    )
-                {
+                    ) {
                     if (text.text == text.originalText) text.text = '';
                     if (keyPressed.match(/[A-Z]/) && !e.shiftKey)
                         keyPressed = keyPressed.toLowerCase();
@@ -301,10 +301,9 @@ function editor() {
                 }
             }
             text.set({ text: newText }); //Change the text
-            canvas.renderAll(); //Update the canvas
+            canvas.renderAll();
 
-            if (!stillTyping)
-            {
+            if (!stillTyping) {
                 this.text.originalText = null;
             }
         }
@@ -312,34 +311,50 @@ function editor() {
     });
 
 
+    /**
+     * Reset het canvas.
+     */
     this.reset =function(){
         canvas.clear();
     }
 
+    /**
+     * Verwijder geselecteerde object.
+     */
     this.removeObject =function(){
         var objectSelected = canvas.getActiveObject();
         canvas.remove(objectSelected);
-
     }
 
+    /**
+     * Haal het geselecteerde object naar voren.
+     */
     this.bringToFront= function(){
         var objectSelected = canvas.getActiveObject();
         objectSelected.bringToFront();
     }
 
+    /**
+     * Zet de transparantie van het geselecteerde plaatje.
+     * Moet niet werken bij tekst.
+     */
     document.getElementById('transSlider').onchange = function(){
         var value =this.value/100;
-        if(!objectSelected.type === "text") {
-            var objectSelected = canvas.getActiveObject();
+        var objectSelected = canvas.getActiveObject();
+        if(objectSelected.type === "image") {
             objectSelected.setOpacity(value);
             canvas.renderAll();
         }
     }
 
+    /**
+     * Zet de brightness van het geselecteerde plaatje.
+     * Moet niet werken bij tekst.
+     */
     document.getElementById('brightnessSlider').onchange = function(){
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
-        if(!objectSelected.type === "text") {
+        if(objectSelected.type === "image") {
             if(!objectSelected.filters[0]) {
                 objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness: value }));
             }
@@ -350,11 +365,15 @@ function editor() {
         }
     }
 
+    /**
+     * Zet de tint van het geselecteerde plaatje.
+     * Moet niet werken bij tekst.
+     */
     document.getElementById('tint').onchange = function(){
         console.log("nog niet gemaakt");
-//        var value = parseInt(this.value);
+        var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
-        if(!objectSelected.type === "text") {
+        if(objectSelected.type === "image") {
 //        if(!objectSelected.filters[1]) {
 //            objectSelected.filters.push(new fabric.Image.filters.Tint({ color: '00FF00'}));
 //        }
