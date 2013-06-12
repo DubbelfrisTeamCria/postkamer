@@ -155,21 +155,35 @@ function editor() {
         setChange("textDecoration","underline",image);
     }
 
-    this.setAlign = function(kant, marge) {
+    function setImagesAlign(image) {
+        for (var i = 1; i < 4; i++) {
+            if (image.id === ("align" + i)) {
+                image.src = "Content/images/align" + i + "Select.png";
+            }
+            else {
+                document.getElementById("align" + i).src = "Content/images/align" + i + ".png";
+            }
+        }
+    }
+
+    this.setAlign = function(kant, marge,image) {
         var objectSelected = canvas.getActiveObject();
-        objectSelected.originX = kant;
-        objectSelected.left = marge;
+        if(objectSelected){
+            objectSelected.originX = kant;
+            objectSelected.left = marge;
+            setImagesAlign(image);
+        }
         canvas.renderAll();
     }
 
-    $('#alignLeft').click(function() {
-        setAlign('left', tekstMarge);
+    $('#align1').click(function() {
+        setAlign('left', tekstMarge,this);
     });
-    $('#alignCenter').click(function() {
-        setAlign('center', canvas.width/2);
+    $('#align2').click(function() {
+        setAlign('center', canvas.width/2,this);
     });
-    $('#alignRight').click(function() {
-        setAlign('right', canvas.width-tekstMarge);
+    $('#align3').click(function() {
+        setAlign('right', canvas.width-tekstMarge,this);
     });
 
     //verander cursor
