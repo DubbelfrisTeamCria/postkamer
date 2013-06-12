@@ -16,6 +16,10 @@ app.factory('service', function($http) {
             });
             // Return the promise to the controller
             return promise;
+        },
+        saveTemplate : function(data){
+            console.log(data);
+            $http.post(url, data);
         }
     };
     return service;

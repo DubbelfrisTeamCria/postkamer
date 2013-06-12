@@ -6,6 +6,27 @@ app.controller('EditorCtrl', function( service,$scope) {
 
     editor();
     colorpicker();
+    addText2("Vul hier je tekst in...");
+
+    addImageBackground();
+
+
+
+
+
+
+
+   $scope.save = function(){
+
+        var data = getJSON();
+        console.log(data);
+
+        service.saveTemplate(data);
+    }
+
+
+
+
 });
 
 

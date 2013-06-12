@@ -9,15 +9,13 @@
 function editor() {
     var TAB;
     var canvas = new fabric.Canvas('canvas');
-    this.printNaarConsole = function() {
-        console.log(JSON.stringify(canvas));
+
+
+
+    this.getJSON = function() {
+       return JSON.stringify(canvas);
     }
 
-    /*canvas.on('object:selected', function(e) {
-     alert(" IM SELECTED");
-     var activeObject = e.target;
-     canvas.remove(activeObject);
-     });*/
 
     $('li').click(function (e){
         TAB = this.id;
@@ -43,6 +41,9 @@ function editor() {
             }
         }
     });
+
+
+
     document.getElementById('imgLoader').onchange = function handleImage(e) {
         var reader = new FileReader();
         reader.onload = function (event) { console.log('fdsf');
@@ -55,7 +56,7 @@ function editor() {
                 image.set({
                     left: 250,
                     top: 250,
-                    angle: 20,
+                    angle: 0,
                     padding: 10,
                     cornersize: 10
                 });
@@ -68,14 +69,43 @@ function editor() {
         reader.readAsDataURL(e.target.files[0]);
     }
 
+
+    this.addImageBackground = function(){
+        var imgObj = new Image();
+        imgObj.src = "Content/images/shadowcard.png";
+        imgObj.onload = function () {
+            // start fabricJS stuff
+
+            var image = new fabric.Image(imgObj);
+            image.set({
+                left: 320,
+                top: 250,
+                angle: 0,
+                padding: 10,
+                cornersize: 10
+            });
+
+            canvas.add(image);
+            image.sendToBack();
+            image.lockMovementX = true;
+            image.lockMovementY = true;
+            image.lockRotation  = true;
+            image.lockUniScaling  = true;
+            image.selectable = false;
+
+            // end fabricJS stuff
+        }
+    }
+
     this.askText = function(){
         var text = prompt("wat wilt u erin zetten?");
 
         addText2(text);
     }
 
-    function addText2(ingevuldtxt){
-        var text = new fabric.Text(ingevuldtxt, { left: 100, top: 100 });
+    this.addText2 = function(ingevuldtxt){
+        var text = new fabric.Text(ingevuldtxt, { left: 50, top: 100, fontSize: 20 });
+        text.originX = "left";
         canvas.add(text);
     }
 
@@ -110,6 +140,25 @@ function editor() {
 
     this.setUnderline = function(){
         setChange("textDecoration","underline");
+    }
+
+    this.setAlignLeft = function() {
+        var objectSelected = canvas.getActiveObject();
+        objectSelected.originX = "left";
+        objectSelected.left = 50;
+        canvas.renderAll();
+    }
+
+    this.setAlignCenter = function() {
+        console.log("setAlignCenter nog niet gemaakt");
+
+    }
+
+    this.setAlignRight = function() {
+        var objectSelected = canvas.getActiveObject();
+        objectSelected.originX = "right";
+        objectSelected.left = canvas.width-50;
+        canvas.renderAll();
     }
 
     this.colorpicker =function(){

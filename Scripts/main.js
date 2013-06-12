@@ -35,10 +35,10 @@ function templateKeus() {
 
 function staandOfLiggendCanvas() {
     if (staandCanvas()) {
-        $('#templateFooter > a').attr({href:"#/editorStaand",'data-ng-class':"{'active':getClass('/editorStaand')}"});
+        $('#kaartMaken > a').attr({href:"#/editorStaand",'data-ng-class':"{'active':getClass('/editorStaand')}"});
     }
     else if (!staandCanvas()) {
-        $('#templateFooter > a').attr({href:"#/editor",'data-ng-class':"{'active':getClass('/editor')}"});
+        $('#kaartMaken > a').attr({href:"#/editor",'data-ng-class':"{'active':getClass('/editor')}"});
     }
 }
 
