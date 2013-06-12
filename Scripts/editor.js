@@ -1,57 +1,66 @@
 /**
- * Created with JetBrains PhpStorm.
- * User: juandavidcastellanos
- * Date: 6/5/13
- * Time: 1:36 PM
- * To change this template use File | Settings | File Templates.
+ * De editor.
  */
-
 function editor() {
     var TAB;
     var canvas = new fabric.Canvas('canvas');
     var tekstMarge = 50;
 
-
+    /**
+     * Haal het canvas op als json.
+     * @return {*} het canvas als json.
+     */
     this.getJSON = function() {
         return JSON.stringify(canvas);
     }
-    $('#bold').click(function(e){
-        setBold(this);
-    });
-    $('#italic').click(function(e){
-        setItalic(this);
-    });
-    $('#underline').click(function(e){
-        setUnderline(this);
-    });
+    // Onclick functies van bold, italic en underline.
+    $('#bold').click(function(e){setBold(this);});
+    $('#italic').click(function(e){setItalic(this);});
+    $('#underline').click(function(e){ setUnderline(this);});
 
-    $('li').click(function (e){
+    // Onclick functies van alignLeft, alignCenter en AlignRight
+    $('#align1').click(function() {setAlign('left', tekstMarge,this);});
+    $('#align2').click(function() {setAlign('center', canvas.width/2,this);});
+    $('#align3').click(function() {setAlign('right', canvas.width-tekstMarge,this);});
+
+    //verander cursor
+    $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('#tabpage_1 > img').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
+
+    /**
+     * Tools menu.
+     * Maak het tools menu voor de editor.
+     */
+    $('li').click(function (e) {
         TAB = this.id;
         e.preventDefault();
-        if(TAB == "Bewerken1" || TAB == "Bewerken4"){
+        if(TAB == "Bewerken1" || TAB == "Bewerken4") {
             $('#canvasPicker').show();
         }
-        else{
+        else {
             $('#canvasPicker').hide();
         }
-        for(var i=1; i<5; i++){
+        for(var i=1; i<5; i++) {
             var temp = "Bewerken"+i;
             var tab = document.getElementById("Bewerken"+i);
             var content = document.getElementById("tabpage_"+i);
-            if(tab.id === TAB){
+            if(tab.id === TAB) {
                 this.firstChild.src= "Content/images/tab"+i+"Select.png";
                 content.style.display = "block";
 
             }
-            else{
+            else {
                 tab.firstChild.src= "Content/images/tab"+i+".png";
                 content.style.display = "none";
             }
         }
     });
 
-
-
+    /**
+     * Voeg een nieuw plaatje toe aan de kaart.
+     * @param e event
+     */
     document.getElementById('imgLoader').onchange = function handleImage(e) {
         var reader = new FileReader();
         reader.onload = function (event) { console.log('fdsf');
@@ -70,20 +79,20 @@ function editor() {
                 });
 //                image.scale(0.1);
                 canvas.add(image);
-
                 // end fabricJS stuff
             }
         }
         reader.readAsDataURL(e.target.files[0]);
     }
 
-
+    /**
+     * Voeg het achtergrondplaatje toe van de kaart (als overlay) en zet deze vast.
+     */
     this.addImageBackground = function(){
         var imgObj = new Image();
         imgObj.src = "Content/images/shadowcard.png";
         imgObj.onload = function () {
             // start fabricJS stuff
-
             var image = new fabric.Image(imgObj);
             image.set({
                 left: 320,
@@ -100,51 +109,79 @@ function editor() {
             image.lockRotation  = true;
             image.lockUniScaling  = true;
             image.selectable = false;
-
             // end fabricJS stuff
         }
     }
 
+    /**
+     * Vraag de tekst om in het tekstobject te zetten.
+     */
     this.askText = function(){
         var text = prompt("wat wilt u erin zetten?");
-
         addText2(text);
     }
 
+    /**
+     * Voeg een nieuw tekstobject toe aan de kaart.
+     * @param ingevuldtxt de tekst.
+     */
     this.addText2 = function(ingevuldtxt){
         var text = new fabric.Text(ingevuldtxt, { left: 50, top: 100, fontSize: 20 });
         text.originX = "left";
         canvas.add(text);
     }
 
-    this.setChange = function(style,input,image){
+    /**
+     * Verander de stijl van de tekst.
+     * @param style De stijlsoort van de tekst
+     * @param input De gekozen stijl
+     * @param image het plaatje bij de stijl: geselecteerd/niet geselecteerd.
+     */
+    this.setChange = function(style,input,image) {
         var text = canvas.getActiveObject();
         if(text.type === "text"){
             if(text[style] == input){
                 text[style] = "normal";
                 image.src = "Content/images/"+input+".png";
             }
-            else{
+            else {
                 text[style] = input;
                 image.src = "Content/images/"+input+"Select.png";
             }
             canvas.renderAll();
-        }else{
+        } else {
             alert("u moet eerst een tekst selecteren!!")
         }
-
     }
+
+    /**
+     * Zet de tekst op bold.
+     * @param image het plaatje bold: geselecteerd/niet geselecteerd.
+     */
     this.setBold = function(image){
         setChange("fontWeight","bold",image);
     }
+
+    /**
+     * Zet de tekst op italic.
+     * @param image het plaatje italic: geselecteerd/niet geselecteerd.
+     */
     this.setItalic = function(image){
         setChange("fontStyle","italic",image);
     }
 
+    /**
+     * Onderstreep de tekst.
+     * @param image het plaatje onderstreept: geselecteerd/niet geselecteerd.
+     */
     this.setUnderline = function(image){
         setChange("textDecoration","underline",image);
     }
 
+    /**
+     * Zet het juiste plaatje bij de gekozen alignment.
+     * @param image het plaatje alignment: geselecteerd/niet geselecteerd.
+     */
     function setImagesAlign(image) {
         for (var i = 1; i < 4; i++) {
             if (image.id === ("align" + i)) {
@@ -156,6 +193,13 @@ function editor() {
         }
     }
 
+    /**
+     * Verander de positionering van de tekst.
+     * Align links, midden of rechts van de kaart
+     * @param kant aan welke kant er aligned moet worden.
+     * @param marge De afstand vanaf de rand van de kaart.
+     * @param image Het plaatje bij de align positie.
+     */
     this.setAlign = function(kant, marge,image) {
         var objectSelected = canvas.getActiveObject();
         if(objectSelected){
@@ -166,21 +210,10 @@ function editor() {
         canvas.renderAll();
     }
 
-    $('#align1').click(function() {
-        setAlign('left', tekstMarge,this);
-    });
-    $('#align2').click(function() {
-        setAlign('center', canvas.width/2,this);
-    });
-    $('#align3').click(function() {
-        setAlign('right', canvas.width-tekstMarge,this);
-    });
-
-    //verander cursor
-    $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('#tabpage_1 > img').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
-
+    /**
+     * De colorpicker.
+     * Hiermee wordt de kleur voor de achtergrond of object gekozen.
+     */
     this.colorpicker =function(){
         var c = document.getElementById("picker");
         var ctx = c.getContext('2d');
@@ -317,7 +350,6 @@ function editor() {
         text.fill = oudeKleur;
     });
 
-
     /**
      * Reset het canvas.
      */
@@ -348,14 +380,6 @@ function editor() {
             canvas.renderAll();
         }
 
-    }
-    document.getElementById('transSlider').onchange = function(){
-        var value =this.value/100;
-        var objectSelected = canvas.getActiveObject();
-        if(objectSelected.type === "image") {
-            objectSelected.setOpacity(value);
-            canvas.renderAll();
-        }
     }
     /**
      * Zet de transparantie van het geselecteerde plaatje.
@@ -407,23 +431,6 @@ function editor() {
         }
     }
 
-    /* Selection opcity hover
-
-     canvas.on('mouse:move', function(options) {
-
-     var p = canvas.getPointer(options.e);
-
-     canvas.forEachObject(function(obj) {
-     var distX = Math.abs(p.x - obj.left),
-     distY = Math.abs(p.y - obj.top),
-     dist = Math.round(Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2)));
-
-     obj.setOpacity(2 / (dist / 100));
-     });
-
-     canvas.renderAll();
-     });
-     */
     $('#combo').click(function (e){
         var text = canvas.getActiveObject();
         if(text){
@@ -433,9 +440,22 @@ function editor() {
                 setChange("fontFamily",selected);
             }
         }
-        else{
+        else {
 //            alert("u moet eerst een tekst selecteren!!");
         }
     });
+
+//    Selection opacity hover
+//    canvas.on('mouse:move', function(options) {
+//        var p = canvas.getPointer(options.e);
+//        canvas.forEachObject(function(obj) {
+//            var distX = Math.abs(p.x - obj.left),
+//                distY = Math.abs(p.y - obj.top),
+//                dist = Math.round(Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2)));
+//            obj.setOpacity(2 / (dist / 100));
+//        });
+//        canvas.renderAll();
+//    });
+
 }
 
