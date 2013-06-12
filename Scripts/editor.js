@@ -154,10 +154,10 @@ function editor() {
     }
 
     this.setAlignRight = function() {
-//        var objectSelected = canvas.getActiveObject();
-//        objectSelected.originX = "right";
-//        objectSelected.right = 500;
-//        canvas.renderAll();
+        var objectSelected = canvas.getActiveObject();
+        objectSelected.originX = "right";
+        objectSelected.left = canvas.width-50;
+        canvas.renderAll();
     }
 
     this.colorpicker =function(){
