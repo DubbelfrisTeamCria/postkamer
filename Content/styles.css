@@ -185,15 +185,26 @@ h2, h3 {
 }
 
 #tabContainer {
-    width: 352px;
+    width: 353px;
     box-sizing:border-box;
-    -moz-box-sizing:border-box; /* Firefox */
+
     -webkit-box-sizing:border-box; /* Safari */
 }
 
 .tabs>li{
     float:left;
     list-style: none;
+}
+
+
+#combo {
+    background: transparent url("../Content/images/pijltjeomlaag.png") no-repeat right center;
+    font-size: 16px;
+    line-height: 1;
+    border: 1px solid #70c7a9;
+    -webkit-appearance: none;
+    -moz-appearance:none;
+    appearance:none;
 }
 
 

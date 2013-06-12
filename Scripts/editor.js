@@ -22,7 +22,7 @@ function editor() {
     $('li').click(function (e){
         TAB = this.id;
         e.preventDefault();
-        if(this.id == "Bewerken1" || this.id == "Bewerken4"){
+        if(TAB == "Bewerken1" || TAB == "Bewerken4"){
             $('#canvasPicker').show();
         }
         else{
@@ -32,13 +32,14 @@ function editor() {
             var temp = "Bewerken"+i;
             var tab = document.getElementById("Bewerken"+i);
             var content = document.getElementById("tabpage_"+i);
-            if(tab.id === this.id){
+            if(tab.id === TAB){
+                this.firstChild.src= "Content/images/tab"+i+"Select.png";
                 content.style.display = "block";
-                console.log("zet em op block");
+
             }
             else{
+                tab.firstChild.src= "Content/images/tab"+i+".png";
                 content.style.display = "none";
-                console.log("zet em op none");
             }
         }
     });
