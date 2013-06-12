@@ -9,11 +9,11 @@
 function editor() {
     var TAB;
     var canvas = new fabric.Canvas('canvas');
-
+    var tekstMarge = 50;
 
 
     this.getJSON = function() {
-       return JSON.stringify(canvas);
+        return JSON.stringify(canvas);
     }
 
 
@@ -60,7 +60,7 @@ function editor() {
                     padding: 10,
                     cornersize: 10
                 });
-                image.scale(0.1);
+//                image.scale(0.1);
                 canvas.add(image);
 
                 // end fabricJS stuff
@@ -142,24 +142,27 @@ function editor() {
         setChange("textDecoration","underline");
     }
 
-    this.setAlignLeft = function() {
+    this.setAlign = function(kant, marge) {
         var objectSelected = canvas.getActiveObject();
-        objectSelected.originX = "left";
-        objectSelected.left = 50;
+        objectSelected.originX = kant;
+        objectSelected.left = marge;
         canvas.renderAll();
     }
 
-    this.setAlignCenter = function() {
-        console.log("setAlignCenter nog niet gemaakt");
+    $('#alignLeft').click(function() {
+        setAlign('left', tekstMarge);
+    });
+    $('#alignCenter').click(function() {
+        setAlign('center', canvas.width/2);
+    });
+    $('#alignRight').click(function() {
+        setAlign('right', canvas.width-tekstMarge);
+    });
 
-    }
-
-    this.setAlignRight = function() {
-        var objectSelected = canvas.getActiveObject();
-        objectSelected.originX = "right";
-        objectSelected.left = canvas.width-50;
-        canvas.renderAll();
-    }
+    //verander cursor
+    $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('#tabpage_1 > img').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
 
     this.colorpicker =function(){
         var c = document.getElementById("picker");
@@ -187,11 +190,11 @@ function editor() {
         $('#picker').click(function(e){
             var kleurPixel = geefKleur(e);
             if(TAB == "Bewerken1"){
-            if (canvas.getActiveObject() && canvas.getActiveObject().type === "text") {
-                console.log("text object selected");
-                kleurtext(canvas.getActiveObject(), kleurPixel);
-            }else{
-                console.log("no text object selected");}
+                if (canvas.getActiveObject() && canvas.getActiveObject().type === "text") {
+                    console.log("text object selected");
+                    kleurtext(canvas.getActiveObject(), kleurPixel);
+                }else{
+                    console.log("no text object selected");}
             }
             else if(TAB == "Bewerken4"){
                 vulKleur(kleurPixel);
@@ -313,27 +316,32 @@ function editor() {
 
     document.getElementById('transSlider').onchange = function(){
         var value =this.value/100;
-
-        var objectSelected = canvas.getActiveObject();
-        objectSelected.setOpacity(value);
-        canvas.renderAll();
+        if(!objectSelected.type === "text") {
+            var objectSelected = canvas.getActiveObject();
+            objectSelected.setOpacity(value);
+            canvas.renderAll();
+        }
     }
 
     document.getElementById('brightnessSlider').onchange = function(){
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
-        if(!objectSelected.filters[0]) {
-            objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness: value }));
+        if(!objectSelected.type === "text") {
+            if(!objectSelected.filters[0]) {
+                objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness: value }));
+            }
+            else {
+                objectSelected.filters[0]['brightness'] = value;
+            }
+            objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
-        else {
-            objectSelected.filters[0]['brightness'] = value;
-        }
-        objectSelected.applyFilters(canvas.renderAll.bind(canvas));
     }
 
     document.getElementById('tint').onchange = function(){
+        console.log("nog niet gemaakt");
 //        var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
+        if(!objectSelected.type === "text") {
 //        if(!objectSelected.filters[1]) {
 //            objectSelected.filters.push(new fabric.Image.filters.Tint({ color: '00FF00'}));
 //        }
@@ -341,6 +349,7 @@ function editor() {
 //            objectSelected.filters[1]['tint'] = 'rgb(255,0,0)';
 //        }
 //        objectSelected.applyFilters(canvas.renderAll.bind(canvas));
+        }
     }
 
     /* Selection opcity hover
