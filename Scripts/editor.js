@@ -103,7 +103,8 @@ function editor() {
     }
 
     this.addText2 = function(ingevuldtxt){
-        var text = new fabric.Text(ingevuldtxt, { left: 150, top: 100, fontSize: 20 });
+        var text = new fabric.Text(ingevuldtxt, { left: 50, top: 100, fontSize: 20 });
+        text.originX = "left";
         canvas.add(text);
     }
 
@@ -138,6 +139,25 @@ function editor() {
 
     this.setUnderline = function(){
         setChange("textDecoration","underline");
+    }
+
+    this.setAlignLeft = function() {
+        var objectSelected = canvas.getActiveObject();
+        objectSelected.originX = "left";
+        objectSelected.left = 50;
+        canvas.renderAll();
+    }
+
+    this.setAlignCenter = function() {
+        console.log("setAlignCenter nog niet gemaakt");
+
+    }
+
+    this.setAlignRight = function() {
+//        var objectSelected = canvas.getActiveObject();
+//        objectSelected.originX = "right";
+//        objectSelected.right = 500;
+//        canvas.renderAll();
     }
 
     this.colorpicker =function(){
