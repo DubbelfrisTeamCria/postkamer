@@ -291,4 +291,16 @@ ul.symbolList {
     width: 419px;
 }
 
+#tekstSlider {
+    -webkit-appearance: none;
+    -moz-appearance:none;
+    appearance: none;
+    background-color: #70c7a9;
+    height:2px;
+}
+
+#tabpage_1 label{
+    color:#70c7a9;
+}
+
 

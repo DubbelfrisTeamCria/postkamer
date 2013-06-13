@@ -2,7 +2,7 @@
  * De editor.
  */
 function editor() {
-    var TAB;
+    var TAB = "Bewerken1";
     var canvas = new fabric.Canvas('canvas');
     var tekstMarge = 50;
 
@@ -27,7 +27,16 @@ function editor() {
     $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
     $('#tabpage_1 > img').hover(function() {$(this).css('cursor','pointer');}); //handje
     $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
+    /**
+     * De tekst die geselecteerd is mag niet worden vergroot
+     */
+    canvas.on('object:selected', function(options) {
+        if (options.target.type === "text") {
+            options.target.lockScalingX = true;
+            options.target.lockScalingY = true;
 
+        }
+    });
     /**
      * Tools menu.
      * Maak het tools menu voor de editor.
@@ -142,11 +151,16 @@ function editor() {
         if(text.type === "text"){
             if(text[style] == input){
                 text[style] = "normal";
-                image.src = "Content/images/"+input+".png";
+                if(style !="fontStyle"){
+                    image.src = "Content/images/"+input+".png";
+                }
             }
             else {
                 text[style] = input;
-                image.src = "Content/images/"+input+"Select.png";
+                if(style !== "fontFamily"){
+                    console.log(style);
+                    image.src = "Content/images/"+input+"Select.png";
+                }
             }
             canvas.renderAll();
         } else {
@@ -239,7 +253,9 @@ function editor() {
         //hier kies je een kleur eventhandler
         $('#picker').click(function(e){
             var kleurPixel = geefKleur(e);
+            console.log(kleurPixel)
             if(TAB == "Bewerken1"){
+                console.log(TAB);
                 if (canvas.getActiveObject() && canvas.getActiveObject().type === "text") {
                     console.log("text object selected");
                     kleurtext(canvas.getActiveObject(), kleurPixel);
