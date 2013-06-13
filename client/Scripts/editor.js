@@ -12,6 +12,7 @@ function editor() {
     var envelop = $("#envelopcanvas");
 
     var tekstMarge = 50;
+    var standaardImageBreedte = 200;
 
 
     setHidden();
@@ -82,41 +83,23 @@ function editor() {
 
     }
     // Onclick functies van bold, italic en underline.
-    $('#bold').click(function (e) {
-        setBold(this);
-    });
-    $('#italic').click(function (e) {
-        setItalic(this);
-    });
-    $('#underline').click(function (e) {
-        setUnderline(this);
-    });
+    $('#bold').click(function(e){setBold(this);});
+    $('#italic').click(function(e){setItalic(this);});
+    $('#underline').click(function(e){ setUnderline(this);});
 
     // Onclick functies van alignLeft, alignCenter en AlignRight
-    $('#align1').click(function () {
-        setAlign('left', tekstMarge, this);
-    });
-    $('#align2').click(function () {
-        setAlign('center', canvas.width / 2, this);
-    });
-    $('#align3').click(function () {
-        setAlign('right', canvas.width - tekstMarge, this);
-    });
+    $('#align1').click(function() {setAlign('left', tekstMarge,this);});
+    $('#align2').click(function() {setAlign('center', canvas.width/2,this);});
+    $('#align3').click(function() {setAlign('right', canvas.width-tekstMarge,this);});
 
     //verander cursor
-    $('.tabs > li').hover(function () {
-        $(this).css('cursor', 'pointer');
-    }); //handje
-    $('#tabpage_1 > img').hover(function () {
-        $(this).css('cursor', 'pointer');
-    }); //handje
-    $('#picker').hover(function () {
-        $(this).css('cursor', 'crosshair');
-    }); //kruisje
+    $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('#tabpage_1 > img').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
     /**
      * De tekst die geselecteerd is mag niet worden vergroot
      */
-    canvas.on('object:selected', function (options) {
+    canvas.on('object:selected', function(options) {
         if (options.target.type === "text") {
             options.target.lockScalingX = true;
             options.target.lockScalingY = true;
@@ -130,22 +113,22 @@ function editor() {
     $('li').click(function (e) {
         TAB = this.id;
         e.preventDefault();
-        if (TAB == "Bewerken1" || TAB == "Bewerken4") {
+        if(TAB == "Bewerken1" || TAB == "Bewerken4") {
             $('#canvasPicker').show();
         }
         else {
             $('#canvasPicker').hide();
         }
-        for (var i = 1; i < 5; i++) {
-            var temp = "Bewerken" + i;
-            var tab = document.getElementById("Bewerken" + i);
-            var content = document.getElementById("tabpage_" + i);
-            if (tab.id === TAB) {
-                this.firstChild.src = "Content/images/tab" + i + "Select.png";
+        for(var i=1; i<5; i++) {
+            var temp = "Bewerken"+i;
+            var tab = document.getElementById("Bewerken"+i);
+            var content = document.getElementById("tabpage_"+i);
+            if(tab.id === TAB) {
+                this.firstChild.src= "Content/images/tab"+i+"Select.png";
                 content.style.display = "block";
             }
             else {
-                tab.firstChild.src = "Content/images/tab" + i + ".png";
+                tab.firstChild.src= "Content/images/tab"+i+".png";
                 content.style.display = "none";
             }
         }
@@ -158,8 +141,7 @@ function editor() {
      */
     document.getElementById('imgLoader').onchange = function handleImage(e) {
         var reader = new FileReader();
-        reader.onload = function (event) {
-            console.log('fdsf');
+        reader.onload = function (event) { console.log('fdsf');
             var imgObj = new Image();
             imgObj.src = event.target.result;
             imgObj.onload = function () {
@@ -171,9 +153,10 @@ function editor() {
                     top: 250,
                     angle: 0,
                     padding: 10,
-                    cornersize: 10
+                    cornersize: 10,
+                    height: berekenHoogte(image.height, image.width),
+                    width: standaardImageBreedte
                 });
-//                image.scale(0.1);
                 canvas.add(image);
                 // end fabricJS stuff
             }
@@ -181,6 +164,18 @@ function editor() {
         reader.readAsDataURL(e.target.files[0]);
         canvas.calcOffset();
         canvas.renderAll();
+    }
+
+    /**
+     * Bereken de hoogte bij de standaard breedte van een foto.
+     * @param hoogte de hoogte van de foto.
+     * @param breedte de breedte van de foto
+     * @return {Number} de nieuwe hoogte van de foto
+     */
+    this.berekenHoogte = function(hoogte, breedte) {
+    var percentageVerkleind = (standaardImageBreedte*100)/ breedte;
+        hoogte = (hoogte*percentageVerkleind)/100;
+        return hoogte;
     }
 
     /**

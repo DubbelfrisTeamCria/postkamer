@@ -73,10 +73,3 @@ $('#overons').click(function() {selectLinesMenu("overons");});
 $('#hoeWerktHet').click(function() {selectLinesMenu("hoeWerktHet");});
 $('#contact').click(function() {selectLinesMenu("contact");});
 $('#homeLogo').click(function() {selectLinesMenu("home");});
-
-
-
-
-
-
-

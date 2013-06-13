@@ -17,7 +17,7 @@
 }
 
 body {
-    background-image: url('../Content/images/achtergrondwebsite.jpg');
+    background: url('../Content/images/achtergrondwebsite.jpg');
     padding: 0;
     margin: 0;
 }
@@ -32,9 +32,14 @@ html {
 
 html * {
     font-family: "helvetica custom";
+    letter-spacing: 0.55em;
 }
 
-h2, h3 {
+p {
+    font-family: Arial;
+}
+
+h1,h2, h3, h4, h5, h6 {
     font-family: "skinny";
     color: #676767;
 }
