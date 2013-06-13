@@ -18,6 +18,10 @@ function editor() {
     $('#bold').click(function(e){setBold(this);});
     $('#italic').click(function(e){setItalic(this);});
     $('#underline').click(function(e){ setUnderline(this);});
+    $('#prullenbak').click(function(e){ removeObject(this);});
+    $('#plus').click(function(e){ addText2(askText());});
+    $('#bringToFront').click(function(e){ bringToFront(this);});
+    $('#bringToBack').click(function(e){ sendToBack(this);});
 
     // Onclick functies van alignLeft, alignCenter en AlignRight
     $('#align1').click(function() {setAlign('left', tekstMarge,this);});
@@ -26,7 +30,10 @@ function editor() {
 
     //verander cursor
     $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('#tabpage_1 > img').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('.tabscontent div img').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('.tabscontent input').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('.knop').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('.tabscontent div label').hover(function() {$(this).css('cursor','default');}); //default
     $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
     /**
      * De tekst die geselecteerd is mag niet worden vergroot
@@ -35,7 +42,6 @@ function editor() {
         if (options.target.type === "text") {
             options.target.lockScalingX = true;
             options.target.lockScalingY = true;
-
         }
     });
     /**
@@ -102,7 +108,7 @@ function editor() {
      * @return {Number} de nieuwe hoogte van de foto
      */
     this.berekenHoogte = function(hoogte, breedte) {
-    var percentageVerkleind = (standaardImageBreedte*100)/ breedte;
+        var percentageVerkleind = (standaardImageBreedte*100)/ breedte;
         hoogte = (hoogte*percentageVerkleind)/100;
         return hoogte;
     }
@@ -401,6 +407,13 @@ function editor() {
         var objectSelected = canvas.getActiveObject();
         objectSelected.bringToFront();
     }
+    /**
+     * Zet het geselecteerde object naar achteren.
+     */
+    this.sendToBack= function(){
+        var objectSelected = canvas.getActiveObject();
+        objectSelected.sendToBack();
+    }
     document.getElementById('tekstSlider').onchange = function(){
         var value = this.value;
         var selectedObject = canvas.getActiveObject();
@@ -457,6 +470,14 @@ function editor() {
 //            objectSelected.filters[1]['tint'] = 'rgb(255,0,0)';
 //        }
 //        objectSelected.applyFilters(canvas.renderAll.bind(canvas));
+        }
+    }
+
+    document.getElementById('blur').onchange = function() {
+        var value = parseInt(this.value);
+        var objectSelected = canvas.getActiveObject();
+        if(objectSelected.type === "image") {
+            //?
         }
     }
 
