@@ -1,0 +1,60 @@
+<header><h2>Editor</h2></header>
+<!--//pushing-->
+<div class="left">
+    <canvas id="canvas" width="450px" height="650px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
+    <button ng-click="save();">print canvas naar console</button>
+</div>
+
+
+<div id="editorTools" class="right">
+    <div id="tabContainer">
+        <div class="tabs">
+            <li id="Bewerken1"><img src="Content/images/tab1Select.png"></li>
+            <li id="Bewerken2"><img src="Content/images/tab2.png"></li>
+            <li id="Bewerken3"><img src="Content/images/tab3.png"></li>
+            <li id="Bewerken4"><img src="Content/images/tab4.png"></li>
+        </div>
+        <div class="tabscontent">
+            <div id="tabpage_1">
+                <img src="Content/images/bold.png" onclick="setBold();">
+                <img src="Content/images/italic.png" onclick="setItalic();">
+                <img src="Content/images/underline.png" onclick="setUnderline();">
+                <img id="alignLeft" src="Content/images/alignLeft.png">
+                <img id="alignCenter" src="Content/images/alignCenter.png">
+                <img id="alignRight" src="Content/images/alignRight.png">
+                <!--<button onclick="askText();">add Text</button>-->
+                <!--<button onclick="setItalic();">ITALIC</button>-->
+                <!--<button onclick="setBold();">BOLLDDDDD</button>-->
+                <!--<button onclick="setUnderline();">UNDERLINE</button>-->
+                <select name="font" id="combo" class="myfont" onchange="setFont();">
+                    <option>Arial</option>
+                    <option>Verdana</option>
+                    <option>Calibri</option>
+                    <option>Lucida Calligraphy</option>
+                    <option>Broadway</option>
+                    <option><img src="Content/images/bold.png"> </option>
+                </select>
+            </div>
+            <div id="tabpage_2" style="display: none"></div>
+            <div id="tabpage_3" style="display: none">
+                <input type="file" id="imgLoader">
+                <label>transparency</label>
+                <input id="transSlider" type="range" min="0" max="100" value="100" />
+                <label>brightness</label>
+                <input type="range" id="brightnessSlider" value="0" min="-255" max="255">
+                <label>Tint:</label>
+                <input type="range" id="tint" value="0" min="-255" max="255">
+            </div>
+            <div id="tabpage_4" style="display: none">
+                <button onclick="achtergrondImage();">add achtergrond image</button>
+            </div>
+
+        </div>
+        <div id="canvasPicker">
+            <canvas id="picker" width="217" height="217" name="kleurkiezer" model="textInput" class="ng-scope"></canvas>
+        </div>
+    </div>
+</div>
+
+
+
