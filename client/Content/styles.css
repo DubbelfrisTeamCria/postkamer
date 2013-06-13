@@ -1,0 +1,369 @@
+﻿@font-face {
+    font-family: 'helvetica custom';
+    src: url('../Content/fonts/Helvetica_LT_25_Ultra_Light.eot');
+    src: url('../Content/fonts/Helvetica_LT_25_Ultra_Light.woff') format('woff'),
+    url('../Content/fonts/Helvetica_LT_25_Ultra_Light.ttf') format('truetype'),
+    url('../Content/fonts/fontscore.com_h_helvetica-neue-lt-std-25-ultra-light.otf');
+}
+
+@font-face {
+    font-family: 'skinny';
+    src: url('../Content/fonts/TheSkinny.eot');
+    src: url('../Content/fonts/TheSkinny.woff') format('woff'),
+    url('../Content/fonts/TheSkinny.ttf') format('truetype'),
+    url('../Content/fonts/TheSkinny.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-image: url('../Content/images/achtergrondwebsite.jpg');
+    padding: 0;
+    margin: 0;
+}
+
+#animated-view {
+    padding: 0 40px;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+html * {
+    font-family: "helvetica custom";
+}
+
+h2, h3 {
+    font-family: "skinny";
+    color: #676767;
+}
+
+#homeNav {
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    margin: 60px 0 80px 0;
+}
+
+#homeNav ul li {
+    display: inline-block;
+    margin: 0 25px;
+    list-style: none;
+}
+
+#homeNav ul li a {
+    text-decoration: none;
+    color: #70c7a9;
+}
+
+#homeNav ul {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+#bottomline {
+    height: 2px;
+    border-top: solid thin #d3d3d3;
+    background-color: #f7f7f7;
+    width: 100%;
+    position: relative;
+    top: -80px;
+    z-index:-1;
+}
+
+.bottomlineBlock {
+    height: 2px;
+    background-color: #848484;
+    width: 110%;
+    position: relative;
+    left: -5%;
+    bottom: -17px;
+}
+
+#logo {
+    height: 80%;
+    width: 80%;
+}
+
+/*Editor partial:*/
+#canvas {
+    margin: auto;
+    display: block;
+    background-color: #ffffff;
+    border: 1px rgba(184, 184, 184, 0.81) solid;
+    box-shadow: 1px -1px 6px rgba(45, 50, 50, 0.75);
+}
+
+#binnenkantcanvas {
+    margin: auto;
+    display: block;
+    background-color: #ffffff;
+    border: 1px rgba(184, 184, 184, 0.81) solid;
+    box-shadow: 1px -1px 6px rgba(45, 50, 50, 0.75);
+}
+
+#envelopcanvas {
+    margin: auto;
+    display: block;
+    background-color: #ffffff;
+    border: 1px rgba(184, 184, 184, 0.81) solid;
+    box-shadow: 1px -1px 6px rgba(45, 50, 50, 0.75);
+}
+
+/*Homepage partial:*/
+.kiesthemaknop {
+    width: 180px;
+    height: 240px;
+    margin: 50px 10px 10px 10px;
+    background-color: #ffffff;      /*temp*/
+}
+
+#verhuizen {
+    -webkit-transform:rotate(30deg); /* Safari and Chrome */
+    transform:rotate(30deg);
+
+}
+
+#samenwonen {
+    -webkit-transform:rotate(10deg); /* Safari and Chrome */
+    transform:rotate(10deg);
+}
+
+#housewarming {
+    -webkit-transform:rotate(-15deg); /* Safari and Chrome */
+    transform:rotate(-15deg);
+}
+
+/*Template Partial:*/
+#selectedTemplate {
+    box-shadow: 5px 5px 5px #ffffff;
+}
+
+.template {
+    background-color: #ffffff;
+    margin: 10px;
+}
+
+.templateLiggend {
+    width: 166px;
+    height: 120px;
+}
+
+.templateStaand {
+    width: 120px;
+    height: 166px;
+}
+
+.center {
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+
+    display:box;
+    box-pack:center;
+    box-align:center;
+
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+
+    display:-ms-flexbox;
+    -ms-flex-pack:center;
+    -ms-flex-align:center;
+}
+
+.left {
+    float:left;
+}
+
+.right {
+    float:right;
+}
+
+#editorTools {
+    /*background-color: white;*/
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    top:-75px;
+    position: relative;
+}
+
+#editorTools button {
+    display:-webkit-box;
+    -webkit-box-pack:end;
+    -webkit-box-align:end;
+}
+
+#templateForm label img {
+    margin: 0 10px;
+}
+
+.end {
+    display:-webkit-box;
+    -webkit-box-pack:end;
+    -webkit-box-align:end;
+
+    display:-moz-box;
+    -moz-box-pack:end;
+    -moz-box-align:end;
+
+    display:box;
+    box-pack:end;
+    box-align:end;
+
+    display:-ms-flexbox;
+    -ms-flex-pack:end;
+    -ms-flex-align:end;
+}
+
+#tabContainer {
+    width: 353px;
+    box-sizing:border-box;
+
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+#canvasPicker {
+    text-align: center;
+}
+
+.tabs {
+    height: 86px;
+    margin-bottom: 25px;
+}
+
+.tabs>li{
+    float:left;
+    list-style: none;
+}
+.tabscontent {
+    width: 353px;
+}
+
+.tabscontent * {
+    margin-bottom: 10px;
+}
+
+.tabscontent div {
+    text-align: center;
+}
+
+.tabscontent button {
+    margin: auto;
+}
+
+
+#combo {
+    background: transparent url("../Content/images/pijltjeomlaag.png") no-repeat right center;
+    font-size: 16px;
+    line-height: 1;
+    border: 1px solid #70c7a9;
+    -webkit-appearance: none;
+    -moz-appearance:none;
+    appearance:none;
+}
+
+#navKaart {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#navKaart a {
+    text-decoration: none;
+    color: #676767;
+    margin: 0 25px;
+}
+
+
+body {
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-family: "skinny";
+    color: #676767;
+}
+p {
+    margin-bottom: 1.1em;
+    margin-top: 0;
+}
+#main p.lastNode {
+    margin-bottom: 0;
+}
+a:link img, a:visited img {
+    border: none;
+}
+div.clearFloat {
+    clear: both;
+    font-size: 0;
+    height: 0;
+    line-height: 0px;
+}
+li.clearFloat {
+    clear: both;
+}
+ul.symbolList {
+    display: inline;
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.AbsWrap {
+    position: relative;
+    width: 100%;
+}
+.rowWrap {
+    width: 100%;
+}
+#main {
+    margin: 0 auto 0 0;
+    width: 1152px;
+}
+.OVER_ONS {
+    font-family: 'The Skinny bold', Arial, Helvetica, sans-serif;
+    font-size: 160%;
+    font-weight: bold;
+    text-align: center;
+    color: #676767;
+    line-height: 0%;
+    padding-bottom: 2px;
+    padding-top: 1px;
+    margin-left: 301px;
+    margin-top: 50px;
+    display: inline;
+    float: left;
+    margin-bottom: 0;
+}
+.Het_bedrijf{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 120%;
+    text-align: left;
+    color: #676767;
+    line-height: 233.33%;
+    padding-bottom: 2px;
+    padding-top: 1px;
+    margin-left: 135px;
+    margin-top: 32px;
+    display: inline;
+    float: left;
+    margin-bottom: 0;
+    width: 419px;
+}
+
+#tekstSlider {
+    -webkit-appearance: none;
+    -moz-appearance:none;
+    appearance: none;
+    background-color: #70c7a9;
+    height:2px;
+}
+
+#tabpage_1 label{
+    color:#70c7a9;
+}
