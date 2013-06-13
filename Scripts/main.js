@@ -43,7 +43,6 @@ function staandOfLiggendCanvas() {
 }
 
 function staandCanvas() {
-
     var selected = document.getElementById('selectedTemplate');
     var staand = null;
     if (selected.className === "templateLiggend template") {
@@ -55,3 +54,22 @@ function staandCanvas() {
     return staand;
 }
 
+$('.bottomlineBlock').hide();
+selectLinesMenu("home");
+
+/**
+ * Laat een lijn zien onder het geselecteerde menu item.
+ * @param selected Het geselecteerde menu item.
+ */
+function selectLinesMenu(selected) {
+    $('.bottomlineBlock').hide();
+    $('#' + selected + ' .bottomlineBlock').show();
+
+}
+
+//Zet de onclick op de menu items voor de lijn eronder.
+$('#home').click(function() {selectLinesMenu("home");});
+$('#overons').click(function() {selectLinesMenu("overons");});
+$('#hoeWerktHet').click(function() {selectLinesMenu("hoeWerktHet");});
+$('#contact').click(function() {selectLinesMenu("contact");});
+$('#homeLogo').click(function() {selectLinesMenu("home");});
