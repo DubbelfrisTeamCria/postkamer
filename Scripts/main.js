@@ -64,7 +64,6 @@ selectLinesMenu("home");
 function selectLinesMenu(selected) {
     $('.bottomlineBlock').hide();
     $('#' + selected + ' .bottomlineBlock').show();
-
 }
 
 //Zet de onclick op de menu items voor de lijn eronder.

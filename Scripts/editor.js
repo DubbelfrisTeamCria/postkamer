@@ -5,6 +5,7 @@ function editor() {
     var TAB = "Bewerken1";
     var canvas = new fabric.Canvas('canvas');
     var tekstMarge = 50;
+    var standaardImageBreedte = 200;
 
     /**
      * Haal het canvas op als json.
@@ -83,14 +84,27 @@ function editor() {
                     top: 250,
                     angle: 0,
                     padding: 10,
-                    cornersize: 10
+                    cornersize: 10,
+                    height: berekenHoogte(image.height, image.width),
+                    width: standaardImageBreedte
                 });
-//                image.scale(0.1);
                 canvas.add(image);
                 // end fabricJS stuff
             }
         }
         reader.readAsDataURL(e.target.files[0]);
+    }
+
+    /**
+     * Bereken de hoogte bij de standaard breedte van een foto.
+     * @param hoogte de hoogte van de foto.
+     * @param breedte de breedte van de foto
+     * @return {Number} de nieuwe hoogte van de foto
+     */
+    this.berekenHoogte = function(hoogte, breedte) {
+    var percentageVerkleind = (standaardImageBreedte*100)/ breedte;
+        hoogte = (hoogte*percentageVerkleind)/100;
+        return hoogte;
     }
 
     /**
