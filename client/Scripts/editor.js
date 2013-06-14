@@ -568,14 +568,15 @@ function editor() {
             canvas.renderAll();
         });
 
-        this.loadTemplate= function(data){
-            canvas.loadFromJSON(data.voorkant);
-            binnenkantcanvas.loadFromJSON(data.binnenkant);
-            envelopcanvas.loadFromJSON(data.envelop);
-            canvas.renderAll();
-            binnenkantcanvas.renderAll();
-            envelopcanvas.renderAll();
-        }
+
+    }
+    this.loadTemplate= function(data){
+        canvas.loadFromJSON(data.voorkant);
+        binnenkantcanvas.loadFromJSON(data.binnenkant);
+        envelopcanvas.loadFromJSON(data.envelop);
+        canvas.renderAll();
+        binnenkantcanvas.renderAll();
+        envelopcanvas.renderAll();
     }
 }
 
