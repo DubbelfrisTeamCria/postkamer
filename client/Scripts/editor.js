@@ -100,12 +100,7 @@ function editor() {
     $('li').click(function (e) {
         TAB = this.id;
         e.preventDefault();
-        if(TAB == "Bewerken1" || TAB == "Bewerken4") {
-            $('#canvasPicker').show();
-        }
-        else {
-            $('#canvasPicker').hide();
-        }
+        setVisibleTabAndPLus();
         for(var i=1; i<5; i++) {
             var temp = "Bewerken"+i;
             var tab = document.getElementById("Bewerken"+i);
@@ -121,6 +116,22 @@ function editor() {
         }
     });
 
+    function setVisibleTabAndPLus() {
+        if (TAB != "Bewerken1" || TAB != "Bewerken4") {
+            $('#canvasPicker').hide();
+
+        }
+        else {
+            $('#canvasPicker').show();
+        }
+
+        if (TAB == "Bewerken1") {
+            $('#plus').show();
+        }
+        else {
+            $('#plus').hide();
+        }
+    }
     /**
      * Voeg een nieuw plaatje toe aan de kaart.
      * @param e event
