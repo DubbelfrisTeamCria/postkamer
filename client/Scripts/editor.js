@@ -117,12 +117,12 @@ function editor() {
     });
 
     function setVisibleTabAndPLus() {
-        if (TAB != "Bewerken1" || TAB != "Bewerken4") {
-            $('#canvasPicker').hide();
+        if (TAB === "Bewerken1" || TAB === "Bewerken4") {
+            $('#canvasPicker').show();
 
         }
         else {
-            $('#canvasPicker').show();
+            $('#canvasPicker').hide();
         }
 
         if (TAB == "Bewerken1") {
@@ -241,7 +241,6 @@ function editor() {
             else {
                 text[style] = input;
                 if (style !== "fontFamily") {
-                    console.log(style);
                     image.src = "Content/images/" + input + "Select.png";
                 }
             }
@@ -340,9 +339,7 @@ function editor() {
         //hier kies je een kleur eventhandler
         $('#picker').click(function (e) {
             var kleurPixel = geefKleur(e);
-            console.log(kleurPixel)
             if (TAB == "Bewerken1") {
-                console.log(TAB);
                 if (canvas.getActiveObject() && canvas.getActiveObject().type === "text") {
                     console.log("text object selected");
                     kleurtext(canvas.getActiveObject(), kleurPixel);
