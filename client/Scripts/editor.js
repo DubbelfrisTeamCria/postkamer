@@ -12,6 +12,9 @@ function editor() {
     var standaardImageBreedte = 200;
 
     setHidden();
+    colorpicker();
+    addText2("Vul hier je tekst in...");
+    addImageBackground();
 
     function setHidden(){
         canvas = voorkantcanvas;
@@ -564,10 +567,6 @@ function editor() {
             canvas.calcOffset();
             canvas.renderAll();
         });
-
-        colorpicker();
-        addText2("Vul hier je tekst in...");
-        addImageBackground();
 
         this.loadTemplate= function(data){
             canvas.loadFromJSON(data.voorkant);

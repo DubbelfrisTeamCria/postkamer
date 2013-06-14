@@ -50,7 +50,6 @@ app.controller('EditorCtrl', function( service,$scope) {
         service.saveTemplate(data);
     }
 
-
     $scope.load = function(){
      service.async().then(function(data) {
 
