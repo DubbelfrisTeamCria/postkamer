@@ -386,68 +386,7 @@ function editor() {
     /**
      * Wijzig de tekst van het geselecteerde tekst object wanneer er getyped wordt.
      */
-    $(document).keydown(function (e) {
-        var keyPressed = String.fromCharCode(e.which);
-        var text = canvas.getActiveObject();
-        if (text) {
-            var oudeKleur = text.fill;
-            text.fill = "rgb(255,0,0)";
-            var newText = '';
-            var stillTyping = true;
-            if (e.which == 27) { //27 = esc
-                if (!text.originalText) return; //if there is no original text, there is nothing to undo
-                newText = text.originalText;
-                stillTyping = false;
-            }
-            else { //if the user wants to make a correction
-                if (!text.originalText) {//Store the original text before beginning to type
-                    text.originalText = text.text;
-                }
-                //if the user wants to remove all text, or the element entirely
-                if (e.which == 46) { // 46 = delete
-                    activeObject.element.remove(true);
-                    return;
-                }
-                else if (e.which == 16) { //16 = shift
-                    newText = text.text;
-                }
-                else if (e.which == 8) {//8 = backspace
-                    e.preventDefault();
-                    newText = text.text.substr(0, text.text.length - 1);
-                }
-                else if (e.which == 13) { //13 = enter
-                    //canvas clear selection
-                    canvas.discardActiveObject();
-                    canvas.renderAll();
-                    canvasBeforeSelectionCleared({ memo: { target: text} });
-                    newText = text.text;
-                    stillTyping = false;
-                }
-                //if the user is typing alphanumeric characters
-                else if (
-                    (e.which > 64 && e.which < 91) || //A-Z
-                        (e.which > 47 && e.which < 58) || //0-9
-                        (e.which == 32) || //Space
-                        (keyPressed.match(/[!&()"'?-]/)) //Accepted special characters
-                    ) {
-                    if (text.text == text.originalText) text.text = '';
-                    if (keyPressed.match(/[A-Z]/) && !e.shiftKey)
-                        keyPressed = keyPressed.toLowerCase();
-                    newText = text.text + keyPressed;
-                }
-            }
-            text.set({ text: newText }); //Change the text
-            canvas.calcOffset();
-            canvas.renderAll();
 
-            if (!stillTyping) {
-                this.text.originalText = null;
-            }
-        }
-        text.fill = oudeKleur;
-        canvas.calcOffset();
-        canvas.renderAll();
-    });
 
     /**
      * Reset het canvas.
