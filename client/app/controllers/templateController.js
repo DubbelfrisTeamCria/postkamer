@@ -4,13 +4,15 @@ app.controller('TemplateCtrl', function( service,$scope) {
         $scope.customers = data;
     });
 
-    $scope.load = function(){
-        service.async().then(function(data) {
-
-            getTemplateStaand(data[0].template); // haal alle staande templates op. Alleen wanneer private == false!
-            getTemplateLiggend(data[1].template);  // haal alle Liggende templates op. Alleen wanneer private == false!
-            selecteerTemplate();
-
-        });
-    }
+    service.async().then(function(data) {
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].positie === "liggend") {
+                getTemplateLiggend(data[i].template);
+            }
+            else if (data[i].positie === "staand") {
+                getTemplateStaand(data[i].template);
+            }
+        }
+        selecteerTemplate();
+    });
 });

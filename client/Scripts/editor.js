@@ -56,8 +56,10 @@ function editor() {
      * @return {*} het canvas als json.
      */
     this.getJSON = function () {
+        var positie = $('.wrapper').attr('id');
         var template = {
             "private": "true",
+            "positie": positie,
             "categorie": "samenwonen",
             "voorkant": JSON.stringify(voorkantcanvas),
             "binnenkant": JSON.stringify(binnenkantcanvas),
@@ -575,7 +577,7 @@ function editor() {
         canvas.renderAll();
     });
 
-    this.loadTemplate = function(data){
+    this.loadTemplate = function(data) {
         canvas.loadFromJSON(data.voorkant);
         binnenkantcanvas.loadFromJSON(data.binnenkant);
         envelopcanvas.loadFromJSON(data.envelop);
