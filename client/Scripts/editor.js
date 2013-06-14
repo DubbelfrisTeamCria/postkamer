@@ -280,7 +280,7 @@ function editor() {
      * Zet het juiste plaatje bij de gekozen alignment.
      * @param image het plaatje alignment: geselecteerd/niet geselecteerd.
      */
-    function setImagesAlign(image) {
+    function setButtonImages(image) {
         for (var i = 1; i < 4; i++) {
             if (image.id === ("align" + i)) {
                 image.src = "Content/images/align" + i + "Select.png";
@@ -300,10 +300,11 @@ function editor() {
      */
     this.setAlign = function (kant, marge, image) {
         var objectSelected = canvas.getActiveObject();
-        if (objectSelected) {
-            objectSelected.originX = kant;
-            objectSelected.left = marge;
-            setImagesAlign(image);
+        if (objectSelected.type = "text") {
+                objectSelected.textAlign = kant;
+//            objectSelected.originX = kant;
+//            objectSelected.left = marge;
+            setButtonImages(image);
         }
         canvas.calcOffset();
         canvas.renderAll();
@@ -399,6 +400,8 @@ function editor() {
      */
     $(document).keydown(function (e) {
         var keyPressed = String.fromCharCode(e.which);
+        e.preventDefault();
+        e.stopPropagation();
         var text = canvas.getActiveObject();
         if (text) {
 //            var oudeKleur = text.fill;
