@@ -416,12 +416,8 @@ function editor() {
                     newText = text.text.substr(0, text.text.length - 1);
                 }
                 else if (e.which == 13) { //13 = enter
-                    //canvas clear selection
-                    canvas.discardActiveObject();
-                    canvas.renderAll();
-                    canvasBeforeSelectionCleared({ memo: { target: text} });
-                    newText = text.text;
-                    stillTyping = false;
+                    newText = text.text+ "\n";
+                    stillTyping = true;
                 }
                 //if the user is typing alphanumeric characters
                 else if (
