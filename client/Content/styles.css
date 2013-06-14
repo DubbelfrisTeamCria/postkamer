@@ -101,7 +101,7 @@ h1,h2, h3, h4, h5, h6 {
 /*Editor partial:*/
 
 #canvas {
-    margin: auto 162.5px;
+    /*margin: auto 162.5px;*/
     display: block;
     background-color: #ffffff;
     border: 1px rgba(184, 184, 184, 0.81) solid;

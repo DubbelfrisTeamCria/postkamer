@@ -444,7 +444,7 @@ function editor() {
                 this.text.originalText = null;
             }
         }
-        text.fill = oudeKleur;
+//        text.fill = oudeKleur;
         canvas.calcOffset();
         canvas.renderAll();
     });
