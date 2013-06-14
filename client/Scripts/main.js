@@ -5,9 +5,9 @@ function selecteerTemplate() {
     $('.template').click(function() {
         $('.template').removeAttr("id");
         $(this).attr('id', 'selectedTemplate');
-        console.log("bla");
+        console.log($(this).attr("kaartId"));  //hiermee kan de juiste template in de editor worden geladen.
     });
-};
+}
 
 function enkelCanvas() {
     var enkel = null;
@@ -74,14 +74,13 @@ $('#hoeWerktHet').click(function() {selectLinesMenu("hoeWerktHet");});
 $('#contact').click(function() {selectLinesMenu("contact");});
 $('#homeLogo').click(function() {selectLinesMenu("home");});
 
-function getTemplateStaand(data) {
-    var image = $('<img/>').attr({"src":data, "class": "templateStaand template"});
-    $('#templateStaandDiv').append(image);
-     $(image).hover(function() {$(this).css('cursor','pointer');}); //handje
-}
-function getTemplateLiggend(data) {
-    var image = $('<img/>').attr({"src":data, "class": "templateLiggend template"});
-    $('#templateLiggendDiv').append(image);
+function getTemplate(data, positie) {
+    var image = $('<img/>').attr({
+        "src":data.template,
+        "class": "template" + positie + " template",
+        "kaartId":data._id.$oid
+    });
+    $('#template' + positie + 'Div').append(image);
     $(image).hover(function() {$(this).css('cursor','pointer');}); //handje
 }
 
