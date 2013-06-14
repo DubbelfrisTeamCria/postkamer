@@ -72,7 +72,7 @@ app.controller('EditorCtrl', function( service,$scope) {
     $scope.load = function(){
      service.async().then(function(data) {
 
-           loadTemplate(data[3]);
+           loadTemplate(data[1]);
         })
 
     }
