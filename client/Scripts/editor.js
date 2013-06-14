@@ -231,7 +231,7 @@ function editor() {
      */
     this.setChange = function (style, input, image) {
         var text = canvas.getActiveObject();
-        if (text) {
+        if (text.type === "text") {
             if (text[style] == input) {
                 text[style] = "normal";
                 if (style != "fontFamily") {
@@ -401,7 +401,6 @@ function editor() {
     $(document).keydown(function (e) {
         var keyPressed = String.fromCharCode(e.which);
         e.preventDefault();
-        e.stopPropagation();
         var text = canvas.getActiveObject();
         if (text) {
 //            var oudeKleur = text.fill;
