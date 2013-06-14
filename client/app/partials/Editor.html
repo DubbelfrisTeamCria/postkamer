@@ -5,19 +5,19 @@
         <canvas id="canvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
         <canvas  id="binnenkantcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
         <canvas   id="envelopcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>       <div id="smallTools">
-           <img id="prullenbak" class="knop" src="Content/images/prullenbak.png">
-           <img id="plus" class="knop" src="Content/images/plus.png">
-           <img id="bringToFront" class="knop" src="Content/images/bringToFront.png">
-           <img id="bringToBack" class="knop" src="Content/images/bringToBack.png">
-       </div>
+        <img id="prullenbak" class="knop" src="Content/images/prullenbak.png">
+        <img id="plus" class="knop" src="Content/images/plus.png">
+        <img id="bringToFront" class="knop" src="Content/images/bringToFront.png">
+        <img id="bringToBack" class="knop" src="Content/images/bringToBack.png">
+    </div>
         <div id="navKaart" class="center">
-            <a href="">Voorkant</a>
-            <a href="">Binnenkant</a>
-            <a href="">Envelop</a>
+            <button id="voorKant">Voorkant</button>
+            <button id="binnenKant" >Binnenkant</button>
+            <button id="envelop">Envelop</button>
         </div>
         <button ng-click="save();">print canvas naar console</button>
-    <button ng-click="load();">load template</button>
-</div>
+        <button ng-click="load();">load template</button>
+    </div>
 
 
     <div id="editorTools" class="left">
