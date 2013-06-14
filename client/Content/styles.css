@@ -1,4 +1,4 @@
-﻿@font-face {
+@font-face {
     font-family: 'helvetica custom';
     src: url('../Content/fonts/Helvetica_LT_25_Ultra_Light.eot');
     src: url('../Content/fonts/Helvetica_LT_25_Ultra_Light.woff') format('woff'),
@@ -33,6 +33,12 @@ html {
 html * {
     font-family: "helvetica custom";
     letter-spacing: 0.55em;
+}
+
+#wrapper {
+    width: 1100px;
+    height: 600px;
+    margin: 100px auto 0 auto;
 }
 
 p {
@@ -93,12 +99,16 @@ h1,h2, h3, h4, h5, h6 {
 }
 
 /*Editor partial:*/
+
 #canvas {
     margin: auto;
     display: block;
     background-color: #ffffff;
     border: 1px rgba(184, 184, 184, 0.81) solid;
     box-shadow: 1px -1px 6px rgba(45, 50, 50, 0.75);
+}
+#smallTools {
+    float:right;
 }
 
 #binnenkantcanvas {
@@ -192,8 +202,9 @@ h1,h2, h3, h4, h5, h6 {
     box-sizing:border-box;
     -moz-box-sizing:border-box; /* Firefox */
     -webkit-box-sizing:border-box; /* Safari */
-    top:-75px;
+    top:-100px;
     position: relative;
+    margin-left: 50px;
 }
 
 #editorTools button {
@@ -231,6 +242,25 @@ h1,h2, h3, h4, h5, h6 {
     -webkit-box-sizing:border-box; /* Safari */
 }
 
+#vorigeknop {
+    background-image: url('../Content/images/vorigeKnop.png');
+    width: 129px;
+    height: 41px;
+    margin: 50px 0 20px -30px;
+    display: inline-block;
+    position: relative;
+    float: left;
+}
+
+#volgendeknop {
+    background-image: url('../Content/images/volgendeKnop.png');
+    width: 129px;
+    height: 41px;
+    margin: 50px -30px 20px -0;
+    display: inline-block;
+
+}
+
 #canvasPicker {
     text-align: center;
 }
@@ -248,18 +278,19 @@ h1,h2, h3, h4, h5, h6 {
     width: 353px;
 }
 
+.tabscontent label {
+    color:#70c7a9;
+}
+
 .tabscontent * {
     margin-bottom: 10px;
 }
 
 .tabscontent div {
     text-align: center;
-}
-
-.tabscontent button {
     margin: auto;
-}
 
+}
 
 #combo {
     background: transparent url("../Content/images/pijltjeomlaag.png") no-repeat right center;
@@ -282,12 +313,6 @@ h1,h2, h3, h4, h5, h6 {
     margin: 0 25px;
 }
 
-
-body {
-    background-color: #fff;
-    margin: 0;
-    padding: 0;
-}
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     font-family: "skinny";
@@ -361,14 +386,51 @@ ul.symbolList {
     width: 419px;
 }
 
-#tekstSlider {
+input[type = range] {
     -webkit-appearance: none;
     -moz-appearance:none;
     appearance: none;
     background-color: #70c7a9;
     height:2px;
+    margin-bottom: 20px;
 }
 
-#tabpage_1 label{
-    color:#70c7a9;
+#achtergrondImage {
+    background:url("../Content/images/knop-achtergrond-foto.png") no-repeat;
+    height: 43px;
+    width: 230px;
+    margin-bottom: 20px;
 }
+
+#inputFile {
+    background: url("../Content/images/fotouploadenknop.png") no-repeat;
+    width: 228px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+input[type = file] {
+    width: 228px;
+    height: 40px;
+    opacity: 0;
+}
+
+input::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance: none;
+    width:10px;
+    height:10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    -ms-border-radius:10px;
+    -o-border-radius:10px;
+    border-radius:10px;
+    background-color: #70c7a9;
+}
+
+.nietAf {
+    text-decoration: line-through
+}
+
+
+

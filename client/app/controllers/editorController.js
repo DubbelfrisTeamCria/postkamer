@@ -3,44 +3,31 @@ app.controller('EditorCtrl', function( service,$scope) {
     service.async().then(function(data) {
         $scope.customers = data;
        // console.log(data[26]);
-
     });
 
-    editor()
+    editor();
 
 //    var voorkantCanvas = new editor('canvas');
 //   var binnenkantCanvas = new editor('binnenkantcanvas');
 //   // var envelopCanvas  = new editor('envelopcanvas');
 
-
-     var voorkant = $("#canvas");
+    var voorkant = $("#canvas");
     var binnenkant = $("#binnenkantcanvas");
     var envelop = $("#envelopcanvas");
-
-
-
-
-
-
 
 
 //    function setHidden(){
 //        binnenkant.parent().css('display' ,'none');
 //        envelop.parent().css('display' ,'none');
-//
 //    }
 //
 //    setHidden();
-//
-//
 //
 //    $('#voorKant').click(function(){
 //        voorkant.parent().css('display' ,'block');
 //        binnenkant.parent().css('display' ,'none');
 //        envelop.parent().css('display' ,'none');
 //    });
-//
-//
 //
 //    $('#binnenKant').click(function(){
 //        canvas = binnenkantcanvas;
@@ -49,7 +36,6 @@ app.controller('EditorCtrl', function( service,$scope) {
 //        envelop.parent().css('display' ,'none');
 //    });
 //
-//
 //    $('#envelop').click(function(){
 //        canvas = envelopcanvas;
 //        envelop.parent().css('display' ,'block');
@@ -57,17 +43,12 @@ app.controller('EditorCtrl', function( service,$scope) {
 //        voorkant.parent().css('display' ,'none');
 //    });
 
-
-
    $scope.save = function(){
-
         var data = getJSON();
         console.log(data);
 
         service.saveTemplate(data);
     }
-
-
 
     $scope.load = function(){
      service.async().then(function(data) {

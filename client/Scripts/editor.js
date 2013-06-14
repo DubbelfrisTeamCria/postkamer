@@ -1,43 +1,31 @@
 function editor() {
 
-
-     var canvas = null;
-     var TAB = "Bewerken1";
-     var voorkantcanvas = new fabric.Canvas('canvas');
-     var binnenkantcanvas = new fabric.Canvas('binnenkantcanvas');
-     var envelopcanvas = new fabric.Canvas('envelopcanvas');
-
+    var canvas = null;
+    var TAB = "Bewerken1";
+    var voorkantcanvas = new fabric.Canvas('canvas');
+    var binnenkantcanvas = new fabric.Canvas('binnenkantcanvas');
+    var envelopcanvas = new fabric.Canvas('envelopcanvas');
     var voorkant = $("#canvas");
     var binnenkant = $("#binnenkantcanvas");
     var envelop = $("#envelopcanvas");
-
     var tekstMarge = 50;
     var standaardImageBreedte = 200;
 
-
     setHidden();
-
-
-
+    colorpicker();
+    addText2("Vul hier je tekst in...");
+    addImageBackground();
 
     function setHidden(){
-
         canvas = voorkantcanvas;
-
         binnenkant.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
-
     }
 
-
-
     $('#voorKant').click(function(){
-
         canvas = voorkantcanvas;
-
-
         voorkant.parent().css('display' ,'block');
         binnenkant.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
@@ -45,13 +33,8 @@ function editor() {
         canvas.renderAll();
     });
 
-
-
     $('#binnenKant').click(function(){
-
         canvas = binnenkantcanvas;
-
-
         binnenkant.parent().css('display' ,'block');
         voorkant.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
@@ -59,18 +42,14 @@ function editor() {
         canvas.renderAll();
     });
 
-
     $('#envelop').click(function(){
         canvas = envelopcanvas;
-
-
         envelop.parent().css('display' ,'block');
         binnenkant.parent().css('display' ,'none');
         voorkant.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
     });
-
 
     /**
      * Haal het canvas op als json.
@@ -80,12 +59,16 @@ function editor() {
         var template = {"private": "true","categorie": "samenwonen","voorkant": JSON.stringify(voorkantcanvas), "binnenkant": JSON.stringify(binnenkantcanvas),"envelop":JSON.stringify(envelopcanvas)}
         console.log(template);
         return template;
-
     }
+
     // Onclick functies van bold, italic en underline.
     $('#bold').click(function(e){setBold(this);});
     $('#italic').click(function(e){setItalic(this);});
     $('#underline').click(function(e){ setUnderline(this);});
+    $('#prullenbak').click(function(e){ removeObject(this);});
+    $('#plus').click(function(e){ addText2(askText());});
+    $('#bringToFront').click(function(e){ bringToFront(this);});
+    $('#bringToBack').click(function(e){ sendToBack(this);});
 
     // Onclick functies van alignLeft, alignCenter en AlignRight
     $('#align1').click(function() {setAlign('left', tekstMarge,this);});
@@ -94,8 +77,12 @@ function editor() {
 
     //verander cursor
     $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('#tabpage_1 > img').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('.tabscontent div img').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('.tabscontent input').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('.knop').hover(function() {$(this).css('cursor','pointer');}); //handje
+    $('.tabscontent div label').hover(function() {$(this).css('cursor','default');}); //default
     $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
+
     /**
      * De tekst die geselecteerd is mag niet worden vergroot
      */
@@ -103,9 +90,9 @@ function editor() {
         if (options.target.type === "text") {
             options.target.lockScalingX = true;
             options.target.lockScalingY = true;
-
         }
     });
+
     /**
      * Tools menu.
      * Maak het tools menu voor de editor.
@@ -133,7 +120,6 @@ function editor() {
             }
         }
     });
-
 
     /**
      * Voeg een nieuw plaatje toe aan de kaart.
@@ -173,7 +159,7 @@ function editor() {
      * @return {Number} de nieuwe hoogte van de foto
      */
     this.berekenHoogte = function(hoogte, breedte) {
-    var percentageVerkleind = (standaardImageBreedte*100)/ breedte;
+        var percentageVerkleind = (standaardImageBreedte*100)/ breedte;
         hoogte = (hoogte*percentageVerkleind)/100;
         return hoogte;
     }
@@ -485,55 +471,69 @@ function editor() {
         var objectSelected = canvas.getActiveObject();
         objectSelected.bringToFront();
     }
-    document.getElementById('tekstSlider').onchange = function () {
-        var value = this.value;
-        var selectedObject = canvas.getActiveObject();
-        if (selectedObject.type === "text") {
-            selectedObject.fontSize = value;
-            canvas.calcOffset();
-            canvas.renderAll();
+
+    /**
+     * Zet het geselecteerde object naar achteren.
+     */
+    this.sendToBack= function(){
+        var objectSelected = canvas.getActiveObject();
+        objectSelected.sendToBack();
+    }
+
+    /**
+     * Zet de tekstgrootte van de geselecteerde tekst.
+     */
+    document.getElementById('tekstSlider').onchange = function(){
+        document.getElementById('tekstSlider').onchange = function () {
+            var value = this.value;
+            var selectedObject = canvas.getActiveObject();
+            if (selectedObject.type === "text") {
+                selectedObject.fontSize = value;
+                canvas.calcOffset();
+                canvas.renderAll();
+            }
         }
 
-    }
-    /**
-     * Zet de transparantie van het geselecteerde plaatje.
-     * Moet niet werken bij tekst.
-     */
-    document.getElementById('transSlider').onchange = function () {
-        var value = this.value / 100;
-        var objectSelected = canvas.getActiveObject();
-        if (objectSelected.type === "image") {
-            objectSelected.setOpacity(value);
-            canvas.calcOffset();
-            canvas.renderAll();
-        }
-    }
-    /**
-     * Zet de brightness van het geselecteerde plaatje.
-     * Moet niet werken bij tekst.
-     */
-    document.getElementById('brightnessSlider').onchange = function () {
-        var value = parseInt(this.value);
-        var objectSelected = canvas.getActiveObject();
-        if (objectSelected.type === "image") {
-            if (!objectSelected.filters[0]) {
-                objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness: value }));
+        /**
+         * Zet de transparantie van het geselecteerde plaatje.
+         * Moet niet werken bij tekst.
+         */
+        document.getElementById('transSlider').onchange = function () {
+            var value = this.value / 100;
+            var objectSelected = canvas.getActiveObject();
+            if (objectSelected.type === "image") {
+                objectSelected.setOpacity(value);
+                canvas.calcOffset();
+                canvas.renderAll();
             }
-            else {
-                objectSelected.filters[0]['brightness'] = value;
-            }
-            objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
-    }
-    /**
-     * Zet de tint van het geselecteerde plaatje.
-     * Moet niet werken bij tekst.
-     */
-    document.getElementById('tint').onchange = function () {
-        console.log("nog niet gemaakt");
-        var value = parseInt(this.value);
-        var objectSelected = canvas.getActiveObject();
-        if (objectSelected.type === "image") {
+        /**
+         * Zet de brightness van het geselecteerde plaatje.
+         * Moet niet werken bij tekst.
+         */
+        document.getElementById('brightnessSlider').onchange = function () {
+            var value = parseInt(this.value);
+            var objectSelected = canvas.getActiveObject();
+            if (objectSelected.type === "image") {
+                if (!objectSelected.filters[0]) {
+                    objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness: value }));
+                }
+                else {
+                    objectSelected.filters[0]['brightness'] = value;
+                }
+                objectSelected.applyFilters(canvas.renderAll.bind(canvas));
+            }
+        }
+
+        /**
+         * Zet de tint van het geselecteerde plaatje.
+         * Moet niet werken bij tekst.
+         */
+        document.getElementById('tint').onchange = function () {
+            console.log("nog niet gemaakt");
+            var value = parseInt(this.value);
+            var objectSelected = canvas.getActiveObject();
+            if (objectSelected.type === "image") {
 //        if(!objectSelected.filters[1]) {
 //            objectSelected.filters.push(new fabric.Image.filters.Tint({ color: '00FF00'}));
 //        }
@@ -541,38 +541,41 @@ function editor() {
 //            objectSelected.filters[1]['tint'] = 'rgb(255,0,0)';
 //        }
 //        objectSelected.applyFilters(canvas.renderAll.bind(canvas));
-        }
-    }
-
-    $('#combo').click(function (e) {
-        var text = canvas.getActiveObject();
-        if (text) {
-            this.setFont = function () {
-                var combobox = document.getElementById("combo");
-                var selected = combobox.options[combobox.selectedIndex].text;
-                setChange("fontFamily", selected);
             }
         }
-        else {
-//            alert("u moet eerst een tekst selecteren!!");
+
+        document.getElementById('blur').onchange = function() {
+            var value = parseInt(this.value);
+            var objectSelected = canvas.getActiveObject();
+            if(objectSelected.type === "image") {
+                //?
+            }
         }
-        canvas.calcOffset();
-        canvas.renderAll();
-    });
-    colorpicker();
-    addText2("Vul hier je tekst in...");
 
-    addImageBackground();
+        $('#combo').click(function (e) {
+            var text = canvas.getActiveObject();
+            if (text) {
+                this.setFont = function () {
+                    var combobox = document.getElementById("combo");
+                    var selected = combobox.options[combobox.selectedIndex].text;
+                    setChange("fontFamily", selected);
+                }
+            }
+            else {
+//            alert("u moet eerst een tekst selecteren!!");
+            }
+            canvas.calcOffset();
+            canvas.renderAll();
+        });
 
-
-    this.loadTemplate= function(data){
-
-        canvas.loadFromJSON(data.voorkant);
-        binnenkantcanvas.loadFromJSON(data.binnenkant);
-        envelopcanvas.loadFromJSON(data.envelop);
-        canvas.renderAll();
-        binnenkantcanvas.renderAll();
-        envelopcanvas.renderAll();
+        this.loadTemplate= function(data){
+            canvas.loadFromJSON(data.voorkant);
+            binnenkantcanvas.loadFromJSON(data.binnenkant);
+            envelopcanvas.loadFromJSON(data.envelop);
+            canvas.renderAll();
+            binnenkantcanvas.renderAll();
+            envelopcanvas.renderAll();
+        }
     }
 }
 

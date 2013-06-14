@@ -1,65 +1,79 @@
-<header><h2>Editor</h2></header>
-<!--//pushing-->
-<div class="left">
-    <canvas id="canvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
-    <canvas  id="binnenkantcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
-    <canvas   id="envelopcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
-    <div id="navKaart" class="center">
-        <button id="voorKant">Voorkant</button>
-        <button id="binnenKant" >Binnenkant</button>
-        <button id="envelop">Envelop</button>
+<!--<header><h2>Editor</h2></header>-->
+
+<div id="wrapper">
+    <div class="left">
+        <canvas id="canvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
+        <canvas  id="binnenkantcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
+        <canvas   id="envelopcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>       <div id="smallTools">
+        <img id="prullenbak" class="knop" src="Content/images/prullenbak.png">
+        <img id="plus" class="knop" src="Content/images/plus.png">
+        <img id="bringToFront" class="knop" src="Content/images/bringToFront.png">
+        <img id="bringToBack" class="knop" src="Content/images/bringToBack.png">
     </div>
-    <button ng-click="save();">print canvas naar console</button>
-    <button ng-click="load();">load template</button>
-</div>
+        <div id="navKaart" class="center">
+            <button id="voorKant">Voorkant</button>
+            <button id="binnenKant" >Binnenkant</button>
+            <button id="envelop">Envelop</button>
+        </div>
+        <button ng-click="save();">print canvas naar console</button>
+        <button ng-click="load();">load template</button>
+    </div>
 
 
-<div id="editorTools" class="right">
-    <div id="tabContainer">
-        <div class="tabs">
+    <div id="editorTools" class="left">
+        <div id="tabContainer">
+            <div class="tabs">
                 <li id="Bewerken1"><img src="Content/images/tab1Select.png"></li>
                 <li id="Bewerken2"><img src="Content/images/tab2.png"></li>
                 <li id="Bewerken3"><img src="Content/images/tab3.png"></li>
                 <li id="Bewerken4"><img src="Content/images/tab4.png"></li>
-        </div>
-        <div class="tabscontent">
-            <div id="tabpage_1">
-                <img id="bold" src="Content/images/bold.png">
-                <img id="italic" src="Content/images/italic.png">
-                <img id="underline" src="Content/images/underline.png">
-                <img id="align1" src="Content/images/align1.png">
-                <img id="align2" src="Content/images/align2.png">
-                <img id="align3" src="Content/images/align3.png">
-                <select name="font" id="combo" class="myfont" onchange="setFont();">
-                    <option>Arial</option>
-                    <option>Verdana</option>
-                    <option>Calibri</option>
-                    <option>Lucida Calligraphy</option>
-                    <option>Broadway</option>
-                </select>
-                <label>TEKST GROOTTE</label>
-                <input id="tekstSlider" class="tekstSlider" type="range" min="0" max="100" value="20"/>
             </div>
-            <div id="tabpage_2" style="display: none"></div>
-            <div id="tabpage_3" style="display: none">
-                <input type="file" id="imgLoader">
-                <label>transparency</label>
-                <input id="transSlider" type="range" min="0" max="100" value="100" />
-                <label>brightness</label>
-                <input id="brightnessSlider" type="range" value="0" min="-255" max="255">
-                <label>Tint:</label>
-                <input type="range" id="tint" value="0" min="-255" max="255">
-            </div>
-            <div id="tabpage_4" style="display: none">
-                <button onclick="achtergrondImage();">add achtergrond image</button>
-            </div>
+            <div class="tabscontent">
+                <div id="tabpage_1">
+                    <img id="bold" src="Content/images/bold.png">
+                    <img id="italic" src="Content/images/italic.png">
+                    <img id="underline" src="Content/images/underline.png">
+                    <img id="align1" src="Content/images/align1.png">
+                    <img id="align2" src="Content/images/align2.png">
+                    <img id="align3" src="Content/images/align3.png">
+                    <select name="font" id="combo" class="myfont" onchange="setFont();">
+                        <option>Arial</option>
+                        <option>Verdana</option>
+                        <option>Calibri</option>
+                        <option>Lucida Calligraphy</option>
+                        <option>Broadway</option>
+                    </select>
+                    <label>TEKST GROOTTE</label>
+                    <input id="tekstSlider" class="tekstSlider" type="range" min="0" max="100" value="20"/>
+                </div>
+                <div id="tabpage_2" style="display: none"></div>
+                <div id="tabpage_3" style="display: none">
+                    <div id="inputFile">
+                        <input type="file" id="imgLoader">
+                    </div>
+                    <label>HELDERHEID</label>
+                    <input id="brightnessSlider" type="range" value="0" min="-255" max="255">
+                    <label class="nietAf">HUE</label>
+                    <input type="range" id="tint" value="0" min="-255" max="255">
+                    <label class="nietAf">CONTRAST</label>
+                    <input type="range" id="contrast" value="0" min="-255" max="255">
+                    <label class="nietAf">BLUR</label>
+                    <input type="range" id="blur" value="0" min="0" max="1">
+                    <label>TRANSPARANTIE</label>
+                    <input id="transSlider" type="range" min="0" max="100" value="100" />
+                </div>
+                <div id="tabpage_4" style="display: none">
+                    <div id="achtergrondImage" onclick="achtergrondImage();"></div>
+                </div>
 
             </div>
-        <div id="canvasPicker">
-        <canvas id="picker" width="217" height="217" name="kleurkiezer" model="textInput" class="ng-scope"></canvas>
+            <div id="canvasPicker">
+                <canvas id="picker" width="217" height="217" name="kleurkiezer" model="textInput" class="ng-scope"></canvas>
+            </div>
         </div>
-        </div>
+    </div>
+    <div class="knop" id="vorigeknop"></div>
+    <div class="knop" id="volgendeknop"></div>
 </div>
-
 
 
