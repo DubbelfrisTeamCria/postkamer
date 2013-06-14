@@ -181,7 +181,7 @@ function editor() {
                 cornersize: 10
             });
 
-            canvas.add(image);
+            binnenkantcanvas.add(image);
             image.sendToBack();
             image.lockMovementX = true;
             image.lockMovementY = true;
