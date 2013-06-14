@@ -551,25 +551,24 @@ function editor() {
                 //?
             }
         }
-
-        $('#combo').click(function (e) {
-            var text = canvas.getActiveObject();
-            if (text) {
-                this.setFont = function () {
-                    var combobox = document.getElementById("combo");
-                    var selected = combobox.options[combobox.selectedIndex].text;
-                    setChange("fontFamily", selected);
-                }
-            }
-            else {
-//            alert("u moet eerst een tekst selecteren!!");
-            }
-            canvas.calcOffset();
-            canvas.renderAll();
-        });
-
-
     }
+
+    $('#combo').click(function (e) {
+        var text = canvas.getActiveObject();
+        if (text) {
+            this.setFont = function () {
+                var combobox = document.getElementById("combo");
+                var selected = combobox.options[combobox.selectedIndex].text;
+                setChange("fontFamily", selected);
+            }
+        }
+        else {
+            alert("u moet eerst een tekst selecteren!!");
+        }
+        canvas.calcOffset();
+        canvas.renderAll();
+    });
+
     this.loadTemplate= function(data){
         canvas.loadFromJSON(data.voorkant);
         binnenkantcanvas.loadFromJSON(data.binnenkant);
