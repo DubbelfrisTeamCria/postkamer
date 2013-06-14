@@ -483,7 +483,6 @@ function editor() {
     /**
      * Zet de tekstgrootte van de geselecteerde tekst.
      */
-    document.getElementById('tekstSlider').onchange = function(){
         document.getElementById('tekstSlider').onchange = function () {
             var value = this.value;
             var selectedObject = canvas.getActiveObject();
@@ -551,7 +550,7 @@ function editor() {
                 //?
             }
         }
-    }
+
 
     $('#combo').click(function (e) {
         var text = canvas.getActiveObject();
