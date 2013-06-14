@@ -231,10 +231,10 @@ function editor() {
      */
     this.setChange = function (style, input, image) {
         var text = canvas.getActiveObject();
-        if (text.type === "text") {
+        if (text) {
             if (text[style] == input) {
                 text[style] = "normal";
-                if (style != "fontStyle") {
+                if (style != "fontFamily") {
                     image.src = "Content/images/" + input + ".png";
                 }
             }
