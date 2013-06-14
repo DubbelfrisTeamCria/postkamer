@@ -56,7 +56,14 @@ function editor() {
      * @return {*} het canvas als json.
      */
     this.getJSON = function () {
-        var template = {"private": "true","categorie": "samenwonen","voorkant": JSON.stringify(voorkantcanvas), "binnenkant": JSON.stringify(binnenkantcanvas),"envelop":JSON.stringify(envelopcanvas)}
+        var template = {
+            "private": "true",
+            "categorie": "samenwonen",
+            "voorkant": JSON.stringify(voorkantcanvas),
+            "binnenkant": JSON.stringify(binnenkantcanvas),
+            "envelop":JSON.stringify(envelopcanvas),
+            "template":voorkantcanvas.toDataURL("image/png")
+        }
         console.log(template);
         return template;
     }
@@ -568,7 +575,7 @@ function editor() {
         canvas.renderAll();
     });
 
-    this.loadTemplate= function(data){
+    this.loadTemplate = function(data){
         canvas.loadFromJSON(data.voorkant);
         binnenkantcanvas.loadFromJSON(data.binnenkant);
         envelopcanvas.loadFromJSON(data.envelop);

@@ -4,5 +4,13 @@ app.controller('TemplateCtrl', function( service,$scope) {
         $scope.customers = data;
     });
 
-    selecteerTemplate();
+    $scope.load = function(){
+        service.async().then(function(data) {
+
+            getTemplateStaand(data[0].template); // haal alle staande templates op. Alleen wanneer private == false!
+            getTemplateLiggend(data[1].template);  // haal alle Liggende templates op. Alleen wanneer private == false!
+            selecteerTemplate();
+
+        });
+    }
 });

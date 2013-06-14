@@ -73,3 +73,15 @@ $('#overons').click(function() {selectLinesMenu("overons");});
 $('#hoeWerktHet').click(function() {selectLinesMenu("hoeWerktHet");});
 $('#contact').click(function() {selectLinesMenu("contact");});
 $('#homeLogo').click(function() {selectLinesMenu("home");});
+
+function getTemplateStaand(data) {
+    var image = $('<img/>').attr({"src":data, "class": "templateStaand template"});
+    $('#templateStaandDiv').append(image);
+     $(image).hover(function() {$(this).css('cursor','pointer');}); //handje
+}
+function getTemplateLiggend(data) {
+    var image = $('<img/>').attr({"src":data, "class": "templateLiggend template"});
+    $('#templateLiggendDiv').append(image);
+    $(image).hover(function() {$(this).css('cursor','pointer');}); //handje
+}
+

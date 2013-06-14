@@ -157,7 +157,6 @@ h1,h2, h3, h4, h5, h6 {
 }
 
 .template {
-    background-color: #ffffff;
     margin: 10px;
 }
 
@@ -167,6 +166,7 @@ h1,h2, h3, h4, h5, h6 {
 }
 
 .templateStaand {
+    background-color: #ffffff;
     width: 120px;
     height: 166px;
 }
