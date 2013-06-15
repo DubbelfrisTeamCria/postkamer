@@ -5,8 +5,20 @@ function selecteerTemplate() {
     $('.template').click(function() {
         $('.template').removeAttr("id");
         $(this).attr('id', 'selectedTemplate');
-        console.log($(this).attr("kaartId"));  //hiermee kan de juiste template in de editor worden geladen.
+        storeKaartId(this);
     });
+}
+
+localStorage.selectedId = "geen kaart geselecteerd";
+
+function storeKaartId(kaart) {
+    if(typeof(Storage) !== undefined) {
+        localStorage.selectedId= $(kaart).attr("kaartId");
+        console.log("selectedID: " + localStorage.selectedId);
+    }
+    else {
+        console.log("Sorry, your browser does not support web storage...");
+    }
 }
 
 function enkelCanvas() {
@@ -83,4 +95,5 @@ function getTemplate(data, positie) {
     $('#template' + positie + 'Div').append(image);
     $(image).hover(function() {$(this).css('cursor','pointer');}); //handje
 }
+
 
