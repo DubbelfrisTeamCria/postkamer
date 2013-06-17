@@ -6,6 +6,7 @@ app.controller('EditorCtrl', function( service,$scope) {
     });
 
     editor();
+
    $scope.save = function(){
         var data = getJSON();
         console.log(data);
@@ -15,11 +16,13 @@ app.controller('EditorCtrl', function( service,$scope) {
 
     function load() {
         service.async().then(function(data) {
+            document.body.style.cursor='wait';
             for (var i = 0; i < data.length; i++) {
                 if (data[i]._id.$oid === localStorage.selectedId) {
                     loadTemplate(data[i]);
                 }
             }
+            document.body.style.cursor ='default';
         });
     }
     load();
