@@ -464,11 +464,6 @@ input::-webkit-slider-thumb{
 
 }
 
-label {
-    display: inline-block;;
-    clear: both;
-    text-align: left;
-}
 
 .block label{
     float:left;
