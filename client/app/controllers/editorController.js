@@ -13,12 +13,14 @@ app.controller('EditorCtrl', function( service,$scope) {
         service.saveTemplate(data);
     };
 
-    $scope.load = function(){
-     service.async().then(function(data) {
-
-           loadTemplate(data[0]);
-        })
-
+    function load() {
+        service.async().then(function(data) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i]._id.$oid === localStorage.selectedId) {
+                    loadTemplate(data[i]);
+                }
+            }
+        });
     }
 
 

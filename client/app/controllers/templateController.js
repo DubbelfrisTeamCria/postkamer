@@ -4,5 +4,12 @@ app.controller('TemplateCtrl', function( service,$scope) {
         $scope.customers = data;
     });
 
-    selecteerTemplate();
+    console.log("Template controller opgehaald");  //controller wordt soms 2 keer opgehaald???
+
+    service.async().then(function(data) {
+        for (var i = 0; i < data.length; i++) {
+            getTemplate(data[i], data[i].positie);
+        }
+        selecteerTemplate();
+    });
 });

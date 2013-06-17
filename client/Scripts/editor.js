@@ -95,7 +95,16 @@ function editor() {
      * @return {*} het canvas als json.
      */
     this.getJSON = function () {
-        var template = {"private": "true","categorie": "samenwonen","voorkant": JSON.stringify(voorkantcanvas), "binnenkant": JSON.stringify(binnenkantcanvas),"envelop":JSON.stringify(envelopcanvas)}
+        var positie = $('.wrapper').attr('id');
+        var template = {
+            "private": "true",
+            "positie": positie,
+            "categorie": "samenwonen",
+            "voorkant": JSON.stringify(voorkantcanvas),
+            "binnenkant": JSON.stringify(binnenkantcanvas),
+            "envelop":JSON.stringify(envelopcanvas),
+            "template":voorkantcanvas.toDataURL("image/png")
+        }
         console.log(template);
         return template;
     }
@@ -139,12 +148,7 @@ function editor() {
     $('li').click(function (e) {
         TAB = this.id;
         e.preventDefault();
-        if(TAB == "Bewerken1" || TAB == "Bewerken4") {
-            $('#canvasPicker').show();
-        }
-        else {
-            $('#canvasPicker').hide();
-        }
+        setVisibleTabAndPLus();
         for(var i=1; i<5; i++) {
             var temp = "Bewerken"+i;
             var tab = document.getElementById("Bewerken"+i);
@@ -160,6 +164,22 @@ function editor() {
         }
     });
 
+    function setVisibleTabAndPLus() {
+        if (TAB === "Bewerken1" || TAB === "Bewerken4") {
+            $('#canvasPicker').show();
+
+        }
+        else {
+            $('#canvasPicker').hide();
+        }
+
+        if (TAB == "Bewerken1") {
+            $('#plus').show();
+        }
+        else {
+            $('#plus').hide();
+        }
+    }
     /**
      * Voeg een nieuw plaatje toe aan de kaart.
      * @param e event
@@ -290,14 +310,13 @@ function editor() {
         if (text.type === "text") {
             if (text[style] == input) {
                 text[style] = "normal";
-                if (style != "fontStyle") {
+                if (style != "fontFamily") {
                     image.src = "Content/images/" + input + ".png";
                 }
             }
             else {
                 text[style] = input;
                 if (style !== "fontFamily") {
-                    console.log(style);
                     image.src = "Content/images/" + input + "Select.png";
                 }
             }
@@ -336,7 +355,7 @@ function editor() {
      * Zet het juiste plaatje bij de gekozen alignment.
      * @param image het plaatje alignment: geselecteerd/niet geselecteerd.
      */
-    function setImagesAlign(image) {
+    function setButtonImages(image) {
         for (var i = 1; i < 4; i++) {
             if (image.id === ("align" + i)) {
                 image.src = "Content/images/align" + i + "Select.png";
@@ -356,10 +375,11 @@ function editor() {
      */
     this.setAlign = function (kant, marge, image) {
         var objectSelected = canvas.getActiveObject();
-        if (objectSelected) {
-            objectSelected.originX = kant;
-            objectSelected.left = marge;
-            setImagesAlign(image);
+        if (objectSelected.type = "text") {
+                objectSelected.textAlign = kant;
+//            objectSelected.originX = kant;
+//            objectSelected.left = marge;
+            setButtonImages(image);
         }
         canvas.calcOffset();
         canvas.renderAll();
@@ -395,9 +415,7 @@ function editor() {
         //hier kies je een kleur eventhandler
         $('#picker').click(function (e) {
             var kleurPixel = geefKleur(e);
-            console.log(kleurPixel)
             if (TAB == "Bewerken1") {
-                console.log(TAB);
                 if (canvas.getActiveObject() && canvas.getActiveObject().type === "text") {
                     console.log("text object selected");
                     kleurtext(canvas.getActiveObject(), kleurPixel);
@@ -455,6 +473,7 @@ function editor() {
      */
     $(document).keydown(function (e) {
         var keyPressed = String.fromCharCode(e.which);
+        e.preventDefault();
         var text = canvas.getActiveObject();
         if (text) {
 //            var oudeKleur = text.fill;
@@ -483,12 +502,8 @@ function editor() {
                     newText = text.text.substr(0, text.text.length - 1);
                 }
                 else if (e.which == 13) { //13 = enter
-                    //canvas clear selection
-                    canvas.discardActiveObject();
-                    canvas.renderAll();
-                    canvasBeforeSelectionCleared({ memo: { target: text} });
-                    newText = text.text;
-                    stillTyping = false;
+                    newText = text.text+ "\n";
+                    stillTyping = true;
                 }
                 //if the user is typing alphanumeric characters
                 else if (
@@ -635,7 +650,7 @@ function editor() {
         canvas.renderAll();
     });
 
-    this.loadTemplate= function(data){
+    this.loadTemplate = function(data) {
         canvas.loadFromJSON(data.voorkant);
         binnenkantcanvas.loadFromJSON(data.binnenkant);
         envelopcanvas.loadFromJSON(data.envelop);

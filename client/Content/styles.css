@@ -35,7 +35,7 @@ html * {
     letter-spacing: 0.55em;
 }
 
-#wrapper {
+.wrapper {
     width: 1100px;
     height: 600px;
     margin: 20px auto 0 auto;
@@ -97,8 +97,8 @@ h1,h2, h3, h4, h5, h6 {
 }
 
 #logo {
-    height: 80%;
-    width: 80%;
+    height: 155px;
+    width: 155px;
 }
 
 /*Editor partial:*/
@@ -138,38 +138,22 @@ h1,h2, h3, h4, h5, h6 {
     background-color: #ffffff;      /*temp*/
 }
 
-#verhuizen {
-    -webkit-transform:rotate(30deg); /* Safari and Chrome */
-    transform:rotate(30deg);
-
-}
-
-#samenwonen {
-    -webkit-transform:rotate(10deg); /* Safari and Chrome */
-    transform:rotate(10deg);
-}
-
-#housewarming {
-    -webkit-transform:rotate(-15deg); /* Safari and Chrome */
-    transform:rotate(-15deg);
-}
-
 /*Template Partial:*/
 #selectedTemplate {
     box-shadow: 5px 5px 5px #ffffff;
 }
 
 .template {
-    background-color: #ffffff;
     margin: 10px;
+    background-color: #ffffff;
 }
 
-.templateLiggend {
+.templateliggend {
     width: 166px;
     height: 120px;
 }
 
-.templateStaand {
+.templatestaand {
     width: 120px;
     height: 166px;
 }

@@ -5,9 +5,21 @@ function selecteerTemplate() {
     $('.template').click(function() {
         $('.template').removeAttr("id");
         $(this).attr('id', 'selectedTemplate');
-        console.log("bla");
+        storeKaartId(this);
     });
-};
+}
+
+localStorage.selectedId = "geen kaart geselecteerd";
+
+function storeKaartId(kaart) {
+    if(typeof(Storage) !== undefined) {
+        localStorage.selectedId= $(kaart).attr("kaartId");
+        console.log("selectedID: " + localStorage.selectedId);
+    }
+    else {
+        console.log("Sorry, your browser does not support web storage...");
+    }
+}
 
 function enkelCanvas() {
     var enkel = null;
@@ -73,3 +85,15 @@ $('#overons').click(function() {selectLinesMenu("overons");});
 $('#hoeWerktHet').click(function() {selectLinesMenu("hoeWerktHet");});
 $('#contact').click(function() {selectLinesMenu("contact");});
 $('#homeLogo').click(function() {selectLinesMenu("home");});
+
+function getTemplate(data, positie) {
+    var image = $('<img/>').attr({
+        "src":data.template,
+        "class": "template" + positie + " template",
+        "kaartId":data._id.$oid
+    });
+    $('#template' + positie + 'Div').append(image);
+    $(image).hover(function() {$(this).css('cursor','pointer');}); //handje
+}
+
+
