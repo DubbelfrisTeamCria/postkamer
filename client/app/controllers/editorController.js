@@ -22,12 +22,7 @@ app.controller('EditorCtrl', function( service,$scope) {
             }
         });
     }
-
-
-
-
-
-
+    load();
 });
 
 
