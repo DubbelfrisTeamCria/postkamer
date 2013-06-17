@@ -94,8 +94,8 @@ h1,h2, h3, h4, h5, h6 {
 }
 
 #logo {
-    height: 150px;
-    width: 150px;
+    height: 155px;
+    width: 155px;
 }
 
 /*Editor partial:*/
@@ -133,22 +133,6 @@ h1,h2, h3, h4, h5, h6 {
     height: 240px;
     margin: 50px 10px 10px 10px;
     background-color: #ffffff;      /*temp*/
-}
-
-#verhuizen {
-    -webkit-transform:rotate(30deg); /* Safari and Chrome */
-    transform:rotate(30deg);
-
-}
-
-#samenwonen {
-    -webkit-transform:rotate(10deg); /* Safari and Chrome */
-    transform:rotate(10deg);
-}
-
-#housewarming {
-    -webkit-transform:rotate(-15deg); /* Safari and Chrome */
-    transform:rotate(-15deg);
 }
 
 /*Template Partial:*/
