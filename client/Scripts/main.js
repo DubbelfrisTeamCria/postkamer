@@ -6,6 +6,7 @@ function selecteerTemplate() {
         $('.template').removeAttr("id");
         $(this).attr('id', 'selectedTemplate');
         storeKaartId(this);
+        templateKeus();
     });
 }
 
@@ -47,20 +48,20 @@ function templateKeus() {
 
 function staandOfLiggendCanvas() {
     if (staandCanvas()) {
-        $('#kaartMaken > a').attr({href:"#/editorStaand",'data-ng-class':"{'active':getClass('/editorStaand')}"});
+        $('#kaartMaken > a').attr({href:"#/editorStaand"});
     }
     else if (!staandCanvas()) {
-        $('#kaartMaken > a').attr({href:"#/editor",'data-ng-class':"{'active':getClass('/editor')}"});
+        $('#kaartMaken > a').attr({href:"#/editor"});
     }
 }
 
 function staandCanvas() {
     var selected = document.getElementById('selectedTemplate');
     var staand = null;
-    if (selected.className === "templateLiggend template") {
+    if (selected.className === "templateliggend template") {
         staand = false;
     }
-    else if (selected.className === "templateStaand template") {
+    else if (selected.className === "templatestaand template") {
         staand = true;
     }
     return staand;
