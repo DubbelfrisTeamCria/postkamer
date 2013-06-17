@@ -11,10 +11,9 @@ function selecteerTemplate() {
 }
 
 localStorage.selectedId = "geen kaart geselecteerd";
-
 function storeKaartId(kaart) {
     if(typeof(Storage) !== undefined) {
-        localStorage.selectedId= $(kaart).attr("kaartId");
+        localStorage.selectedId = $(kaart).attr("kaartId");
         console.log("selectedID: " + localStorage.selectedId);
     }
     else {
@@ -23,14 +22,14 @@ function storeKaartId(kaart) {
 }
 
 function enkelCanvas() {
-    var enkel = null;
+    localStorage.enkel = true;
     if (document.getElementById('enkel').checked) {
-        enkel = true;
+        localStorage.enkel = true;
     }
     else if (document.getElementById('dubbel').checked) {
-        enkel = false;
+        localStorage.enkel = false;
     }
-    return enkel;
+    return localStorage.enkel;
 }
 
 function templateKeus() {
@@ -90,6 +89,10 @@ $('#overons').click(function() {selectLinesMenu("overons");});
 $('#hoeWerktHet').click(function() {selectLinesMenu("hoeWerktHet");});
 $('#contact').click(function() {selectLinesMenu("contact");});
 $('#homeLogo').click(function() {selectLinesMenu("home");});
+
+$('#verhuizen').click(function() {localStorage.categorie = "verhuizen"});
+$('#samenwonen').click(function() {localStorage.categorie = "samenwonen"});
+$('#housewarming').click(function() {localStorage.categorie = "housewarming"});
 
 function getTemplate(data, positie) {
     var image = $('<img/>').attr({
