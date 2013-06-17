@@ -7,9 +7,11 @@ app.controller('TemplateCtrl', function( service,$scope) {
     console.log("Template controller opgehaald");  //controller wordt soms 2 keer opgehaald???
 
     service.async().then(function(data) {
+        document.body.style.cursor='wait';
         for (var i = 0; i < data.length; i++) {
             getTemplate(data[i], data[i].positie);
         }
+        document.body.style.cursor ='default';
         selecteerTemplate();
     });
 });

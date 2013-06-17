@@ -97,4 +97,3 @@ function getTemplate(data, positie) {
     $(image).hover(function() {$(this).css('cursor','pointer');}); //handje
 }
 
-
