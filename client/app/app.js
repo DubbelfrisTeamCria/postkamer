@@ -23,10 +23,22 @@ app.config(function ($routeProvider) {
             templateUrl: '/postkamer/client/app/partials/Editor.html'
         })
 
+        .when('/editorEnkel',
+        {
+            controller: 'EditorCtrl',
+            templateUrl: '/postkamer/client/app/partials/EditorEnkel.html'
+        })
+
         .when('/editorStaand',
         {
             controller: 'EditorCtrl',
             templateUrl: '/postkamer/client/app/partials/EditorStaand.html'
+        })
+
+        .when('/editorStaandEnkel',
+        {
+            controller: 'EditorCtrl',
+            templateUrl: '/postkamer/client/app/partials/EditorStaandEnkel.html'
         })
 
         .when('/overzicht',

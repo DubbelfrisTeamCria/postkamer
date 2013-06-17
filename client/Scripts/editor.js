@@ -659,29 +659,18 @@ function editor() {
         envelopcanvas.renderAll();
     }
 
-
     function maakGallery(){
         var iconGallery = document.getElementById("iconGallery");
-
-
-
-
             for (var i = 0; i < images.length; i++) {
-
                 var img = document.createElement("img");
                 img.src = images[i].url;
                 iconGallery.appendChild(img);
                 (function(index){
                     img.onclick = function(){
                         addImageToCanvas(images[index].url);
-
                     };
                 }(i));
         }
-    }
-
-    function bevestigWeggaan() {
-        return "Ontwerp opgeslagen?";
     }
 }
 

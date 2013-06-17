@@ -35,23 +35,27 @@ function enkelCanvas() {
 
 function templateKeus() {
     enkelCanvas();
-    console.log("enkel = " + enkelCanvas());
     if (!document.getElementById('selectedTemplate')) {
         alert("kies eerst een template");
     }
     else {
         staandCanvas();
-        console.log("staand = " + staandCanvas());
         staandOfLiggendCanvas();
     }
 }
 
 function staandOfLiggendCanvas() {
-    if (staandCanvas()) {
+    if (staandCanvas() && !enkelCanvas()) {
         $('#kaartMaken > a').attr({href:"#/editorStaand"});
     }
-    else if (!staandCanvas()) {
+    else if (staandCanvas() && enkelCanvas()) {
+        $('#kaartMaken > a').attr({href:"#/editorStaandEnkel"});
+    }
+    else if (!staandCanvas() && !enkelCanvas()) {
         $('#kaartMaken > a').attr({href:"#/editor"});
+    }
+    else if (!staandCanvas() && enkelCanvas()) {
+        $('#kaartMaken > a').attr({href:"#/editorEnkel"});
     }
 }
 
