@@ -1,9 +1,5 @@
 app.controller('EditorCtrl', function( service,$scope) {
     // Call the async method and then do stuff with what is returned inside our own then function
-    service.async().then(function(data) {
-        $scope.customers = data;
-        // console.log(data[26]);
-    });
 
     $scope.$on('$locationChangeStart', function (event, next, current) {
         if (!opgeslagen) {
@@ -13,6 +9,8 @@ app.controller('EditorCtrl', function( service,$scope) {
         }
     });
 
+    console.log("editor controller loaded");
+
     document.body.style.cursor='wait';
     editor();
     var opgeslagen = false;
@@ -20,9 +18,8 @@ app.controller('EditorCtrl', function( service,$scope) {
     $scope.save = function(){
         var data = getJSON();
         console.log(data);
-
-        service.saveTemplate(data);
         opgeslagen = true;
+        service.saveTemplate(data);
     };
 
     service.async().then(function(data) {
