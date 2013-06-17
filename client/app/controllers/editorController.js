@@ -16,7 +16,7 @@ app.controller('EditorCtrl', function( service,$scope) {
     $scope.load = function(){
      service.async().then(function(data) {
 
-           loadTemplate(data[1]);
+           loadTemplate(data[0]);
         })
 
     }

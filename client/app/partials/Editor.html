@@ -6,19 +6,23 @@
         <canvas  id="binnenkantcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
         <canvas   id="envelopcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
 
-        <div id="smallTools">
-        <img id="prullenbak" class="knop" src="Content/images/prullenbak.png">
-        <img id="plus" class="knop" src="Content/images/plus.png">
-        <img id="bringToFront" class="knop" src="Content/images/bringToFront.png">
-        <img id="bringToBack" class="knop" src="Content/images/bringToBack.png">
-          </div>
-        <div id="navKaart" class="center">
-            <button id="voorKant">Voorkant</button>
-            <button id="binnenKant" >Binnenkant</button>
-            <button id="envelop">Envelop</button>
+
+        <div id="navKaart" >
+            <div>
+            <button class="navbutton" id="voorKant">Voorkant</button>
+            <button class="navbutton" id="binnenKant" >Binnenkant</button>
+            <button class="navbutton" id="envelop">Envelop</button>
+            </div>
+
+            <div id="smallTools">
+                <img id="prullenbak" class="knop" src="Content/images/prullenbak.png">
+                <img id="plus" class="knop" src="Content/images/plus.png">
+                <img id="bringToFront" class="knop" src="Content/images/bringToFront.png">
+                <img id="bringToBack" class="knop" src="Content/images/bringToBack.png">
+            </div>
         </div>
-        <button ng-click="save();">print canvas naar console</button>
-        <button ng-click="load();">load template</button>
+        <!--<button ng-click="save();">print canvas naar console</button>-->
+        <!--<button ng-click="load();">load template</button>-->
     </div>
 
 
@@ -48,7 +52,11 @@
                     <label>TEKST GROOTTE</label>
                     <input id="tekstSlider" class="tekstSlider" type="range" min="0" max="100" value="20"/>
                 </div>
-                <div id="tabpage_2" style="display: none"></div>
+                <div id="tabpage_2" style="display: none">
+                    <div id="iconGallery">
+
+                    </div>
+                </div>
                 <div id="tabpage_3" style="display: none">
                     <div id="inputFile">
                         <input type="file" id="imgLoader">
@@ -74,8 +82,12 @@
             </div>
         </div>
     </div>
-    <div class="knop" id="vorigeknop"></div>
-    <div class="knop" id="volgendeknop"></div>
+
+    <div id="steps">
+        <div class="knop" id="vorigeknop"></div>
+        <div class="knop" id="volgendeknop"></div>
+    </div>
+
+
+
 </div>
-
-

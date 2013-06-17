@@ -1,5 +1,40 @@
 function editor() {
 
+
+
+
+    var images;
+
+    images = [
+        {"url": "/postkamer/client/Content/images/icons/plaatje01.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje02.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje03.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje04.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje05.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje06.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje07.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje08.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje09.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje10.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje11.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje12.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje13.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje14.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje15.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje16.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje17.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje18.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje19.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje20.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje21.png"},
+        {"url": "/postkamer/client/Content/images/icons/plaatje22.png"}
+    ];
+
+
+    
+    
+
+    var selectedIcon= null;
     var canvas = null;
     var TAB = "Bewerken1";
     var voorkantcanvas = new fabric.Canvas('canvas');
@@ -10,14 +45,18 @@ function editor() {
     var envelop = $("#envelopcanvas");
     var tekstMarge = 50;
     var standaardImageBreedte = 200;
+    var indexCurrentPhoto = 0;
 
     setHidden();
     colorpicker();
     addText2("Vul hier je tekst in...");
     addImageBackground();
 
+    maakGallery();
+
     function setHidden(){
         canvas = voorkantcanvas;
+        voorkant.parent().css('margin-right', '325px');
         binnenkant.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
         canvas.calcOffset();
@@ -174,7 +213,7 @@ function editor() {
             // start fabricJS stuff
             var image = new fabric.Image(imgObj);
             image.set({
-                left: 320,
+                left: 325,
                 top: 250,
                 angle: 0,
                 padding: 10,
@@ -192,6 +231,34 @@ function editor() {
         }
         canvas.calcOffset();
         canvas.renderAll();
+    }
+
+
+
+
+    function addImageToCanvas(src){
+
+        var imgObj = new Image();
+        imgObj.src = src;
+        imgObj.onload = function () {
+            // start fabricJS stuff
+            var image = new fabric.Image(imgObj);
+            image.set({
+                left: 100,
+                top: 250,
+                angle: 0,
+                padding: 10,
+                cornersize: 10
+            });
+
+            canvas.add(image);
+
+            // end fabricJS stuff
+        }
+        canvas.calcOffset();
+        canvas.renderAll();
+
+
     }
 
     /**
@@ -576,5 +643,45 @@ function editor() {
         binnenkantcanvas.renderAll();
         envelopcanvas.renderAll();
     }
+
+
+    function maakGallery(){
+        var iconGallery = document.getElementById("iconGallery");
+
+
+
+
+            for (var i = 0; i < images.length; i++) {
+
+                var img = document.createElement("img");
+                img.src = images[i].url;
+                iconGallery.appendChild(img);
+                (function(index){
+                    img.onclick = function(){
+                        addImageToCanvas(images[index].url);
+
+                    };
+                }(i));
+        }
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 }
 

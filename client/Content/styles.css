@@ -38,7 +38,7 @@ html * {
 #wrapper {
     width: 1100px;
     height: 600px;
-    margin: 100px auto 0 auto;
+    margin: 20px auto 0 auto;
 }
 
 p {
@@ -59,12 +59,15 @@ h1,h2, h3, h4, h5, h6 {
 
 #homeNav ul li {
     display: inline-block;
-    margin: 0 25px;
+    margin: -50px 25px 0 0;
     list-style: none;
+
 }
 
 #homeNav ul li a {
     text-decoration: none;
+    font-size: 14px;
+    font-weight: bolder;
     color: #70c7a9;
 }
 
@@ -85,12 +88,12 @@ h1,h2, h3, h4, h5, h6 {
 }
 
 .bottomlineBlock {
-    height: 2px;
-    background-color: #848484;
-    width: 110%;
+    height: 1.5px;
+    background-color: #70c7a9;
+    width: 100%;
     position: relative;
-    left: -5%;
-    bottom: -17px;
+    left: -4%;
+    bottom: -14px;
 }
 
 #logo {
@@ -202,7 +205,7 @@ h1,h2, h3, h4, h5, h6 {
     box-sizing:border-box;
     -moz-box-sizing:border-box; /* Firefox */
     -webkit-box-sizing:border-box; /* Safari */
-    top:-100px;
+    top:-25px;
     position: relative;
     margin-left: 50px;
 }
@@ -238,17 +241,21 @@ h1,h2, h3, h4, h5, h6 {
 #tabContainer {
     width: 353px;
     box-sizing:border-box;
-
     -webkit-box-sizing:border-box; /* Safari */
+}
+
+.navbutton{
+    padding: 0;
+    border: none;
+    background: none;
 }
 
 #vorigeknop {
     background-image: url('../Content/images/vorigeKnop.png');
     width: 129px;
     height: 41px;
-    margin: 50px 0 20px -30px;
+    margin: 10px 0 10px -30px;
     display: inline-block;
-    position: relative;
     float: left;
 }
 
@@ -256,8 +263,9 @@ h1,h2, h3, h4, h5, h6 {
     background-image: url('../Content/images/volgendeKnop.png');
     width: 129px;
     height: 41px;
-    margin: 50px -30px 20px -0;
+    margin: 10px -30px 10px -0;
     display: inline-block;
+    float:right;
 
 }
 
@@ -430,6 +438,12 @@ input::-webkit-slider-thumb{
 
 .nietAf {
     text-decoration: line-through
+}
+
+#steps{
+    float:left;
+    width: 1100px;
+    height: auto;
 }
 
 
