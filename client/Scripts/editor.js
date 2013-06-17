@@ -678,25 +678,10 @@ function editor() {
                     };
                 }(i));
         }
-
-
-
-
-
-
-
-
-
-
     }
 
-
-
-
-
-
-
-
-
+    function bevestigWeggaan() {
+        return "Ontwerp opgeslagen?";
+    }
 }
 
