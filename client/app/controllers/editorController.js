@@ -7,17 +7,16 @@ app.controller('EditorCtrl', function( service,$scope) {
 
     $scope.$on('$locationChangeStart', function (event, next, current) {
         if (!opgeslagen) {
-            event.preventDefault();
-            var answer = confirm("Weet je zeker dat je je ontwerp niet wil opslaan?")
-            if (answer) {
-                $location.url($location.url(next).hash());
-                $rootScope.$apply();
+            if (!confirm("Je ontwerp is nog niet opgeslagen. Weet je zeker dat je nu naar " + next + " wil gaan?")) {
+                event.preventDefault();
             }
         }
     });
 
+    document.body.style.cursor='wait';
     editor();
     var opgeslagen = false;
+
     $scope.save = function(){
         var data = getJSON();
         console.log(data);
@@ -26,18 +25,16 @@ app.controller('EditorCtrl', function( service,$scope) {
         opgeslagen = true;
     };
 
-    function load() {
-        service.async().then(function(data) {
-            document.body.style.cursor='wait';
-            for (var i = 0; i < data.length; i++) {
-                if (data[i]._id.$oid === localStorage.selectedId) {
-                    loadTemplate(data[i]);
-                }
+    service.async().then(function(data) {
+        document.body.style.cursor='wait';
+        for (var i = 0; i < data.length; i++) {
+            if (data[i]._id.$oid === localStorage.selectedId) {
+                loadTemplate(data[i]);
             }
-            document.body.style.cursor ='default';
-        });
-    }
-    load();
+        }
+        document.body.style.cursor ='default';
+    });
+
 });
 
 
