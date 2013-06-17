@@ -1,25 +1,55 @@
-<section class="left">
+
+<div id="Contact">
+<section class="formulier">
     <header>
-        <h2>Contact</h2>
+        <h4>Contact</h4>
     </header>
+    <div>
     <p>Heb je nog vragen of opmerkingen?</p>
     <p>Vul onderstaand formulier in n wij zullen je binnen 1-2 dagen contacteren.</p>
 
-
+    </div>
     <form>
-      Naam: <input type="text" name="fname"><br>
-       Email: <input type="text" name="lname"><br>
-        Telefoon: <input type="text" name="fname"><br>
-        Onderwerp: <input type="text" name="fname"><br>
-        Bericht: <textarea type="text" name="fname"></textarea>
-        <input type="submit" value="Submit">
+        <div class="block">
+        <label for=naam>Naam</label>
+            <input id="naam" class="inputbox" type="text" name="naam">
+        </div>
+        <div class="block">
+            <label for=email>E-mail</label>   <input  id="email"class="inputbox" type="text" name="lname">
+        </div>
+
+        <div class="block">
+            <label for=telefoon>Telefoon</label><input  id="telefoon"class="inputbox" type="text" name="fname">
+        </div>
+        <div class="block">
+            <label for=onderwerp>Onderwerp</label> <input  id="onderwerp"class="inputbox" type="text" name="fname">
+        </div>
+        <div class="block">
+            <label for=bericht>Bericht</label> <br>
+            <textarea id="bericht"  class="inputbox" type="text" name="fname" rows="10" cols="2" ></textarea>
+
+        </div>
+        <input type="submit" value="Verzenden">
+
+
+
+
+
 
     </form>
 
+
+
+
+
+
+
+
 </section>
 
-<section class="right">
+<section class="map">
     <header>
-        <h3>Komt u op bezoek?</h3>
+        <img src="./Content/images/contactplaatje.png">
     </header>
 </section>
+</div>

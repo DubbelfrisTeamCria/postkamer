@@ -6,6 +6,7 @@
         <canvas  id="binnenkantcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
         <canvas   id="envelopcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
 
+
         <div id="navKaart" >
             <div>
                 <button class="navbutton" id="voorKant">Voorkant</button>
@@ -13,19 +14,23 @@
                 <button class="navbutton" id="envelop">Envelop</button>
             </div>
 
-            <div id="smallTools">
-                <img id="prullenbak" class="knop" src="Content/images/prullenbak.png">
-                <img id="plus" class="knop" src="Content/images/plus.png">
-                <img id="bringToFront" class="knop" src="Content/images/bringToFront.png">
-                <img id="bringToBack" class="knop" src="Content/images/bringToBack.png">
-            </div>
+
         </div>
-        <button ng-click="save();">print canvas naar console</button>
-        <button ng-click="load();">load template</button>
+        <!--<button ng-click="save();">print canvas naar console</button>-->
+        <!--<button ng-click="load();">load template</button>-->
     </div>
 
 
     <div id="editorTools" class="left">
+
+
+        <div id="smallTools">
+            <img id="prullenbak" class="knop" src="Content/images/prullenbak.png"> <br>
+            <img id="plus" class="knop" src="Content/images/plus.png"> <br>
+            <img id="bringToFront" class="knop" src="Content/images/bringToFront.png"> <br>
+            <img id="bringToBack" class="knop" src="Content/images/bringToBack.png"><br>
+        </div>
+
         <div id="tabContainer">
             <div class="tabs">
                 <li id="Bewerken1"><img src="Content/images/tab1Select.png"></li>
