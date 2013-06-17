@@ -16,9 +16,12 @@ app.controller('EditorCtrl', function( service,$scope) {
     var opgeslagen = false;
 
     $scope.save = function(){
+        getPositie();
+        getCategorie();
         var data = getJSON();
         console.log(data);
         opgeslagen = true;
+
         service.saveTemplate(data);
     };
 

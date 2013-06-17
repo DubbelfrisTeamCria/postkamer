@@ -7,7 +7,10 @@ app.controller('TemplateCtrl', function( service,$scope) {
     service.async().then(function(data) {
         document.body.style.cursor='wait';
         for (var i = 0; i < data.length; i++) {
-            getTemplate(data[i], data[i].positie);
+            if (data[i].categorie == localStorage.categorie) {
+                console.log("data[i].categorie: " + data[i].categorie + " localStorage.categorie: "+ localStorage.categorie);
+                getTemplate(data[i], data[i].positie);
+            }
         }
         document.body.style.cursor ='default';
         selecteerTemplate();

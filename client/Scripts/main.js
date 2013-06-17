@@ -62,10 +62,12 @@ function staandCanvas() {
     var selected = document.getElementById('selectedTemplate');
     var staand = null;
     if (selected.className === "templateliggend template") {
+        localStorage.positie = "liggend";
         staand = false;
     }
     else if (selected.className === "templatestaand template") {
         staand = true;
+        localStorage.positie = "staand";
     }
     return staand;
 }
@@ -90,10 +92,6 @@ $('#hoeWerktHet').click(function() {selectLinesMenu("hoeWerktHet");});
 $('#contact').click(function() {selectLinesMenu("contact");});
 $('#homeLogo').click(function() {selectLinesMenu("home");});
 
-$('#verhuizen').click(function() {localStorage.categorie = "verhuizen"});
-$('#samenwonen').click(function() {localStorage.categorie = "samenwonen"});
-$('#housewarming').click(function() {localStorage.categorie = "housewarming"});
-
 function getTemplate(data, positie) {
     var image = $('<img/>').attr({
         "src":data.template,
@@ -104,3 +102,8 @@ function getTemplate(data, positie) {
     $(image).hover(function() {$(this).css('cursor','pointer');}); //handje
 }
 
+function categorie() {
+    $('#verhuizen').click(function() {localStorage.categorie = "verhuizen"; console.log("gekozen categorie: " + localStorage.categorie);});
+    $('#samenwonen').click(function() {localStorage.categorie = "samenwonen"; console.log("gekozen categorie: " + localStorage.categorie);});
+    $('#housewarming').click(function() {localStorage.categorie = "housewarming"; console.log("gekozen categorie: " + localStorage.categorie);});
+}

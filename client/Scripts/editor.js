@@ -117,10 +117,9 @@ function editor() {
      * @return {*} het canvas als json.
      */
     this.getJSON = function () {
-        var positie = $('.wrapper').attr('id');
         var template = {
             "private": "true",
-            "positie": positie,
+            "positie": localStorage.positie,
             "categorie": localStorage.categorie,
             "voorkant": JSON.stringify(voorkantcanvas),
             "midden": JSON.stringify(middelsteCanvas),
@@ -129,6 +128,20 @@ function editor() {
         }
         console.log(template);
         return template;
+    }
+
+    this.getPositie = function() {
+        if (!localStorage.positie) {
+            localStorage.positie = prompt("geen positie gekozen. Voer staand/liggend in voor de databse");
+        }
+        return localStorage.positie;
+    }
+
+    this.getCategorie = function() {
+        if (!localStorage.categorie) {
+            localStorage.categorie = prompt("geen categorie gekozen. Voer samenwonen/verhuizen/housewarming in voor de databse");
+        }
+        return localStorage.categorie;
     }
 
     // Onclick functies van bold, italic en underline.

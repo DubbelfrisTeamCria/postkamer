@@ -6,6 +6,5 @@ app.controller('HomepageCtrl', function( service,$scope) {
         $scope.test = data;
     });
 
-
-
+    categorie();
 });
