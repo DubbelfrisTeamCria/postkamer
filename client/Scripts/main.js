@@ -97,10 +97,12 @@ $('#homeLogo').click(function() {selectLinesMenu("home");});
 
 function getTemplate(data, positie) {
     var image = $('<img/>').attr({
-        "src":data.template,
-        "class": "template" + positie + " template",
-        "kaartId":data._id.$oid
+        "src":data.templatePng,
+        "class": "template" + positie + " template"
+        , "kaartId":data._id.$oid
     });
+//    image.data({
+//        "kaartId":data._id.$oid});
     $('#template' + positie + 'Div').append(image);
     $(image).hover(function() {$(this).css('cursor','pointer');}); //handje
 }
