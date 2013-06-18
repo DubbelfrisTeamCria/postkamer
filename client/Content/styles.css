@@ -113,35 +113,23 @@ h5{
 }
 
 /*Editor partial:*/
+#canvasHolder {
+    width: 650px;
+}
 
-#canvas {
-    /*margin: auto 162.5px;*/
+.canvas {
+    margin: auto;
     display: block;
     background-color: #ffffff;
     border: 1px rgba(184, 184, 184, 0.81) solid;
     box-shadow: 1px -1px 6px rgba(45, 50, 50, 0.75);
 }
+
 #smallTools {
     float:left;
     margin-left: -40px;
     margin-top: 20px;
     width: 30px;
-}
-
-#binnenkantcanvas {
-    margin: auto;
-    display: block;
-    background-color: #ffffff;
-    border: 1px rgba(184, 184, 184, 0.81) solid;
-    box-shadow: 1px -1px 6px rgba(45, 50, 50, 0.75);
-}
-
-#envelopcanvas {
-    margin: auto;
-    display: block;
-    background-color: #ffffff;
-    border: 1px rgba(184, 184, 184, 0.81) solid;
-    box-shadow: 1px -1px 6px rgba(45, 50, 50, 0.75);
 }
 
 /*Homepage partial:*/
@@ -509,6 +497,7 @@ input::-webkit-slider-thumb{
 
 #adressen{
 
+<<<<<<< HEAD
 
     float: right;
 
@@ -559,6 +548,13 @@ input::-webkit-slider-thumb{
 #voorkantPreviewImage{
 
     /*height: 20%;*/
+=======
+    width: 700px;
+   height: 550px;
+    float: right;
+
+    background-image: url('images/adressenboekje.png');
+>>>>>>> origin/master
 }
 
 

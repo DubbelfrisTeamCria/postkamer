@@ -1,10 +1,10 @@
 function editor() {
-
-
-
-
     var images;
-
+    var BrightnessOn = false;
+    var GrayscaleOn = false;
+    var SepiaOn= false;
+    var EnvelopOn = false;
+    var imagesOnCanvas =[];
     images = [
         {"url": "/postkamer/client/Content/images/icons/plaatje01.png"},
         {"url": "/postkamer/client/Content/images/icons/plaatje02.png"},
@@ -29,19 +29,14 @@ function editor() {
         {"url": "/postkamer/client/Content/images/icons/plaatje21.png"},
         {"url": "/postkamer/client/Content/images/icons/plaatje22.png"}
     ];
-
-
-    
-    
-
     var selectedIcon= null;
     var canvas = null;
     var TAB = "Bewerken1";
     var voorkantcanvas = new fabric.Canvas('canvas');
-    var binnenkantcanvas = new fabric.Canvas('binnenkantcanvas');
+    var middelsteCanvas = new fabric.Canvas(getMiddelsteCanvas());
     var envelopcanvas = new fabric.Canvas('envelopcanvas');
     var voorkant = $("#canvas");
-    var binnenkant = $("#binnenkantcanvas");
+    var middelste = getMiddelste();
     var envelop = $("#envelopcanvas");
     var tekstMarge = 50;
     var standaardImageBreedte = 200;
@@ -50,14 +45,41 @@ function editor() {
     setHidden();
     colorpicker();
     addText2("Vul hier je tekst in...");
-    addImageBackground();
+    console.log(middelsteCanvas.type);
+    if (middelsteCanvas.type == "binnenkant") {
+        addImageBackground();
+    }
 
     maakGallery();
+
+    function getMiddelste() {
+        var m = null;
+        if (!localStorage.enkel) {
+            middelsteCanvas.type = "binnenkant";
+            m=  $("#binnenkantcanvas");
+        }
+        else if (localStorage.enkel) {
+            middelsteCanvas.type = "achterkant";
+            m = $("#achterkantcanvas");
+        }
+        return m;
+    }
+
+    function getMiddelsteCanvas() {
+        var m = null;
+        if (!localStorage.enkel) {
+            m = "binnenkantcanvas"
+        }
+        else if (localStorage.enkel) {
+            m = "achterkantcanvas"
+        }
+        return m;
+    }
 
     function setHidden(){
         canvas = voorkantcanvas;
         voorkant.parent().css('margin-right', '325px');
-        binnenkant.parent().css('display' ,'none');
+        middelste.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
@@ -66,28 +88,38 @@ function editor() {
     $('#voorKant').click(function(){
         canvas = voorkantcanvas;
         voorkant.parent().css('display' ,'block');
-        binnenkant.parent().css('display' ,'none');
+        middelste.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
+        if(EnvelopOn == true){
+            EnvelopOn=false;
+            setDisplayKaart();
+        }
     });
 
-    $('#binnenKant').click(function(){
-        canvas = binnenkantcanvas;
-        binnenkant.parent().css('display' ,'block');
+    $('#binnenKant, #achterKant').click(function(){
+        canvas = middelsteCanvas;
+        middelste.parent().css('display' ,'block');
         voorkant.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
+        if(EnvelopOn == true){
+            EnvelopOn=false;
+            setDisplayKaart();
+        }
     });
 
     $('#envelop').click(function(){
         canvas = envelopcanvas;
         envelop.parent().css('display' ,'block');
-        binnenkant.parent().css('display' ,'none');
+        middelste.parent().css('display' ,'none');
         voorkant.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
+        EnvelopOn=true;
+        setDisplayEnvelop();
     });
 
     /**
@@ -95,18 +127,33 @@ function editor() {
      * @return {*} het canvas als json.
      */
     this.getJSON = function () {
-        var positie = $('.wrapper').attr('id');
         var template = {
             "private": "true",
-            "positie": positie,
-            "categorie": "samenwonen",
+            "positie": localStorage.positie,
+            "categorie": localStorage.categorie,
             "voorkant": JSON.stringify(voorkantcanvas),
-            "binnenkant": JSON.stringify(binnenkantcanvas),
+            "midden": JSON.stringify(middelsteCanvas),
             "envelop":JSON.stringify(envelopcanvas),
-            "template":voorkantcanvas.toDataURL("image/png")
+            "templatePng":voorkantcanvas.toDataURL("image/png"),
+            "middenPng": middelsteCanvas.toDataURL("image/png"),
+            "achterkantPng":envelopcanvas.toDataURL("image/png")
         }
         console.log(template);
         return template;
+    }
+
+    this.getPositie = function() {
+        if (!localStorage.positie) {
+            localStorage.positie = prompt("geen positie gekozen. Voer staand/liggend in voor de databse");
+        }
+        return localStorage.positie;
+    }
+
+    this.getCategorie = function() {
+        if (!localStorage.categorie) {
+            localStorage.categorie = prompt("geen categorie gekozen. Voer samenwonen/verhuizen/housewarming in voor de databse");
+        }
+        return localStorage.categorie;
     }
 
     // Onclick functies van bold, italic en underline.
@@ -149,7 +196,7 @@ function editor() {
         TAB = this.id;
         e.preventDefault();
         setVisibleTabAndPLus();
-        for(var i=1; i<5; i++) {
+        for(var i=1; i<6; i++) {
             var temp = "Bewerken"+i;
             var tab = document.getElementById("Bewerken"+i);
             var content = document.getElementById("tabpage_"+i);
@@ -158,14 +205,64 @@ function editor() {
                 content.style.display = "block";
             }
             else {
-                tab.firstChild.src= "Content/images/tab"+i+".png";
+                if(tab.id != "Bewerken5"){
+                    tab.firstChild.src= "Content/images/tab"+i+".png";
+                }else{
+                    tab.style.display="none";
+                }
                 content.style.display = "none";
             }
         }
     });
 
+    function setDisplayEnvelop(){
+        if(EnvelopOn == true){
+            TAB = 'Bewerken5';
+            setVisibleTabAndPLus();
+            for(var i=1; i<6; i++) {
+                var tab = document.getElementById("Bewerken"+i);
+                var content = document.getElementById("tabpage_"+i);
+                console.log(tab.id)
+                if(tab.id === TAB) {
+                    content.style.display = "block";
+                    tab.style.display = "block"
+                }
+                else {
+                    content.style.display = "none";
+                    tab.style.display = "none";
+                }
+            }
+        }
+    }
+    function setDisplayKaart(){
+        if(EnvelopOn == false){
+            TAB="Bewerken1";
+            for(var i=1; i<6; i++) {
+                var tab = document.getElementById("Bewerken"+i);
+                var content = document.getElementById("tabpage_"+i);
+                if(tab.id === TAB) {
+                    content.style.display = "block";
+                    tab.style.display = "block"
+                    tab.firstChild.src= "Content/images/tab"+i+"Select.png";
+                }
+                else {
+
+                    if(tab.id != "Bewerken5"){
+                        console.log(tab.id + " in setDisplaykaart and bewerken5 is not "+ tab.id)
+                        tab.style.display = "block"
+                        tab.firstChild.src= "Content/images/tab"+i+".png";
+                    }
+                    else{
+                        tab.style.display = "none";
+                    }
+                    content.style.display = "none";
+
+                }
+            }
+        }
+    }
     function setVisibleTabAndPLus() {
-        if (TAB === "Bewerken1" || TAB === "Bewerken4") {
+        if (TAB === "Bewerken1" || TAB === "Bewerken4" || TAB === "Bewerken5") {
             $('#canvasPicker').show();
 
         }
@@ -228,27 +325,39 @@ function editor() {
      */
     function addImageBackground() {
         var imgObj = new Image();
-        imgObj.src = "Content/images/shadowcard.png";
+        var image = new fabric.Image(imgObj);
+        var shadowcard = "shadowcard.png";
+        var posleft = 325;
+        var postop = 250;
+
+        if (localStorage.positie === "liggend") {
+            shadowcard = "shadowcard.png";
+            posleft = 325;
+            postop = 250;
+        }
+        else if (localStorage.positie === "staand") {
+            shadowcard = "shadowcard2.png";
+            posleft = 250;
+            postop = 325;
+        }
+        imgObj.src = "Content/images/" + shadowcard;
         imgObj.onload = function () {
-            // start fabricJS stuff
-            var image = new fabric.Image(imgObj);
             image.set({
-                left: 325,
-                top: 250,
+                left: posleft,
+                top: postop,
                 angle: 0,
                 padding: 10,
                 cornersize: 10
             });
-
-            binnenkantcanvas.add(image);
-            image.sendToBack();
-            image.lockMovementX = true;
-            image.lockMovementY = true;
-            image.lockRotation = true;
-            image.lockUniScaling = true;
-            image.selectable = false;
-            // end fabricJS stuff
         }
+        middelsteCanvas.add(image);
+        image.sendToBack();
+        image.lockMovementX = true;
+        image.lockMovementY = true;
+        image.lockRotation = true;
+        image.lockUniScaling = true;
+        image.selectable = false;
+        // end fabricJS stuff
         canvas.calcOffset();
         canvas.renderAll();
     }
@@ -376,7 +485,7 @@ function editor() {
     this.setAlign = function (kant, marge, image) {
         var objectSelected = canvas.getActiveObject();
         if (objectSelected.type = "text") {
-                objectSelected.textAlign = kant;
+            objectSelected.textAlign = kant;
 //            objectSelected.originX = kant;
 //            objectSelected.left = marge;
             setButtonImages(image);
@@ -423,7 +532,7 @@ function editor() {
                     console.log("no text object selected");
                 }
             }
-            else if (TAB == "Bewerken4") {
+            else if (TAB == "Bewerken4" || TAB == "Bewerken5") {
                 vulKleur(kleurPixel);
             }
             canvas.calcOffset();
@@ -543,6 +652,13 @@ function editor() {
      */
     this.removeObject = function () {
         var objectSelected = canvas.getActiveObject();
+        if(objectSelected.type === "image"){
+            for(var i = 0; i<imagesOnCanvas.length;i++){
+                if(objectSelected._element.src == ("http://localhost"+ imagesOnCanvas[i])){
+                    imagesOnCanvas.splice(i,1);
+                }
+            }
+        }
         canvas.remove(objectSelected);
     }
 
@@ -565,73 +681,99 @@ function editor() {
     /**
      * Zet de tekstgrootte van de geselecteerde tekst.
      */
-        document.getElementById('tekstSlider').onchange = function () {
-            var value = this.value;
-            var selectedObject = canvas.getActiveObject();
-            if (selectedObject.type === "text") {
-                selectedObject.fontSize = value;
-                canvas.calcOffset();
-                canvas.renderAll();
-            }
+    document.getElementById('tekstSlider').onchange = function () {
+        var value = this.value;
+        var selectedObject = canvas.getActiveObject();
+        if (selectedObject.type === "text") {
+            selectedObject.fontSize = value;
+            canvas.calcOffset();
+            canvas.renderAll();
         }
+    }
 
-        /**
-         * Zet de transparantie van het geselecteerde plaatje.
-         * Moet niet werken bij tekst.
-         */
-        document.getElementById('transSlider').onchange = function () {
-            var value = this.value / 100;
-            var objectSelected = canvas.getActiveObject();
-            if (objectSelected.type === "image") {
-                objectSelected.setOpacity(value);
-                canvas.calcOffset();
-                canvas.renderAll();
-            }
+    /**
+     * Zet de transparantie van het geselecteerde plaatje.
+     * Moet niet werken bij tekst.
+     */
+    document.getElementById('transSlider').onchange = function () {
+        var value = this.value / 100;
+        var objectSelected = canvas.getActiveObject();
+        if (objectSelected.type === "image") {
+            objectSelected.setOpacity(value);
+            canvas.calcOffset();
+            canvas.renderAll();
         }
-        /**
-         * Zet de brightness van het geselecteerde plaatje.
-         * Moet niet werken bij tekst.
-         */
-        document.getElementById('brightnessSlider').onchange = function () {
-            var value = parseInt(this.value);
-            var objectSelected = canvas.getActiveObject();
-            if (objectSelected.type === "image") {
-                if (!objectSelected.filters[0]) {
-                    objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness: value }));
+    }
+    /**
+     * Zet de brightness van het geselecteerde plaatje.
+     * Moet niet werken bij tekst.
+     */
+    document.getElementById('brightnessSlider').onchange = function () {
+        var value = parseInt(this.value);
+        var objectSelected = canvas.getActiveObject();
+        if (objectSelected.type === "image") {
+            if(BrightnessOn == true){
+                for (var i=0;i<objectSelected.filters.length; i++)
+                {
+                    if(objectSelected.filters[i].type == "Brightness"){
+                        objectSelected.filters[i]['brightness'] = value;
+                    }
                 }
-                else {
-                    objectSelected.filters[0]['brightness'] = value;
+            }
+            if(BrightnessOn == false){
+                objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness: value }));
+                BrightnessOn=true;
+            }
+            objectSelected.applyFilters(canvas.renderAll.bind(canvas));
+        }
+    }
+
+    /**
+     * Zet de tint van het geselecteerde plaatje.
+     * Moet niet werken bij tekst.
+     */
+    document.getElementById('tint').onchange = function () {
+        var value = parseInt(this.value);
+        var objectSelected = canvas.getActiveObject();
+        if (objectSelected.type === "image") {
+            if(value == 0){
+                for (var i=0;i<objectSelected.filters.length; i++)
+                {
+                    if(objectSelected.filters[i].type == "Sepia"){
+                        objectSelected.filters.splice(i,1);
+                        SepiaOn=false;
+                    }
                 }
-                objectSelected.applyFilters(canvas.renderAll.bind(canvas));
             }
+            else{
+                objectSelected.filters.push(new fabric.Image.filters.Sepia(value));
+                SepiaOn=true;
+            }
+            objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
+    }
 
-        /**
-         * Zet de tint van het geselecteerde plaatje.
-         * Moet niet werken bij tekst.
-         */
-        document.getElementById('tint').onchange = function () {
-            console.log("nog niet gemaakt");
-            var value = parseInt(this.value);
-            var objectSelected = canvas.getActiveObject();
-            if (objectSelected.type === "image") {
-//        if(!objectSelected.filters[1]) {
-//            objectSelected.filters.push(new fabric.Image.filters.Tint({ color: '00FF00'}));
-//        }
-//        else {
-//            objectSelected.filters[1]['tint'] = 'rgb(255,0,0)';
-//        }
-//        objectSelected.applyFilters(canvas.renderAll.bind(canvas));
-            }
-        }
+    document.getElementById('contrast').onchange = function() {
+        var value = parseInt(this.value);
+        var objectSelected = canvas.getActiveObject();
 
-        document.getElementById('blur').onchange = function() {
-            var value = parseInt(this.value);
-            var objectSelected = canvas.getActiveObject();
-            if(objectSelected.type === "image") {
-                //?
+        if (objectSelected.type === "image") {
+            if(value == 0){
+                for (var i=0;i<objectSelected.filters.length; i++)
+                {
+                    if(objectSelected.filters[i].type == "Grayscale"){
+                        objectSelected.filters.splice(i,1);
+                        GrayscaleOn=false;
+                    }
+                }
             }
+            else{
+                objectSelected.filters.push(new fabric.Image.filters.Grayscale);
+                GrayscaleOn=true;
+            }
+            objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
+    }
 
 
     $('#combo').click(function (e) {
@@ -652,29 +794,43 @@ function editor() {
 
     this.loadTemplate = function(data) {
         canvas.loadFromJSON(data.voorkant);
-        binnenkantcanvas.loadFromJSON(data.binnenkant);
+        middelsteCanvas.loadFromJSON(data.midden);
         envelopcanvas.loadFromJSON(data.envelop);
         canvas.renderAll();
-        binnenkantcanvas.renderAll();
+        middelsteCanvas.renderAll();
         envelopcanvas.renderAll();
+    }
+
+    this.loadTemplatePubliek = function(data) {
+        canvas.loadFromJSON(data.voorkant);
+        canvas.renderAll();
     }
 
     function maakGallery(){
         var iconGallery = document.getElementById("iconGallery");
-            for (var i = 0; i < images.length; i++) {
-                var img = document.createElement("img");
-                img.src = images[i].url;
-                iconGallery.appendChild(img);
-                (function(index){
-                    img.onclick = function(){
-                        addImageToCanvas(images[index].url);
-                    };
-                }(i));
+        for (var i = 0; i < images.length; i++) {
+            var img = document.createElement("img");
+            img.src = images[i].url;
+            iconGallery.appendChild(img);
+            (function(index){
+                img.onclick = function(){
+                    addImageToCanvas(images[index].url);
+                    imagesOnCanvas.push(images[index].url);
+                    console.log(imagesOnCanvas)
+                };
+            }(i));
         }
     }
 
+<<<<<<< HEAD
 
 
 
+=======
+    if (document.URL === "/postkamer/client/postkamer.html#/editor") {
+        localStorage.enkel = false;
+        localStorage.positie = "liggend";
+    }
+>>>>>>> origin/master
 }
 

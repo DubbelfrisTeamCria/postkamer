@@ -1,13 +1,14 @@
 app.controller('TemplateCtrl', function( service,$scope) {
-    // Call the async method and then do stuff with what is returned inside our own then function
 
-    console.log("Template controller opgehaald");  //controller wordt soms 2 keer opgehaald???
+    console.log("Template controller opgehaald");
     document.body.style.cursor='wait';
 
     service.async().then(function(data) {
         document.body.style.cursor='wait';
         for (var i = 0; i < data.length; i++) {
-            getTemplate(data[i], data[i].positie);
+            if (data[i].categorie == localStorage.categorie && !data[i].private) {
+                getTemplate(data[i], data[i].positie);
+            }
         }
         document.body.style.cursor ='default';
         selecteerTemplate();

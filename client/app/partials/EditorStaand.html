@@ -1,11 +1,8 @@
-<!--<header><h2>Editor</h2></header>-->
-
 <div class="wrapper" id="staand">
-    <div class="left">
-        <canvas id="canvas" width="325px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
-        <canvas  id="binnenkantcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
-        <canvas   id="envelopcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
-
+    <div class="left" id="canvasHolder">
+        <canvas class="canvas" id="canvas" width="325px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
+        <canvas class="canvas"  id="binnenkantcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
+        <canvas class="canvas" id="envelopcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
 
         <div id="navKaart" >
             <div>
@@ -14,15 +11,15 @@
                 <button class="navbutton" id="envelop">Envelop</button>
             </div>
 
-
         </div>
-        <!--<button ng-click="save();">print canvas naar console</button>-->
-        <!--<button ng-click="load();">load template</button>-->
+        <button ng-click="save();">Privé Opslaan </button>
+        (Hele kaart!)
+        <br>
+        <button ng-click="savePubliek();">Publieke template Opslaan</button> <!--Administrator functie-->
+        (Alleen voorkant!)
     </div>
 
-
     <div id="editorTools" class="left">
-
 
         <div id="smallTools">
             <img id="prullenbak" class="knop" src="Content/images/prullenbak.png"> <br>
@@ -67,12 +64,10 @@
                     </div>
                     <label>HELDERHEID</label>
                     <input id="brightnessSlider" type="range" value="0" min="-255" max="255">
-                    <label class="nietAf">HUE</label>
-                    <input type="range" id="tint" value="0" min="-255" max="255">
-                    <label class="nietAf">CONTRAST</label>
-                    <input type="range" id="contrast" value="0" min="-255" max="255">
-                    <label class="nietAf">BLUR</label>
-                    <input type="range" id="blur" value="0" min="0" max="1">
+                    <label >Sepia</label>
+                    <input type="range" id="tint" value="0" min="0" max="1">
+                    <label>CONTRAST</label>
+                    <input type="range" id="contrast" value="0" min="0" max="1">
                     <label>TRANSPARANTIE</label>
                     <input id="transSlider" type="range" min="0" max="100" value="100" />
                 </div>

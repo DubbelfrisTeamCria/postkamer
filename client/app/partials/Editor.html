@@ -1,10 +1,8 @@
-<!--<header><h2>Editor</h2></header>-->
-
 <div class="wrapper" id="liggend">
-    <div class="left">
-        <canvas id="canvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
-        <canvas  id="binnenkantcanvas" width="450px" height="650px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
-        <canvas   id="envelopcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
+    <div class="left" id="canvasHolder">
+        <canvas class="canvas" id="canvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
+        <canvas class="canvas" id="binnenkantcanvas" width="450px" height="650px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
+        <canvas class="canvas" id="envelopcanvas" width="650px" height="450px" name="kaart" model="textInput">Canvas is not supported in this browser</canvas>
 
         <div id="navKaart" >
             <div>
@@ -20,10 +18,12 @@
                 <img id="bringToBack" class="knop" src="Content/images/bringToBack.png">
             </div>
         </div>
-        <button ng-click="save();">print canvas naar console</button>
-        <button ng-click="load();">load template</button>
+        <button ng-click="save();">Privé Opslaan </button>
+        (Hele kaart!)
+        <br>
+        <button ng-click="savePubliek();">Publieke template Opslaan</button> <!--Administrator functie-->
+        (Alleen voorkant!)
     </div>
-
 
     <div id="editorTools" class="left">
         <div id="tabContainer">
@@ -32,6 +32,7 @@
                 <li id="Bewerken2"><img src="Content/images/tab2.png"></li>
                 <li id="Bewerken3"><img src="Content/images/tab3.png"></li>
                 <li id="Bewerken4"><img src="Content/images/tab4.png"></li>
+                <li id="Bewerken5" style="display:none"><img src="Content/images/tab5Select.png" ></li>
             </div>
             <div class="tabscontent">
                 <div id="tabpage_1">
@@ -62,19 +63,19 @@
                     </div>
                     <label>HELDERHEID</label>
                     <input id="brightnessSlider" type="range" value="0" min="-255" max="255">
-                    <label class="nietAf">HUE</label>
-                    <input type="range" id="tint" value="0" min="-255" max="255">
-                    <label class="nietAf">CONTRAST</label>
-                    <input type="range" id="contrast" value="0" min="-255" max="255">
-                    <label class="nietAf">BLUR</label>
-                    <input type="range" id="blur" value="0" min="0" max="1">
+                    <label >Sepia</label>
+                    <input type="range" id="tint" value="0" min="0" max="1">
+                    <label>CONTRAST</label>
+                    <input type="range" id="contrast" value="0" min="0" max="1">
                     <label>TRANSPARANTIE</label>
                     <input id="transSlider" type="range" min="0" max="100" value="100" />
                 </div>
                 <div id="tabpage_4" style="display: none">
                     <div id="achtergrondImage" onclick="achtergrondImage();"></div>
                 </div>
-
+                <div id="tabpage_5" style="display: none">
+                    blablabla testtesttestets
+                </div>
             </div>
             <div id="canvasPicker">
                 <canvas id="picker" width="217" height="217" name="kleurkiezer" model="textInput" class="ng-scope"></canvas>

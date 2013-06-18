@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 app.controller('EditorCtrl', function (service, $scope) {
     // Call the async method and then do stuff with what is returned inside our own then function
+=======
+app.controller('EditorCtrl', function( service,$scope,$location) {
+>>>>>>> origin/master
 
-    $scope.$on('$locationChangeStart', function (event, next, current) {
+    $scope.$on('$locationChangeStart', function (event, next) {
         if (!opgeslagen) {
             if (!confirm("Je ontwerp is nog niet opgeslagen. Weet je zeker dat je nu naar " + next + " wil gaan?")) {
                 event.preventDefault();
@@ -9,16 +13,56 @@ app.controller('EditorCtrl', function (service, $scope) {
         }
     });
 
-    console.log("editor controller loaded");
+    function setData() {
+        if ($location.path() === "/editor") {
+            localStorage.positie = "liggend";
+            localStorage.enkel = false;
 
+        } else if ($location.path() === "/editorEnkel") {
+            localStorage.positie = "liggend";
+            localStorage.enkel = true;
+
+        } if ($location.path() === "/editorStaand") {
+            localStorage.positie = "staand";
+            localStorage.enkel = false;
+
+        } if ($location.path() === "/editorStaandEnkel") {
+            localStorage.positie = "staand";
+            localStorage.enkel = true
+        }
+    }
+    setData();
+
+<<<<<<< HEAD
     document.body.style.cursor = 'wait';
     editor();
     var opgeslagen = false;
 
     $scope.save = function () {
+=======
+    console.log("editor controller loaded");
+    document.body.style.cursor='wait';
+    editor();
+    var opgeslagen = false;
+
+    $scope.save = function(){
+        getPositie();
+        getCategorie();
+>>>>>>> origin/master
         var data = getJSON();
         console.log(data);
         opgeslagen = true;
+
+        service.saveTemplate(data);
+    };
+
+    $scope.savePubliek = function(){
+        getPositie();
+        getCategorie();
+        var data = getJSONTemplate();
+        console.log(data);
+        opgeslagen = true;
+
         service.saveTemplate(data);
     };
 
@@ -26,17 +70,24 @@ app.controller('EditorCtrl', function (service, $scope) {
         document.body.style.cursor = 'wait';
         for (var i = 0; i < data.length; i++) {
             if (data[i]._id.$oid === localStorage.selectedId) {
-                loadTemplate(data[i]);
+                loadTemplatePubliek(data[i]);
             }
         }
         document.body.style.cursor = 'default';
     });
 
+    function loadPriveTemplate() {              //Alleen voor de klant
+        service.async().then(function(data) {
+            document.body.style.cursor='wait';
+            for (var i = 0; i < data.length; i++) {
+                if (data[i]._id.$oid === localStorage.selectedId) {
+                    loadTemplate(data[i]);
+                }
+            }
+            document.body.style.cursor ='default';
+        });
+    }
 });
-
-
-
-
 
 
 
