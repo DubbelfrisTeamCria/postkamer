@@ -1,9 +1,8 @@
 function editor() {
-
-
-
-
     var images;
+    var BrightnessOn = false;
+    var GrayscaleOn = false;
+    var SepiaOn= false;
 
     images = [
         {"url": "/postkamer/client/Content/images/icons/plaatje01.png"},
@@ -610,6 +609,7 @@ function editor() {
             canvas.renderAll();
         }
     }
+
     /**
      * Zet de brightness van het geselecteerde plaatje.
      * Moet niet werken bij tekst.
@@ -617,12 +617,19 @@ function editor() {
     document.getElementById('brightnessSlider').onchange = function () {
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
+
         if (objectSelected.type === "image") {
-            if (!objectSelected.filters[0]) {
+            if(BrightnessOn == true){
+                for (var i=0;i<objectSelected.filters.length; i++)
+                    {
+                        if(objectSelected.filters[i].type == "Brightness"){
+                            objectSelected.filters[i]['brightness'] = value;
+                         }
+                    }
+                }
+            if(BrightnessOn == false){
                 objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness: value }));
-            }
-            else {
-                objectSelected.filters[0]['brightness'] = value;
+                BrightnessOn=true;
             }
             objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
@@ -633,25 +640,45 @@ function editor() {
      * Moet niet werken bij tekst.
      */
     document.getElementById('tint').onchange = function () {
-        console.log("nog niet gemaakt");
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
         if (objectSelected.type === "image") {
-//        if(!objectSelected.filters[1]) {
-//            objectSelected.filters.push(new fabric.Image.filters.Tint({ color: '00FF00'}));
-//        }
-//        else {
-//            objectSelected.filters[1]['tint'] = 'rgb(255,0,0)';
-//        }
-//        objectSelected.applyFilters(canvas.renderAll.bind(canvas));
+            if(value == 0){
+                for (var i=0;i<objectSelected.filters.length; i++)
+                {
+                    if(objectSelected.filters[i].type == "Sepia"){
+                        objectSelected.filters.splice(i,1);
+                        SepiaOn=false;
+                    }
+                }
+            }
+            else{
+                objectSelected.filters.push(new fabric.Image.filters.Sepia(value));
+                SepiaOn=true;
+            }
+            objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
     }
 
-    document.getElementById('blur').onchange = function() {
+    document.getElementById('contrast').onchange = function() {
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
-        if(objectSelected.type === "image") {
-            //?
+
+        if (objectSelected.type === "image") {
+            if(value == 0){
+                for (var i=0;i<objectSelected.filters.length; i++)
+                {
+                    if(objectSelected.filters[i].type == "Grayscale"){
+                        objectSelected.filters.splice(i,1);
+                        GrayscaleOn=false;
+                    }
+                }
+            }
+            else{
+                objectSelected.filters.push(new fabric.Image.filters.Grayscale);
+                GrayscaleOn=true;
+            }
+            objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
     }
 
