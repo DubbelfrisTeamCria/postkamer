@@ -821,16 +821,9 @@ function editor() {
             }(i));
         }
     }
-
-<<<<<<< HEAD
-
-
-
-=======
     if (document.URL === "/postkamer/client/postkamer.html#/editor") {
         localStorage.enkel = false;
         localStorage.positie = "liggend";
     }
->>>>>>> origin/master
 }
 
