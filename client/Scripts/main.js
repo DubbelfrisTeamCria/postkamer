@@ -8,6 +8,8 @@ function selecteerTemplate() {
         storeKaartId(this);
         templateKeus();
     });
+    localStorage.enkel = true;
+    enkelClick();
 }
 
 localStorage.selectedId = "geen kaart geselecteerd";
@@ -21,39 +23,40 @@ function storeKaartId(kaart) {
     }
 }
 
-function enkelCanvas() {
-    localStorage.enkel = true;
-    if (document.getElementById('enkel').checked) {
-        localStorage.enkel = true;
-    }
-    else if (document.getElementById('dubbel').checked) {
-        localStorage.enkel = false;
-    }
-    return localStorage.enkel;
+function enkelClick() {
+    $('#enkel').click(function() {
+        if (document.getElementById('enkel').checked) {
+            localStorage.enkel = true;
+        }
+    });
+    $('#dubbel').click(function() {
+        if (document.getElementById('dubbel').checked) {
+            localStorage.enkel = false;
+        }
+    });
 }
-
 function templateKeus() {
-    enkelCanvas();
     if (!document.getElementById('selectedTemplate')) {
         alert("kies eerst een template");
     }
     else {
+        enkelClick();
         staandCanvas();
         staandOfLiggendCanvas();
     }
 }
 
 function staandOfLiggendCanvas() {
-    if (staandCanvas() && !enkelCanvas()) {
+    if (staandCanvas() && !localStorage.enkel) {
         $('#kaartMaken > a').attr({href:"#/editorStaand"});
     }
-    else if (staandCanvas() && enkelCanvas()) {
+    else if (staandCanvas() && localStorage.enkel) {
         $('#kaartMaken > a').attr({href:"#/editorStaandEnkel"});
     }
-    else if (!staandCanvas() && !enkelCanvas()) {
+    else if (!staandCanvas() && !localStorage.enkel) {
         $('#kaartMaken > a').attr({href:"#/editor"});
     }
-    else if (!staandCanvas() && enkelCanvas()) {
+    else if (!staandCanvas() && localStorage.enkel) {
         $('#kaartMaken > a').attr({href:"#/editorEnkel"});
     }
 }

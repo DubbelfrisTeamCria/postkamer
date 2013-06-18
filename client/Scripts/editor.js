@@ -30,10 +30,6 @@ function editor() {
         {"url": "/postkamer/client/Content/images/icons/plaatje22.png"}
     ];
 
-
-
-
-
     var selectedIcon= null;
     var canvas = null;
     var TAB = "Bewerken1";
@@ -121,12 +117,27 @@ function editor() {
      */
     this.getJSON = function () {
         var template = {
-            "private": "true",
+            "private": true,
             "positie": localStorage.positie,
-            "categorie": localStorage.categorie,
             "voorkant": JSON.stringify(voorkantcanvas),
             "midden": JSON.stringify(middelsteCanvas),
             "envelop":JSON.stringify(envelopcanvas),
+            "template":voorkantcanvas.toDataURL("image/png")
+        }
+        console.log(template);
+        return template;
+    }
+
+    /**
+     * Haal het canvas op als json.
+     * @return {*} het canvas als json.
+     */
+    this.getJSONTemplate = function () {
+        var template = {
+            "private": false,
+            "positie": localStorage.positie,
+            "categorie": localStorage.categorie,
+            "voorkant": JSON.stringify(voorkantcanvas),
             "template":voorkantcanvas.toDataURL("image/png")
         }
         console.log(template);
@@ -683,7 +694,6 @@ function editor() {
         }
     }
 
-
     $('#combo').click(function (e) {
         var text = canvas.getActiveObject();
         if (text) {
@@ -697,7 +707,7 @@ function editor() {
             alert("u moet eerst een tekst selecteren!!");
         }
         canvas.calcOffset();
-        canvas.renderAll();en
+        canvas.renderAll();
     });
 
     this.loadTemplate = function(data) {
@@ -707,6 +717,11 @@ function editor() {
         canvas.renderAll();
         middelsteCanvas.renderAll();
         envelopcanvas.renderAll();
+    }
+
+    this.loadTemplatePubliek = function(data) {
+        canvas.loadFromJSON(data.voorkant);
+        canvas.renderAll();
     }
 
     function maakGallery(){
@@ -721,6 +736,11 @@ function editor() {
                 };
             }(i));
         }
+    }
+
+    if (document.URL === "/postkamer/client/postkamer.html#/editor") {
+        localStorage.enkel = false;
+        localStorage.positie = "liggend";
     }
 }
 
