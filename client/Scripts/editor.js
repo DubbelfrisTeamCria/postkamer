@@ -6,7 +6,6 @@ function editor() {
     var EnvelopOn = false;
     var currentIcoon;
     var imagesOnCanvas =[];
-
     images = [
         {"url": "/postkamer/client/Content/images/icons/plaatje01.png"},
         {"url": "/postkamer/client/Content/images/icons/plaatje02.png"},
@@ -31,30 +30,14 @@ function editor() {
         {"url": "/postkamer/client/Content/images/icons/plaatje21.png"},
         {"url": "/postkamer/client/Content/images/icons/plaatje22.png"}
     ];
-
     var selectedIcon= null;
     var canvas = null;
     var TAB = "Bewerken1";
     var voorkantcanvas = new fabric.Canvas('canvas');
-    var middelsteCanvas;
-    if ($("#binnenkantcanvas")) {
-        middelsteCanvas = new fabric.Canvas('binnenkantcanvas');
-        middelsteCanvas.type = "binnenkant";
-    }
-    else {
-        middelsteCanvas = new fabric.Canvas('achterkantcanvas');
-        middelsteCanvas.type = "achterkant";
-    }
+    var middelsteCanvas = new fabric.Canvas(getMiddelsteCanvas());
     var envelopcanvas = new fabric.Canvas('envelopcanvas');
     var voorkant = $("#canvas");
-    var middelste;
-    if ($("#binnenkantcanvas")) {
-        middelste = $("#binnenkantcanvas");
-    }
-    else {
-        middelste = $("#achterkantcanvas");
-
-    }
+    var middelste = getMiddelste();
     var envelop = $("#envelopcanvas");
     var tekstMarge = 50;
     var standaardImageBreedte = 200;
@@ -68,6 +51,30 @@ function editor() {
     }
 
     maakGallery();
+
+    function getMiddelste() {
+        var m = null;
+        if (!localStorage.enkel) {
+            middelsteCanvas.type = "binnenkant";
+            m=  $("#binnenkantcanvas");
+        }
+        else if (localStorage.enkel) {
+            middelsteCanvas.type = "achterkant";
+            m = $("#achterkantcanvas");
+        }
+        return m;
+    }
+
+    function getMiddelsteCanvas() {
+        var m = null;
+        if (!localStorage.enkel) {
+            m = "binnenkantcanvas"
+        }
+        else if (localStorage.enkel) {
+            m = "achterkantcanvas"
+        }
+        return m;
+    }
 
     function setHidden(){
         canvas = voorkantcanvas;
@@ -91,21 +98,8 @@ function editor() {
         }
     });
 
-    $('#binnenKant').click(function(){
+    $('#binnenKant, #achterKant').click(function(){
         canvas = middelsteCanvas;
-        middelste.parent().css('display' ,'block');
-        voorkant.parent().css('display' ,'none');
-        envelop.parent().css('display' ,'none');
-        canvas.calcOffset();
-        canvas.renderAll();
-        if(EnvelopOn == true){
-            EnvelopOn=false;
-            setDisplayKaart();
-        }
-    });
-
-    $('#achterkantKant').click(function(){
-        canvas = achterkant;
         middelste.parent().css('display' ,'block');
         voorkant.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
@@ -388,7 +382,6 @@ function editor() {
                 currentIcoon = image;
             }
             canvas.add(image);
-
 
             // end fabricJS stuff
         }
@@ -788,6 +781,7 @@ function editor() {
         }
     }
 
+
     $('#combo').click(function (e) {
         var text = canvas.getActiveObject();
         if (text) {
@@ -851,7 +845,6 @@ function editor() {
             };
         }
     }
-
     if (document.URL === "/postkamer/client/postkamer.html#/editor") {
         localStorage.enkel = false;
         localStorage.positie = "liggend";

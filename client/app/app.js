@@ -81,6 +81,16 @@ app.config(function ($routeProvider) {
             controller: '',
             templateUrl: '/postkamer/client/app/partials/adressen.html'
         })
+        .when('/overzichtformaat',
+        {
+            controller: 'OverzichtCtrl',
+            templateUrl: '/postkamer/client/app/partials/OverzichtFormaat.html'
+        })
+        .when('/versturing',
+        {
+            controller: 'OverzichtCtrl',
+            templateUrl: '/postkamer/client/app/partials/versturing.html'
+        })
         .otherwise({ redirectTo: '/home' });
 });
 

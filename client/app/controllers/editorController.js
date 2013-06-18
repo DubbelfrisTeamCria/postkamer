@@ -1,3 +1,4 @@
+
 app.controller('EditorCtrl', function( service,$scope,$location) {
 
     $scope.$on('$locationChangeStart', function (event, next) {
@@ -28,6 +29,7 @@ app.controller('EditorCtrl', function( service,$scope,$location) {
     }
     setData();
 
+
     console.log("editor controller loaded");
     document.body.style.cursor='wait';
     editor();
@@ -53,14 +55,14 @@ app.controller('EditorCtrl', function( service,$scope,$location) {
         service.saveTemplate(data);
     };
 
-    service.async().then(function(data) {
-        document.body.style.cursor='wait';
+    service.async().then(function (data) {
+        document.body.style.cursor = 'wait';
         for (var i = 0; i < data.length; i++) {
             if (data[i]._id.$oid === localStorage.selectedId) {
                 loadTemplatePubliek(data[i]);
             }
         }
-        document.body.style.cursor ='default';
+        document.body.style.cursor = 'default';
     });
 
     function loadPriveTemplate() {              //Alleen voor de klant
@@ -74,7 +76,6 @@ app.controller('EditorCtrl', function( service,$scope,$location) {
             document.body.style.cursor ='default';
         });
     }
-
 });
 
 
