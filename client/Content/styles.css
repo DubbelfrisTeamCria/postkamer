@@ -55,6 +55,9 @@ h1,h2, h3, h4, h5, h6 {
 h4{
     text-align: center;
 }
+h5{
+
+}
 
 #homeNav {
     background-color: white;
@@ -184,6 +187,7 @@ h4{
     -ms-flex-pack:center;
     -ms-flex-align:center;
 }
+
 
 .left {
     float:left;
@@ -317,6 +321,9 @@ h4{
     text-decoration: none;
     color: #676767;
     margin: 0 25px;
+}
+a{
+    text-spacing: normal;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -485,6 +492,27 @@ input::-webkit-slider-thumb{
     float:right;
 }
 
+
+
+#registreerform{
+    text-align: center;
+}
+
+
+.adresicon{
+    width: 50px;
+    float: left;
+    height: 50px;
+}
+
+#adressen{
+
+    width: 700px;
+   height: 550px;
+    float: right;
+
+    background-image: url('images/adressenboekje.png');
+}
 
 
 

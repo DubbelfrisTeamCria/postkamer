@@ -40,9 +40,11 @@ function editor() {
     var middelsteCanvas;
     if ($("#binnenkantcanvas")) {
         middelsteCanvas = new fabric.Canvas('binnenkantcanvas');
+        middelsteCanvas.type = "binnenkant";
     }
     else {
         middelsteCanvas = new fabric.Canvas('achterkantcanvas');
+        middelsteCanvas.type = "achterkant";
     }
     var envelopcanvas = new fabric.Canvas('envelopcanvas');
     var voorkant = $("#canvas");
@@ -52,7 +54,6 @@ function editor() {
     }
     else {
         middelste = $("#achterkantcanvas");
-
     }
     var envelop = $("#envelopcanvas");
     var tekstMarge = 50;
@@ -62,7 +63,9 @@ function editor() {
     setHidden();
     colorpicker();
     addText2("Vul hier je tekst in...");
-    addImageBackground();
+    if (middelsteCanvas.type == "binnenkant") {
+        addImageBackground();
+    }
 
     maakGallery();
 
@@ -116,10 +119,9 @@ function editor() {
      * @return {*} het canvas als json.
      */
     this.getJSON = function () {
-        var positie = $('.wrapper').attr('id');
         var template = {
             "private": "true",
-            "positie": positie,
+            "positie": localStorage.positie,
             "categorie": localStorage.categorie,
             "voorkant": JSON.stringify(voorkantcanvas),
             "midden": JSON.stringify(middelsteCanvas),
@@ -128,6 +130,20 @@ function editor() {
         }
         console.log(template);
         return template;
+    }
+
+    this.getPositie = function() {
+        if (!localStorage.positie) {
+            localStorage.positie = prompt("geen positie gekozen. Voer staand/liggend in voor de databse");
+        }
+        return localStorage.positie;
+    }
+
+    this.getCategorie = function() {
+        if (!localStorage.categorie) {
+            localStorage.categorie = prompt("geen categorie gekozen. Voer samenwonen/verhuizen/housewarming in voor de databse");
+        }
+        return localStorage.categorie;
     }
 
     // Onclick functies van bold, italic en underline.
@@ -249,27 +265,39 @@ function editor() {
      */
     function addImageBackground() {
         var imgObj = new Image();
-        imgObj.src = "Content/images/shadowcard.png";
+        var image = new fabric.Image(imgObj);
+        var shadowcard = "shadowcard.png";
+        var posleft = 325;
+        var postop = 250;
+
+        if (localStorage.positie === "liggend") {
+            shadowcard = "shadowcard.png";
+            posleft = 325;
+            postop = 250;
+        }
+        else if (localStorage.positie === "staand") {
+            shadowcard = "shadowcard2.png";
+            posleft = 250;
+            postop = 325;
+        }
+        imgObj.src = "Content/images/" + shadowcard;
         imgObj.onload = function () {
-            // start fabricJS stuff
-            var image = new fabric.Image(imgObj);
             image.set({
-                left: 325,
-                top: 250,
+                left: posleft,
+                top: postop,
                 angle: 0,
                 padding: 10,
                 cornersize: 10
             });
-
-            middelsteCanvas.add(image);
-            image.sendToBack();
-            image.lockMovementX = true;
-            image.lockMovementY = true;
-            image.lockRotation = true;
-            image.lockUniScaling = true;
-            image.selectable = false;
-            // end fabricJS stuff
         }
+        middelsteCanvas.add(image);
+        image.sendToBack();
+        image.lockMovementX = true;
+        image.lockMovementY = true;
+        image.lockRotation = true;
+        image.lockUniScaling = true;
+        image.selectable = false;
+        // end fabricJS stuff
         canvas.calcOffset();
         canvas.renderAll();
     }
