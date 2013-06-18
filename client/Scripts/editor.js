@@ -4,6 +4,7 @@ function editor() {
     var GrayscaleOn = false;
     var SepiaOn= false;
     var EnvelopOn = false;
+    var currentIcoon;
     var imagesOnCanvas =[];
 
     images = [
@@ -227,7 +228,6 @@ function editor() {
         for(var i=1; i<6; i++) {
             var tab = document.getElementById("Bewerken"+i);
             var content = document.getElementById("tabpage_"+i);
-            console.log(tab.id)
             if(tab.id === TAB) {
                 content.style.display = "block";
                 tab.style.display = "block"
@@ -253,8 +253,7 @@ function editor() {
             else {
 
                 if(tab.id != "Bewerken5"){
-                    console.log(tab.id + " in setDisplaykaart and bewerken5 is not "+ tab.id)
-                    tab.style.display = "block"
+                    tab.style.display = "block";
                     tab.firstChild.src= "Content/images/tab"+i+".png";
                 }
                 else{
@@ -367,11 +366,7 @@ function editor() {
         canvas.renderAll();
     }
 
-
-
-
     function addImageToCanvas(src){
-
         var imgObj = new Image();
         imgObj.src = src;
         imgObj.onload = function () {
@@ -379,13 +374,21 @@ function editor() {
             var image = new fabric.Image(imgObj);
             image.set({
                 left: 100,
-                top: 250,
+                top: 350,
                 angle: 0,
                 padding: 10,
                 cornersize: 10
             });
-
+            if(EnvelopOn == true){
+                canvas.objects
+                image.lockMovementX = true;
+                image.lockMovementY = true;
+                image.lockRotation = true;
+                image.selectable = false;
+                currentIcoon = image;
+            }
             canvas.add(image);
+
 
             // end fabricJS stuff
         }
@@ -648,7 +651,7 @@ function editor() {
     /**
      * Reset het canvas.
      */
-    this.reset = function () {
+    function reset () {
         canvas.clear();
     }
 
@@ -659,8 +662,13 @@ function editor() {
         var objectSelected = canvas.getActiveObject();
         if(objectSelected.type === "image"){
             for(var i = 0; i<imagesOnCanvas.length;i++){
-                if(objectSelected._element.src == ("http://localhost"+ imagesOnCanvas[i])){
+                if(objectSelected._element.src === ("http://localhost"+ imagesOnCanvas[i])){
                     imagesOnCanvas.splice(i,1);
+                    maakGalleryGebruikteIconen();
+                    if(objectSelected._element.src == currentIcoon._element.src){
+                        envelopcanvas.clear();
+                        alert("clear!!")
+                    }
                 }
             }
         }
@@ -780,7 +788,6 @@ function editor() {
         }
     }
 
-
     $('#combo').click(function (e) {
         var text = canvas.getActiveObject();
         if (text) {
@@ -821,9 +828,27 @@ function editor() {
                 img.onclick = function(){
                     addImageToCanvas(images[index].url);
                     imagesOnCanvas.push(images[index].url);
-                    console.log(imagesOnCanvas)
+                    maakGalleryGebruikteIconen();
                 };
             }(i));
+        }
+    }
+
+    function maakGalleryGebruikteIconen(){
+        var gallery = document.getElementById("iconGalleryGebruikt");
+        if(gallery.childElementCount != 0){
+            while (gallery.firstChild) {
+                gallery.removeChild(gallery.firstChild);
+            }
+        }
+        for (var i = 0; i < imagesOnCanvas.length; i++){
+            var img = document.createElement("img");
+            img.src = ""+imagesOnCanvas[i];
+            gallery.appendChild(img);
+            img.onclick = function(e){
+               reset();
+               addImageToCanvas(this.src);
+            };
         }
     }
 
