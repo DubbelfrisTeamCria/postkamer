@@ -11,10 +11,9 @@ function selecteerTemplate() {
 }
 
 localStorage.selectedId = "geen kaart geselecteerd";
-
 function storeKaartId(kaart) {
     if(typeof(Storage) !== undefined) {
-        localStorage.selectedId= $(kaart).attr("kaartId");
+        localStorage.selectedId = $(kaart).attr("kaartId");
         console.log("selectedID: " + localStorage.selectedId);
     }
     else {
@@ -23,14 +22,14 @@ function storeKaartId(kaart) {
 }
 
 function enkelCanvas() {
-    var enkel = null;
+    localStorage.enkel = true;
     if (document.getElementById('enkel').checked) {
-        enkel = true;
+        localStorage.enkel = true;
     }
     else if (document.getElementById('dubbel').checked) {
-        enkel = false;
+        localStorage.enkel = false;
     }
-    return enkel;
+    return localStorage.enkel;
 }
 
 function templateKeus() {
@@ -63,10 +62,12 @@ function staandCanvas() {
     var selected = document.getElementById('selectedTemplate');
     var staand = null;
     if (selected.className === "templateliggend template") {
+        localStorage.positie = "liggend";
         staand = false;
     }
     else if (selected.className === "templatestaand template") {
         staand = true;
+        localStorage.positie = "staand";
     }
     return staand;
 }
@@ -101,3 +102,8 @@ function getTemplate(data, positie) {
     $(image).hover(function() {$(this).css('cursor','pointer');}); //handje
 }
 
+function categorie() {
+    $('#verhuizen').click(function() {localStorage.categorie = "verhuizen"; console.log("gekozen categorie: " + localStorage.categorie);});
+    $('#samenwonen').click(function() {localStorage.categorie = "samenwonen"; console.log("gekozen categorie: " + localStorage.categorie);});
+    $('#housewarming').click(function() {localStorage.categorie = "housewarming"; console.log("gekozen categorie: " + localStorage.categorie);});
+}
