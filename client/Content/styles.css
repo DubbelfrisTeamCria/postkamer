@@ -55,6 +55,9 @@ h1,h2, h3, h4, h5, h6 {
 h4{
     text-align: center;
 }
+h5{
+
+}
 
 #homeNav {
     background-color: white;
@@ -68,6 +71,7 @@ h4{
     margin: -50px 25px 0 0;
     list-style: none;
 
+
 }
 
 #homeNav ul li a {
@@ -75,6 +79,7 @@ h4{
     font-size: 14px;
     font-weight: bolder;
     color: #70c7a9;
+
 }
 
 #homeNav ul {
@@ -184,6 +189,7 @@ h4{
     -ms-flex-pack:center;
     -ms-flex-align:center;
 }
+
 
 .left {
     float:left;
@@ -317,6 +323,9 @@ h4{
     text-decoration: none;
     color: #676767;
     margin: 0 25px;
+}
+a{
+    text-spacing: normal;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -485,6 +494,72 @@ input::-webkit-slider-thumb{
     float:right;
 }
 
+
+
+#registreerform{
+    text-align: center;
+}
+
+
+.adresicon{
+    width: 50px;
+    float: left;
+    height: 50px;
+}
+
+#adressen{
+
+
+    float: right;
+
+
+}
+
+#overzichtFormaat{
+
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#voorkantPreview{
+    float:right;
+    width: 50%;
+
+
+}
+
+
+#binnenkantPreview{
+    float:left;
+    width: 50%;
+    height: 50%;
+}
+
+#envelopPreview{
+   float:left;
+    width: 50%;
+    height: 50%;
+}
+
+#formaatSelectie{
+    float:left
+}
+
+
+
+#binnenkantPreviewImage{
+    /*height: 80%;*/
+}
+
+#envelopPreviewImage{
+
+    /*height: 40%;*/
+}
+
+#voorkantPreviewImage{
+
+    /*height: 20%;*/
+}
 
 
 

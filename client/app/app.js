@@ -65,6 +65,33 @@ app.config(function ($routeProvider) {
             templateUrl: '/postkamer/client/app/partials/Contact.html'
         })
 
+        .when('/registreren',
+        {
+            controller: '',
+            templateUrl: '/postkamer/client/app/partials/Registreren.html'
+        })
+        .when('/inloggen',
+        {
+            controller: '',
+            templateUrl: '/postkamer/client/app/partials/inloggen.html'
+        })
+
+        .when('/adressen',
+        {
+            controller: '',
+            templateUrl: '/postkamer/client/app/partials/adressen.html'
+        })
+
+        .when('/overzichtformaat',
+        {
+            controller: 'OverzichtCtrl',
+            templateUrl: '/postkamer/client/app/partials/OverzichtFormaat.html'
+        })
+        .when('/versturing',
+        {
+            controller: 'OverzichtCtrl',
+            templateUrl: '/postkamer/client/app/partials/versturing.html'
+        })
         .otherwise({ redirectTo: '/home' });
 });
 
