@@ -34,6 +34,7 @@ function enkelClick() {
             localStorage.enkel = false;
         }
     });
+    return localStorage.enkel;
 }
 function templateKeus() {
     if (!document.getElementById('selectedTemplate')) {

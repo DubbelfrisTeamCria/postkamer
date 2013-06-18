@@ -74,7 +74,6 @@ app.controller('EditorCtrl', function( service,$scope,$location) {
             document.body.style.cursor ='default';
         });
     }
-
 });
 
 

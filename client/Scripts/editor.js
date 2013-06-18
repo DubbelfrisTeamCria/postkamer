@@ -5,7 +5,6 @@ function editor() {
     var SepiaOn= false;
     var EnvelopOn = false;
     var imagesOnCanvas =[];
-
     images = [
         {"url": "/postkamer/client/Content/images/icons/plaatje01.png"},
         {"url": "/postkamer/client/Content/images/icons/plaatje02.png"},
@@ -30,30 +29,14 @@ function editor() {
         {"url": "/postkamer/client/Content/images/icons/plaatje21.png"},
         {"url": "/postkamer/client/Content/images/icons/plaatje22.png"}
     ];
-
     var selectedIcon= null;
     var canvas = null;
     var TAB = "Bewerken1";
     var voorkantcanvas = new fabric.Canvas('canvas');
-    var middelsteCanvas;
-    if ($("#binnenkantcanvas")) {
-        middelsteCanvas = new fabric.Canvas('binnenkantcanvas');
-        middelsteCanvas.type = "binnenkant";
-    }
-    else {
-        middelsteCanvas = new fabric.Canvas('achterkantcanvas');
-        middelsteCanvas.type = "achterkant";
-    }
+    var middelsteCanvas = new fabric.Canvas(getMiddelsteCanvas());
     var envelopcanvas = new fabric.Canvas('envelopcanvas');
     var voorkant = $("#canvas");
-    var middelste;
-    if ($("#binnenkantcanvas")) {
-        middelste = $("#binnenkantcanvas");
-    }
-    else {
-        middelste = $("#achterkantcanvas");
-
-    }
+    var middelste = getMiddelste();
     var envelop = $("#envelopcanvas");
     var tekstMarge = 50;
     var standaardImageBreedte = 200;
@@ -62,11 +45,36 @@ function editor() {
     setHidden();
     colorpicker();
     addText2("Vul hier je tekst in...");
+    console.log(middelsteCanvas.type);
     if (middelsteCanvas.type == "binnenkant") {
         addImageBackground();
     }
 
     maakGallery();
+
+    function getMiddelste() {
+        var m = null;
+        if (!localStorage.enkel) {
+            middelsteCanvas.type = "binnenkant";
+            m=  $("#binnenkantcanvas");
+        }
+        else if (localStorage.enkel) {
+            middelsteCanvas.type = "achterkant";
+            m = $("#achterkantcanvas");
+        }
+        return m;
+    }
+
+    function getMiddelsteCanvas() {
+        var m = null;
+        if (!localStorage.enkel) {
+            m = "binnenkantcanvas"
+        }
+        else if (localStorage.enkel) {
+            m = "achterkantcanvas"
+        }
+        return m;
+    }
 
     function setHidden(){
         canvas = voorkantcanvas;
@@ -90,21 +98,8 @@ function editor() {
         }
     });
 
-    $('#binnenKant').click(function(){
+    $('#binnenKant, #achterKant').click(function(){
         canvas = middelsteCanvas;
-        middelste.parent().css('display' ,'block');
-        voorkant.parent().css('display' ,'none');
-        envelop.parent().css('display' ,'none');
-        canvas.calcOffset();
-        canvas.renderAll();
-        if(EnvelopOn == true){
-            EnvelopOn=false;
-            setDisplayKaart();
-        }
-    });
-
-    $('#achterkantKant').click(function(){
-        canvas = achterkant;
         middelste.parent().css('display' ,'block');
         voorkant.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
@@ -222,48 +217,48 @@ function editor() {
 
     function setDisplayEnvelop(){
         if(EnvelopOn == true){
-        TAB = 'Bewerken5';
-        setVisibleTabAndPLus();
-        for(var i=1; i<6; i++) {
-            var tab = document.getElementById("Bewerken"+i);
-            var content = document.getElementById("tabpage_"+i);
-            console.log(tab.id)
-            if(tab.id === TAB) {
-                content.style.display = "block";
-                tab.style.display = "block"
+            TAB = 'Bewerken5';
+            setVisibleTabAndPLus();
+            for(var i=1; i<6; i++) {
+                var tab = document.getElementById("Bewerken"+i);
+                var content = document.getElementById("tabpage_"+i);
+                console.log(tab.id)
+                if(tab.id === TAB) {
+                    content.style.display = "block";
+                    tab.style.display = "block"
+                }
+                else {
+                    content.style.display = "none";
+                    tab.style.display = "none";
+                }
             }
-            else {
-                content.style.display = "none";
-                tab.style.display = "none";
-            }
-        }
         }
     }
     function setDisplayKaart(){
         if(EnvelopOn == false){
-        TAB="Bewerken1";
-        for(var i=1; i<6; i++) {
-            var tab = document.getElementById("Bewerken"+i);
-            var content = document.getElementById("tabpage_"+i);
-            if(tab.id === TAB) {
-                content.style.display = "block";
-                tab.style.display = "block"
-                tab.firstChild.src= "Content/images/tab"+i+"Select.png";
-            }
-            else {
-
-                if(tab.id != "Bewerken5"){
-                    console.log(tab.id + " in setDisplaykaart and bewerken5 is not "+ tab.id)
+            TAB="Bewerken1";
+            for(var i=1; i<6; i++) {
+                var tab = document.getElementById("Bewerken"+i);
+                var content = document.getElementById("tabpage_"+i);
+                if(tab.id === TAB) {
+                    content.style.display = "block";
                     tab.style.display = "block"
-                    tab.firstChild.src= "Content/images/tab"+i+".png";
+                    tab.firstChild.src= "Content/images/tab"+i+"Select.png";
                 }
-                else{
-                    tab.style.display = "none";
-                }
-                content.style.display = "none";
+                else {
 
+                    if(tab.id != "Bewerken5"){
+                        console.log(tab.id + " in setDisplaykaart and bewerken5 is not "+ tab.id)
+                        tab.style.display = "block"
+                        tab.firstChild.src= "Content/images/tab"+i+".png";
+                    }
+                    else{
+                        tab.style.display = "none";
+                    }
+                    content.style.display = "none";
+
+                }
             }
-        }
         }
     }
     function setVisibleTabAndPLus() {
@@ -719,12 +714,12 @@ function editor() {
         if (objectSelected.type === "image") {
             if(BrightnessOn == true){
                 for (var i=0;i<objectSelected.filters.length; i++)
-                    {
-                        if(objectSelected.filters[i].type == "Brightness"){
-                            objectSelected.filters[i]['brightness'] = value;
-                         }
+                {
+                    if(objectSelected.filters[i].type == "Brightness"){
+                        objectSelected.filters[i]['brightness'] = value;
                     }
                 }
+            }
             if(BrightnessOn == false){
                 objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness: value }));
                 BrightnessOn=true;
