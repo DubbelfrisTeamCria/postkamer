@@ -28,6 +28,7 @@
                 <li id="Bewerken2"><img src="Content/images/tab2.png"></li>
                 <li id="Bewerken3"><img src="Content/images/tab3.png"></li>
                 <li id="Bewerken4"><img src="Content/images/tab4.png"></li>
+                <li id="Bewerken5" style="display:none"><img src="Content/images/tab5Select.png" ></li>
             </div>
             <div class="tabscontent">
                 <div id="tabpage_1">
@@ -60,7 +61,7 @@
                     <input id="brightnessSlider" type="range" value="0" min="-255" max="255">
                     <label >Sepia</label>
                     <input type="range" id="tint" value="0" min="0" max="1">
-                    <label class="nietAf">CONTRAST</label>
+                    <label>CONTRAST</label>
                     <input type="range" id="contrast" value="0" min="0" max="1">
                     <label>TRANSPARANTIE</label>
                     <input id="transSlider" type="range" min="0" max="100" value="100" />
@@ -68,7 +69,9 @@
                 <div id="tabpage_4" style="display: none">
                     <div id="achtergrondImage" onclick="achtergrondImage();"></div>
                 </div>
-
+                <div id="tabpage_5" style="display: none">
+                    blablabla testtesttestets
+                </div>
             </div>
             <div id="canvasPicker">
                 <canvas id="picker" width="217" height="217" name="kleurkiezer" model="textInput" class="ng-scope"></canvas>
