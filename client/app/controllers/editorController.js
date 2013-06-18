@@ -33,8 +33,6 @@ app.controller('EditorCtrl', function( service,$scope,$location) {
     editor();
     var opgeslagen = false;
 
-
-
     $scope.save = function(){
         getPositie();
         getCategorie();

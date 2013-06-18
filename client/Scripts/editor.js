@@ -122,7 +122,9 @@ function editor() {
             "voorkant": JSON.stringify(voorkantcanvas),
             "midden": JSON.stringify(middelsteCanvas),
             "envelop":JSON.stringify(envelopcanvas),
-            "template":voorkantcanvas.toDataURL("image/png")
+            "template":voorkantcanvas.toDataURL("image/png"),
+            "midden": middelsteCanvas.toDataURL("image/png"),
+            "achterkant":envelopcanvas.toDataURL("image/png")
         }
         console.log(template);
         return template;

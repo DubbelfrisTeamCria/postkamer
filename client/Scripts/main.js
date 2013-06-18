@@ -47,16 +47,16 @@ function templateKeus() {
 }
 
 function staandOfLiggendCanvas() {
-    if (staandCanvas() && !localStorage.enkel) {
+    if (staandCanvas() && !enkelClick()) {
         $('#kaartMaken > a').attr({href:"#/editorStaand"});
     }
-    else if (staandCanvas() && localStorage.enkel) {
+    else if (staandCanvas() && enkelClick()) {
         $('#kaartMaken > a').attr({href:"#/editorStaandEnkel"});
     }
-    else if (!staandCanvas() && !localStorage.enkel) {
+    else if (!staandCanvas() && !enkelClick()) {
         $('#kaartMaken > a').attr({href:"#/editor"});
     }
-    else if (!staandCanvas() && localStorage.enkel) {
+    else if (!staandCanvas() && enkelClick()) {
         $('#kaartMaken > a').attr({href:"#/editorEnkel"});
     }
 }
