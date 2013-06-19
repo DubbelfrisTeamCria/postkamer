@@ -6,13 +6,16 @@ function selecteerTemplate() {
         $('.template').removeAttr("id");
         $(this).attr('id', 'selectedTemplate');
         storeKaartId(this);
+        storeKaartPositie(this);
         templateKeus();
     });
-    localStorage.enkel = true;
-    enkelClick();
+    localStorage.enkel = $("input:checked").val();
+
+    $("input").on("click", function() {
+        localStorage.enkel = $("input:checked").val();
+    });
 }
 
-localStorage.selectedId = "geen kaart geselecteerd";
 function storeKaartId(kaart) {
     if(typeof(Storage) !== undefined) {
         localStorage.selectedId = $(kaart).attr("kaartId");
@@ -23,57 +26,41 @@ function storeKaartId(kaart) {
     }
 }
 
-function enkelClick() {
-    $('#enkel').click(function() {
-        if (document.getElementById('enkel').checked) {
-            localStorage.enkel = true;
-        }
-    });
-    $('#dubbel').click(function() {
-        if (document.getElementById('dubbel').checked) {
-            localStorage.enkel = false;
-        }
-    });
-    return localStorage.enkel;
+function storeKaartPositie(kaart) {
+    if(typeof(Storage) !== undefined) {
+        localStorage.positie = $(kaart).attr("positie");
+        console.log("positie: " + localStorage.positie);
+    }
+    else {
+        console.log("Sorry, your browser does not support web storage...");
+    }
 }
+
 function templateKeus() {
     if (!document.getElementById('selectedTemplate')) {
         alert("kies eerst een template");
     }
     else {
-        enkelClick();
-        staandCanvas();
         staandOfLiggendCanvas();
     }
 }
 
 function staandOfLiggendCanvas() {
-    if (staandCanvas() && !enkelClick()) {
-        $('#kaartMaken > a').attr({href:"#/editorStaand"});
-    }
-    else if (staandCanvas() && enkelClick()) {
-        $('#kaartMaken > a').attr({href:"#/editorStaandEnkel"});
-    }
-    else if (!staandCanvas() && !enkelClick()) {
-        $('#kaartMaken > a').attr({href:"#/editor"});
-    }
-    else if (!staandCanvas() && enkelClick()) {
-        $('#kaartMaken > a').attr({href:"#/editorEnkel"});
-    }
-}
+    var kaartMakenLink = $('#kaartMakenLink');
+    if (localStorage.positie == 'staand' && localStorage.enkel == "dubbel") {
 
-function staandCanvas() {
-    var selected = document.getElementById('selectedTemplate');
-    var staand = null;
-    if (selected.className === "templateliggend template") {
-        localStorage.positie = "liggend";
-        staand = false;
+        kaartMakenLink.attr({href:"#/editorStaand"});
     }
-    else if (selected.className === "templatestaand template") {
-        staand = true;
-        localStorage.positie = "staand";
+    else if (localStorage.positie =='staand' && localStorage.enkel == "enkel") {  //??????????????
+        kaartMakenLink.attr({href:"#/editorStaandEnkel"});
     }
-    return staand;
+    else if (localStorage.positie== 'liggend' && localStorage.enkel =="dubbel") {
+        kaartMakenLink.attr({href:"#/editor"});
+    }
+    else if (localStorage.positie =='liggend' && localStorage.enkel =="enkel") {
+        kaartMakenLink.attr({href:"#/editorEnkel"});
+    }
+    console.log("enkel: " + localStorage.enkel);
 }
 
 $('.bottomlineBlock').hide();
@@ -86,7 +73,6 @@ selectLinesMenu("home");
 function selectLinesMenu(selected) {
     $('.bottomlineBlock').hide();
     $('#' + selected + ' .bottomlineBlock').show();
-
 }
 
 //Zet de onclick op de menu items voor de lijn eronder.
@@ -99,8 +85,9 @@ $('#homeLogo').click(function() {selectLinesMenu("home");});
 function getTemplate(data, positie) {
     var image = $('<img/>').attr({
         "src":data.templatePng,
-        "class": "template" + positie + " template"
-        , "kaartId":data._id.$oid
+        "class": "template" + positie + " template",
+        "kaartId":data._id.$oid,
+        "positie":positie
     });
 //    image.data({
 //        "kaartId":data._id.$oid});

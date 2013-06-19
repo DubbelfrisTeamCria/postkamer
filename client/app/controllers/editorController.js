@@ -36,8 +36,8 @@ app.controller('EditorCtrl', function( service,$scope,$location) {
     var opgeslagen = false;
 
     $scope.save = function(){
-        getPositie();
-        getCategorie();
+//        getPositie();
+//        getCategorie();
         var data = getJSON();
         console.log(data);
         opgeslagen = true;
@@ -46,8 +46,8 @@ app.controller('EditorCtrl', function( service,$scope,$location) {
     };
 
     $scope.savePubliek = function(){
-        getPositie();
-        getCategorie();
+//        getPositie();
+//        getCategorie();
         var data = getJSONTemplate();
         console.log(data);
         opgeslagen = true;

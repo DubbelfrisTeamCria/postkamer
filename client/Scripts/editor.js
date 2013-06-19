@@ -56,7 +56,7 @@ function editor() {
         var m = null;
         if (!localStorage.enkel) {
             middelsteCanvas.type = "binnenkant";
-            m=  $("#binnenkantcanvas");
+            m =  $("#binnenkantcanvas");
         }
         else if (localStorage.enkel) {
             middelsteCanvas.type = "achterkant";
@@ -844,10 +844,6 @@ function editor() {
                addImageToCanvas(this.src);
             };
         }
-    }
-    if (document.URL === "/postkamer/client/postkamer.html#/editor") {
-        localStorage.enkel = false;
-        localStorage.positie = "liggend";
     }
 }
 
