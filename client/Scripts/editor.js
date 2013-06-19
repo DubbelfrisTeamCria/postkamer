@@ -7,30 +7,29 @@ function editor() {
     var currentIcoon;
     var imagesOnCanvas =[];
     images = [
-        {"url": "/postkamer/client/Content/images/icons/plaatje01.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje02.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje03.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje04.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje05.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje06.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje07.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje08.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje09.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje10.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje11.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje12.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje13.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje14.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje15.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje16.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje17.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje18.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje19.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje20.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje21.png"},
-        {"url": "/postkamer/client/Content/images/icons/plaatje22.png"}
+        "/postkamer/client/Content/images/icons/plaatje01.png",
+        "/postkamer/client/Content/images/icons/plaatje02.png",
+        "/postkamer/client/Content/images/icons/plaatje03.png",
+        "/postkamer/client/Content/images/icons/plaatje04.png",
+        "/postkamer/client/Content/images/icons/plaatje05.png",
+        "/postkamer/client/Content/images/icons/plaatje06.png",
+        "/postkamer/client/Content/images/icons/plaatje07.png",
+        "/postkamer/client/Content/images/icons/plaatje08.png",
+        "/postkamer/client/Content/images/icons/plaatje09.png",
+        "/postkamer/client/Content/images/icons/plaatje10.png",
+        "/postkamer/client/Content/images/icons/plaatje11.png",
+        "/postkamer/client/Content/images/icons/plaatje12.png",
+        "/postkamer/client/Content/images/icons/plaatje13.png",
+        "/postkamer/client/Content/images/icons/plaatje14.png",
+        "/postkamer/client/Content/images/icons/plaatje15.png",
+        "/postkamer/client/Content/images/icons/plaatje16.png",
+        "/postkamer/client/Content/images/icons/plaatje17.png",
+        "/postkamer/client/Content/images/icons/plaatje18.png",
+        "/postkamer/client/Content/images/icons/plaatje19.png",
+        "/postkamer/client/Content/images/icons/plaatje20.png",
+        "/postkamer/client/Content/images/icons/plaatje21.png",
+        "/postkamer/client/Content/images/icons/plaatje22.png"
     ];
-    var selectedIcon= null;
     var canvas = null;
     var TAB = "Bewerken1";
     var voorkantcanvas = new fabric.Canvas('canvas');
@@ -235,28 +234,28 @@ function editor() {
     }
     function setDisplayKaart(){
         if(EnvelopOn == false){
-        TAB="Bewerken1";
-        for(var i=1; i<6; i++) {
-            var tab = document.getElementById("Bewerken"+i);
-            var content = document.getElementById("tabpage_"+i);
-            if(tab.id === TAB) {
-                content.style.display = "block";
-                tab.style.display = "block"
-                tab.firstChild.src= "Content/images/tab"+i+"Select.png";
-            }
-            else {
-
-                if(tab.id != "Bewerken5"){
-                    tab.style.display = "block";
-                    tab.firstChild.src= "Content/images/tab"+i+".png";
+            TAB="Bewerken1";
+            for(var i=1; i<6; i++) {
+                var tab = document.getElementById("Bewerken"+i);
+                var content = document.getElementById("tabpage_"+i);
+                if(tab.id === TAB) {
+                    content.style.display = "block";
+                    tab.style.display = "block"
+                    tab.firstChild.src= "Content/images/tab"+i+"Select.png";
                 }
-                else{
-                    tab.style.display = "none";
-                }
-                content.style.display = "none";
+                else {
 
+                    if(tab.id != "Bewerken5"){
+                        tab.style.display = "block";
+                        tab.firstChild.src= "Content/images/tab"+i+".png";
+                    }
+                    else{
+                        tab.style.display = "none";
+                    }
+                    content.style.display = "none";
+
+                }
             }
-        }
         }
     }
     function setVisibleTabAndPLus() {
@@ -653,14 +652,16 @@ function editor() {
      */
     this.removeObject = function () {
         var objectSelected = canvas.getActiveObject();
+        var ObjectSrc =  objectSelected._element.src.split("/").pop();
         if(objectSelected.type === "image"){
             for(var i = 0; i<imagesOnCanvas.length;i++){
-                if(objectSelected._element.src === ("http://localhost"+ imagesOnCanvas[i])){
+                var ImagesSrc = imagesOnCanvas[i].split("/").pop();;
+                if(ObjectSrc == ImagesSrc){
                     imagesOnCanvas.splice(i,1);
                     maakGalleryGebruikteIconen();
                     if(objectSelected._element.src == currentIcoon._element.src){
                         envelopcanvas.clear();
-                        alert("clear!!")
+                        alert("clear!!");
                     }
                 }
             }
@@ -828,22 +829,69 @@ function editor() {
         }
     }
 
+    function maakGallery(){
+        var iconGallery = document.getElementById("iconGallery");
+        for (var i = 0; i < images.length; i++) {
+            var img = document.createElement("img");
+            img.src = images[i];
+            iconGallery.appendChild(img);
+            img.onclick = function(){
+                addImageToCanvas(this.src);
+                console.log(imagesOnCanvas.length);
+                if(imagesOnCanvas.length !=0){
+                    var icoonDubbel = false;
+                    for(var j = 0; j <imagesOnCanvas.length;j++){
+                        if((this.src).split("/").pop() == imagesOnCanvas[j].split("/").pop()){
+                            icoonDubbel = true;
+                        }
+                    }
+                    if(icoonDubbel == false){
+                        imagesOnCanvas.push(this.src);
+                    }
+                }
+                else{
+                    console.log("hierna pusht hij")
+                    imagesOnCanvas.push(this.src);
+                    console.log(imagesOnCanvas.length + " nieuwe lengt")
+                }
+                maakGalleryGebruikteIconen();
+            };
+
+        }
+    }
+    /**
+     * De functie maakGalleryGebruikteIconen is bedoeld om een gallery te maken voor de iconen die je gebruikt bij de kaart,
+     * Deze gallery wordt gemaakt wanneer je een icoon add op de kaart of een icoon verwijdert.
+     * Het eerste wat hij doet nadat een functie add of remove is opgeroepen is de oude gallery verwijderen en dan nieuwe erin zetten dit gebeurd met de methode cleanGallery.
+     * Deze gallery bij de tab envelop wordt weergegeven wanneer je de envelop wil bewerken.
+     * wanneer je op een icoon klikt tijdens het editen van je kaart wordt de icoon die je gebruikt opgeslagen in een array.
+     * Deze array bevat alle iconen die je op je kaart hebt, hij wordt ook geupdate wanneer je een icoon verwijdert van je kaart.
+     * Dan gaat hij door een loop waar hij van alle iconen die zijn gebruikt op de kaart(imagesOnCanvas) maakt er een img element van en zit dit in de gallery.
+     * wanneer je de op de envelop een icoon wil gebruiken ga je dus naar de envelop, daar zie je de gallery van alle gebruikte iconen.
+     * Wanneer je op een icoon klikt reset hij de canvas en zet dan pas de image op de canvas.
+     * De icoon heeft een vaste plaats en je kan er niks mee doen.
+     */
     function maakGalleryGebruikteIconen(){
+        var gallery = clearGallery();
+        for (var i = 0; i < imagesOnCanvas.length; i++){
+            var img = document.createElement("img");
+            img.src = ""+imagesOnCanvas[i];
+            gallery.appendChild(img);
+            img.onclick = function(e){
+                reset();
+                addImageToCanvas(this.src);
+            };
+        }
+    }
+
+    function clearGallery(){
         var gallery = document.getElementById("iconGalleryGebruikt");
         if(gallery.childElementCount != 0){
             while (gallery.firstChild) {
                 gallery.removeChild(gallery.firstChild);
             }
         }
-        for (var i = 0; i < imagesOnCanvas.length; i++){
-            var img = document.createElement("img");
-            img.src = ""+imagesOnCanvas[i];
-            gallery.appendChild(img);
-            img.onclick = function(e){
-               reset();
-               addImageToCanvas(this.src);
-            };
-        }
+        return gallery;
     }
 }
 
