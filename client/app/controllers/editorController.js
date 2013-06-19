@@ -12,19 +12,19 @@ app.controller('EditorCtrl', function( service,$scope,$location) {
     function setData() {
         if ($location.path() === "/editor") {
             localStorage.positie = "liggend";
-            localStorage.enkel = false;
+            localStorage.enkel = "dubbel";
 
         } else if ($location.path() === "/editorEnkel") {
             localStorage.positie = "liggend";
-            localStorage.enkel = true;
+            localStorage.enkel = "enkel";
 
         } if ($location.path() === "/editorStaand") {
             localStorage.positie = "staand";
-            localStorage.enkel = false;
+            localStorage.enkel = "dubbel";
 
         } if ($location.path() === "/editorStaandEnkel") {
             localStorage.positie = "staand";
-            localStorage.enkel = true
+            localStorage.enkel = "enkel"
         }
     }
     setData();

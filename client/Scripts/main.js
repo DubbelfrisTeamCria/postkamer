@@ -54,7 +54,7 @@ function staandOfLiggendCanvas() {
     else if (localStorage.positie =='staand' && localStorage.enkel == "enkel") {  //??????????????
         kaartMakenLink.attr({href:"#/editorStaandEnkel"});
     }
-    else if (localStorage.positie== 'liggend' && localStorage.enkel =="dubbel") {
+    else if (localStorage.positie == 'liggend' && localStorage.enkel =="dubbel") {
         kaartMakenLink.attr({href:"#/editor"});
     }
     else if (localStorage.positie =='liggend' && localStorage.enkel =="enkel") {

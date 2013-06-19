@@ -54,11 +54,11 @@ function editor() {
 
     function getMiddelste() {
         var m = null;
-        if (!localStorage.enkel) {
+        if (localStorage.enkel == "dubbel") {
             middelsteCanvas.type = "binnenkant";
             m =  $("#binnenkantcanvas");
         }
-        else if (localStorage.enkel) {
+        else if (localStorage.enkel == "enkel") {
             middelsteCanvas.type = "achterkant";
             m = $("#achterkantcanvas");
         }
@@ -67,10 +67,10 @@ function editor() {
 
     function getMiddelsteCanvas() {
         var m = null;
-        if (!localStorage.enkel) {
+        if (localStorage.enkel == "dubbel") {
             m = "binnenkantcanvas"
         }
-        else if (localStorage.enkel) {
+        else if (localStorage.enkel == "enkel") {
             m = "achterkantcanvas"
         }
         return m;
