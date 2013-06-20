@@ -1,5 +1,5 @@
 function editor() {
-    "use strict";
+//    "use strict";
     var BrightnessOn = false,
         GrayscaleOn = false,
         SepiaOn = false,
@@ -124,7 +124,7 @@ function editor() {
      * Haal het canvas op als json.
      * @return {*} het canvas als json.
      */
-    this.getJSON = function () {
+    this.getJSON = function() {
         var template = {
             "private": "true",
             "positie": localStorage.positie,
@@ -583,8 +583,6 @@ function editor() {
         e.preventDefault();
         var text = canvas.getActiveObject();
         if (text) {
-//            var oudeKleur = text.fill;
-//            text.fill = "rgb(255,0,0)";
             var newText = '';
             var stillTyping = true;
             if (e.which == 27) { //27 = esc
@@ -633,7 +631,6 @@ function editor() {
                 this.text.originalText = null;
             }
         }
-//        text.fill = oudeKleur;
         canvas.calcOffset();
         canvas.renderAll();
     });
