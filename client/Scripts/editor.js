@@ -57,18 +57,18 @@ function editor() {
                         if(imagesOnCanvas.length !=0) {
                             var icoonDubbel = false;
                             for(var k = 0; k <imagesOnCanvas.length;k++) {
-                                if(currentImage.split("/").pop() == imagesOnCanvas[k].split("/").pop()) {
+                                if(currentImage.split("/").pop() == imagesOnCanvas[k]) {
                                     icoonDubbel = true;
-                                    imagesOnCanvasDouble.push(currentImage);
+                                    imagesOnCanvasDouble.push(currentImage.split("/").pop());
                                     k = imagesOnCanvas.length + 1;
                                 }
                             }
                             if(icoonDubbel == false) {
-                                imagesOnCanvas.push(currentImage);
+                                imagesOnCanvas.push(currentImage.split("/").pop());
                             }
                         }
                         else {
-                            imagesOnCanvas.push(currentImage);
+                            imagesOnCanvas.push(currentImage.split("/").pop());
                         }
                         maakGalleryGebruikteIconen();
                     }
@@ -751,10 +751,10 @@ function editor() {
         if(objectSelected.type === "image") {
             var ObjectSrc =  objectSelected._element.src.split("/").pop();
             for(var i = 0; i<imagesOnCanvas.length;i++) {
-                var ImagesSrc = imagesOnCanvas[i].split("/").pop();
+                var ImagesSrc = imagesOnCanvas[i];
                 if(ObjectSrc === ImagesSrc){
                     for(var j = 0 ; j<imagesOnCanvasDouble.length; j++){
-                        if(ObjectSrc === imagesOnCanvasDouble[j].split("/").pop()) {
+                        if(ObjectSrc === imagesOnCanvasDouble[j]) {
                             doubleObject = true;
                             imagesOnCanvasDouble.splice(j,1);
                             j = imagesOnCanvasDouble.length+1;
@@ -928,17 +928,17 @@ function editor() {
                 if(imagesOnCanvas.length !=0) {
                     var icoonDubbel = false;
                     for(var j = 0; j <imagesOnCanvas.length;j++) {
-                        if((this.src).split("/").pop() == imagesOnCanvas[j].split("/").pop()) {
+                        if((this.src).split("/").pop() == imagesOnCanvas[j]) {
                             icoonDubbel = true;
-                            imagesOnCanvasDouble.push(this.src);
+                            imagesOnCanvasDouble.push(this.src.split("/").pop());
                         }
                     }
                     if(icoonDubbel == false) {
-                        imagesOnCanvas.push(this.src);
+                        imagesOnCanvas.push(this.src.split("/").pop());
                     }
                 }
                 else {
-                    imagesOnCanvas.push(this.src);
+                    imagesOnCanvas.push(this.src.split("/").pop());
                 }
                 maakGalleryGebruikteIconen();
             };
@@ -961,7 +961,7 @@ function editor() {
         var gallery = clearGallery();
         for (var i = 0; i < imagesOnCanvas.length; i++) {
             var img = document.createElement("img");
-            img.src = ""+imagesOnCanvas[i];
+            img.src = "/postkamer/client/Content/images/icons/"+imagesOnCanvas[i];
             img.alt = ""+imagesOnCanvas[i];
             gallery.appendChild(img);
             img.onclick = function(e) {
