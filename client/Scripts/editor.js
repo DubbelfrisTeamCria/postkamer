@@ -6,6 +6,7 @@ function editor() {
         EnvelopOn = false,
         currentIcoon,
         imagesOnCanvas =[],
+        imagesOnCanvasDouble=[],
         images = [
             "/postkamer/client/Content/images/icons/plaatje01.png",
             "/postkamer/client/Content/images/icons/plaatje02.png",
@@ -88,6 +89,7 @@ function editor() {
         voorkant.parent().css('display' ,'block');
         middelste.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
+
         canvas.calcOffset();
         canvas.renderAll();
         if(EnvelopOn == true){
@@ -183,6 +185,12 @@ function editor() {
         if (options.target.type === "text") {
             options.target.lockScalingX = true;
             options.target.lockScalingY = true;
+            options.target.set({
+                borderColor: 'white',
+                cornerColor: '#70c7a9',
+                cornerSize: 10
+            });
+
         }
     });
 
@@ -383,6 +391,7 @@ function editor() {
 
             // end fabricJS stuff
         }
+
         canvas.calcOffset();
         canvas.renderAll();
 
@@ -540,15 +549,56 @@ function editor() {
     /**
      * Verander het achtergrond plaatje en verwijder de achtergrondkleur.
      */
-    this.achtergrondImage = function () {
-        var image = prompt("kies een ahtergrond image url");
-        canvas.setBackgroundImage(image, function () {
-            if (image[1] != null) {
-                canvas.backgroundColor = 'none';
+    document.getElementById('achtergrondImage').onchange = function handleImage(e) {
+        checkBackgroundColorenImage();
+        alert("cleared")
+        var reader = new FileReader();
+        var url;
+        reader.onload = function (event) { console.log('fdsf');
+            alert("upload")
+            var imgObj = new Image();
+            imgObj.src = event.target.result;
+            var image = new fabric.Image(imgObj);
+
+
+            imgObj.onload = function () {
+
+                image.set({
+                    left: 0,
+                    top: 0
+
+
+
+                });
+                // start fabricJS stuff
             }
+
+            canvas.setBackgroundImage(image.toDataURL(),function() {
+                canvas.renderAll.bind(canvas);
+                canvas.renderAll();
+            });
+        }
+
+          // end fabricJS stuff
+        reader.readAsDataURL(e.target.files[0]);
+        canvas.calcOffset();
+        canvas.renderAll();
+
+
+    }
+
+    function checkBackgroundColorenImage(){
+        if (canvas.backgroundImage) {
+            canvas.backgroundImage = 'none';
+            console.log(canvas.backgroundImage)
+        }
+
+        if(canvas.backgroundColor){
+            canvas.backgroundColor = 'none'
             canvas.calcOffset();
             canvas.renderAll();
-        });
+            console.log("color" +canvas.backgroundColor)
+        }
     }
 
     /**
@@ -646,20 +696,29 @@ function editor() {
      */
     this.removeObject = function () {
         var objectSelected = canvas.getActiveObject();
-
+        var doubleObject = false;
         if(objectSelected.type === "image") {
             var ObjectSrc =  objectSelected._element.src.split("/").pop();
             for(var i = 0; i<imagesOnCanvas.length;i++) {
-                var ImagesSrc = imagesOnCanvas[i].split("/").pop();;
-                if(ObjectSrc == ImagesSrc) {
-                    imagesOnCanvas.splice(i,1);
-                    maakGalleryGebruikteIconen();
-                    if(objectSelected._element.src == currentIcoon._element.src) {
+                var ImagesSrc = imagesOnCanvas[i].split("/").pop();
+                if(ObjectSrc === ImagesSrc){
+                    for(var j = 0 ; j<imagesOnCanvasDouble.length; j++){
+                        if(ObjectSrc === imagesOnCanvasDouble[j].split("/").pop()) {
+                            doubleObject = true;
+                            imagesOnCanvasDouble.splice(j,1);
+                            j = imagesOnCanvasDouble.length+1;
+                        }
+
+                    }
+                    if(doubleObject === false){
+                        imagesOnCanvas.splice(i,1)
                         envelopcanvas.clear();
                         alert("clear!!");
+                        maakGalleryGebruikteIconen();
                     }
                 }
             }
+            doubleObject = false;
         }
         canvas.remove(objectSelected);
     }
@@ -817,12 +876,12 @@ function editor() {
             iconGallery.appendChild(img);
             img.onclick = function() {
                 addImageToCanvas(this.src);
-                console.log(imagesOnCanvas.length);
                 if(imagesOnCanvas.length !=0) {
                     var icoonDubbel = false;
                     for(var j = 0; j <imagesOnCanvas.length;j++) {
                         if((this.src).split("/").pop() == imagesOnCanvas[j].split("/").pop()) {
                             icoonDubbel = true;
+                            imagesOnCanvasDouble.push(this.src);
                         }
                     }
                     if(icoonDubbel == false) {
@@ -830,9 +889,7 @@ function editor() {
                     }
                 }
                 else {
-                    console.log("hierna pusht hij");
                     imagesOnCanvas.push(this.src);
-                    console.log(imagesOnCanvas.length + " nieuwe lengt");
                 }
                 maakGalleryGebruikteIconen();
             };
@@ -856,6 +913,7 @@ function editor() {
         for (var i = 0; i < imagesOnCanvas.length; i++) {
             var img = document.createElement("img");
             img.src = ""+imagesOnCanvas[i];
+            img.alt = ""+imagesOnCanvas[i];
             gallery.appendChild(img);
             img.onclick = function(e) {
                 reset();
