@@ -575,69 +575,64 @@ function editor() {
         canvas.renderAll();
     }
 
-    /**
-     * Wijzig de tekst van het geselecteerde tekst object wanneer er getyped wordt.
-     */
-    $(document).keypress(function (e) {
-        var keyPressed = String.fromCharCode(e.which);
-        e.preventDefault();
-        var text = canvas.getActiveObject();
-        if (text) {
-            var newText = '';
-            var stillTyping = true;
-            if (e.which == 27) { //27 = esc
-                if (!text.originalText) return; //if there is no original text, there is nothing to undo
-                newText = text.originalText;
-                stillTyping = false;
-            }
-            else { //if the user wants to make a correction
+    $(document)
+        .on('keypress', function (e) {
+            var code = (e.keyCode|| e.which);
+            var keyPressed = String.fromCharCode(code);
+            console.log("keypress: " + e.which);
+            var text = canvas.getActiveObject();
+            if (text) {
+                var newText = '';
+                var stillTyping = true;
                 if (!text.originalText) {//Store the original text before beginning to type
                     text.originalText = text.text;
                 }
-                //if the user wants to remove all text, or the element entirely
-                if (e.which === 46) { // 46 = delete
-                    text.remove(true);
-                    return;
-                }
-                else if (e.which === 16) { //16 = shift
-                    newText = text.text;
-                }
-                else if (e.which === 8) {//8 = backspace
-                    e.preventDefault();
-                    newText = text.text.substr(0, text.text.length - 1);
-                }
-                else if (e.which === 13) { //13 = enter
-                    newText = text.text+ "\n";
+                else if (code == 13) { //13 = enter
+                    newText = text.text + "\n";
                     stillTyping = true;
                 }
-                //if the user is typing alphanumeric characters
-            else if (
-                    (e.which > 64 && e.which < 91) || //A-Z
-                        (e.which > 47 && e.which < 58) || //0-9
-                        (e.which == 32) || //Space
-                        (keyPressed.match(/[!&()"',.?-]/)) //Accepted special characters
-                    ) {
+                else if ((keyPressed.match(/^[a-zA-Z0-9!&()"',\.?\-_@#$%^&*:;{} ]/))) {  //allowed chars
                     if (text.text == text.originalText) {
                         text.text = '';
                     }
-                    if (keyPressed.match(/[A-Z]/) && !e.shiftKey) {
-                        keyPressed = keyPressed.toLowerCase();
-                    }
-
                     newText = text.text + keyPressed;
                 }
+                text.set({ text: newText }); //Change the text
+                canvas.calcOffset();
+                canvas.renderAll();
+                if (!stillTyping) {
+                    this.text.originalText = null;
+                }
             }
-            text.set({ text: newText }); //Change the text
-            canvas.calcOffset();
-            canvas.renderAll();
-
-            if (!stillTyping) {
-                this.text.originalText = null;
+        })
+        .on('keydown', function(e) {
+            var code = (e.keyCode|| e.which);
+//            e.preventDefault();
+            console.log("keydown: " + e.keyCode);
+            var text = canvas.getActiveObject();
+            if (text) {
+                var newText = '';
+                var stillTyping = true;
+                if (!text.originalText) {//Store the original text before beginning to type
+                    text.originalText = text.text;
+                }
+                else if (code === 8) {//8 = backspace
+                    e.preventDefault();
+                    newText = text.text.substr(0, text.text.length - 1);
+                    text.set({ text: newText }); //Change the text
+                }
+                //if the user wants to remove all text, or the element entirely
+                else if (code === 46) { // 46 = delete
+                    text.remove(true);
+                    return;
+                }
+                canvas.calcOffset();
+                canvas.renderAll();
+                if (!stillTyping) {
+                    this.text.originalText = null;
+                }
             }
-        }
-        canvas.calcOffset();
-        canvas.renderAll();
-    });
+        });
 
     /**
      * Reset het canvas.
@@ -812,7 +807,7 @@ function editor() {
         canvas.renderAll();
     }
 
-  
+
 
     function maakGallery() {
         var iconGallery = document.getElementById("iconGallery");
