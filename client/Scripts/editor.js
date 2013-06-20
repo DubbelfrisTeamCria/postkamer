@@ -1,5 +1,8 @@
 function editor() {
-    "use strict";
+
+
+
+   // "use strict";
     var BrightnessOn = false,
         GrayscaleOn = false,
         SepiaOn = false,
@@ -650,8 +653,9 @@ function editor() {
      */
     this.removeObject = function () {
         var objectSelected = canvas.getActiveObject();
-        var ObjectSrc =  objectSelected._element.src.split("/").pop();
+
         if(objectSelected.type === "image") {
+            var ObjectSrc =  objectSelected._element.src.split("/").pop();
             for(var i = 0; i<imagesOnCanvas.length;i++) {
                 var ImagesSrc = imagesOnCanvas[i].split("/").pop();;
                 if(ObjectSrc == ImagesSrc) {
@@ -808,22 +812,6 @@ function editor() {
     this.loadTemplatePubliek = function(data) {
         canvas.loadFromJSON(data.voorkant);
         canvas.renderAll();
-    }
-
-    function maakGallery() {
-        var iconGallery = document.getElementById("iconGallery");
-        for (var i = 0; i < images.length; i++) {
-            var img = document.createElement("img");
-            img.src = images[i].url;
-            iconGallery.appendChild(img);
-            (function(index){
-                img.onclick = function() {
-                    addImageToCanvas(images[index].url);
-                    imagesOnCanvas.push(images[index].url);
-                    maakGalleryGebruikteIconen();
-                };
-            }(i));
-        }
     }
 
     function maakGallery() {
