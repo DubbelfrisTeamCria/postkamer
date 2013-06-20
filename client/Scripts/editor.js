@@ -6,6 +6,7 @@ function editor() {
         EnvelopOn = false,
         currentIcoon,
         imagesOnCanvas =[],
+        imagesOnCanvasDouble=[],
         images = [
             "/postkamer/client/Content/images/icons/plaatje01.png",
             "/postkamer/client/Content/images/icons/plaatje02.png",
@@ -651,20 +652,29 @@ function editor() {
      */
     this.removeObject = function () {
         var objectSelected = canvas.getActiveObject();
-
+        var doubleObject = false;
         if(objectSelected.type === "image") {
             var ObjectSrc =  objectSelected._element.src.split("/").pop();
             for(var i = 0; i<imagesOnCanvas.length;i++) {
-                var ImagesSrc = imagesOnCanvas[i].split("/").pop();;
-                if(ObjectSrc == ImagesSrc) {
-                    imagesOnCanvas.splice(i,1);
-                    maakGalleryGebruikteIconen();
-                    if(objectSelected._element.src == currentIcoon._element.src) {
+                var ImagesSrc = imagesOnCanvas[i].split("/").pop();
+                if(ObjectSrc === ImagesSrc){
+                    for(var j = 0 ; j<imagesOnCanvasDouble.length; j++){
+                        if(ObjectSrc === imagesOnCanvasDouble[j].split("/").pop()) {
+                            doubleObject = true;
+                            imagesOnCanvasDouble.splice(j,1);
+                            j = imagesOnCanvasDouble.length+1;
+                        }
+
+                    }
+                    if(doubleObject === false){
+                        imagesOnCanvas.splice(i,1)
                         envelopcanvas.clear();
                         alert("clear!!");
+                        maakGalleryGebruikteIconen();
                     }
                 }
             }
+            doubleObject = false;
         }
         canvas.remove(objectSelected);
     }
@@ -822,12 +832,12 @@ function editor() {
             iconGallery.appendChild(img);
             img.onclick = function() {
                 addImageToCanvas(this.src);
-                console.log(imagesOnCanvas.length);
                 if(imagesOnCanvas.length !=0) {
                     var icoonDubbel = false;
                     for(var j = 0; j <imagesOnCanvas.length;j++) {
                         if((this.src).split("/").pop() == imagesOnCanvas[j].split("/").pop()) {
                             icoonDubbel = true;
+                            imagesOnCanvasDouble.push(this.src);
                         }
                     }
                     if(icoonDubbel == false) {
@@ -835,9 +845,7 @@ function editor() {
                     }
                 }
                 else {
-                    console.log("hierna pusht hij");
                     imagesOnCanvas.push(this.src);
-                    console.log(imagesOnCanvas.length + " nieuwe lengt");
                 }
                 maakGalleryGebruikteIconen();
             };
@@ -861,6 +869,7 @@ function editor() {
         for (var i = 0; i < imagesOnCanvas.length; i++) {
             var img = document.createElement("img");
             img.src = ""+imagesOnCanvas[i];
+            img.alt = ""+imagesOnCanvas[i];
             gallery.appendChild(img);
             img.onclick = function(e) {
                 reset();
