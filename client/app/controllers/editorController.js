@@ -60,6 +60,7 @@ app.controller('EditorCtrl', function( service,$scope,$location) {
         for (var i = 0; i < data.length; i++) {
             if (data[i]._id.$oid === localStorage.selectedId) {
                 loadTemplatePubliek(data[i]);
+                TemplateGekozen(data[i]);
             }
         }
         document.body.style.cursor = 'default';

@@ -1,7 +1,10 @@
+
 function editor() {
 //    "use strict";
+
     var BrightnessOn = false,
         GrayscaleOn = false,
+
         SepiaOn = false,
         EnvelopOn = false,
         currentIcoon,
@@ -42,6 +45,38 @@ function editor() {
         tekstMarge = 50,
         standaardImageBreedte = 200;
 
+
+    this.TemplateGekozen = function(data){
+        var response = JSON.parse(data.voorkant)
+        console.log(response.objects.length);
+        for(var i = 0; i <response.objects.length; i++){
+            if(response.objects[i].type === "image"){
+                for(var j = 0 ; j<images.length; i++){
+                    if(response.objects[i].src.split("/").pop() === images[j].split("/").pop()){
+                        if(imagesOnCanvas.length !=0) {
+//                            var icoonDubbel = false;
+//                            for(var k = 0; k <imagesOnCanvas.length;k++) {
+//                                if(response.objects[i].src.split("/").pop() == imagesOnCanvas[k].split("/").pop()) {
+//                                    icoonDubbel = true;
+//                                    imagesOnCanvasDouble.push(response.objects[i].src);
+//                                }
+//                            }
+//                            if(icoonDubbel == false) {
+//                                imagesOnCanvas.push(response.objects[i].src);
+//                            }
+                        }
+                        else {
+                            imagesOnCanvas.push(this.src);
+                        }
+                        maakGalleryGebruikteIconen();
+                        console.log(imagesOnCanvas);
+                        console.log(imagesOnCanvasDouble);
+                    }
+                }
+
+            }
+        }
+    };
     setHidden();
     colorpicker();
     maakGallery();
@@ -120,6 +155,7 @@ function editor() {
         canvas.renderAll();
         EnvelopOn=true;
         setDisplayEnvelop();
+        alert(this.TemplateGekozen)
     });
 
     /**
@@ -263,6 +299,7 @@ function editor() {
 
                 }
             }
+            setVisibleTabAndPLus();
         }
     }
     function setVisibleTabAndPLus() {
