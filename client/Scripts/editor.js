@@ -88,6 +88,7 @@ function editor() {
         voorkant.parent().css('display' ,'block');
         middelste.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
+
         canvas.calcOffset();
         canvas.renderAll();
         if(EnvelopOn == true){
@@ -183,6 +184,12 @@ function editor() {
         if (options.target.type === "text") {
             options.target.lockScalingX = true;
             options.target.lockScalingY = true;
+            options.target.set({
+                borderColor: 'white',
+                cornerColor: '#70c7a9',
+                cornerSize: 10
+            });
+
         }
     });
 
@@ -383,6 +390,7 @@ function editor() {
 
             // end fabricJS stuff
         }
+
         canvas.calcOffset();
         canvas.renderAll();
 
@@ -540,15 +548,56 @@ function editor() {
     /**
      * Verander het achtergrond plaatje en verwijder de achtergrondkleur.
      */
-    this.achtergrondImage = function () {
-        var image = prompt("kies een ahtergrond image url");
-        canvas.setBackgroundImage(image, function () {
-            if (image[1] != null) {
-                canvas.backgroundColor = 'none';
+    document.getElementById('achtergrondImage').onchange = function handleImage(e) {
+        checkBackgroundColorenImage();
+        alert("cleared")
+        var reader = new FileReader();
+        var url;
+        reader.onload = function (event) { console.log('fdsf');
+            alert("upload")
+            var imgObj = new Image();
+            imgObj.src = event.target.result;
+            var image = new fabric.Image(imgObj);
+
+
+            imgObj.onload = function () {
+
+                image.set({
+                    left: 0,
+                    top: 0,
+
+
+
+                });
+                // start fabricJS stuff
             }
+
+            canvas.setBackgroundImage(image.toDataURL(),function() {
+                canvas.renderAll.bind(canvas);
+                canvas.renderAll();
+            });
+        }
+
+          // end fabricJS stuff
+        reader.readAsDataURL(e.target.files[0]);
+        canvas.calcOffset();
+        canvas.renderAll();
+
+
+    }
+
+    function checkBackgroundColorenImage(){
+        if (canvas.backgroundImage) {
+            canvas.backgroundImage = 'none';
+            console.log(canvas.backgroundImage)
+        }
+
+        if(canvas.backgroundColor){
+            canvas.backgroundColor = 'none'
             canvas.calcOffset();
             canvas.renderAll();
-        });
+            console.log("color" +canvas.backgroundColor)
+        }
     }
 
     /**
@@ -573,6 +622,14 @@ function editor() {
         text.fill = kleur;
         canvas.calcOffset();
         canvas.renderAll();
+    }
+
+
+    function setBackgroundImage(url){
+        canvas.setBackgroundImage(url);
+        canvas.calcOffset();
+        canvas.renderAll();
+
     }
 
     /**
@@ -637,6 +694,7 @@ function editor() {
         }
         canvas.calcOffset();
         canvas.renderAll();
+
     });
 
     /**
