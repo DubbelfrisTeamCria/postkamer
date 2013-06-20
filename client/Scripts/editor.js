@@ -178,6 +178,22 @@ function editor() {
         return template;
     }
 
+    /**
+     * Haal het canvas op als json.
+     * @return {*} het canvas als json.
+     */
+    this.getJSONTemplate = function() {
+        var template = {
+            "private": "false",
+            "positie": localStorage.positie,
+            "categorie": localStorage.categorie,
+            "voorkant": JSON.stringify(voorkantcanvas),
+            "templatePng":voorkantcanvas.toDataURL("image/png")
+        }
+        console.log(template);
+        return template;
+    }
+
     this.getPositie = function() {
         if (!localStorage.positie) {
             localStorage.positie = prompt("geen positie gekozen. Voer staand/liggend in voor de databse");
@@ -222,11 +238,10 @@ function editor() {
             options.target.lockScalingX = true;
             options.target.lockScalingY = true;
             options.target.set({
-                borderColor: 'white',
-                cornerColor: '#70c7a9',
-                cornerSize: 10
+                borderColor: 'grey',
+                cornerSize: 10,
+                cornerColor: 'grey'
             });
-
         }
     });
 
@@ -616,7 +631,7 @@ function editor() {
             });
         }
 
-          // end fabricJS stuff
+        // end fabricJS stuff
         reader.readAsDataURL(e.target.files[0]);
         canvas.calcOffset();
         canvas.renderAll();
@@ -902,8 +917,6 @@ function editor() {
         canvas.loadFromJSON(data.voorkant);
         canvas.renderAll();
     }
-
-
 
     function maakGallery() {
         var iconGallery = document.getElementById("iconGallery");
