@@ -615,7 +615,7 @@ function editor() {
                     (e.which > 64 && e.which < 91) || //A-Z
                         (e.which > 47 && e.which < 58) || //0-9
                         (e.which == 32) || //Space
-                        (keyPressed.match(/[!&()"',?-]/)) //Accepted special characters
+                        (keyPressed.match(/[!&()"',.?-]/)) //Accepted special characters
                     ) {
                     if (text.text == text.originalText) {
                         text.text = '';
