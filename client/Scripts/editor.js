@@ -51,26 +51,26 @@ function editor() {
         console.log(response.objects.length);
         for(var i = 0; i <response.objects.length; i++){
             if(response.objects[i].type === "image"){
-                for(var j = 0 ; j<images.length; i++){
-                    if(response.objects[i].src.split("/").pop() === images[j].split("/").pop()){
+                var currentImage = response.objects[i].src;
+                for(var j = 0 ; j<images.length; j++){
+                    if((currentImage.split("/").pop()) === (images[j].split("/").pop())){
                         if(imagesOnCanvas.length !=0) {
-//                            var icoonDubbel = false;
-//                            for(var k = 0; k <imagesOnCanvas.length;k++) {
-//                                if(response.objects[i].src.split("/").pop() == imagesOnCanvas[k].split("/").pop()) {
-//                                    icoonDubbel = true;
-//                                    imagesOnCanvasDouble.push(response.objects[i].src);
-//                                }
-//                            }
-//                            if(icoonDubbel == false) {
-//                                imagesOnCanvas.push(response.objects[i].src);
-//                            }
+                            var icoonDubbel = false;
+                            for(var k = 0; k <imagesOnCanvas.length;k++) {
+                                if(currentImage.split("/").pop() == imagesOnCanvas[k].split("/").pop()) {
+                                    icoonDubbel = true;
+                                    imagesOnCanvasDouble.push(currentImage);
+                                    k = imagesOnCanvas.length + 1;
+                                }
+                            }
+                            if(icoonDubbel == false) {
+                                imagesOnCanvas.push(currentImage);
+                            }
                         }
                         else {
-                            imagesOnCanvas.push(this.src);
+                            imagesOnCanvas.push(currentImage);
                         }
                         maakGalleryGebruikteIconen();
-                        console.log(imagesOnCanvas);
-                        console.log(imagesOnCanvasDouble);
                     }
                 }
 
@@ -155,7 +155,6 @@ function editor() {
         canvas.renderAll();
         EnvelopOn=true;
         setDisplayEnvelop();
-        alert(this.TemplateGekozen)
     });
 
     /**
