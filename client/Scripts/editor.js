@@ -701,88 +701,132 @@ function editor() {
         });
 
     /**
-     * Reset het canvas.
+     * Deze functie is bedoeld om een canvas te resetten.
      */
     function reset () {
         canvas.clear();
     }
 
     /**
-     * Verwijder geselecteerde object.
+     * Deze functie is bedoeld om de iconengallery van envelop te updaten.
+     * Wanneer een object is geselecteerd en het is van de type image moet hij door een loop,
+     * om te kijken of de geselecteerde image gelijk is aan een image in de imageOnCanvas array (icoons die geadd zijn op de canvas).
+     * Indien de objectsrc bestaad in de imagesoncanvas moet hij nog een keer door de loop om te kijken of hij vaker voorkomt.
+     * Wanneer een icoon vaker voorkomt (dit wordt gekeken om de zien of hij ook bestaat in de array imagesOnCanvasDouble.
+     * Indien hij vaker voorkomt wordt deze icoonsrc verwijdert uit de imagesOnCanvasDouble en wordt de loop gestopt.
+     * Wanneer een image niet vaker voorkomt in de canvas dan wordt hij verwijdert uit de array imagesOnCanvas en de envelopcanvas wordt gecleard(reset).
+     * De maakGalleryGebruikteIconen functie wordt ook opgeroepen om de icoonGallery te updaten omdat er een icoon is verwijdert.
+     * @param objectSelected
      */
-    this.removeObject = function () {
-        var objectSelected = canvas.getActiveObject();
+    function setIcoonDeletedFromCanvas(objectSelected) {
         var doubleObject = false;
-        if(objectSelected.type === "image") {
-            var ObjectSrc =  objectSelected._element.src.split("/").pop();
-            for(var i = 0; i<imagesOnCanvas.length;i++) {
+        if (objectSelected && objectSelected.type === "image") {
+            var ObjectSrc = objectSelected._element.src.split("/").pop();
+            for (var i = 0; i < imagesOnCanvas.length; i++) {
                 var ImagesSrc = imagesOnCanvas[i];
-                if(ObjectSrc === ImagesSrc){
-                    for(var j = 0 ; j<imagesOnCanvasDouble.length; j++){
-                        if(ObjectSrc === imagesOnCanvasDouble[j]) {
+                if (ObjectSrc === ImagesSrc) {
+                    for (var j = 0; j < imagesOnCanvasDouble.length; j++) {
+                        if (ObjectSrc === imagesOnCanvasDouble[j]) {
                             doubleObject = true;
-                            imagesOnCanvasDouble.splice(j,1);
-                            j = imagesOnCanvasDouble.length+1;
+                            imagesOnCanvasDouble.splice(j, 1);
+                            j = imagesOnCanvasDouble.length + 1;
                         }
 
                     }
-                    if(doubleObject === false){
-                        imagesOnCanvas.splice(i,1)
+                    if (doubleObject === false) {
+                        imagesOnCanvas.splice(i, 1)
                         envelopcanvas.clear();
-                        alert("clear!!");
                         maakGalleryGebruikteIconen();
                     }
                 }
             }
             doubleObject = false;
         }
-        canvas.remove(objectSelected);
     }
 
     /**
-     * Haal het geselecteerde object naar voren.
+     * Deze functie is bedoeld om een object de verwijderen.
+     * wanneer een object is geselecteerd wordt de functie setIcoonDeletedFromCanvas opgeroepen,
+     * Dit om de iconen gallery van envelop up to daten.
+     * Daarna wordt de object op de canvas verwijdert
+     */
+    this.removeObject = function () {
+        var objectSelected = canvas.getActiveObject();
+        if(objectSelected){
+            setIcoonDeletedFromCanvas(objectSelected);
+            canvas.remove(objectSelected);
+        }
+    }
+
+    /**
+     * Deze functie is bedoeld om het geselecteerde object naar voren te halen.
      */
     this.bringToFront = function () {
         var objectSelected = canvas.getActiveObject();
-        objectSelected.bringToFront();
+        if(objectSelected){
+            objectSelected.bringToFront();
+        }
     }
 
     /**
-     * Zet het geselecteerde object naar achteren.
+     * Deze functie is bedoeld om het geselecteerde object naar achteren te zetten.
      */
     this.sendToBack= function() {
         var objectSelected = canvas.getActiveObject();
-        objectSelected.sendToBack();
+        if(objectSelected){
+            objectSelected.sendToBack();
+        }
     }
 
     /**
-     * Zet de tekstgrootte van de geselecteerde tekst.
+     * Deze functie wordt opgeroepen wanneer je de value verandert van tekstgrootte.
+     * Eerst wordt er gekeken of je een object hebt geselecteerd en of een tekst is.
+     * Indien dit het geval is wordt de fontsize geset en de canvas gerenderd om dit te kunnen zien op de canvas.
      */
     document.getElementById('tekstSlider').onchange = function() {
         var value = this.value;
         var selectedObject = canvas.getActiveObject();
-        if (selectedObject.type === "text") {
+        if (selectedObject && selectedObject.type === "text") {
             selectedObject.fontSize = value;
             canvas.calcOffset();
             canvas.renderAll();
+        } else {
+            alert('u moet eerst een tekst selecteren');
         }
     }
 
     /**
-     * Zet de transparantie van het geselecteerde plaatje.
-     * Moet niet werken bij tekst.
+     * Deze functie wordt opgeroepen wanneer je de value verandert van Transpiratie.
+     * Eerst wordt de value geset, het wordt gedeeld door 100 omdat je cijfers achter de komma wil hebben voor transpiratie,
+     * De transpiratie moet tussen de 0 en 1 zitten, dus als value 40 is en dat gedeeld doo 100 = 0.4.
+     * Dan wordt er gekeken of er een object is geselecteerd en of hij van het type image is,
+     * indien dit het geval is set hij de opacity met de value erin.
+     * De canvas wordt gerenderd zodat je het kan zien op de canvas.
      */
     document.getElementById('transSlider').onchange = function() {
         var value = this.value / 100;
         var objectSelected = canvas.getActiveObject();
-        if (objectSelected.type === "image") {
+        if (objectSelected && objectSelected.type === "image") {
             objectSelected.setOpacity(value);
             canvas.calcOffset();
             canvas.renderAll();
+        }else{
+            alert("u moet eerst een image selecteren");
         }
     }
+
+    /**
+     * Deze functie wordt opgeroepen wanneer je de value van brightnes, tint(sepia) en saturation(grayscale) verandert.
+     * Deze functie wordt door tint en saturation opgeroepen vanwegen een bug waardoor de foto op originele grootte wordt gezet.
+     * Als eerst wordt er gekeken of je een object hebt geselecteerden of het van de type image is.
+     * indien dit zo is kijkt hij of er al een brightness op is gezet, indien er geen brightness is gezet wordt er een nieuwe filter gepushed op de image en wordt de brightnesson op true gezet.
+     * Wanneer de brightnesson true is kijkt hij naar alle filters van het object, wanneer er een brightness filter al bestaat verander je de value alleen.
+     * daarna wordt alle gerendered zodat je het op de canvas kan zien.
+     * @param objectSelected :het object waar je op hebt geselecteerd.
+     * @param value : de range/value wat de brightness moet hebben.
+     */
     function setBrightness(objectSelected, value) {
-        if (objectSelected.type === "image") {
+        if (objectSelected && objectSelected.type === "image") {
             if (BrightnessOn == true) {
                 for (var i = 0; i < objectSelected.filters.length; i++) {
                     if (objectSelected.filters[i].type == "Brightness") {
@@ -799,8 +843,8 @@ function editor() {
     }
 
     /**
-     * Zet de brightness van het geselecteerde plaatje.
-     * Moet niet werken bij tekst.
+     * Deze functie wordt opgeroepen wanneer je de value verandert van de brightness.
+     * Daarna wordt de functie setBrightness opgeroepen en de geselecteerde object en value van de range wordt meegegeven.
      */
     document.getElementById('brightnessSlider').onchange = function() {
         var value = parseInt(this.value);
