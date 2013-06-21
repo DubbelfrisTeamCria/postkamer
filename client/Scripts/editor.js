@@ -667,6 +667,10 @@ function editor() {
     };
 
     /**
+     * Deze functie zorgt ervoor dat wanneer er tekst geselecteerd is,
+     * en er wordt getyped, dat de tekst wordt aangepast.
+     *
+     * keypress:
      *
      */
     $(document)
