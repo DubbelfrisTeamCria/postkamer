@@ -215,28 +215,6 @@ function editor() {
         $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
     }
 
-    // Onclick functies van bold, italic en underline.
-    $('#bold').click(function(e){setBold(this);});
-    $('#italic').click(function(e){setItalic(this);});
-    $('#underline').click(function(e){ setUnderline(this);});
-    $('#prullenbak').click(function(e){ removeObject(this);});
-    $('#plus').click(function(e){ addText2(askText());});
-    $('#bringToFront').click(function(e){ bringToFront(this);});
-    $('#bringToBack').click(function(e){ sendToBack(this);});
-
-    // Onclick functies van alignLeft, alignCenter en AlignRight
-    $('#align1').click(function() {setAlign('left', tekstMarge,this);});
-    $('#align2').click(function() {setAlign('center', canvas.width/2,this);});
-    $('#align3').click(function() {setAlign('right', canvas.width-tekstMarge,this);});
-
-    //verander cursor
-    $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('.tabscontent div img').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('.tabscontent input').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('.knop').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('.tabscontent div label').hover(function() {$(this).css('cursor','default');}); //default
-    $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
-
     /**
      * De tekst die geselecteerd is mag niet worden vergroot
      */
@@ -695,7 +673,6 @@ function editor() {
         .on('keypress', function (e) {
             var code = (e.keyCode|| e.which);
             var keyPressed = String.fromCharCode(code);
-            console.log("keypress: " + e.which);
             var text = canvas.getActiveObject();
             if (text) {
                 var newText = '';
@@ -723,8 +700,6 @@ function editor() {
         })
         .on('keydown', function(e) {
             var code = (e.keyCode|| e.which);
-//            e.preventDefault();
-            console.log("keydown: " + e.keyCode);
             var text = canvas.getActiveObject();
             if (text) {
                 var newText = '';
