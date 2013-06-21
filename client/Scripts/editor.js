@@ -707,7 +707,16 @@ function editor() {
     };
 
     /**
+     * Deze functie zorgt ervoor dat wanneer er tekst geselecteerd is,
+     * en er wordt getyped, dat de tekst wordt aangepast.
      *
+     * keypress:
+     *      bij enter: op volgende lijn verder gaan.
+     *      In de regex staan de toegestane characters.
+     *
+     * keydown:
+     *      backspace: een character deleten.
+     *      delete: verwijder hele tekst object.
      */
     $(document)
         .on('keypress', function (e) {
