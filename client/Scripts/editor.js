@@ -197,9 +197,9 @@ function editor() {
     $('#bringToBack').click(function(e){ sendToBack(this);});
 
     // Onclick functies van alignLeft, alignCenter en AlignRight
-    $('#align1').click(function() {setAlign('left', tekstMarge,this);});
-    $('#align2').click(function() {setAlign('center', canvas.width/2,this);});
-    $('#align3').click(function() {setAlign('right', canvas.width-tekstMarge,this);});
+    $('#align1').click(function() {setAlign('left',this);});
+    $('#align2').click(function() {setAlign('center',this);});
+    $('#align3').click(function() {setAlign('right',this);});
 
     //verander cursor
     $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
@@ -311,19 +311,19 @@ function editor() {
         else {
             $('#plus').hide();
         }
-    }
+    };
+
     /**
-     * Voeg een nieuw plaatje toe aan de kaart.
+     * Deze functie voegt een nieuw plaatje toe aan de kaart.
+     *
      * @param e event
      */
     document.getElementById('imgLoader').onchange = function handleImage(e) {
         var reader = new FileReader();
-        reader.onload = function (event) { console.log('fdsf');
+        reader.onload = function (event) {
             var imgObj = new Image();
             imgObj.src = event.target.result;
             imgObj.onload = function () {
-                // start fabricJS stuff
-
                 var image = new fabric.Image(imgObj);
                 image.set({
                     left: 250,
@@ -335,16 +335,15 @@ function editor() {
                     width: standaardImageBreedte
                 });
                 canvas.add(image);
-                // end fabricJS stuff
             }
         }
         reader.readAsDataURL(e.target.files[0]);
         canvas.calcOffset();
         canvas.renderAll();
-    }
+    };
 
     /**
-     * Bereken de hoogte bij de standaard breedte van een foto.
+     * Deze functie berekent de hoogte bij de standaard breedte van een foto.
      * @param hoogte de hoogte van de foto.
      * @param breedte de breedte van de foto
      * @return {Number} de nieuwe hoogte van de foto
@@ -353,7 +352,7 @@ function editor() {
         var percentageVerkleind = (standaardImageBreedte*100)/ breedte;
         hoogte = (hoogte*percentageVerkleind)/100;
         return hoogte;
-    }
+    };
 
     /**
      * Voeg het achtergrondplaatje toe van de kaart (als overlay) en zet deze vast.
@@ -395,13 +394,19 @@ function editor() {
         // end fabricJS stuff
         canvas.calcOffset();
         canvas.renderAll();
-    }
+    };
 
+    /**
+     * Deze functie zet een image op de canvas.
+     * Hij maakt eerst een image object aan,
+     * wanneer deze is geladen maakt hij een fabric image aan en set de beginpositie.
+     * Wanneer hij op een envelop wordt geplaats krijgt hij een vaste plaats en je kunt er niks mee doen.
+     * @param src : image src waarvan een image  object van gemaakt moet worden.
+     */
     function addImageToCanvas(src) {
         var imgObj = new Image();
         imgObj.src = src;
         imgObj.onload = function () {
-            // start fabricJS stuff
             var image = new fabric.Image(imgObj);
             image.set({
                 left: 100,
@@ -411,7 +416,6 @@ function editor() {
                 cornersize: 10
             });
             if(EnvelopOn == true) {
-                canvas.objects
                 image.lockMovementX = true;
                 image.lockMovementY = true;
                 image.lockRotation = true;
@@ -419,26 +423,22 @@ function editor() {
                 currentIcoon = image;
             }
             canvas.add(image);
-
-            // end fabricJS stuff
         }
 
         canvas.calcOffset();
         canvas.renderAll();
-
-
-    }
+    };
 
     /**
-     * Vraag de tekst om in het tekstobject te zetten.
+     * Deze functie is om te vragen welke tekst hij wil zetten in de canvas.
      */
     this.askText = function () {
         var text = prompt("wat wilt u erin zetten?");
         addText2(text);
-    }
+    };
 
     /**
-     * Voeg een nieuw tekstobject toe aan de kaart.
+     * Deze functie is om een nieuwe tekstobject toe te voegen aan de kaart.
      * @param ingevuldtxt de tekst.
      */
     function addText2(ingevuldtxt) {
@@ -448,17 +448,20 @@ function editor() {
     }
 
     /**
-     * Verander de stijl van de tekst.
+     * Deze functie is bedoelt om de stijl te veranderen van de tekst.
+     * Wanneer de geselecteerde object tekst if moet hij kijken of de style gelijkt is aan te value (of het bv bold is)
+     * Indien dat zo is verandert de stule in normal, de style geen fontfamily is zet je de img gewoon op bv bold.
+     * Anders set je de style op de input, wanneer het geen fontfamily is zet je de src op selected image.
      * @param style De stijlsoort van de tekst
      * @param input De gekozen stijl
      * @param image het plaatje bij de stijl: geselecteerd/niet geselecteerd.
      */
     this.setChange = function (style, input, image) {
         var text = canvas.getActiveObject();
-        if (text.type === "text") {
-            if (text[style] == input) {
+        if (text && text.type === "text") {
+            if (text[style] === input) {
                 text[style] = "normal";
-                if (style != "fontFamily") {
+                if (style !== "fontFamily") {
                     image.src = "Content/images/" + input + ".png";
                 }
             }
@@ -473,10 +476,11 @@ function editor() {
         } else {
             alert("u moet eerst een tekst selecteren!!")
         }
-    }
+    };
 
     /**
-     * Zet de tekst op bold.
+     * Deze functie is bedoelt om de tekst op bold te zetten.
+     * hiervoor wordt een algemene functie setChange opgeroepen waarbij je meegeeft wat je wil veranderen, naar wat je het wil veranderen en de image om te updaten.
      * @param image het plaatje bold: geselecteerd/niet geselecteerd.
      */
     this.setBold = function (image) {
@@ -484,7 +488,8 @@ function editor() {
     }
 
     /**
-     * Zet de tekst op italic.
+     * Deze functie is bedoelt om de tekst op italic te zetten.
+     * hiervoor wordt een algemene functie setChange opgeroepen waarbij je meegeeft wat je wil veranderen, naar wat je het wil veranderen en de image om te updaten.
      * @param image het plaatje italic: geselecteerd/niet geselecteerd.
      */
     this.setItalic = function (image) {
@@ -492,15 +497,18 @@ function editor() {
     }
 
     /**
-     * Onderstreep de tekst.
+     * Deze functie is bedoelt om tekst te onderstepen,
+     * hiervoor wordt een algemene functie setChange opgeroepen waarbij je meegeeft wat je wil veranderen, naar wat je het wil veranderen en de image om te updaten.
      * @param image het plaatje onderstreept: geselecteerd/niet geselecteerd.
      */
     this.setUnderline = function (image) {
         setChange("textDecoration", "underline", image);
-    }
+    };
 
     /**
-     * Zet het juiste plaatje bij de gekozen alignment.
+     * Deze functie is bedoelt om de img goed te zetten wanneer je op een align klikt.
+     * Zet het juiste plaatje bij de gekozen alignment door een loop temaken en te checken of het id klopt met de align en deze en deze als een geselecteerde image te zetten.
+     * Alle andere images worden "gedeselecteerd" zet de src terug
      * @param image het plaatje alignment: geselecteerd/niet geselecteerd.
      */
     function setButtonImages(image) {
@@ -512,13 +520,13 @@ function editor() {
                 document.getElementById("align" + i).src = "Content/images/align" + i + ".png";
             }
         }
-    }
+    };
 
     /**
      * Deze functie is bedoelt om de align te zetten van de tekst.
-     * Align links, midden of rechts van de kaart
+     * Align links, midden of rechts wanneer je meerdere lines hebt zie je dat en alleen als je een tekst object hebt geselecteerd
      * @param kant aan welke kant er aligned moet worden.
-     * @param image Het plaatje bij de align positie die verandertmoet worden.
+     * @param image Het plaatje bij de align positie die verandert moet worden.
      */
     this.setAlign = function (kant, image) {
         var objectSelected = canvas.getActiveObject();
@@ -528,7 +536,7 @@ function editor() {
         }
         canvas.calcOffset();
         canvas.renderAll();
-    }
+    };
 
     /**
      * De functie colorPicker is bedoeld om de kleurDe colorpicker.
@@ -578,7 +586,7 @@ function editor() {
             }
             canvas.calcOffset();
             canvas.renderAll(); })
-    }
+    };
 
     /**
      * Deze functie is bedoeld om de achtergrond plaatje te veranderen en achtergrondkleur te verwijderen.
@@ -588,37 +596,25 @@ function editor() {
     document.getElementById('achtergrondImage').onchange = function handleImage(e) {
         checkBackgroundColorenImage();
         var reader = new FileReader();
-        var url;
         reader.onload = function (event) { console.log('fdsf');
-            alert("upload")
             var imgObj = new Image();
             imgObj.src = event.target.result;
-            var image = new fabric.Image(imgObj);
-
-
             imgObj.onload = function () {
-
-                image.set({
-                    left: 0,
-                    top: 0
-
-
-
-                });
                 // start fabricJS stuff
-            }
 
-            canvas.setBackgroundImage(image.toDataURL(),function() {
-                canvas.renderAll.bind(canvas);
-                canvas.renderAll();
-            });
-        };
+                var image = new fabric.Image(imgObj);
+                canvas.setBackgroundImage(imgObj.src, function() {
+                    canvas.renderAll();
+                });
+
+                // end fabricJS stuff
+            }
+        }
         reader.readAsDataURL(e.target.files[0]);
         canvas.calcOffset();
         canvas.renderAll();
-
-
     };
+
 
     /**
      * Deze functie wordt opgeroepen waneer je de achtergrondimage verandert.
