@@ -8,88 +8,88 @@ app.config(function ($routeProvider) {
         .when('/home',
         {
             controller: 'HomepageCtrl',
-            templateUrl: '/postkamer/client/app/partials/Homepage.html'
+            templateUrl: 'app/partials/Homepage.html'
         })
 
         .when('/templates',
         {
             controller: 'TemplateCtrl',
-            templateUrl: '/postkamer/client/app/partials/Templates.html'
+            templateUrl: 'app/partials/Templates.html'
         })
 
         .when('/editor',
         {
             controller: 'EditorCtrl',
-            templateUrl: '/postkamer/client/app/partials/Editor.html'
+            templateUrl: 'app/partials/Editor.html'
         })
 
         .when('/editorEnkel',
         {
             controller: 'EditorCtrl',
-            templateUrl: '/postkamer/client/app/partials/EditorEnkel.html'
+            templateUrl: 'app/partials/EditorEnkel.html'
         })
 
         .when('/editorStaand',
         {
             controller: 'EditorCtrl',
-            templateUrl: '/postkamer/client/app/partials/EditorStaand.html'
+            templateUrl: 'app/partials/EditorStaand.html'
         })
 
         .when('/editorStaandEnkel',
         {
             controller: 'EditorCtrl',
-            templateUrl: '/postkamer/client/app/partials/EditorStaandEnkel.html'
+            templateUrl: 'app/partials/EditorStaandEnkel.html'
         })
 
         .when('/overzicht',
         {
             controller: 'OverzichtCtrl',
-            templateUrl: '/postkamer/client/app/partials/Overzicht.html'
+            templateUrl: 'app/partials/Overzicht.html'
         })
 
         .when('/overOns',
         {
             controller: '',
-            templateUrl: '/postkamer/client/app/partials/OverOns.html'
+            templateUrl: 'app/partials/OverOns.html'
         })
 
         .when('/hoeWerktHet',
         {
             controller: '',
-            templateUrl: '/postkamer/client/app/partials/HoeWerktHet.html'
+            templateUrl: 'app/partials/HoeWerktHet.html'
         })
 
         .when('/contact',
         {
             controller: '',
-            templateUrl: '/postkamer/client/app/partials/Contact.html'
+            templateUrl: 'app/partials/Contact.html'
         })
 
         .when('/registreren',
         {
             controller: '',
-            templateUrl: '/postkamer/client/app/partials/Registreren.html'
+            templateUrl: 'app/partials/Registreren.html'
         })
         .when('/inloggen',
         {
             controller: '',
-            templateUrl: '/postkamer/client/app/partials/inloggen.html'
+            templateUrl: 'app/partials/inloggen.html'
         })
 
         .when('/adressen',
         {
             controller: '',
-            templateUrl: '/postkamer/client/app/partials/adressen.html'
+            templateUrl: 'app/partials/adressen.html'
         })
         .when('/overzichtformaat',
         {
             controller: 'OverzichtCtrl',
-            templateUrl: '/postkamer/client/app/partials/OverzichtFormaat.html'
+            templateUrl: 'app/partials/OverzichtFormaat.html'
         })
         .when('/versturing',
         {
             controller: 'OverzichtCtrl',
-            templateUrl: '/postkamer/client/app/partials/versturing.html'
+            templateUrl: 'app/partials/versturing.html'
         })
         .otherwise({ redirectTo: '/home' });
 });
