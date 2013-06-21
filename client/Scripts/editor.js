@@ -851,23 +851,50 @@ function editor() {
         }
     }
 
-
+    /**
+     * Deze functie wordt opgeroepen wanneer je op de selectbox klikt voor de tekst.
+     * Eerst wordt de geselecteerde object opgesalegn in een variable indien er een object is geselecteerd en het is van de type text wordt de font aangepast.
+     * Indien het geen tekst is wordt er een alert gegeven om een tekst eerst te selecteren.
+     * Wanneer je een text object hebt geselecteerd wordt er eerst gekeken naar de combobox en daarna daar de geselecteerde option.
+     * De tekst die in de option zit slaat hij op als selected en geeft dat mee aan de setChange functie.
+     * In de setChange functie verandert hij de font en daarna set hij de canvas goed en rendert het zodat je het kunt zien op de canvas.
+     */
     $('#combo').click(function (e) {
         var text = canvas.getActiveObject();
-        if (text) {
+        if (text && text.type === "text") {
             this.setFont = function() {
                 var combobox = document.getElementById("combo");
                 var selected = combobox.options[combobox.selectedIndex].text;
                 setChange("fontFamily", selected);
+                canvas.calcOffset();
+                canvas.renderAll();
             }
         }
         else {
             alert("u moet eerst een tekst selecteren!!");
         }
-        canvas.calcOffset();
-        canvas.renderAll();
     });
 
+    /**
+     * De functie loadTemplatePublic wordt opgeroepen om de template te laden.
+     * De data van alle objecten wordt hiermee doorgegeven en de achtergrond, deze worden dan toegepast op de canvas.
+     * Daarna wordt de canvas gerenderd om alles op de canvas te zien.
+     * @param data : de data die wordt meegegen nadat je een template hebt gekozen en verder ging.
+     */
+    this.loadTemplatePubliek = function(data) {
+        canvas.loadFromJSON(data.voorkant);
+        canvas.renderAll();
+    }
+
+    /**
+     * De functie loadTemplate wordt net als loadTemplatePublic opgeroepen om de template te laden.
+     * Het enige verschild tussen deze twee is dat de loadTemplate bedoeld is als je je eigen specifieke kaart wil bewerken die je eerder hebt gemaakt.
+     * Hij krijgt de data binnen en door laodRromJson op de roepen en de data mee te geven wordt dit op de canvas gezet.
+     * Her verschil tussen public en private s dus dat je bij public iedereen het kan zien en je hebt alleen de voorkant,
+     * Bij private is het je eigen kaart die je hebt gemaakt en de voorkant, midden en envelop worden opgehaald en op de canvas gezet.
+     * Daarna worden alle canvassen gerendered waardoor je alle objecten ook ziet op de canvassen.
+     * @param data
+     */
     this.loadTemplate = function(data) {
         canvas.loadFromJSON(data.voorkant);
         middelsteCanvas.loadFromJSON(data.midden);
@@ -877,19 +904,18 @@ function editor() {
         envelopcanvas.renderAll();
     }
 
-    this.loadTemplatePubliek = function(data) {
-        canvas.loadFromJSON(data.voorkant);
-        canvas.renderAll();
-    }
-
-    /**
-     * De functie TemplateGekozen is bedoeld om de array imagesOnCanvas en imagesOnCanvasDouble up to daten.
+   /**
+     * De functie templateGekozen is bedoeld om de array imagesOnCanvas en imagesOnCanvasDouble up to daten.
      * Deze functie wordt opgeroepen wanneer je een template hebt gekozen. De bedoeling van deze functie is om achter te komen welke iconnen er zijn gebruikt en of ze vaker zijn gebruikt.
      * Als eerst krijg je de data mee die de editorcontroller binnen krijgt wanneer hij de service oproept om data op te halen.
+     * De data is json data en deze wordt eers geparsed zodat je de data kunt gebruiken.
+     * Dan wordt er gekeken of er type image objecten zijn indien er images zijn gaat hij kijken of de image wel een icoon is.
+     * Om te checken of het een icoon is gaat hij dus door een loop en kijkt of hij in de array images voorkomt.
+     * Indien hij een icoon is wordt de setIcoonsUsed functie opgeroepen om de array imagesOnCanvas en imagesOnCanvasDouble te updaten voor wanneer je een icoon wil gebruiken op de envelop.
      * @param data
      * @constructor
      */
-    this.TemplateGekozen = function(data){
+    this.templateGekozen = function(data){
         var response = JSON.parse(data.voorkant);
         for(var i = 0; i <response.objects.length; i++){
             if(response.objects[i].type === "image"){
