@@ -2,15 +2,20 @@
 /*global $, jQuery*/
 
 /**
- * Onclick functir op categorie menu.
+ * Onclick functies voor het categorie menu en het algemene menu.
  * Wanneer er een categorie wordt gekozen,
  * wordt de categorie in de localStorage opgeslagen.
  */
-function categorie() {
+function menuOnclick() {
     "use strict";
     $('#verhuizen').click(function() { localStorage.categorie = "verhuizen"; });
     $('#samenwonen').click(function() { localStorage.categorie = "samenwonen"; });
     $('#housewarming').click(function() { localStorage.categorie = "housewarming"; });
+    $('#home').click(function() { selectLinesMenu("home"); });
+    $('#overons').click(function() { selectLinesMenu("overons"); });
+    $('#hoeWerktHet').click(function() { selectLinesMenu("hoeWerktHet"); });
+    $('#contact').click(function() { selectLinesMenu("contact"); });
+    $('#homeLogo').click(function() { selectLinesMenu("home"); });
 }
 
 /**
@@ -74,18 +79,6 @@ function selectLinesMenu(selected) {
     "use strict";
     $('.bottomlineBlock').hide();
     $('#' + selected + ' .bottomlineBlock').show();
-}
-
-/**
- * Zet het onclick event op de menu items voor de stijl lijn eronder.
- */
-function menuOnclick() {
-    "use strict";
-    $('#home').click(function() { selectLinesMenu("home"); });
-    $('#overons').click(function() { selectLinesMenu("overons"); });
-    $('#hoeWerktHet').click(function() { selectLinesMenu("hoeWerktHet"); });
-    $('#contact').click(function() { selectLinesMenu("contact"); });
-    $('#homeLogo').click(function() { selectLinesMenu("home"); });
 }
 
 /**
