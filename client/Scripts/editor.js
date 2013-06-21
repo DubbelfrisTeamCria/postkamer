@@ -61,7 +61,7 @@ function editor() {
     function getMiddelste() {
         var m = null;
         if (localStorage.enkel == "dubbel") {
-            addImageBackground();
+//            addImageBackground();
             m =  $("#binnenkantcanvas");
         }
         else if (localStorage.enkel == "enkel") {
@@ -275,21 +275,18 @@ function editor() {
     function setDisplayKaart() {
         if (EnvelopOn === false) {
             TAB = "Bewerken1";
-            for (var i = 1; i<6; i++) {
-                var tab = document.getElementById("Bewerken"+i);
-                var content = document.getElementById("tabpage_"+i);
+            for (var i = 1; i < 6; i++) {
+                var tab = document.getElementById("Bewerken" + i);
+                var content = document.getElementById("tabpage_" + i);
                 if(tab.id === TAB) {
                     content.style.display = "block";
                     tab.style.display = "block"
-                    tab.firstChild.src= "Content/images/tab"+i+"Select.png";
-                }
-                else {
-
+                    tab.firstChild.src = "Content/images/tab"+i+"Select.png";
+                } else {
                     if(tab.id != "Bewerken5") {
                         tab.style.display = "block";
-                        tab.firstChild.src= "Content/images/tab"+i+".png";
-                    }
-                    else{
+                        tab.firstChild.src = "Content/images/tab" + i + ".png";
+                    } else {
                         tab.style.display = "none";
                     }
                     content.style.display = "none";
@@ -299,18 +296,15 @@ function editor() {
         }
     }
     function setVisibleTabAndPLus() {
+        var canvaspicker = $('#canvasPicker');
         if (TAB === "Bewerken1" || TAB === "Bewerken4" || TAB === "Bewerken5") {
             $('#canvasPicker').show();
-
-        }
-        else {
+        } else {
             $('#canvasPicker').hide();
         }
-
         if (TAB == "Bewerken1") {
             $('#plus').show();
-        }
-        else {
+        } else {
             $('#plus').hide();
         }
     }
@@ -360,44 +354,44 @@ function editor() {
     /**
      * Voeg het achtergrondplaatje toe van de kaart (als overlay) en zet deze vast.
      */
-    function addImageBackground() {
-        var imgObj = new Image();
-        var image = new fabric.Image(imgObj);
-        var shadowcard = "shadowcard.png";
-        var posleft = 325;
-        var postop = 250;
-
-        if (localStorage.positie === "liggend") {
-            shadowcard = "shadowcard.png";
-            posleft = 325;
-            postop = 250;
-        }
-        else if (localStorage.positie === "staand") {
-            shadowcard = "shadowcard2.png";
-            posleft = 250;
-            postop = 325;
-        }
-        imgObj.src = "Content/images/" + shadowcard;
-        imgObj.onload = function () {
-            image.set({
-                left: posleft,
-                top: postop,
-                angle: 0,
-                padding: 10,
-                cornersize: 10
-            });
-        }
-        middelsteCanvas.add(image);
-        image.sendToBack();
-        image.lockMovementX = true;
-        image.lockMovementY = true;
-        image.lockRotation = true;
-        image.lockUniScaling = true;
-        image.selectable = false;
-        // end fabricJS stuff
-        canvas.calcOffset();
-        canvas.renderAll();
-    }
+//    function addImageBackground() {
+//        var imgObj = new Image();
+//        var image = new fabric.Image(imgObj);
+//        var shadowcard = "shadowcard.png";
+//        var posleft = 325;
+//        var postop = 250;
+//
+//        if (localStorage.positie === "liggend") {
+//            shadowcard = "shadowcard.png";
+//            posleft = 325;
+//            postop = 250;
+//        }
+//        else if (localStorage.positie === "staand") {
+//            shadowcard = "shadowcard2.png";
+//            posleft = 250;
+//            postop = 325;
+//        }
+//        imgObj.src = "Content/images/" + shadowcard;
+//        imgObj.onload = function () {
+//            image.set({
+//                left: posleft,
+//                top: postop,
+//                angle: 0,
+//                padding: 10,
+//                cornersize: 10
+//            });
+//        }
+//        middelsteCanvas.add(image);
+//        image.sendToBack();
+//        image.lockMovementX = true;
+//        image.lockMovementY = true;
+//        image.lockRotation = true;
+//        image.lockUniScaling = true;
+//        image.selectable = false;
+//        // end fabricJS stuff
+//        canvas.calcOffset();
+//        canvas.renderAll();
+//    }
 
     function addImageToCanvas(src) {
         var imgObj = new Image();
