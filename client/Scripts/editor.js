@@ -47,23 +47,32 @@ function editor() {
     maakGallery();
     addText2("Vul hier je tekst in...");
 
-    if (middelsteCanvas.type == "binnenkant") {
-        addImageBackground();
-    }
-
+    /**
+     * Controleer of de kaart dubbel is of enkel.
+     * Wanneer het middelste canvas de binnenkant van de kaart is (ipv de achterkant),
+     * komt hier een achtergrond plaatje te staan.
+     * Hierdoor is te zien dat de kaart hier gevouwen kan worden/ dubbel is.
+     * Selecteer het juiste middelste canvas element.
+     *
+     * @return {*} het middelste canvas element.
+     */
     function getMiddelste() {
         var m = null;
         if (localStorage.enkel == "dubbel") {
-            middelsteCanvas.type = "binnenkant";
+            addImageBackground();
             m =  $("#binnenkantcanvas");
         }
         else if (localStorage.enkel == "enkel") {
-            middelsteCanvas.type = "achterkant";
             m = $("#achterkantcanvas");
         }
         return m;
     }
 
+    /**
+     * Controleer of de kaart dubbel is of enkel.
+     *
+     * @return {*} binnenkant of achterkant
+     */
     function getMiddelsteCanvas() {
         var m = null;
         if (localStorage.enkel == "dubbel") {
@@ -75,6 +84,10 @@ function editor() {
         return m;
     }
 
+    /**
+     * Zet alle kaart kanten, behalve de voorkant op onzichtbaar.
+     * Wanneer de kaart geladen is, is de voorkant van de kaart als eerst in beeld.
+     */
     function setHidden() {
         canvas = voorkantcanvas;
         voorkant.parent().css('margin-right', '325px');
@@ -84,12 +97,14 @@ function editor() {
         canvas.renderAll();
     }
 
+    /**
+     * Zet de voorkant van de kaart in beeld en verbergt de rest.
+     */
     $('#voorKant').click(function() {
         canvas = voorkantcanvas;
         voorkant.parent().css('display' ,'block');
         middelste.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
-
         canvas.calcOffset();
         canvas.renderAll();
         if(EnvelopOn == true){
@@ -98,6 +113,9 @@ function editor() {
         }
     });
 
+    /**
+     * Zet de binnenkant of achterkant van de kaart in beeld en verbergt de rest.
+     */
     $('#binnenKant, #achterKant').click(function() {
         canvas = middelsteCanvas;
         middelste.parent().css('display' ,'block');
@@ -111,6 +129,9 @@ function editor() {
         }
     });
 
+    /**
+     * Zet de envelop in beeld en verbergt de rest.
+     */
     $('#envelop').click(function() {
         canvas = envelopcanvas;
         envelop.parent().css('display' ,'block');
@@ -124,6 +145,8 @@ function editor() {
 
     /**
      * Haal het canvas op als json.
+     * Het kaart wordt hier opgeslagen als een privé kaart.
+     * Alle kanten van de kaart worden hierin opgeslagen.
      * @return {*} het canvas als json.
      */
     this.getJSON = function() {
@@ -144,6 +167,10 @@ function editor() {
 
     /**
      * Haal het canvas op als json.
+     * Het kaart wordt hier opgeslagen als een publieke kaart/ template.
+     * Hier wordt geen midden kant of envelop opgeslagen.
+     * Alleen de voorkant wordt gebruikt als template,
+     * welke de gebruiker als een beginpunt kan gebruiken voor zijn/ haar ontwerp.
      * @return {*} het canvas als json.
      */
     this.getJSONTemplate = function() {
@@ -158,19 +185,7 @@ function editor() {
         return template;
     }
 
-    this.getPositie = function() {
-        if (!localStorage.positie) {
-            localStorage.positie = prompt("geen positie gekozen. Voer staand/liggend in voor de databse");
-        }
-        return localStorage.positie;
-    }
 
-    this.getCategorie = function() {
-        if (!localStorage.categorie) {
-            localStorage.categorie = prompt("geen categorie gekozen. Voer samenwonen/verhuizen/housewarming in voor de databse");
-        }
-        return localStorage.categorie;
-    }
 
     // Onclick functies van bold, italic en underline.
     $('#bold').click(function(e){setBold(this);});
