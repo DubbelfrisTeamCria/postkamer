@@ -95,6 +95,12 @@ app.controller('EditorCtrl', function(service, $scope, $location) {
         document.body.style.cursor = 'default';
     });
 
+    /**
+     * Wanneer de partial geladen is worden eerst alle kaarten uit de database opgehaald.
+     * Dit doen we, omdat we alleen de client kant hebben gebouwd en dus niet direct in de databse kunnen zoeken.
+     * Wanneer een kaart hetzelfde id heeft als het id in de localStorage,
+     * wordt de kaart meegegeven aan loadTemplate() en templateGekozen() (zie editor.js).
+     */
 //    function loadPriveTemplate() {              //Alleen voor de klant
 //        service.async().then(function(data) {
 //            document.body.style.cursor = 'wait';
@@ -102,6 +108,7 @@ app.controller('EditorCtrl', function(service, $scope, $location) {
 //            for (kaart = 0; kaart < data.length; kaart++) {
 //                if (data[kaart]._id.$oid === localStorage.selectedId) {
 //                    loadTemplate(data[kaart]);
+//                    templateGekozen(data[kaart]);
 //                }
 //            }
 //            document.body.style.cursor = 'default';
