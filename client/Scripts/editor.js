@@ -46,6 +46,8 @@ function editor() {
     colorpicker();
     maakGallery();
     addText2("Vul hier je tekst in...");
+    setOnclick();
+    changeCursor();
 
     /**
      * Controleer of de kaart dubbel is of enkel.
@@ -185,7 +187,33 @@ function editor() {
         return template;
     }
 
+    /**
+     * Hiermee worden de onclick events gezet op de editor tools.
+     */
+    function setOnclick() {
+        $('#bold').click(function(e){setBold(this);});
+        $('#italic').click(function(e){setItalic(this);});
+        $('#underline').click(function(e){ setUnderline(this);});
+        $('#prullenbak').click(function(e){ removeObject(this);});
+        $('#plus').click(function(e){ addText2(askText());});
+        $('#bringToFront').click(function(e){ bringToFront(this);});
+        $('#bringToBack').click(function(e){ sendToBack(this);});
+        $('#align1').click(function() {setAlign('left', tekstMarge,this);});
+        $('#align2').click(function() {setAlign('center', canvas.width/2,this);});
+        $('#align3').click(function() {setAlign('right', canvas.width-tekstMarge,this);});
+    }
 
+    /**
+     * Verander de cursor bij onhover op bepaalde elementen.
+     */
+    function changeCursor() {
+        $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
+        $('.tabscontent div img').hover(function() {$(this).css('cursor','pointer');}); //handje
+        $('.tabscontent input').hover(function() {$(this).css('cursor','pointer');}); //handje
+        $('.knop').hover(function() {$(this).css('cursor','pointer');}); //handje
+        $('.tabscontent div label').hover(function() {$(this).css('cursor','default');}); //default
+        $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
+    }
 
     // Onclick functies van bold, italic en underline.
     $('#bold').click(function(e){setBold(this);});
@@ -197,9 +225,9 @@ function editor() {
     $('#bringToBack').click(function(e){ sendToBack(this);});
 
     // Onclick functies van alignLeft, alignCenter en AlignRight
-    $('#align1').click(function() {setAlign('left',this);});
-    $('#align2').click(function() {setAlign('center',this);});
-    $('#align3').click(function() {setAlign('right',this);});
+    $('#align1').click(function() {setAlign('left', tekstMarge,this);});
+    $('#align2').click(function() {setAlign('center', canvas.width/2,this);});
+    $('#align3').click(function() {setAlign('right', canvas.width-tekstMarge,this);});
 
     //verander cursor
     $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
@@ -255,10 +283,11 @@ function editor() {
         if(EnvelopOn == true) {
             TAB = 'Bewerken5';
             setVisibleTabAndPLus();
-            for(var i=1; i<6; i++) {
-                var tab = document.getElementById("Bewerken"+i);
-                var content = document.getElementById("tabpage_"+i);
-                if(tab.id === TAB) {
+            var tabs;
+            for(var tabs = 1; tabs < 6; tabs++) {
+                var tab = document.getElementById("Bewerken" + tabs);
+                var content = document.getElementById("tabpage_" + tabs);
+                if (tab.id === TAB) {
                     content.style.display = "block";
                     tab.style.display = "block"
                 }
@@ -270,45 +299,38 @@ function editor() {
         }
     }
     function setDisplayKaart() {
-        if(EnvelopOn == false) {
-            TAB="Bewerken1";
-            for(var i=1; i<6; i++) {
-                var tab = document.getElementById("Bewerken"+i);
-                var content = document.getElementById("tabpage_"+i);
+        if (EnvelopOn === false) {
+            TAB = "Bewerken1";
+            for (var i = 1; i < 6; i++) {
+                var tab = document.getElementById("Bewerken" + i);
+                var content = document.getElementById("tabpage_" + i);
                 if(tab.id === TAB) {
                     content.style.display = "block";
                     tab.style.display = "block"
-                    tab.firstChild.src= "Content/images/tab"+i+"Select.png";
-                }
-                else {
-
+                    tab.firstChild.src = "Content/images/tab"+i+"Select.png";
+                } else {
                     if(tab.id != "Bewerken5") {
                         tab.style.display = "block";
-                        tab.firstChild.src= "Content/images/tab"+i+".png";
-                    }
-                    else{
+                        tab.firstChild.src = "Content/images/tab" + i + ".png";
+                    } else {
                         tab.style.display = "none";
                     }
                     content.style.display = "none";
-
                 }
             }
             setVisibleTabAndPLus();
         }
     }
     function setVisibleTabAndPLus() {
+        var canvaspicker = $('#canvasPicker');
         if (TAB === "Bewerken1" || TAB === "Bewerken4" || TAB === "Bewerken5") {
             $('#canvasPicker').show();
-
-        }
-        else {
+        } else {
             $('#canvasPicker').hide();
         }
-
         if (TAB == "Bewerken1") {
             $('#plus').show();
-        }
-        else {
+        } else {
             $('#plus').hide();
         }
     };
@@ -600,7 +622,6 @@ function editor() {
             var imgObj = new Image();
             imgObj.src = event.target.result;
             imgObj.onload = function () {
-                // start fabricJS stuff
 
                 var image = new fabric.Image(imgObj);
                 canvas.setBackgroundImage(imgObj.src, function() {
