@@ -1,101 +1,124 @@
-/*jslint browser: true*/
+/*jslint browser: true, devel: true, nomen: true */
 /*global $, jQuery*/
 
 /**
- * Haalt op of er een enkele of een dubbele kaart geselecteerd is.
- * Standaard staat het op enkel.
+ * Onclick functir op categorie menu.
+ * Wanneer er een categorie wordt gekozen,
+ * wordt de categorie in de localStorage opgeslagen.
  */
-function  getEnkelOfDubbel(){
+function categorie() {
     "use strict";
-    localStorage.enkel = $("input:checked").val();
-    $("input").on("click", function() {
-        localStorage.enkel = $("input:checked").val();
-    });
+    $('#verhuizen').click(function() { localStorage.categorie = "verhuizen"; });
+    $('#samenwonen').click(function() { localStorage.categorie = "samenwonen"; });
+    $('#housewarming').click(function() { localStorage.categorie = "housewarming"; });
 }
 
+/**
+ * Slaat het id van de kaart op in de localStorage.
+ * @param kaart de geselecteerde kaart.
+ */
 function storeKaartId(kaart) {
-    if(typeof(Storage) !== undefined) {
-        localStorage.selectedId = $(kaart).attr("kaartId");
-        console.log("selectedID: " + localStorage.selectedId);
-    }
-    else {
-        console.log("Sorry, your browser does not support web storage...");
-    }
+    "use strict";
+    localStorage.selectedId = $(kaart).attr("kaartId");
 }
 
+/**
+ * Slaat de positie op in de localStorage.
+ * Positie is 'liggend' of 'staand'.
+ * @param kaart de geselecteerde kaart.
+ */
 function storeKaartPositie(kaart) {
-    if(typeof(Storage) !== undefined) {
-        localStorage.positie = $(kaart).attr("positie");
-        console.log("positie: " + localStorage.positie);
-    }
-    else {
-        console.log("Sorry, your browser does not support web storage...");
+    "use strict";
+    localStorage.positie = $(kaart).attr("positie");
+}
+
+/**
+ * Zet de juiste url op de knop om naar de editor te gaan aan de hand van de gekozen opties.
+ * Wanneer er een staande, dubbele kaart is gekozen moet er naar de staande, dubbele editor worden gelinkt.
+ * Wanneer er een staande, enkele kaart is gekozen moet er naar de staande, enkele editor worden gelinkt.
+ * Wanneer er een liggende, dubbele kaart is gekozen moet er naar de liggende, dubbele editor worden gelinkt.
+ * Wanneer er een liggende, enkele kaart is gekozen moet er naar de liggende, enkele editor worden gelinkt.
+ */
+function staandOfLiggendCanvas() {
+    "use strict";
+    var kaartMakenLink = $('#kaartMakenLink');
+    if (localStorage.positie === 'staand' && localStorage.enkel === "dubbel") {
+        kaartMakenLink.attr({href: "#/editorStaand" });
+    } else if (localStorage.positie === 'staand' && localStorage.enkel === "enkel") {
+        kaartMakenLink.attr({href: "#/editorStaandEnkel" });
+    } else if (localStorage.positie === 'liggend' && localStorage.enkel === "dubbel") {
+        kaartMakenLink.attr({href: "#/editor" });
+    } else if (localStorage.positie === 'liggend' && localStorage.enkel === "enkel") {
+        kaartMakenLink.attr({href: "#/editorEnkel" });
     }
 }
 
+/**
+ * Deze functie zet de juiste url op de knop om naar de editor te gaan,
+ * wanneer er een kaart gekozen is.
+ */
 function templateKeus() {
+    "use strict";
     if (!document.getElementById('selectedTemplate')) {
         alert("kies eerst een template");
-    }
-    else {
+    } else {
         staandOfLiggendCanvas();
     }
 }
-
-function staandOfLiggendCanvas() {
-    var kaartMakenLink = $('#kaartMakenLink');
-    if (localStorage.positie == 'staand' && localStorage.enkel == "dubbel") {
-
-        kaartMakenLink.attr({href:"#/editorStaand"});
-    }
-    else if (localStorage.positie =='staand' && localStorage.enkel == "enkel") {  //??????????????
-        kaartMakenLink.attr({href:"#/editorStaandEnkel"});
-    }
-    else if (localStorage.positie == 'liggend' && localStorage.enkel =="dubbel") {
-        kaartMakenLink.attr({href:"#/editor"});
-    }
-    else if (localStorage.positie =='liggend' && localStorage.enkel =="enkel") {
-        kaartMakenLink.attr({href:"#/editorEnkel"});
-    }
-    console.log("enkel: " + localStorage.enkel);
-}
-
-$('.bottomlineBlock').hide();
-selectLinesMenu("home");
 
 /**
  * Laat een lijn zien onder het geselecteerde menu item.
  * @param selected Het geselecteerde menu item.
  */
 function selectLinesMenu(selected) {
+    "use strict";
     $('.bottomlineBlock').hide();
     $('#' + selected + ' .bottomlineBlock').show();
 }
 
-//Zet de onclick op de menu items voor de lijn eronder.
-$('#home').click(function() {selectLinesMenu("home");});
-$('#overons').click(function() {selectLinesMenu("overons");});
-$('#hoeWerktHet').click(function() {selectLinesMenu("hoeWerktHet");});
-$('#contact').click(function() {selectLinesMenu("contact");});
-$('#homeLogo').click(function() {selectLinesMenu("home");});
-
-function getTemplate(data, positie) {
-    var image = $('<img/>').attr({
-        "src":data.templatePng,
-        "class": "template" + positie + " template",
-        "kaartId":data._id.$oid,
-        "positie":positie
-    });
-//    image.data({
-//        "kaartId":data._id.$oid});
-    $('#template' + positie + 'Div').append(image);
-    $(image).hover(function() {$(this).css('cursor','pointer');}); //handje
+/**
+ * Zet het onclick event op de menu items voor de stijl lijn eronder.
+ */
+function menuOnclick() {
+    "use strict";
+    $('#home').click(function() { selectLinesMenu("home"); });
+    $('#overons').click(function() { selectLinesMenu("overons"); });
+    $('#hoeWerktHet').click(function() { selectLinesMenu("hoeWerktHet"); });
+    $('#contact').click(function() { selectLinesMenu("contact"); });
+    $('#homeLogo').click(function() { selectLinesMenu("home"); });
 }
 
-function categorie() {
-    $('#verhuizen').click(function() {localStorage.categorie = "verhuizen"; console.log("gekozen categorie: " + localStorage.categorie);});
-    $('#samenwonen').click(function() {localStorage.categorie = "samenwonen"; console.log("gekozen categorie: " + localStorage.categorie);});
-    $('#housewarming').click(function() {localStorage.categorie = "housewarming"; console.log("gekozen categorie: " + localStorage.categorie);});
+/**
+ * Zet de juiste attributen op de opgehaalde kaarten.
+ *
+ * @param data de kaart uit de database
+ * @param positie de positie van de kaart (liggend/staand).
+ */
+function getTemplate(data, positie) {
+    "use strict";
+    var image = $('<img/>').attr({
+        "src": data.templatePng,
+        "class": "template" + positie + " template",
+        "kaartId": data._id.$oid,
+        "positie": positie
+    });
+    $('#template' + positie + 'Div').append(image);
+    $(image).hover(function() { $(this).css('cursor', 'pointer'); }); //handje
+}
+
+$('.bottomlineBlock').hide();
+selectLinesMenu("home");
+
+/**
+ * Haalt op of er een enkele of een dubbele kaart geselecteerd is.
+ * Standaard staat het op enkel.
+ */
+function getEnkelOfDubbel() {
+    "use strict";
+    localStorage.enkel = $("input:checked").val();
+    $("input").on("click", function() {
+        localStorage.enkel = $("input:checked").val();
+    });
 }
 
 /**

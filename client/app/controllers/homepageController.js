@@ -7,4 +7,5 @@ app.controller('HomepageCtrl', function( service,$scope) {
     });
 
     categorie();
+    menuOnclick();
 });
