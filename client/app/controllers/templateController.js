@@ -6,7 +6,7 @@ app.controller('TemplateCtrl', function( service,$scope) {
     service.async().then(function(data) {
         document.body.style.cursor='wait';
         for (var i = 0; i < data.length; i++) {
-            if (data[i].categorie == localStorage.categorie && !data[i].private) {
+            if (data[i].categorie == localStorage.categorie && data[i].private === "false") {
                 getTemplate(data[i], data[i].positie);
             }
         }
