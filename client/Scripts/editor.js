@@ -652,6 +652,9 @@ function editor() {
         canvas.renderAll();
     };
 
+    /**
+     *
+     */
     $(document)
         .on('keypress', function (e) {
             var code = (e.keyCode|| e.which);
