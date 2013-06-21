@@ -253,8 +253,8 @@ function editor() {
     });
 
     /**
-     * Tools menu.
-     * Maak het tools menu voor de editor.
+     * Deze functie is bedoel voor wanneer je op een tab klikt.
+     * Maak het tools menu voor de editor. Wanneer je op een tab klikt set hij de goede display images en de goede content wordt weergegeven bij de tab/
      */
     $('li').click(function (e) {
         TAB = this.id;
@@ -279,6 +279,9 @@ function editor() {
         }
     });
 
+    /**
+     * Deze functie is bedoeld voor het zetten van de displays van de tabs en extra bewerk opties die naast de canvas zitten wanneer hij op een envelop zit.
+     */
     function setDisplayEnvelop() {
         if(EnvelopOn == true) {
             TAB = 'Bewerken5';
@@ -297,7 +300,12 @@ function editor() {
                 }
             }
         }
-    }
+    };
+
+    /**
+     * Deze functie is bedoeld voor het zetten van de displays van de tabs en extra bewerk opties die naast de canvas zitten wanneer hij niet op een envelop zit.
+     *
+     */
     function setDisplayKaart() {
         if (EnvelopOn === false) {
             TAB = "Bewerken1";
@@ -320,24 +328,29 @@ function editor() {
             }
             setVisibleTabAndPLus();
         }
-    }
+    };
+
+    /**
+     * Deze functie set de display van de plusje voor tekst toevoegen en colorpicker.
+     */
     function setVisibleTabAndPLus() {
         var canvaspicker = $('#canvasPicker');
+        var plusje = $('#plus');
         if (TAB === "Bewerken1" || TAB === "Bewerken4" || TAB === "Bewerken5") {
             $('#canvasPicker').show();
         } else {
-            $('#canvasPicker').hide();
+            canvaspicker.hide();
         }
         if (TAB == "Bewerken1") {
-            $('#plus').show();
+            plusje.show();
         } else {
-            $('#plus').hide();
+            plusje.hide();
         }
     };
 
     /**
      * Deze functie voegt een nieuw plaatje toe aan de kaart.
-     *
+     * Hij maakt van de gekozen image de src en maakt daarvan een fabric image set deze en voegt het toe aan de canvas.
      * @param e event
      */
     document.getElementById('imgLoader').onchange = function handleImage(e) {
@@ -613,7 +626,7 @@ function editor() {
     /**
      * Deze functie is bedoeld om de achtergrond plaatje te veranderen en achtergrondkleur te verwijderen.
      * Eerst wordt de achtergrond gecleared.
-     *
+     * Dan maakt je een image object van de geselecteerde image, daarna maak je er ee fabric image van wordt deze geset als background image.
      */
     document.getElementById('achtergrondImage').onchange = function handleImage(e) {
         checkBackgroundColorenImage();
@@ -627,8 +640,6 @@ function editor() {
                 canvas.setBackgroundImage(imgObj.src, function() {
                     canvas.renderAll();
                 });
-
-                // end fabricJS stuff
             }
         }
         reader.readAsDataURL(e.target.files[0]);
