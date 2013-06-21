@@ -578,11 +578,11 @@ function editor() {
     }
 
     /**
-     * Verander het achtergrond plaatje en verwijder de achtergrondkleur.
+     * Deze functie is bedoeld om de achtergrond plaatje te veranderen en achtergrondkleur te verwijderen.
+     *
      */
     document.getElementById('achtergrondImage').onchange = function handleImage(e) {
         checkBackgroundColorenImage();
-        alert("cleared")
         var reader = new FileReader();
         var url;
         reader.onload = function (event) { console.log('fdsf');
@@ -608,32 +608,32 @@ function editor() {
                 canvas.renderAll.bind(canvas);
                 canvas.renderAll();
             });
-        }
-
-        // end fabricJS stuff
+        };
         reader.readAsDataURL(e.target.files[0]);
         canvas.calcOffset();
         canvas.renderAll();
 
 
-    }
+    };
 
+    /**
+     * Deze functie wordt opgeroepen waneer je de achtergrondimage verandert.
+     * wanneer er een achtergrondimage is of bacrgoundcolor worden deze op none gezet(verwijdert)
+     */
     function checkBackgroundColorenImage(){
         if (canvas.backgroundImage) {
             canvas.backgroundImage = 'none';
-            console.log(canvas.backgroundImage)
         }
 
         if(canvas.backgroundColor){
-            canvas.backgroundColor = 'none'
+            canvas.backgroundColor = 'none';
             canvas.calcOffset();
             canvas.renderAll();
-            console.log("color" +canvas.backgroundColor)
         }
-    }
+    };
 
     /**
-     * Verander de kleur van de achtergrond en verwijder het achtergrondplaatje.
+     * Deze functie verandert de kleur van de achtergrond en verwijder het achtergrondplaatje.
      * @param kleur de kleur van de achtergrond
      */
     var vulKleur = function (kleur) {
@@ -643,18 +643,18 @@ function editor() {
         canvas.backgroundColor = kleur;
         canvas.calcOffset();
         canvas.renderAll();
-    }
+    };
 
     /**
-     * Verander de kleur van de tekst
-     * @param text
-     * @param kleur de kleur van de tekst
+     * Deze functie is bedoeld om de kleur van de tekst te veranderen.
+     * @param text : de tekst waarvan de kleur verandert  moet worden.
+     * @param kleur : de kleur waarvan de tekst in moet veranderen.
      */
     var kleurtext = function (text, kleur) {
         text.fill = kleur;
         canvas.calcOffset();
         canvas.renderAll();
-    }
+    };
 
     $(document)
         .on('keypress', function (e) {
@@ -720,7 +720,7 @@ function editor() {
      */
     function reset () {
         canvas.clear();
-    }
+    };
 
     /**
      * Deze functie is bedoeld om de iconengallery van envelop te updaten.
@@ -757,7 +757,7 @@ function editor() {
             }
             doubleObject = false;
         }
-    }
+    };
 
     /**
      * Deze functie is bedoeld om een object de verwijderen.
@@ -771,7 +771,7 @@ function editor() {
             setIcoonDeletedFromCanvas(objectSelected);
             canvas.remove(objectSelected);
         }
-    }
+    };
 
     /**
      * Deze functie is bedoeld om het geselecteerde object naar voren te halen.
@@ -781,7 +781,7 @@ function editor() {
         if(objectSelected){
             objectSelected.bringToFront();
         }
-    }
+    };
 
     /**
      * Deze functie is bedoeld om het geselecteerde object naar achteren te zetten.
@@ -791,7 +791,7 @@ function editor() {
         if(objectSelected){
             objectSelected.sendToBack();
         }
-    }
+    };
 
     /**
      * Deze functie wordt opgeroepen wanneer je de value verandert van tekstgrootte.
@@ -808,7 +808,7 @@ function editor() {
         } else {
             alert('u moet eerst een tekst selecteren');
         }
-    }
+    };
 
     /**
      * Deze functie wordt opgeroepen wanneer je de value verandert van Transpiratie.
@@ -828,7 +828,7 @@ function editor() {
         }else{
             alert("u moet eerst een image selecteren");
         }
-    }
+    };
 
     /**
      * Deze functie wordt opgeroepen wanneer je de value van brightnes, tint(sepia) en saturation(grayscale) verandert.
@@ -855,7 +855,7 @@ function editor() {
             }
             objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
-    }
+    };
 
     /**
      * Deze functie wordt opgeroepen wanneer je de value verandert van de brightness.
@@ -865,7 +865,7 @@ function editor() {
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
         setBrightness(objectSelected, value);
-    }
+    };
 
     /**
      *  Deze functie wordt opgeroepen wanneer je de value verandert van de tint(Sepia) range.
@@ -899,7 +899,7 @@ function editor() {
             }
             objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
-    }
+    };
 
     /**
      *  Deze functie wordt opgeroepen wanneer je de value verandert van de saturatie(zwart-wit) range.
@@ -935,7 +935,7 @@ function editor() {
         else{
             alert("U moet eerst een foto selecteren.");
         }
-    }
+    };
 
     /**
      * Deze functie wordt opgeroepen wanneer je op de selectbox klikt voor de tekst.
@@ -970,7 +970,7 @@ function editor() {
     this.loadTemplatePubliek = function(data) {
         canvas.loadFromJSON(data.voorkant);
         canvas.renderAll();
-    }
+    };
 
     /**
      * De functie loadTemplate wordt net als loadTemplatePublic opgeroepen om de template te laden.
@@ -988,7 +988,7 @@ function editor() {
         canvas.renderAll();
         middelsteCanvas.renderAll();
         envelopcanvas.renderAll();
-    }
+    };
 
    /**
      * De functie templateGekozen is bedoeld om de array imagesOnCanvas en imagesOnCanvasDouble up to daten.
@@ -1049,7 +1049,7 @@ function editor() {
             imagesOnCanvas.push(currentImage);
         }
         maakGalleryGebruikteIconen();
-    }
+    };
 
     /**
      * De functie maakGallery is bedoeld om een gallery te maken van de iconen die je op een kaart kunt zetten.
