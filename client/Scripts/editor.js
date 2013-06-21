@@ -882,12 +882,19 @@ function editor() {
         canvas.renderAll();
     }
 
+    /**
+     * De functie TemplateGekozen is bedoeld om de array imagesOnCanvas en imagesOnCanvasDouble up to daten.
+     * Deze functie wordt opgeroepen wanneer je een template hebt gekozen. De bedoeling van deze functie is om achter te komen welke iconnen er zijn gebruikt en of ze vaker zijn gebruikt.
+     * Als eerst krijg je de data mee die de editorcontroller binnen krijgt wanneer hij de service oproept om data op te halen.
+     * @param data
+     * @constructor
+     */
     this.TemplateGekozen = function(data){
-        var response = JSON.parse(data.voorkant)
+        var response = JSON.parse(data.voorkant);
         for(var i = 0; i <response.objects.length; i++){
             if(response.objects[i].type === "image"){
                 var currentImage = response.objects[i].src.split("/").pop();
-                for(var j = 0 ; j<images.length; j++){
+                for(var j = 0 ; j<images.length; j++) {
                     if(currentImage === images[j].split("/").pop()) {
                         setIcoonsUsed(currentImage);
                     }
@@ -896,6 +903,22 @@ function editor() {
         }
     };
 
+    /**
+     * De functie setIcoonsUsed is bedoeld om bij te houden welke icoons je gebruikt op de kaart(canvas) en of ze vaker worden gebruikt.
+     * Deze functie wordt gebruikt bij maakGallery en TemplateGekozen.
+     * In de maakGallery wordt hij gebruikt wanneer je op een img klikt, want dan wordt hij toegevoegd aan de canvas en wordt deze ales een imagesOnCanvas opgeslagen.
+     * Hetzelfde geld eigenlij voor TemplateGekozen alleen bestaan de icoons al op de template,
+     * Wanneer je een template laad moet je ook van te voren weten welke icoontje er zijn op de canvas en deze in de array imagesOnCanvas zetten,
+     * wanneer er icoons vaker in voorkomen worden deze in de array imagesOnCanvasDouble gezet.
+     * Wat hij eerst gaat checken is of de array leeg is, indien dit het geval is wordt de image gepushed in de imagesOnCanvas array.
+     * Wanneer er al images in de array zitten zet je eerst de icoonDubbel op false, dan gaat hij door een loop om te kijken of de image waar je op heb geklikt in de array van imagesOnCanvas voorkomt.
+     * Indien de image ook in de array zit wordt deze gepushed in de array imagesOnCanvasDouble, hier worden de images die vaker voorkomen opgeslagen.
+     * Je set de icoonDubbel op true en deze functie is afgelopen.
+     * Indien een image niet dubbel is blijft de icoonDubbel op false en pusht hij de currentImage in de imagesOnCanvas array want hij komt dan niet vaker voor;
+     * De  k = imagesOnCanvas.length +  is bedoelt om uit de loop de komen zodat hij het niet helemaal moet uitvoeren wanneer hij al weet dat de image dubbel is.
+     * Nadat hij vast heeft gesteld of een image dubbel is en heeft gepusht wordt de functie maakGalleryGebruikteIconen opgeroepen om de gupdate gallery te maken voor de envelop.
+     * @param currentImage De image waar je op hebt geklikt (of deze op de template al staat nadat je een template hebt gekozen) die op de canvas komt.
+     */
     function setIcoonsUsed(currentImage) {
         if (imagesOnCanvas.length != 0) {
             var icoonDubbel = false;
@@ -916,6 +939,14 @@ function editor() {
         maakGalleryGebruikteIconen();
     }
 
+    /**
+     * De functie maakGallery is bedoeld om een gallery te maken van de iconen die je op een kaart kunt zetten.
+     * Als eerst haalt hij de div iconGallery op en dan gaat hij door een loop.
+     * In de loop maakt hij een img aan en geeft de src mee van de images(icons) die je kunt gebruiken.
+     * Hij zet dit in de iconGallery, dan komt er een eventhandler wanneer je op de img klikt.
+     * Wanneer je op de icon(img) klikt in de iconGallery wordt deze toegevoegd aan de canvas d.m.v. de functie addImageToCanvas en je geeft de src van de image mee.
+     * Dan wordt de functie setIcoonUsed opgeroepen en je geeft alleen de naam van de image mee( hij split de src en neemt de laatste string).
+     */
     function maakGallery() {
         var iconGallery = document.getElementById("iconGallery");
         for (var i = 0; i < images.length; i++) {
@@ -929,6 +960,7 @@ function editor() {
 
         }
     };
+
     /**
      * De functie maakGalleryGebruikteIconen is bedoeld om een gallery te maken voor de iconen die je gebruikt bij de kaart,
      * Deze gallery wordt gemaakt wanneer je een icoon add op de kaart of een icoon verwijdert.
