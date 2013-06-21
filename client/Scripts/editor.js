@@ -42,38 +42,6 @@ function editor() {
         tekstMarge = 50,
         standaardImageBreedte = 200;
 
-
-    this.TemplateGekozen = function(data){
-        var response = JSON.parse(data.voorkant)
-        console.log(response.objects.length);
-        for(var i = 0; i <response.objects.length; i++){
-            if(response.objects[i].type === "image"){
-                var currentImage = response.objects[i].src;
-                for(var j = 0 ; j<images.length; j++){
-                    if((currentImage.split("/").pop()) === (images[j].split("/").pop())){
-                        if(imagesOnCanvas.length !=0) {
-                            var icoonDubbel = false;
-                            for(var k = 0; k <imagesOnCanvas.length;k++) {
-                                if(currentImage.split("/").pop() == imagesOnCanvas[k]) {
-                                    icoonDubbel = true;
-                                    imagesOnCanvasDouble.push(currentImage.split("/").pop());
-                                    k = imagesOnCanvas.length + 1;
-                                }
-                            }
-                            if(icoonDubbel == false) {
-                                imagesOnCanvas.push(currentImage.split("/").pop());
-                            }
-                        }
-                        else {
-                            imagesOnCanvas.push(currentImage.split("/").pop());
-                        }
-                        maakGalleryGebruikteIconen();
-                    }
-                }
-
-            }
-        }
-    };
     setHidden();
     colorpicker();
     maakGallery();
@@ -914,6 +882,40 @@ function editor() {
         canvas.renderAll();
     }
 
+    this.TemplateGekozen = function(data){
+        var response = JSON.parse(data.voorkant)
+        for(var i = 0; i <response.objects.length; i++){
+            if(response.objects[i].type === "image"){
+                var currentImage = response.objects[i].src.split("/").pop();
+                for(var j = 0 ; j<images.length; j++){
+                    if(currentImage === images[j].split("/").pop()) {
+                        setIcoonsUsed(currentImage);
+                    }
+                }
+            }
+        }
+    };
+
+    function setIcoonsUsed(currentImage) {
+        if (imagesOnCanvas.length != 0) {
+            var icoonDubbel = false;
+            for (var k = 0; k < imagesOnCanvas.length; k++) {
+                if (currentImage == imagesOnCanvas[k]) {
+                    icoonDubbel = true;
+                    imagesOnCanvasDouble.push(currentImage);
+                    k = imagesOnCanvas.length + 1;
+                }
+            }
+            if (icoonDubbel == false) {
+                imagesOnCanvas.push(currentImage);
+            }
+        }
+        else {
+            imagesOnCanvas.push(currentImage);
+        }
+        maakGalleryGebruikteIconen();
+    }
+
     function maakGallery() {
         var iconGallery = document.getElementById("iconGallery");
         for (var i = 0; i < images.length; i++) {
@@ -922,34 +924,16 @@ function editor() {
             iconGallery.appendChild(img);
             img.onclick = function() {
                 addImageToCanvas(this.src);
-                if(imagesOnCanvas.length !=0) {
-                    var icoonDubbel = false;
-                    for(var j = 0; j <imagesOnCanvas.length;j++) {
-                        if((this.src).split("/").pop() == imagesOnCanvas[j]) {
-                            icoonDubbel = true;
-                            imagesOnCanvasDouble.push(this.src.split("/").pop());
-                        }
-                    }
-                    if(icoonDubbel == false) {
-                        imagesOnCanvas.push(this.src.split("/").pop());
-                    }
-                }
-                else {
-                    imagesOnCanvas.push(this.src.split("/").pop());
-                }
-                maakGalleryGebruikteIconen();
+                setIcoonsUsed(this.src.split("/").pop());
             };
 
         }
-    }
+    };
     /**
      * De functie maakGalleryGebruikteIconen is bedoeld om een gallery te maken voor de iconen die je gebruikt bij de kaart,
      * Deze gallery wordt gemaakt wanneer je een icoon add op de kaart of een icoon verwijdert.
-     * Het eerste wat hij doet nadat een functie add of remove is opgeroepen is de oude gallery verwijderen en dan nieuwe erin zetten dit gebeurd met de methode cleanGallery.
+     * Het eerste wat hij doet nadat een functie add of remove is opgeroepen is de oude gallery verwijderen en dan een nieuwe erin zetten, dit gebeurd met de methode cleanGallery.
      * Deze gallery bij de tab envelop wordt weergegeven wanneer je de envelop wil bewerken.
-     * wanneer je op een icoon klikt tijdens het editen van je kaart wordt de icoon die je gebruikt opgeslagen in een array.
-     * Deze array bevat alle iconen die je op je kaart hebt, hij wordt ook geupdate wanneer je een icoon verwijdert van je kaart.
-     * Dan gaat hij door een loop waar hij van alle iconen die zijn gebruikt op de kaart(imagesOnCanvas) maakt er een img element van en zit dit in de gallery.
      * wanneer je de op de envelop een icoon wil gebruiken ga je dus naar de envelop, daar zie je de gallery van alle gebruikte iconen.
      * Wanneer je op een icoon klikt reset hij de canvas en zet dan pas de image op de canvas.
      * De icoon heeft een vaste plaats en je kan er niks mee doen.
@@ -966,8 +950,14 @@ function editor() {
                 addImageToCanvas(this.src);
             };
         }
-    }
+    };
 
+    /**
+     * dit is de functie clearGallery, hij haalt eerst de div waar alle iconen van de envelop zitten op.
+     * Dan kjkt hij of er iets in de div is, indien dit het geval is verwijdert hij de firtchild element zolang er 1 is.
+     * Deze functie wordt gebruikt voor het maken can de gallery iconen voor de envelop, omdat hij vaak geupdate wordt.
+     * @return {HTMLElement} : hij returnt de lege div "iconGalleryGebrikt" voor de envelop.
+     */
     function clearGallery() {
         var gallery = document.getElementById("iconGalleryGebruikt");
         if(gallery.childElementCount != 0) {
@@ -976,5 +966,5 @@ function editor() {
             }
         }
         return gallery;
-    }
+    };
 }
