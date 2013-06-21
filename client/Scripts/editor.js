@@ -198,9 +198,9 @@ function editor() {
         $('#plus').click(function(e){ addText2(askText());});
         $('#bringToFront').click(function(e){ bringToFront(this);});
         $('#bringToBack').click(function(e){ sendToBack(this);});
-        $('#align1').click(function() {setAlign('left', tekstMarge,this);});
-        $('#align2').click(function() {setAlign('center', canvas.width/2,this);});
-        $('#align3').click(function() {setAlign('right', canvas.width-tekstMarge,this);});
+        $('#align1').click(function() {setAlign('left',this);});
+        $('#align2').click(function() {setAlign('center',this);});
+        $('#align3').click(function() {setAlign('right',this);});
     }
 
     /**
