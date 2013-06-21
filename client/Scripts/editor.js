@@ -830,11 +830,14 @@ function editor() {
         }
     }
 
-    document.getElementById('contrast').onchange = function() {
+    /**
+     *  Deze functie wordt opgeroepen wanneer je de value verandert van de saturatie(zwart-wit) range.
+     *  Eerst
+     */
+    document.getElementById('saturatie').onchange = function() {
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
-
-        if (objectSelected.type === "image") {
+        if (objectSelected && objectSelected.type === "image") {
             if(value == 0){
                 for (var i=0;i<objectSelected.filters.length; i++) {
                     if(objectSelected.filters[i].type == "Grayscale") {
@@ -848,6 +851,9 @@ function editor() {
                 GrayscaleOn=true;
             }
             objectSelected.applyFilters(canvas.renderAll.bind(canvas));
+        }
+        else{
+            alert("U moet eerst een foto selecteren.");
         }
     }
 
