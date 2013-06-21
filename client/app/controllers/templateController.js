@@ -1,6 +1,5 @@
 app.controller('TemplateCtrl', function( service,$scope) {
 
-    console.log("Template controller opgehaald");
     document.body.style.cursor='wait';
 
     service.async().then(function(data) {
