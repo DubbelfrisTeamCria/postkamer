@@ -46,6 +46,8 @@ function editor() {
     colorpicker();
     maakGallery();
     addText2("Vul hier je tekst in...");
+    setOnclick();
+    changeCursor();
 
     /**
      * Controleer of de kaart dubbel is of enkel.
@@ -185,29 +187,33 @@ function editor() {
         return template;
     }
 
+    /**
+     * Hiermee worden de onclick events gezet op de editor tools.
+     */
+    function setOnclick() {
+        $('#bold').click(function(e){setBold(this);});
+        $('#italic').click(function(e){setItalic(this);});
+        $('#underline').click(function(e){ setUnderline(this);});
+        $('#prullenbak').click(function(e){ removeObject(this);});
+        $('#plus').click(function(e){ addText2(askText());});
+        $('#bringToFront').click(function(e){ bringToFront(this);});
+        $('#bringToBack').click(function(e){ sendToBack(this);});
+        $('#align1').click(function() {setAlign('left', tekstMarge,this);});
+        $('#align2').click(function() {setAlign('center', canvas.width/2,this);});
+        $('#align3').click(function() {setAlign('right', canvas.width-tekstMarge,this);});
+    }
 
-
-    // Onclick functies van bold, italic en underline.
-    $('#bold').click(function(e){setBold(this);});
-    $('#italic').click(function(e){setItalic(this);});
-    $('#underline').click(function(e){ setUnderline(this);});
-    $('#prullenbak').click(function(e){ removeObject(this);});
-    $('#plus').click(function(e){ addText2(askText());});
-    $('#bringToFront').click(function(e){ bringToFront(this);});
-    $('#bringToBack').click(function(e){ sendToBack(this);});
-
-    // Onclick functies van alignLeft, alignCenter en AlignRight
-    $('#align1').click(function() {setAlign('left', tekstMarge,this);});
-    $('#align2').click(function() {setAlign('center', canvas.width/2,this);});
-    $('#align3').click(function() {setAlign('right', canvas.width-tekstMarge,this);});
-
-    //verander cursor
-    $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('.tabscontent div img').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('.tabscontent input').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('.knop').hover(function() {$(this).css('cursor','pointer');}); //handje
-    $('.tabscontent div label').hover(function() {$(this).css('cursor','default');}); //default
-    $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
+    /**
+     * Verander de cursor bij onhover op bepaalde elementen.
+     */
+    function changeCursor() {
+        $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
+        $('.tabscontent div img').hover(function() {$(this).css('cursor','pointer');}); //handje
+        $('.tabscontent input').hover(function() {$(this).css('cursor','pointer');}); //handje
+        $('.knop').hover(function() {$(this).css('cursor','pointer');}); //handje
+        $('.tabscontent div label').hover(function() {$(this).css('cursor','default');}); //default
+        $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
+    }
 
     /**
      * De tekst die geselecteerd is mag niet worden vergroot
@@ -224,25 +230,21 @@ function editor() {
         }
     });
 
-    /**
-     * Tools menu.
-     * Maak het tools menu voor de editor.
-     */
-    $('li').click(function (e) {
+    $('li').click(function (event) {
         TAB = this.id;
-        e.preventDefault();
+        event.preventDefault();
         setVisibleTabAndPLus();
-        for(var i=1; i<6; i++) {
-            var temp = "Bewerken"+i;
-            var tab = document.getElementById("Bewerken"+i);
-            var content = document.getElementById("tabpage_"+i);
-            if(tab.id === TAB) {
-                this.firstChild.src= "Content/images/tab"+i+"Select.png";
+        var tabs;
+        for (var tabs = 1; tabs < 6; tabs++) {
+            var tab = document.getElementById("Bewerken" + tabs);
+            var content = document.getElementById("tabpage_" + tabs);
+            if (tab.id === TAB) {
+                this.firstChild.src = "Content/images/tab" + tabs + "Select.png";
                 content.style.display = "block";
             }
             else {
                 if(tab.id != "Bewerken5") {
-                    tab.firstChild.src= "Content/images/tab"+i+".png";
+                    tab.firstChild.src = "Content/images/tab" + tabs + ".png";
                 } else {
                     tab.style.display="none";
                 }
@@ -255,10 +257,11 @@ function editor() {
         if(EnvelopOn == true) {
             TAB = 'Bewerken5';
             setVisibleTabAndPLus();
-            for(var i=1; i<6; i++) {
-                var tab = document.getElementById("Bewerken"+i);
-                var content = document.getElementById("tabpage_"+i);
-                if(tab.id === TAB) {
+            var tabs;
+            for(var tabs = 1; tabs < 6; tabs++) {
+                var tab = document.getElementById("Bewerken" + tabs);
+                var content = document.getElementById("tabpage_" + tabs);
+                if (tab.id === TAB) {
                     content.style.display = "block";
                     tab.style.display = "block"
                 }
@@ -270,9 +273,9 @@ function editor() {
         }
     }
     function setDisplayKaart() {
-        if(EnvelopOn == false) {
-            TAB="Bewerken1";
-            for(var i=1; i<6; i++) {
+        if (EnvelopOn === false) {
+            TAB = "Bewerken1";
+            for (var i = 1; i<6; i++) {
                 var tab = document.getElementById("Bewerken"+i);
                 var content = document.getElementById("tabpage_"+i);
                 if(tab.id === TAB) {
@@ -290,7 +293,6 @@ function editor() {
                         tab.style.display = "none";
                     }
                     content.style.display = "none";
-
                 }
             }
             setVisibleTabAndPLus();
@@ -990,7 +992,7 @@ function editor() {
         envelopcanvas.renderAll();
     }
 
-   /**
+    /**
      * De functie templateGekozen is bedoeld om de array imagesOnCanvas en imagesOnCanvasDouble up to daten.
      * Deze functie wordt opgeroepen wanneer je een template hebt gekozen. De bedoeling van deze functie is om achter te komen welke iconnen er zijn gebruikt en of ze vaker zijn gebruikt.
      * Als eerst krijg je de data mee die de editorcontroller binnen krijgt wanneer hij de service oproept om data op te halen.
