@@ -515,18 +515,15 @@ function editor() {
     }
 
     /**
-     * Verander de positionering van de tekst.
+     * Deze functie is bedoelt om de align te zetten van de tekst.
      * Align links, midden of rechts van de kaart
      * @param kant aan welke kant er aligned moet worden.
-     * @param marge De afstand vanaf de rand van de kaart.
-     * @param image Het plaatje bij de align positie.
+     * @param image Het plaatje bij de align positie die verandertmoet worden.
      */
-    this.setAlign = function (kant, marge, image) {
+    this.setAlign = function (kant, image) {
         var objectSelected = canvas.getActiveObject();
-        if (objectSelected.type = "text") {
+        if (objectSelected && objectSelected.type === "text") {
             objectSelected.textAlign = kant;
-//            objectSelected.originX = kant;
-//            objectSelected.left = marge;
             setButtonImages(image);
         }
         canvas.calcOffset();
@@ -534,8 +531,14 @@ function editor() {
     }
 
     /**
-     * De colorpicker.
-     * Hiermee wordt de kleur voor de achtergrond of object gekozen.
+     * De functie colorPicker is bedoeld om de kleurDe colorpicker.
+     * Hiermee wordt de kleur voor de achtergrond van de canvas verandert.
+     * Indien het een text object is wordt de kleur van de tekst veranderen wanneer je op de tab tekst bent.
+     * De achtergrondkler wordt alleen verandert als je op tab kleur zit of envelop (dan verander hij de achtergrondkleur van de envelop).
+     * Eerst wordt de picker opgehaald en context.
+     * dat wordt een nieuwe imagegemaakt en deze in de canvas picker gezet.
+     * Wanneer je op de picker klikt kijkt hij dus eerst op welke tab je bent om te weten wat hij moet verwijderen.
+     * Om de kleur te weten wordt er gekeken op welke positie je klikt en op die positie haalt hij de rgb van 1 pixel en geeft dat mee.
      */
     function colorpicker() {
         var c = document.getElementById("picker");
@@ -543,7 +546,7 @@ function editor() {
         var image = new Image();
         image.src = "Content/images/colorwheel.png";
         image.onload = function () {
-            ctx.drawImage(image, 1, 1)
+            ctx.drawImage(image, 0, 0)
         }
 
         function geefKleur(e) {
@@ -562,7 +565,7 @@ function editor() {
         //hier kies je een kleur eventhandler
         $('#picker').click(function (e) {
             var kleurPixel = geefKleur(e);
-            if (TAB == "Bewerken1") {
+            if (TAB === "Bewerken1") {
                 if (canvas.getActiveObject() && canvas.getActiveObject().type === "text") {
                     console.log("text object selected");
                     kleurtext(canvas.getActiveObject(), kleurPixel);
@@ -570,7 +573,7 @@ function editor() {
                     console.log("no text object selected");
                 }
             }
-            else if (TAB == "Bewerken4" || TAB == "Bewerken5") {
+            else if (TAB === "Bewerken4" || TAB === "Bewerken5") {
                 vulKleur(kleurPixel);
             }
             canvas.calcOffset();
@@ -579,6 +582,7 @@ function editor() {
 
     /**
      * Deze functie is bedoeld om de achtergrond plaatje te veranderen en achtergrondkleur te verwijderen.
+     * Eerst wordt de achtergrond gecleared.
      *
      */
     document.getElementById('achtergrondImage').onchange = function handleImage(e) {
