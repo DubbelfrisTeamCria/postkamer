@@ -1,12 +1,33 @@
 function editor() {
 //    "use strict";
+    /**
+     * De brigntessOn, GrayscaleOn, SepiaOn zijn allemaal bedoeld om te zien of er een filter op een foto zit.
+     * @type {Boolean} : boolean of er wel of niet een filter zit
+     */
     var BrightnessOn = false,
         GrayscaleOn = false,
         SepiaOn = false,
+        /**
+         * Als je op de envelop zit om die te kunenn aanpassen
+         * @type {Boolean} : Boolean om te zien of je de canvas envelop hebt
+         */
         EnvelopOn = false,
+        /**
+         * De icoon die je gebruikt bij de envelop.
+         * @type {Object} : image object
+         */
         currentIcoon,
+        /**
+         * imagesOnCanvas is een array met alle images die je hebt geadd op de canvas
+         * imagesOnCanvasDouble is een array met alle images die vaker voorkomen op de canvas.
+         * @type {Array} : een array met gebruikte iconen op canvas.
+         */
         imagesOnCanvas =[],
         imagesOnCanvasDouble=[],
+        /**
+         * images is een array met alle iconen src erin
+         * @type {Array} : een array met iconen die je kunt gebruiken op de canvas.
+         */
         images = [
             "Content/images/icons/plaatje01.png",
             "Content/images/icons/plaatje02.png",
@@ -31,15 +52,34 @@ function editor() {
             "Content/images/icons/plaatje21.png",
             "Content/images/icons/plaatje22.png"
         ],
+        /**
+         * De canvas waar je op wil editen (current canvas)
+         * @type {Canvas} : De canvas waarom je wil werken
+         */
         canvas = null,
+        /**
+         * De tab waar je op staat
+         * @type {String} : De tab waar je op hebt geklikt, default begin tekst tab.
+         */
         TAB = "Bewerken1",
+        /**
+         * voorkantcanvas, middelstecanvas en envelopcanvas zijn de nieuwe fabric canvassen die worden gemaakt aan het begin.
+         * @type {Object} : Fabric Canvas aangemaakt.
+         */
         voorkantcanvas = new fabric.Canvas('canvas'),
         middelsteCanvas = new fabric.Canvas(getMiddelsteCanvas()),
         envelopcanvas = new fabric.Canvas('envelopcanvas'),
+        /**
+         * De link naar de id van de canvassen ( De canvassen dus)
+         * @type {Object} : specifieke Fabric Canvas.
+         */
         voorkant = $("#canvas"),
         middelste = getMiddelste(),
         envelop = $("#envelopcanvas"),
-        tekstMarge = 50,
+        /**
+         * Standaard breedte van image wanneer je hem inlaad.
+         * @type {Integer} : standaard breedte.
+         */
         standaardImageBreedte = 200;
 
     setHidden();
