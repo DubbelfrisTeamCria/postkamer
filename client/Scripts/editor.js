@@ -851,23 +851,50 @@ function editor() {
         }
     }
 
-
+    /**
+     * Deze functie wordt opgeroepen wanneer je op de selectbox klikt voor de tekst.
+     * Eerst wordt de geselecteerde object opgesalegn in een variable indien er een object is geselecteerd en het is van de type text wordt de font aangepast.
+     * Indien het geen tekst is wordt er een alert gegeven om een tekst eerst te selecteren.
+     * Wanneer je een text object hebt geselecteerd wordt er eerst gekeken naar de combobox en daarna daar de geselecteerde option.
+     * De tekst die in de option zit slaat hij op als selected en geeft dat mee aan de setChange functie.
+     * In de setChange functie verandert hij de font en daarna set hij de canvas goed en rendert het zodat je het kunt zien op de canvas.
+     */
     $('#combo').click(function (e) {
         var text = canvas.getActiveObject();
-        if (text) {
+        if (text && text.type === "text") {
             this.setFont = function() {
                 var combobox = document.getElementById("combo");
                 var selected = combobox.options[combobox.selectedIndex].text;
                 setChange("fontFamily", selected);
+                canvas.calcOffset();
+                canvas.renderAll();
             }
         }
         else {
             alert("u moet eerst een tekst selecteren!!");
         }
-        canvas.calcOffset();
-        canvas.renderAll();
     });
 
+    /**
+     * De functie loadTemplatePublic wordt opgeroepen om de template te laden.
+     * De data van alle objecten wordt hiermee doorgegeven en de achtergrond, deze worden dan toegepast op de canvas.
+     * Daarna wordt de canvas gerenderd om alles op de canvas te zien.
+     * @param data : de data die wordt meegegen nadat je een template hebt gekozen en verder ging.
+     */
+    this.loadTemplatePubliek = function(data) {
+        canvas.loadFromJSON(data.voorkant);
+        canvas.renderAll();
+    }
+
+    /**
+     * De functie loadTemplate wordt net als loadTemplatePublic opgeroepen om de template te laden.
+     * Het enige verschild tussen deze twee is dat de loadTemplate bedoeld is als je je eigen specifieke kaart wil bewerken die je eerder hebt gemaakt.
+     * Hij krijgt de data binnen en door laodRromJson op de roepen en de data mee te geven wordt dit op de canvas gezet.
+     * Her verschil tussen public en private s dus dat je bij public iedereen het kan zien en je hebt alleen de voorkant,
+     * Bij private is het je eigen kaart die je hebt gemaakt en de voorkant, midden en envelop worden opgehaald en op de canvas gezet.
+     * Daarna worden alle canvassen gerendered waardoor je alle objecten ook ziet op de canvassen.
+     * @param data
+     */
     this.loadTemplate = function(data) {
         canvas.loadFromJSON(data.voorkant);
         middelsteCanvas.loadFromJSON(data.midden);
@@ -877,17 +904,23 @@ function editor() {
         envelopcanvas.renderAll();
     }
 
-    this.loadTemplatePubliek = function(data) {
-        canvas.loadFromJSON(data.voorkant);
-        canvas.renderAll();
-    }
-
-    this.TemplateGekozen = function(data){
-        var response = JSON.parse(data.voorkant)
+   /**
+     * De functie templateGekozen is bedoeld om de array imagesOnCanvas en imagesOnCanvasDouble up to daten.
+     * Deze functie wordt opgeroepen wanneer je een template hebt gekozen. De bedoeling van deze functie is om achter te komen welke iconnen er zijn gebruikt en of ze vaker zijn gebruikt.
+     * Als eerst krijg je de data mee die de editorcontroller binnen krijgt wanneer hij de service oproept om data op te halen.
+     * De data is json data en deze wordt eers geparsed zodat je de data kunt gebruiken.
+     * Dan wordt er gekeken of er type image objecten zijn indien er images zijn gaat hij kijken of de image wel een icoon is.
+     * Om te checken of het een icoon is gaat hij dus door een loop en kijkt of hij in de array images voorkomt.
+     * Indien hij een icoon is wordt de setIcoonsUsed functie opgeroepen om de array imagesOnCanvas en imagesOnCanvasDouble te updaten voor wanneer je een icoon wil gebruiken op de envelop.
+     * @param data
+     * @constructor
+     */
+    this.templateGekozen = function(data){
+        var response = JSON.parse(data.voorkant);
         for(var i = 0; i <response.objects.length; i++){
             if(response.objects[i].type === "image"){
                 var currentImage = response.objects[i].src.split("/").pop();
-                for(var j = 0 ; j<images.length; j++){
+                for(var j = 0 ; j<images.length; j++) {
                     if(currentImage === images[j].split("/").pop()) {
                         setIcoonsUsed(currentImage);
                     }
@@ -896,6 +929,22 @@ function editor() {
         }
     };
 
+    /**
+     * De functie setIcoonsUsed is bedoeld om bij te houden welke icoons je gebruikt op de kaart(canvas) en of ze vaker worden gebruikt.
+     * Deze functie wordt gebruikt bij maakGallery en TemplateGekozen.
+     * In de maakGallery wordt hij gebruikt wanneer je op een img klikt, want dan wordt hij toegevoegd aan de canvas en wordt deze ales een imagesOnCanvas opgeslagen.
+     * Hetzelfde geld eigenlij voor TemplateGekozen alleen bestaan de icoons al op de template,
+     * Wanneer je een template laad moet je ook van te voren weten welke icoontje er zijn op de canvas en deze in de array imagesOnCanvas zetten,
+     * wanneer er icoons vaker in voorkomen worden deze in de array imagesOnCanvasDouble gezet.
+     * Wat hij eerst gaat checken is of de array leeg is, indien dit het geval is wordt de image gepushed in de imagesOnCanvas array.
+     * Wanneer er al images in de array zitten zet je eerst de icoonDubbel op false, dan gaat hij door een loop om te kijken of de image waar je op heb geklikt in de array van imagesOnCanvas voorkomt.
+     * Indien de image ook in de array zit wordt deze gepushed in de array imagesOnCanvasDouble, hier worden de images die vaker voorkomen opgeslagen.
+     * Je set de icoonDubbel op true en deze functie is afgelopen.
+     * Indien een image niet dubbel is blijft de icoonDubbel op false en pusht hij de currentImage in de imagesOnCanvas array want hij komt dan niet vaker voor;
+     * De  k = imagesOnCanvas.length +  is bedoelt om uit de loop de komen zodat hij het niet helemaal moet uitvoeren wanneer hij al weet dat de image dubbel is.
+     * Nadat hij vast heeft gesteld of een image dubbel is en heeft gepusht wordt de functie maakGalleryGebruikteIconen opgeroepen om de gupdate gallery te maken voor de envelop.
+     * @param currentImage De image waar je op hebt geklikt (of deze op de template al staat nadat je een template hebt gekozen) die op de canvas komt.
+     */
     function setIcoonsUsed(currentImage) {
         if (imagesOnCanvas.length != 0) {
             var icoonDubbel = false;
@@ -916,6 +965,14 @@ function editor() {
         maakGalleryGebruikteIconen();
     }
 
+    /**
+     * De functie maakGallery is bedoeld om een gallery te maken van de iconen die je op een kaart kunt zetten.
+     * Als eerst haalt hij de div iconGallery op en dan gaat hij door een loop.
+     * In de loop maakt hij een img aan en geeft de src mee van de images(icons) die je kunt gebruiken.
+     * Hij zet dit in de iconGallery, dan komt er een eventhandler wanneer je op de img klikt.
+     * Wanneer je op de icon(img) klikt in de iconGallery wordt deze toegevoegd aan de canvas d.m.v. de functie addImageToCanvas en je geeft de src van de image mee.
+     * Dan wordt de functie setIcoonUsed opgeroepen en je geeft alleen de naam van de image mee( hij split de src en neemt de laatste string).
+     */
     function maakGallery() {
         var iconGallery = document.getElementById("iconGallery");
         for (var i = 0; i < images.length; i++) {
@@ -929,6 +986,7 @@ function editor() {
 
         }
     };
+
     /**
      * De functie maakGalleryGebruikteIconen is bedoeld om een gallery te maken voor de iconen die je gebruikt bij de kaart,
      * Deze gallery wordt gemaakt wanneer je een icoon add op de kaart of een icoon verwijdert.
