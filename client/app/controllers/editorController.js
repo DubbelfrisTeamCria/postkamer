@@ -51,13 +51,11 @@ app.controller('EditorCtrl', function(service, $scope, $location) {
     /**
      * Slaat de kaart van de gebruiker op. (privé kaart.)
      * De kaart wordt in een JSON formaat opgeslagen met de functie getJSON() (in de editor.js).
-     * De data wordt als test uitgeprint in de console.
      * De boolean 'opgeslagen' wordt op true gezet, zodat de gebruiker de editor kan verlaten zonder waarschuwing.
      * Daarna wordt de kaart opgeslagen in de database door de service (zie service.js)
      */
     $scope.save = function() {
         var data = getJSON();
-        console.log(data);
         opgeslagen = true;
         service.saveTemplate(data);
     };
@@ -65,14 +63,12 @@ app.controller('EditorCtrl', function(service, $scope, $location) {
     /**
      * Slaat de kaart van de gebruiker op. (publieke kaart/ template.)
      * De kaart wordt in een JSON formaat opgeslagen met de functie getJSONTemplate() (in de editor.js).
-     * De data wordt als test uitgeprint in de console.
      * De boolean 'opgeslagen' wordt op true gezet, zodat de gebruiker de editor kan verlaten zonder waarschuwing.
      * Daarna wordt de kaart opgeslagen in de database door de service (zie service.js)
      *
      */
     $scope.savePubliek = function() {
         var data = getJSONTemplate();
-        console.log(data);
         opgeslagen = true;
         service.saveTemplate(data);
     };
