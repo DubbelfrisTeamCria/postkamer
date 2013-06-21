@@ -7,14 +7,14 @@
 app.controller('EditorCtrl', function(service, $scope, $location) {
     "use strict";
 
-    var opgeslagen = false;
+    localStorage.opgeslagen = "gewijzigd";
 
     /**
      * Wanneer de gebruiker de editor wil verlaten en de kaart is niet opgeslagen,
      * wordt er een alert getoond om om bevestiging te vragen.
      */
     $scope.$on('$locationChangeStart', function (event, next) {
-        if (!opgeslagen) {
+        if (localStorage.opgeslagen === "gewijzigd") {
             if (!confirm("Je ontwerp is nog niet opgeslagen. Weet je zeker dat je nu naar " + next + " wil gaan?")) {
                 event.preventDefault();
             }
@@ -56,7 +56,7 @@ app.controller('EditorCtrl', function(service, $scope, $location) {
      */
     $scope.save = function() {
         var data = getJSON();
-        opgeslagen = true;
+        localStorage.opgeslagen = "opgeslagen";
         service.saveTemplate(data);
     };
 
@@ -69,7 +69,7 @@ app.controller('EditorCtrl', function(service, $scope, $location) {
      */
     $scope.savePubliek = function() {
         var data = getJSONTemplate();
-        opgeslagen = true;
+        localStorage.opgeslagen = "opgeslagen";
         service.saveTemplate(data);
     };
 
