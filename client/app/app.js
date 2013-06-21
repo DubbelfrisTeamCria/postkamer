@@ -1,93 +1,86 @@
-﻿/// <reference path="../Scripts/angular.js" />
+﻿/*global angular */
 
+/**
+ * de postkamer app
+ * @type {module}
+ */
 var app = angular.module('postkamer', []);
 
-//This configures the routes and associates each route with a view and a controller
+/**
+ * Hier worden de routes geconfigureerd. Elke route wordt met een view en eventueel met een controller geassocieerd.
+ * Wanneer de route niet bestaat, wordt er naar de 'home' view geleid.
+ */
 app.config(function ($routeProvider) {
+    "use strict";
     $routeProvider
-        .when('/home',
-        {
+        .when('/home', {
             controller: 'HomepageCtrl',
             templateUrl: 'app/partials/Homepage.html'
         })
 
-        .when('/templates',
-        {
+        .when('/templates', {
             controller: 'TemplateCtrl',
             templateUrl: 'app/partials/Templates.html'
         })
 
-        .when('/editor',
-        {
+        .when('/editor', {
             controller: 'EditorCtrl',
             templateUrl: 'app/partials/Editor.html'
         })
 
-        .when('/editorEnkel',
-        {
+        .when('/editorEnkel', {
             controller: 'EditorCtrl',
             templateUrl: 'app/partials/EditorEnkel.html'
         })
 
-        .when('/editorStaand',
-        {
+        .when('/editorStaand', {
             controller: 'EditorCtrl',
             templateUrl: 'app/partials/EditorStaand.html'
         })
 
-        .when('/editorStaandEnkel',
-        {
+        .when('/editorStaandEnkel', {
             controller: 'EditorCtrl',
             templateUrl: 'app/partials/EditorStaandEnkel.html'
         })
 
-        .when('/overzicht',
-        {
+        .when('/overzicht', {
             controller: 'OverzichtCtrl',
             templateUrl: 'app/partials/Overzicht.html'
         })
 
-        .when('/overOns',
-        {
+        .when('/overOns', {
             controller: '',
             templateUrl: 'app/partials/OverOns.html'
         })
 
-        .when('/hoeWerktHet',
-        {
+        .when('/hoeWerktHet', {
             controller: '',
             templateUrl: 'app/partials/HoeWerktHet.html'
         })
 
-        .when('/contact',
-        {
+        .when('/contact', {
             controller: '',
             templateUrl: 'app/partials/Contact.html'
         })
 
-        .when('/registreren',
-        {
+        .when('/registreren', {
             controller: '',
             templateUrl: 'app/partials/Registreren.html'
         })
-        .when('/inloggen',
-        {
+        .when('/inloggen', {
             controller: '',
             templateUrl: 'app/partials/inloggen.html'
         })
 
-        .when('/adressen',
-        {
+        .when('/adressen', {
             controller: '',
             templateUrl: 'app/partials/adressen.html'
         })
-        .when('/overzichtformaat',
-        {
+        .when('/overzichtformaat', {
             controller: 'OverzichtCtrl',
             templateUrl: 'app/partials/OverzichtFormaat.html'
         })
-        .when('/versturing',
-        {
+        .when('/versturing', {
             controller: 'OverzichtCtrl',
             templateUrl: 'app/partials/versturing.html'
         })
