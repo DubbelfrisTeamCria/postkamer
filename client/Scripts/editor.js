@@ -781,6 +781,23 @@ function editor() {
             canvas.renderAll();
         }
     }
+    function setBrightness(objectSelected, value) {
+        if (objectSelected.type === "image") {
+            if (BrightnessOn == true) {
+                for (var i = 0; i < objectSelected.filters.length; i++) {
+                    if (objectSelected.filters[i].type == "Brightness") {
+                        objectSelected.filters[i]['brightness'] = value;
+                    }
+                }
+            }
+            if (BrightnessOn == false) {
+                objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness:value }));
+                BrightnessOn = true;
+            }
+            objectSelected.applyFilters(canvas.renderAll.bind(canvas));
+        }
+    }
+
     /**
      * Zet de brightness van het geselecteerde plaatje.
      * Moet niet werken bij tekst.
@@ -788,30 +805,25 @@ function editor() {
     document.getElementById('brightnessSlider').onchange = function() {
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
-        if (objectSelected.type === "image") {
-            if(BrightnessOn == true){
-                for (var i=0;i<objectSelected.filters.length; i++)
-                {
-                    if(objectSelected.filters[i].type == "Brightness") {
-                        objectSelected.filters[i]['brightness'] = value;
-                    }
-                }
-            }
-            if(BrightnessOn == false) {
-                objectSelected.filters.push(new fabric.Image.filters.Brightness({ brightness: value }));
-                BrightnessOn=true;
-            }
-            objectSelected.applyFilters(canvas.renderAll.bind(canvas));
-        }
+        setBrightness(objectSelected, value);
     }
 
     /**
-     * Zet de tint van het geselecteerde plaatje.
-     * Moet niet werken bij tekst.
+     *  Deze functie wordt opgeroepen wanneer je de value verandert van de tint(Sepia) range.
+     *  Dan wordt de brightness filter over de image gezet, dit wordt gedaan vanwegen een bug,
+     *  De bug is: wanneer je geen filters hebt en je past de saturatie aan (dus je zethem aan en dan weer aan) word de foto geset op de originele grootte,
+     *  wat niet moet gebeuren, vanwegen deze bug wordt er dus eerst een filter gezet want als er een filter bestaat komt dit probleem  niet voor.
+     *  Eerst wordt er gekeken of je een object hebt geselecteerd en of het van de type image is.
+     *  Indien dit het geval is kijkt hij eerst naar de value van de range, wanneer hij op 0 staat moet de filter weg (de filter wordt verwijderdt).
+     *  Wanneer er geen filter is wordt er een nieuwe gepushed. Daarna worden de filter gerendered (applied) en je ziet de uitkomst op de canvas.
      */
     document.getElementById('tint').onchange = function() {
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
+        var brigtnessValue = 1;
+        if(objectSelected.filters.length === 0){
+            setBrightness(objectSelected, brigtnessValue)
+        }
         if (objectSelected.type === "image") {
             if(value == 0) {
                 for (var i=0;i<objectSelected.filters.length; i++)
@@ -832,21 +844,30 @@ function editor() {
 
     /**
      *  Deze functie wordt opgeroepen wanneer je de value verandert van de saturatie(zwart-wit) range.
-     *  Eerst
+     *  Dan wordt de brightness filter over de image gezet, dit wordt gedaan vanwegen een bug,
+     *  De bug is: wanneer je geen filters hebt en je past de saturatie aan (dus je zethem aan en dan weer aan) word de foto geset op de originele grootte,
+     *  wat niet moet gebeuren, vanwegen deze bug wordt er dus eerst een filter gezet want als er een filter bestaat komt dit probleem  niet voor.
+     *  Eerst wordt er gekeken of je een object hebt geselecteerd en of het van de type image is.
+     *  Indien dit het geval is kijkt hij eerst naar de value van de range, wanneer hij op 0 staat moet de filter weg (de filter wordt verwijderdt).
+     *  Wanneer er geen filter is wordt er een nieuwe gepushed. Daarna worden de filter gerendered (applied) en je ziet de uitkomst op de canvas.
      */
     document.getElementById('saturatie').onchange = function() {
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
+        var brigtnessValue = 1;
+        if(objectSelected.filters.length === 0){
+            setBrightness(objectSelected, brigtnessValue)
+        }
         if (objectSelected && objectSelected.type === "image") {
-            if(value == 0){
+            if((value === 0) && (objectSelected.filters.length != 0) && (GrayscaleOn === true)){
                 for (var i=0;i<objectSelected.filters.length; i++) {
-                    if(objectSelected.filters[i].type == "Grayscale") {
+                    if(objectSelected.filters[i].type === "Grayscale") {
                         objectSelected.filters.splice(i,1);
                         GrayscaleOn=false;
                     }
                 }
             }
-            else {
+            else if(GrayscaleOn === false) {
                 objectSelected.filters.push(new fabric.Image.filters.Grayscale);
                 GrayscaleOn=true;
             }
