@@ -11,24 +11,24 @@ function editor() {
          * Als je op de envelop zit om die te kunenn aanpassen
          * @type {Boolean} : Boolean om te zien of je de canvas envelop hebt
          */
-        EnvelopOn = false,
+            EnvelopOn = false,
         /**
          * De icoon die je gebruikt bij de envelop.
          * @type {Object} : image object
          */
-        currentIcoon,
+            currentIcoon,
         /**
          * imagesOnCanvas is een array met alle images die je hebt geadd op de canvas
          * imagesOnCanvasDouble is een array met alle images die vaker voorkomen op de canvas.
          * @type {Array} : een array met gebruikte iconen op canvas.
          */
-        imagesOnCanvas =[],
+            imagesOnCanvas =[],
         imagesOnCanvasDouble=[],
         /**
          * images is een array met alle iconen src erin
          * @type {Array} : een array met iconen die je kunt gebruiken op de canvas.
          */
-        images = [
+            images = [
             "Content/images/icons/plaatje01.png",
             "Content/images/icons/plaatje02.png",
             "Content/images/icons/plaatje03.png",
@@ -56,31 +56,31 @@ function editor() {
          * De canvas waar je op wil editen (current canvas)
          * @type {Canvas} : De canvas waarom je wil werken
          */
-        canvas = null,
+            canvas = null,
         /**
          * De tab waar je op staat
          * @type {String} : De tab waar je op hebt geklikt, default begin tekst tab.
          */
-        TAB = "Bewerken1",
+            TAB = "Bewerken1",
         /**
          * voorkantcanvas, middelstecanvas en envelopcanvas zijn de nieuwe fabric canvassen die worden gemaakt aan het begin.
          * @type {Object} : Fabric Canvas aangemaakt.
          */
-        voorkantcanvas = new fabric.Canvas('canvas'),
+            voorkantcanvas = new fabric.Canvas('canvas'),
         middelsteCanvas = new fabric.Canvas(getMiddelsteCanvas()),
         envelopcanvas = new fabric.Canvas('envelopcanvas'),
         /**
          * De link naar de id van de canvassen ( De canvassen dus)
          * @type {Object} : specifieke Fabric Canvas.
          */
-        voorkant = $("#canvas"),
+            voorkant = $("#canvas"),
         middelste = getMiddelste(),
         envelop = $("#envelopcanvas"),
         /**
          * Standaard breedte van image wanneer je hem inlaad.
          * @type {Integer} : standaard breedte.
          */
-        standaardImageBreedte = 200;
+            standaardImageBreedte = 200;
 
     setHidden();
     colorpicker();
@@ -409,45 +409,46 @@ function editor() {
 
     /**
      * Voeg het achtergrondplaatje toe van de kaart (als overlay) en zet deze vast.
+     * Dit moet alleen werken bij een dubbele kaart.
      */
     function addImageBackground() {
-        var imgObj = new Image();
-        var image = new fabric.Image(imgObj);
         var shadowcard = "shadowcard.png";
-        var posleft = 325;
-        var postop = 250;
+        var posleft;
+        var postop;
 
-        if (localStorage.positie === "liggend") {
-            shadowcard = "shadowcard.png";
-            posleft = 325;
-            postop = 250;
+        if (localStorage.enkel === "dubbel") {
+            if (localStorage.positie === "liggend") {
+                shadowcard = "shadowcard.png";
+                posleft = 325;
+                postop = 325;
+            }
+            else if (localStorage.positie === "staand") {
+                shadowcard = "shadowcard2.png";
+                posleft = 325;
+                postop = 350;
+            }
+            var imgObj = new Image();
+            imgObj.src = "Content/images/" + shadowcard;
+            imgObj.onload = function () {
+                var image = new fabric.Image(imgObj);
+                image.set({
+                    left: posleft,
+                    top: postop,
+                    angle: 90,
+                    padding: 0,
+                    cornersize: 10
+                });
+                middelsteCanvas.add(image);
+                image.sendToBack();
+                image.lockMovementX = true;
+                image.lockMovementY = true;
+                image.lockRotation = true;
+                image.selectable = false;
+            }
+            middelsteCanvas.calcOffset();
+            middelsteCanvas.renderAll();
         }
-        else if (localStorage.positie === "staand") {
-            shadowcard = "shadowcard2.png";
-            posleft = 250;
-            postop = 325;
-        }
-        imgObj.src = "Content/images/" + shadowcard;
-        imgObj.onload = function () {
-            image.set({
-                left: posleft,
-                top: postop,
-                angle: 0,
-                padding: 10,
-                cornersize: 10
-            });
-        }
-        middelsteCanvas.add(image);
-        image.sendToBack();
-        image.lockMovementX = true;
-        image.lockMovementY = true;
-        image.lockRotation = true;
-        image.lockUniScaling = true;
-        image.selectable = false;
-        // end fabricJS stuff
-        canvas.calcOffset();
-        canvas.renderAll();
-    };
+    }
 
     /**
      * Deze functie zet een image op de canvas.
@@ -1049,7 +1050,7 @@ function editor() {
         envelopcanvas.renderAll();
     };
 
-   /**
+    /**
      * De functie templateGekozen is bedoeld om de array imagesOnCanvas en imagesOnCanvasDouble up to daten.
      * Deze functie wordt opgeroepen wanneer je een template hebt gekozen. De bedoeling van deze functie is om achter te komen welke iconnen er zijn gebruikt en of ze vaker zijn gebruikt.
      * Als eerst krijg je de data mee die de editorcontroller binnen krijgt wanneer hij de service oproept om data op te halen.
