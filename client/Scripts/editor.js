@@ -1172,10 +1172,6 @@ function editor() {
         return gallery;
     };
 
-    this.naarTempalte = function(){
-
-    };
-
     $('#volgendeknop').click(function(e){
         e.stopPropagation();
         alert("Dit is niet geïmplementeerd");
