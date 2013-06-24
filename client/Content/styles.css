@@ -50,6 +50,18 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Rosewoon Std';
+    src: url('../Content/fonts/Rosewood Std.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'basictitlefont';
+    src: url('../Content/fonts/basictitlefont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 body {
