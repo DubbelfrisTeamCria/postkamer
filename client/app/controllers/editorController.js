@@ -82,7 +82,6 @@ app.controller('EditorCtrl', function(service, $scope, $location) {
      * wordt de kaart meegegeven aan loadTemplatePubliek() en templateGekozen() (zie editor.js).
      */
     service.async().then(function (data) {
-        document.body.style.cursor = 'wait';
         var kaart;
         for (kaart = 0; kaart < data.length; kaart++) {
             if (data[kaart]._id.$oid === localStorage.selectedId) {
