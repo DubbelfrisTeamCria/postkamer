@@ -57,6 +57,7 @@ app.controller('EditorCtrl', function(service, $scope, $location) {
     $scope.save = function() {
         var data = getJSON();
         localStorage.opgeslagen = "opgeslagen";
+        alert("Het ontwerp is opgeslagen.");
         service.saveTemplate(data);
     };
 
@@ -70,6 +71,7 @@ app.controller('EditorCtrl', function(service, $scope, $location) {
     $scope.savePubliek = function() {
         var data = getJSONTemplate();
         localStorage.opgeslagen = "opgeslagen";
+        alert("De publieke template is opgeslagen.");
         service.saveTemplate(data);
     };
 
