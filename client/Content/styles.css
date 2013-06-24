@@ -15,6 +15,42 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'cookie';
+    src: url('../Content/fonts/Cookie-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+    font-family: 'Bondoluo Peek';
+    src: url('../Content/fonts/BondoluoPeek.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Harabara Hand';
+    src: url('../Content/fonts/HarabaraHand.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Simply Glamorous';
+    src: url('../Content/fonts/Simply Glamorous.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Marcelle';
+    src: url('../Content/fonts/Marcsc___.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Bebas';
+    src: url('../Content/fonts/BEBAS___.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 body {
     background: url('../Content/images/achtergrondwebsite.jpg');
