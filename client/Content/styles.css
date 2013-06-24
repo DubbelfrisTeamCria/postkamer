@@ -174,7 +174,18 @@ h5{
     width: 180px;
     height: 240px;
     margin: 50px 10px 10px 10px;
-    background-color: #ffffff;      /*temp*/
+}
+
+#verhuizen {
+    background-image: url("images/Verhuizen.png");
+}
+
+#samenwonen {
+    background-image: url("images/samenwonen.png");
+}
+
+#housewarming {
+    background-image: url("images/Housewarming.png");
 }
 
 /*Template Partial:*/

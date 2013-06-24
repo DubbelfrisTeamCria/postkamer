@@ -25,6 +25,7 @@ app.factory('service', function($http) {
                 var promise = $http.get(url).then(function (response) {
                     return response.data;
                 });
+                document.body.style.cursor = 'wait';
                 return promise;
             },
             /**
