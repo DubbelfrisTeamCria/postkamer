@@ -136,7 +136,3 @@ function selecteerTemplate() {
     });
     getEnkelOfDubbel();
 }
-/*
- * Hier worden de fonts geladen voor de editor.
- */
-$('#FontsLoader').hide();

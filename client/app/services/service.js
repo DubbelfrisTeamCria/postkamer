@@ -14,7 +14,7 @@ app.factory('service', function($http) {
 
         service = {
             /**
-             * Hiermee wordt de data wordt asynchroon opgehaald.
+             * Hiermee wordt de data asynchroon opgehaald.
              * In de controller is de data bereikbaar door 'then' toe te voegen:
              * 'service.async().then(function (data) { doe iets met de data }
              *
