@@ -139,3 +139,13 @@ function selecteerTemplate() {
     getEnkelOfDubbel();
 }
 
+/**
+ * Deze functie zet een overlay in de body zolang hij laad.
+ */
+function addOverlay(){
+    var overlay = document.createElement('div');
+    overlay.id = 'overlay';
+    overlay.className = 'overlay';
+    document.body.appendChild(overlay);
+};
+

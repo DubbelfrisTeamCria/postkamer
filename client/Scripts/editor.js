@@ -1075,6 +1075,7 @@ function editor() {
      * @constructor
      */
     this.templateGekozen = function(data){
+        document.body.removeChild(document.getElementById('overlay'));
         var response = JSON.parse(data.voorkant);
         for(var i = 0; i <response.objects.length; i++){
             if(response.objects[i].type === "image"){
@@ -1189,4 +1190,11 @@ function editor() {
         e.stopPropagation();
         alert("Dit is niet geïmplementeerd");
     });
+
+    this.addOverlay = function(){
+        var overlay = document.createElement('div');
+        overlay.id = 'overlay';
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+    };
 }

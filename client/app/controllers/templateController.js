@@ -15,6 +15,7 @@ app.controller('TemplateCtrl', function(service) {
      * Daarna worden de de juiste functies toegevoegd via selecteerTemplate. (main.js)
      */
     service.async().then(function(data) {
+        document.body.removeChild(document.getElementById('overlay'));
         var kaart;
         for (kaart = 0; kaart < data.length; kaart++) {
             if (data[kaart].categorie === localStorage.categorie && data[kaart].private === "false") { //false als boolean gaf problemen
