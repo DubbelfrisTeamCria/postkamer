@@ -127,11 +127,21 @@ function editor() {
     }
 
     /**
+     * Zet de geselecteerde button op bold
+     * @param button de geselecteerde button
+     */
+    function setBoldButton(button) {
+        $('#navKaart button').css('font-weight', 'normal');
+        $(button).css('font-weight', 'bold');
+    }
+
+    /**
      * Zet alle kaart kanten, behalve de voorkant op onzichtbaar.
      * Wanneer de kaart geladen is, is de voorkant van de kaart als eerst in beeld.
      */
     function setHidden() {
         canvas = voorkantcanvas;
+        $('#voorKant').css('font-weight', 'bold');
         voorkant.parent().css('margin-right', '325px');
         middelste.parent().css('display' ,'none');
         envelop.parent().css('display' ,'none');
@@ -149,6 +159,7 @@ function editor() {
         envelop.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
+        setBoldButton(this);
         if(EnvelopOn == true){
             EnvelopOn=false;
             setDisplayKaart();
@@ -165,6 +176,7 @@ function editor() {
         envelop.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
+        setBoldButton(this);
         if(EnvelopOn == true) {
             EnvelopOn=false;
             setDisplayKaart();
@@ -181,6 +193,7 @@ function editor() {
         voorkant.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
+        setBoldButton(this);
         EnvelopOn=true;
         setDisplayEnvelop();
     });
