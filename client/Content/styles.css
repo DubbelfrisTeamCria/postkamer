@@ -92,6 +92,7 @@ body {
     background: url('../Content/images/achtergrondwebsite.jpg');
     padding: 0;
     margin: 0;
+    height: 90%;
 }
 
 #animated-view {
@@ -100,6 +101,7 @@ body {
 
 html {
     overflow-y: scroll;
+    height: 90%;
 }
 
 html * {
