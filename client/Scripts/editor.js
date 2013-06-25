@@ -1190,11 +1190,4 @@ function editor() {
         e.stopPropagation();
         alert("Dit is niet geïmplementeerd");
     });
-
-    this.addOverlay = function(){
-        var overlay = document.createElement('div');
-        overlay.id = 'overlay';
-        overlay.className = 'overlay';
-        document.body.appendChild(overlay);
-    };
 }
