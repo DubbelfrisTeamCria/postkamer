@@ -22,8 +22,8 @@ function editor() {
          * imagesOnCanvasDouble is een array met alle images die vaker voorkomen op de canvas.
          * @type {Array} : een array met gebruikte iconen op canvas.
          */
-            imagesOnCanvas =[],
-        imagesOnCanvasDouble=[],
+            imagesOnCanvas = [],
+        imagesOnCanvasDouble = [],
         /**
          * images is een array met alle iconen src erin
          * @type {Array} : een array met iconen die je kunt gebruiken op de canvas.
@@ -102,7 +102,7 @@ function editor() {
         var m = null;
         if (localStorage.enkel == "dubbel") {
             addImageBackground();
-            m =  $("#binnenkantcanvas");
+            m = $("#binnenkantcanvas");
         }
         else if (localStorage.enkel == "enkel") {
             m = $("#achterkantcanvas");
@@ -143,8 +143,8 @@ function editor() {
         canvas = voorkantcanvas;
         $('#voorKant').css('font-weight', 'bold');
         voorkant.parent().css('margin-right', '325px');
-        middelste.parent().css('display' ,'none');
-        envelop.parent().css('display' ,'none');
+        middelste.parent().css('display', 'none');
+        envelop.parent().css('display', 'none');
         canvas.calcOffset();
         canvas.renderAll();
     }
@@ -152,16 +152,16 @@ function editor() {
     /**
      * Zet de voorkant van de kaart in beeld en verbergt de rest.
      */
-    $('#voorKant').click(function() {
+    $('#voorKant').click(function () {
         canvas = voorkantcanvas;
-        voorkant.parent().css('display' ,'block');
-        middelste.parent().css('display' ,'none');
-        envelop.parent().css('display' ,'none');
+        voorkant.parent().css('display', 'block');
+        middelste.parent().css('display', 'none');
+        envelop.parent().css('display', 'none');
         canvas.calcOffset();
         canvas.renderAll();
         setBoldButton(this);
-        if(EnvelopOn == true){
-            EnvelopOn=false;
+        if (EnvelopOn == true) {
+            EnvelopOn = false;
             setDisplayKaart();
         }
     });
@@ -169,16 +169,16 @@ function editor() {
     /**
      * Zet de binnenkant of achterkant van de kaart in beeld en verbergt de rest.
      */
-    $('#binnenKant, #achterKant').click(function() {
+    $('#binnenKant, #achterKant').click(function () {
         canvas = middelsteCanvas;
-        middelste.parent().css('display' ,'block');
-        voorkant.parent().css('display' ,'none');
-        envelop.parent().css('display' ,'none');
+        middelste.parent().css('display', 'block');
+        voorkant.parent().css('display', 'none');
+        envelop.parent().css('display', 'none');
         canvas.calcOffset();
         canvas.renderAll();
         setBoldButton(this);
-        if(EnvelopOn == true) {
-            EnvelopOn=false;
+        if (EnvelopOn == true) {
+            EnvelopOn = false;
             setDisplayKaart();
         }
     });
@@ -186,15 +186,15 @@ function editor() {
     /**
      * Zet de envelop in beeld en verbergt de rest.
      */
-    $('#envelop').click(function() {
+    $('#envelop').click(function () {
         canvas = envelopcanvas;
-        envelop.parent().css('display' ,'block');
-        middelste.parent().css('display' ,'none');
-        voorkant.parent().css('display' ,'none');
+        envelop.parent().css('display', 'block');
+        middelste.parent().css('display', 'none');
+        voorkant.parent().css('display', 'none');
         canvas.calcOffset();
         canvas.renderAll();
         setBoldButton(this);
-        EnvelopOn=true;
+        EnvelopOn = true;
         setDisplayEnvelop();
     });
 
@@ -204,18 +204,18 @@ function editor() {
      * Alle kanten van de kaart worden hierin opgeslagen.
      * @return {*} het canvas als json.
      */
-    this.getJSON = function() {
+    this.getJSON = function () {
         var template = {
-            "private": "true",
-            "positie": localStorage.positie,
-            "categorie": localStorage.categorie,
-            "voorkant": JSON.stringify(voorkantcanvas),
-            "midden": JSON.stringify(middelsteCanvas),
+            "private":"true",
+            "positie":localStorage.positie,
+            "categorie":localStorage.categorie,
+            "voorkant":JSON.stringify(voorkantcanvas),
+            "midden":JSON.stringify(middelsteCanvas),
             "envelop":JSON.stringify(envelopcanvas),
             "templatePng":voorkantcanvas.toDataURL("image/png"),
-            "middenPng": middelsteCanvas.toDataURL("image/png"),
+            "middenPng":middelsteCanvas.toDataURL("image/png"),
             "achterkantPng":envelopcanvas.toDataURL("image/png")
-        }
+        };
         console.log(template);
         return template;
     }
@@ -228,12 +228,12 @@ function editor() {
      * welke de gebruiker als een beginpunt kan gebruiken voor zijn/ haar ontwerp.
      * @return {*} het canvas als json.
      */
-    this.getJSONTemplate = function() {
+    this.getJSONTemplate = function () {
         var template = {
-            "private": "false",
-            "positie": localStorage.positie,
-            "categorie": localStorage.categorie,
-            "voorkant": JSON.stringify(voorkantcanvas),
+            "private":"false",
+            "positie":localStorage.positie,
+            "categorie":localStorage.categorie,
+            "voorkant":JSON.stringify(voorkantcanvas),
             "templatePng":voorkantcanvas.toDataURL("image/png")
         }
         console.log(template);
@@ -244,41 +244,73 @@ function editor() {
      * Hiermee worden de onclick events gezet op de editor tools.
      */
     function setOnclick() {
-        $('#bold').click(function(e){setBold(this);});
-        $('#italic').click(function(e){setItalic(this);});
-        $('#underline').click(function(e){ setUnderline(this);});
-        $('#prullenbak').click(function(e){ removeObject(this);});
-        $('#plus').click(function(e){ addText2(askText());});
-        $('#bringToFront').click(function(e){ bringToFront(this);});
-        $('#bringToBack').click(function(e){ sendToBack(this);});
-        $('#align1').click(function() {setAlign('left',this);});
-        $('#align2').click(function() {setAlign('center',this);});
-        $('#align3').click(function() {setAlign('right',this);});
+        $('#bold').click(function (e) {
+            setBold(this);
+        });
+        $('#italic').click(function (e) {
+            setItalic(this);
+        });
+        $('#underline').click(function (e) {
+            setUnderline(this);
+        });
+        $('#prullenbak').click(function (e) {
+            removeObject(this);
+        });
+        $('#plus').click(function (e) {
+            addText2(askText());
+        });
+        $('#bringToFront').click(function (e) {
+            bringToFront(this);
+        });
+        $('#bringToBack').click(function (e) {
+            sendToBack(this);
+        });
+        $('#align1').click(function () {
+            setAlign('left', this);
+        });
+        $('#align2').click(function () {
+            setAlign('center', this);
+        });
+        $('#align3').click(function () {
+            setAlign('right', this);
+        });
     }
 
     /**
      * Verander de cursor bij onhover op bepaalde elementen.
      */
     function changeCursor() {
-        $('.tabs > li').hover(function() {$(this).css('cursor','pointer');}); //handje
-        $('.tabscontent div img').hover(function() {$(this).css('cursor','pointer');}); //handje
-        $('.tabscontent input').hover(function() {$(this).css('cursor','pointer');}); //handje
-        $('.knop').hover(function() {$(this).css('cursor','pointer');}); //handje
-        $('.tabscontent div label').hover(function() {$(this).css('cursor','default');}); //default
-        $('#picker').hover(function() {$(this).css('cursor','crosshair');}); //kruisje
+        $('.tabs > li').hover(function () {
+            $(this).css('cursor', 'pointer');
+        }); //handje
+        $('.tabscontent div img').hover(function () {
+            $(this).css('cursor', 'pointer');
+        }); //handje
+        $('.tabscontent input').hover(function () {
+            $(this).css('cursor', 'pointer');
+        }); //handje
+        $('.knop').hover(function () {
+            $(this).css('cursor', 'pointer');
+        }); //handje
+        $('.tabscontent div label').hover(function () {
+            $(this).css('cursor', 'default');
+        }); //default
+        $('#picker').hover(function () {
+            $(this).css('cursor', 'crosshair');
+        }); //kruisje
     }
 
     /**
      * De tekst die geselecteerd is mag niet worden vergroot
      */
-    canvas.on('object:selected', function(options) {
+    canvas.on('object:selected', function (options) {
         if (options.target.type === "text") {
             options.target.lockScalingX = true;
             options.target.lockScalingY = true;
             options.target.set({
-                borderColor: 'grey',
-                cornerSize: 10,
-                cornerColor: 'grey'
+                borderColor:'grey',
+                cornerSize:10,
+                cornerColor:'grey'
             });
         }
     });
@@ -291,19 +323,19 @@ function editor() {
         TAB = this.id;
         e.preventDefault();
         setVisibleTabAndPLus();
-        for(var i=1; i<6; i++) {
-            var temp = "Bewerken"+i;
-            var tab = document.getElementById("Bewerken"+i);
-            var content = document.getElementById("tabpage_"+i);
-            if(tab.id === TAB) {
-                this.firstChild.src= "Content/images/tab"+i+"Select.png";
+        for (var i = 1; i < 6; i++) {
+            var temp = "Bewerken" + i;
+            var tab = document.getElementById("Bewerken" + i);
+            var content = document.getElementById("tabpage_" + i);
+            if (tab.id === TAB) {
+                this.firstChild.src = "Content/images/tab" + i + "Select.png";
                 content.style.display = "block";
             }
             else {
-                if(tab.id != "Bewerken5") {
-                    tab.firstChild.src= "Content/images/tab"+i+".png";
+                if (tab.id != "Bewerken5") {
+                    tab.firstChild.src = "Content/images/tab" + i + ".png";
                 } else {
-                    tab.style.display="none";
+                    tab.style.display = "none";
                 }
                 content.style.display = "none";
             }
@@ -314,11 +346,11 @@ function editor() {
      * Deze functie is bedoeld voor het zetten van de displays van de tabs en extra bewerk opties die naast de canvas zitten wanneer hij op een envelop zit.
      */
     function setDisplayEnvelop() {
-        if(EnvelopOn == true) {
+        if (EnvelopOn == true) {
             TAB = 'Bewerken5';
             setVisibleTabAndPLus();
             var tabs;
-            for(var tabs = 1; tabs < 6; tabs++) {
+            for (var tabs = 1; tabs < 6; tabs++) {
                 var tab = document.getElementById("Bewerken" + tabs);
                 var content = document.getElementById("tabpage_" + tabs);
                 if (tab.id === TAB) {
@@ -343,12 +375,12 @@ function editor() {
             for (var i = 1; i < 6; i++) {
                 var tab = document.getElementById("Bewerken" + i);
                 var content = document.getElementById("tabpage_" + i);
-                if(tab.id === TAB) {
+                if (tab.id === TAB) {
                     content.style.display = "block";
                     tab.style.display = "block"
-                    tab.firstChild.src = "Content/images/tab"+i+"Select.png";
+                    tab.firstChild.src = "Content/images/tab" + i + "Select.png";
                 } else {
-                    if(tab.id != "Bewerken5") {
+                    if (tab.id != "Bewerken5") {
                         tab.style.display = "block";
                         tab.firstChild.src = "Content/images/tab" + i + ".png";
                     } else {
@@ -392,13 +424,13 @@ function editor() {
             imgObj.onload = function () {
                 var image = new fabric.Image(imgObj);
                 image.set({
-                    left: 250,
-                    top: 250,
-                    angle: 0,
-                    padding: 10,
-                    cornersize: 10,
-                    height: berekenHoogte(image.height, image.width),
-                    width: standaardImageBreedte
+                    left:250,
+                    top:250,
+                    angle:0,
+                    padding:10,
+                    cornersize:10,
+                    height:berekenHoogte(image.height, image.width),
+                    width:standaardImageBreedte
                 });
                 canvas.add(image);
             }
@@ -414,9 +446,9 @@ function editor() {
      * @param breedte de breedte van de foto
      * @return {Number} de nieuwe hoogte van de foto
      */
-    this.berekenHoogte = function(hoogte, breedte) {
-        var percentageVerkleind = (standaardImageBreedte*100)/ breedte;
-        hoogte = (hoogte*percentageVerkleind)/100;
+    this.berekenHoogte = function (hoogte, breedte) {
+        var percentageVerkleind = (standaardImageBreedte * 100) / breedte;
+        hoogte = (hoogte * percentageVerkleind) / 100;
         return hoogte;
     };
 
@@ -445,11 +477,11 @@ function editor() {
             imgObj.onload = function () {
                 var image = new fabric.Image(imgObj);
                 image.set({
-                    left: posleft,
-                    top: postop,
-                    angle: 90,
-                    padding: 0,
-                    cornersize: 10
+                    left:posleft,
+                    top:postop,
+                    angle:90,
+                    padding:0,
+                    cornersize:10
                 });
                 middelsteCanvas.add(image);
                 image.sendToBack();
@@ -476,13 +508,13 @@ function editor() {
         imgObj.onload = function () {
             var image = new fabric.Image(imgObj);
             image.set({
-                left: 100,
-                top: 350,
-                angle: 0,
-                padding: 10,
-                cornersize: 10
+                left:100,
+                top:350,
+                angle:0,
+                padding:10,
+                cornersize:10
             });
-            if(EnvelopOn == true) {
+            if (EnvelopOn == true) {
                 image.lockMovementX = true;
                 image.lockMovementY = true;
                 image.lockRotation = true;
@@ -509,7 +541,7 @@ function editor() {
      * @param ingevuldtxt de tekst.
      */
     function addText2(ingevuldtxt) {
-        var text = new fabric.Text(ingevuldtxt, { left: 50, top: 100, fontSize: 20 });
+        var text = new fabric.Text(ingevuldtxt, { left:50, top:100, fontSize:20 });
         text.originX = "left";
         canvas.add(text);
     }
@@ -652,7 +684,8 @@ function editor() {
                 vulKleur(kleurPixel);
             }
             canvas.calcOffset();
-            canvas.renderAll(); })
+            canvas.renderAll();
+        })
     };
 
     /**
@@ -663,13 +696,14 @@ function editor() {
     document.getElementById('achtergrondImage').onchange = function handleImage(e) {
         checkBackgroundColorenImage();
         var reader = new FileReader();
-        reader.onload = function (event) { console.log('fdsf');
+        reader.onload = function (event) {
+            console.log('fdsf');
             var imgObj = new Image();
             imgObj.src = event.target.result;
             imgObj.onload = function () {
 
                 var image = new fabric.Image(imgObj);
-                canvas.setBackgroundImage(imgObj.src, function() {
+                canvas.setBackgroundImage(imgObj.src, function () {
                     canvas.renderAll();
                 });
             }
@@ -684,12 +718,12 @@ function editor() {
      * Deze functie wordt opgeroepen waneer je de achtergrondimage verandert.
      * wanneer er een achtergrondimage is of bacrgoundcolor worden deze op none gezet(verwijdert)
      */
-    function checkBackgroundColorenImage(){
+    function checkBackgroundColorenImage() {
         if (canvas.backgroundImage) {
             canvas.backgroundImage = 'none';
         }
 
-        if(canvas.backgroundColor){
+        if (canvas.backgroundColor) {
             canvas.backgroundColor = 'none';
             canvas.calcOffset();
             canvas.renderAll();
@@ -734,7 +768,7 @@ function editor() {
      */
     $(document)
         .on('keypress', function (e) {
-            var code = (e.keyCode|| e.which);
+            var code = (e.keyCode || e.which);
             var keyPressed = String.fromCharCode(code);
             var text = canvas.getActiveObject();
             if (text) {
@@ -753,7 +787,7 @@ function editor() {
                     }
                     newText = text.text + keyPressed;
                 }
-                text.set({ text: newText }); //Change the text
+                text.set({ text:newText }); //Change the text
                 canvas.calcOffset();
                 canvas.renderAll();
                 if (!stillTyping) {
@@ -761,8 +795,8 @@ function editor() {
                 }
             }
         })
-        .on('keydown', function(e) {
-            var code = (e.keyCode|| e.which);
+        .on('keydown', function (e) {
+            var code = (e.keyCode || e.which);
             var text = canvas.getActiveObject();
             if (text) {
                 var newText = '';
@@ -773,7 +807,7 @@ function editor() {
                 else if (code === 8) {//8 = backspace
                     e.preventDefault();
                     newText = text.text.substr(0, text.text.length - 1);
-                    text.set({ text: newText }); //Change the text
+                    text.set({ text:newText }); //Change the text
                 }
                 //if the user wants to remove all text, or the element entirely
                 else if (code === 46) { // 46 = delete
@@ -791,7 +825,7 @@ function editor() {
     /**
      * Deze functie is bedoeld om een canvas te resetten.
      */
-    function reset () {
+    function reset() {
         canvas.clear();
     };
 
@@ -840,7 +874,7 @@ function editor() {
      */
     this.removeObject = function () {
         var objectSelected = canvas.getActiveObject();
-        if(objectSelected){
+        if (objectSelected) {
             setIcoonDeletedFromCanvas(objectSelected);
             canvas.remove(objectSelected);
         }
@@ -851,7 +885,7 @@ function editor() {
      */
     this.bringToFront = function () {
         var objectSelected = canvas.getActiveObject();
-        if(objectSelected){
+        if (objectSelected) {
             objectSelected.bringToFront();
         }
     };
@@ -859,9 +893,9 @@ function editor() {
     /**
      * Deze functie is bedoeld om het geselecteerde object naar achteren te zetten.
      */
-    this.sendToBack= function() {
+    this.sendToBack = function () {
         var objectSelected = canvas.getActiveObject();
-        if(objectSelected){
+        if (objectSelected) {
             objectSelected.sendToBack();
         }
     };
@@ -871,7 +905,7 @@ function editor() {
      * Eerst wordt er gekeken of je een object hebt geselecteerd en of een tekst is.
      * Indien dit het geval is wordt de fontsize geset en de canvas gerenderd om dit te kunnen zien op de canvas.
      */
-    document.getElementById('tekstSlider').onchange = function() {
+    document.getElementById('tekstSlider').onchange = function () {
         var value = this.value;
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && selectedObject.type === "text") {
@@ -891,14 +925,14 @@ function editor() {
      * indien dit het geval is set hij de opacity met de value erin.
      * De canvas wordt gerenderd zodat je het kan zien op de canvas.
      */
-    document.getElementById('transSlider').onchange = function() {
+    document.getElementById('transSlider').onchange = function () {
         var value = this.value / 100;
         var objectSelected = canvas.getActiveObject();
         if (objectSelected && objectSelected.type === "image") {
             objectSelected.setOpacity(value);
             canvas.calcOffset();
             canvas.renderAll();
-        }else{
+        } else {
             alert("u moet eerst een image selecteren");
         }
     };
@@ -934,7 +968,7 @@ function editor() {
      * Deze functie wordt opgeroepen wanneer je de value verandert van de brightness.
      * Daarna wordt de functie setBrightness opgeroepen en de geselecteerde object en value van de range wordt meegegeven.
      */
-    document.getElementById('brightnessSlider').onchange = function() {
+    document.getElementById('brightnessSlider').onchange = function () {
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
         setBrightness(objectSelected, value);
@@ -949,26 +983,25 @@ function editor() {
      *  Indien dit het geval is kijkt hij eerst naar de value van de range, wanneer hij op 0 staat moet de filter weg (de filter wordt verwijderdt).
      *  Wanneer er geen filter is wordt er een nieuwe gepushed. Daarna worden de filter gerendered (applied) en je ziet de uitkomst op de canvas.
      */
-    document.getElementById('tint').onchange = function() {
+    document.getElementById('tint').onchange = function () {
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
         var brigtnessValue = 1;
-        if(objectSelected.filters.length === 0){
+        if (objectSelected.filters.length === 0) {
             setBrightness(objectSelected, brigtnessValue)
         }
         if (objectSelected.type === "image") {
-            if(value == 0) {
-                for (var i=0;i<objectSelected.filters.length; i++)
-                {
-                    if(objectSelected.filters[i].type == "Sepia") {
-                        objectSelected.filters.splice(i,1);
-                        SepiaOn=false;
+            if (value == 0) {
+                for (var i = 0; i < objectSelected.filters.length; i++) {
+                    if (objectSelected.filters[i].type == "Sepia") {
+                        objectSelected.filters.splice(i, 1);
+                        SepiaOn = false;
                     }
                 }
             }
             else {
                 objectSelected.filters.push(new fabric.Image.filters.Sepia(value));
-                SepiaOn=true;
+                SepiaOn = true;
             }
             objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
@@ -983,29 +1016,29 @@ function editor() {
      *  Indien dit het geval is kijkt hij eerst naar de value van de range, wanneer hij op 0 staat moet de filter weg (de filter wordt verwijderdt).
      *  Wanneer er geen filter is wordt er een nieuwe gepushed. Daarna worden de filter gerendered (applied) en je ziet de uitkomst op de canvas.
      */
-    document.getElementById('saturatie').onchange = function() {
+    document.getElementById('saturatie').onchange = function () {
         var value = parseInt(this.value);
         var objectSelected = canvas.getActiveObject();
         var brigtnessValue = 1;
-        if(objectSelected.filters.length === 0){
+        if (objectSelected.filters.length === 0) {
             setBrightness(objectSelected, brigtnessValue)
         }
         if (objectSelected && objectSelected.type === "image") {
-            if((value === 0) && (objectSelected.filters.length != 0) && (GrayscaleOn === true)){
-                for (var i=0;i<objectSelected.filters.length; i++) {
-                    if(objectSelected.filters[i].type === "Grayscale") {
-                        objectSelected.filters.splice(i,1);
-                        GrayscaleOn=false;
+            if ((value === 0) && (objectSelected.filters.length != 0) && (GrayscaleOn === true)) {
+                for (var i = 0; i < objectSelected.filters.length; i++) {
+                    if (objectSelected.filters[i].type === "Grayscale") {
+                        objectSelected.filters.splice(i, 1);
+                        GrayscaleOn = false;
                     }
                 }
             }
-            else if(GrayscaleOn === false) {
+            else if (GrayscaleOn === false) {
                 objectSelected.filters.push(new fabric.Image.filters.Grayscale);
-                GrayscaleOn=true;
+                GrayscaleOn = true;
             }
             objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
-        else{
+        else {
             alert("U moet eerst een foto selecteren.");
         }
     };
@@ -1021,7 +1054,7 @@ function editor() {
     $('#combo').click(function (e) {
         var text = canvas.getActiveObject();
         if (text && text.type === "text") {
-            this.setFont = function() {
+            this.setFont = function () {
                 var combobox = document.getElementById("combo");
                 var selected = combobox.options[combobox.selectedIndex].text;
                 setChange("fontFamily", selected);
@@ -1040,7 +1073,7 @@ function editor() {
      * Daarna wordt de canvas gerenderd om alles op de canvas te zien.
      * @param data : de data die wordt meegegen nadat je een template hebt gekozen en verder ging.
      */
-    this.loadTemplatePubliek = function(data) {
+    this.loadTemplatePubliek = function (data) {
         canvas.loadFromJSON(data.voorkant);
         canvas.renderAll();
     };
@@ -1054,7 +1087,7 @@ function editor() {
      * Daarna worden alle canvassen gerendered waardoor je alle objecten ook ziet op de canvassen.
      * @param data
      */
-    this.loadTemplate = function(data) {
+    this.loadTemplate = function (data) {
         canvas.loadFromJSON(data.voorkant);
         middelsteCanvas.loadFromJSON(data.midden);
         envelopcanvas.loadFromJSON(data.envelop);
@@ -1074,14 +1107,14 @@ function editor() {
      * @param data
      * @constructor
      */
-    this.templateGekozen = function(data){
+    this.templateGekozen = function (data) {
         document.body.removeChild(document.getElementById('overlay'));
         var response = JSON.parse(data.voorkant);
-        for(var i = 0; i <response.objects.length; i++){
-            if(response.objects[i].type === "image"){
+        for (var i = 0; i < response.objects.length; i++) {
+            if (response.objects[i].type === "image") {
                 var currentImage = response.objects[i].src.split("/").pop();
-                for(var j = 0 ; j<images.length; j++) {
-                    if(currentImage === images[j].split("/").pop()) {
+                for (var j = 0; j < images.length; j++) {
+                    if (currentImage === images[j].split("/").pop()) {
                         setIcoonsUsed(currentImage);
                     }
                 }
@@ -1139,7 +1172,7 @@ function editor() {
             var img = document.createElement("img");
             img.src = images[i];
             iconGallery.appendChild(img);
-            img.onclick = function() {
+            img.onclick = function () {
                 addImageToCanvas(this.src);
                 setIcoonsUsed(this.src.split("/").pop());
             };
@@ -1160,10 +1193,10 @@ function editor() {
         var gallery = clearGallery();
         for (var i = 0; i < imagesOnCanvas.length; i++) {
             var img = document.createElement("img");
-            img.src = "Content/images/icons/"+imagesOnCanvas[i];
-            img.alt = ""+imagesOnCanvas[i];
+            img.src = "Content/images/icons/" + imagesOnCanvas[i];
+            img.alt = "" + imagesOnCanvas[i];
             gallery.appendChild(img);
-            img.onclick = function(e) {
+            img.onclick = function (e) {
                 reset();
                 addImageToCanvas(this.src);
             };
@@ -1178,7 +1211,7 @@ function editor() {
      */
     function clearGallery() {
         var gallery = document.getElementById("iconGalleryGebruikt");
-        if(gallery.childElementCount != 0) {
+        if (gallery.childElementCount != 0) {
             while (gallery.firstChild) {
                 gallery.removeChild(gallery.firstChild);
             }
@@ -1186,7 +1219,7 @@ function editor() {
         return gallery;
     };
 
-    $('#volgendeknop').click(function(e){
+    $('#volgendeknop').click(function (e) {
         e.stopPropagation();
         alert("Dit is niet geïmplementeerd");
     });
