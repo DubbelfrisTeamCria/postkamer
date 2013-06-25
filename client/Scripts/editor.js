@@ -130,7 +130,7 @@ function editor() {
      * Zet de geselecteerde button op bold
      * @param button de geselecteerde button
      */
-    function setBold(button) {
+    function setBoldButton(button) {
         $('#navKaart button').css('font-weight', 'normal');
         $(button).css('font-weight', 'bold');
     }
@@ -159,7 +159,7 @@ function editor() {
         envelop.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
-        setBold(this);
+        setBoldButton(this);
         if(EnvelopOn == true){
             EnvelopOn=false;
             setDisplayKaart();
@@ -176,7 +176,7 @@ function editor() {
         envelop.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
-        setBold(this);
+        setBoldButton(this);
         if(EnvelopOn == true) {
             EnvelopOn=false;
             setDisplayKaart();
@@ -193,7 +193,7 @@ function editor() {
         voorkant.parent().css('display' ,'none');
         canvas.calcOffset();
         canvas.renderAll();
-        setBold(this);
+        setBoldButton(this);
         EnvelopOn=true;
         setDisplayEnvelop();
     });
