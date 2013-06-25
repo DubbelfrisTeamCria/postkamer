@@ -1,6 +1,8 @@
 /*jslint browser: true, devel: true, nomen: true */
 /*global $, jQuery*/
 
+$('#FontsLoader').hide();
+
 /**
  * Onclick functies voor het categorie menu en het algemene menu.
  * Wanneer er een categorie wordt gekozen,
@@ -136,3 +138,4 @@ function selecteerTemplate() {
     });
     getEnkelOfDubbel();
 }
+

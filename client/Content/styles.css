@@ -653,8 +653,8 @@ h2{
   margin-top: -10px;
 }
 
-#cookie{
-    font-family: cookie;
+#FontsLoader *{
+    opacity: 0;
 }
 
 
