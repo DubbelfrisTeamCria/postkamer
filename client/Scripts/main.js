@@ -154,6 +154,7 @@ function checkIfLoggedIn(){
     if(localStorage.email == 'null'){
         localStorage.loggedIn = "loggedOut";
         console.log("logged out!");
+        localStorage.email = 'null';
         $('#login').show();
         $('#logout').hide();
         $('#mijnpostkamer').hide();
@@ -161,7 +162,6 @@ function checkIfLoggedIn(){
     else if(localStorage.email != 'null'){
         console.log("logged in!");
         localStorage.loggedIn = "loggedIn";
-        localStorage.email = 'null';
         $('#login').hide();
         $('#logout').show();
         $('#mijnpostkamer').show();
