@@ -168,8 +168,8 @@ function checkIfLoggedIn(){
     }
 }
 
-//this.logouts = function(){
-//    localStorage.email = null;
-//    checkIfLoggedIn();
-//};
+function logout(){
+    localStorage.email = null;
+    checkIfLoggedIn();
+};
 
