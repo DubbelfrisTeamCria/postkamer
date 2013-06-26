@@ -2,10 +2,6 @@
 //The $scope is ultimately bound to the customers view
 app.controller('accountController', function (serviceKlanten, $scope) {
     // Call the async method and then do stuff with what is returned inside our own then function
-    serviceKlanten.async().then(function (data) {
-        $scope.test = data;
-        console.log(data)
-    });
 
     $scope.login = function () {
         serviceKlanten.async().then(function (data) {
