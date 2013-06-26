@@ -10,7 +10,6 @@ app.controller('accountController', function (serviceKlanten, $scope) {
                 var data2 = form.serializeFormJSON();
                 console.log(data2)
                 if (data[i].email == data2.email && data[i].password == data2.password) {
-
                     console.log("succesfull login");
                     localStorage.email = data[i].email;
                     window.location = "postkamer/client/MijnPostKamer.html"

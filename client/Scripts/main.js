@@ -152,14 +152,16 @@ function addOverlay(){
 checkIfLoggedIn();
 function checkIfLoggedIn(){
     if(localStorage.email == 'null'){
-        console.log("logged out!")
+        localStorage.loggedIn = "loggedOut";
+        console.log("logged out!");
         $('#login').show();
         $('#logout').hide();
         $('#mijnpostkamer').hide();
     }
     else if(localStorage.email != 'null'){
-        console.log("logged in!")
+        console.log("logged in!");
         localStorage.loggedIn = "loggedIn";
+        localStorage.email = 'null';
         $('#login').hide();
         $('#logout').show();
         $('#mijnpostkamer').show();
