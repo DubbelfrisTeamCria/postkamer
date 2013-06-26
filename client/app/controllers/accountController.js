@@ -12,7 +12,7 @@ app.controller('accountController', function (serviceKlanten, $scope) {
                 if (data[i].email == data2.email && data[i].password == data2.password) {
                     console.log("succesfull login");
                     localStorage.email = data[i].email;
-                    window.location = "postkamer/client/MijnPostKamer.html"
+                    window.location = "../postkamer.html#/MijnPostKamer"
                     checkIfLoggedIn();
 
                 } else {
@@ -22,12 +22,10 @@ app.controller('accountController', function (serviceKlanten, $scope) {
         })
     };
 
-    var $form = $('#registreerform');
-    $form.on('submit', function (e) {
-        $('#loginknop').toggleClass("disabled");
-        var data = $form.serializeFormJSON();
-        serviceKlanten.saveKlant(data);
-        e.preventDefault();
-        return false;
-    });
+    $scope.registreer = function(){
+        var form = $('#registreerform');
+            var data = form.serializeFormJSON();
+            serviceKlanten.saveKlant(data);
+    }
+
 });

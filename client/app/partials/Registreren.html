@@ -1,32 +1,32 @@
 <div>
 <h4>Registreer je</h4>
 
-<div id="registreerform">
+<div >
 
-    <form>
+    <form id="registreerform">
         <div class="block">
-            <label for=naam>E-mail adres</label>
-            <input id="naam" class="inputbox" type="text" name="naam">
+            <label for=email>E-mail adres</label>
+            <input id="email" class="inputbox" type="email" name="email">
         </div>
         <div class="block">
-            <label for=email>Wachtwoord</label>   <input  id="email"class="inputbox" type="text" name="lname">
-        </div>
-
-        <div class="block">
-            <label for=telefoon>Voornaam</label><input  id="telefoon"class="inputbox" type="text" name="fname">
-        </div>
-        <div class="block">
-            <label for=onderwerp>Achternaam</label> <input  id="onderwerp"class="inputbox" type="text" name="fname">
-        </div>
-        <div class="block">
-            <label for=onderwerp>Straat</label> <input  id="onderwerp"class="inputbox" type="text" name="fname">
-        </div>
-        <div class="block">
-            <label for=onderwerp>Huisnummer + Toevoeging</label> <input  id="onderwerp"class="inputbox" type="text" name="fname">
+            <label for=password>Wachtwoord</label>   <input  id="password"class="inputbox" type="password" name="password">
         </div>
 
         <div class="block">
-            <label for=onderwerp>Postcode</label> <input  id="onderwerp"class="inputbox" type="text" name="fname">
+            <label for=voornaam>Voornaam</label><input  id="voornaam"class="inputbox" type="text" name="naam">
+        </div>
+        <div class="block">
+            <label for=achternaam>Achternaam</label> <input  id="achternaam" class="inputbox" type="text" name="achternaam">
+        </div>
+        <div class="block">
+            <label for=straat>Straat</label> <input  id="straat"class="inputbox" type="text" name="straat">
+        </div>
+        <div class="block">
+            <label for=huisnummer>Huisnummer + Toevoeging</label> <input  id="huisnummer"class="inputbox" type="text" name="huisnummer">
+        </div>
+
+        <div class="block">
+            <label for=postcode>Postcode</label> <input  id="postcode"class="inputbox" type="text" name="postcode">
         </div>
 
         <div class="block">
@@ -280,7 +280,7 @@
             <option value="ZW">Zimbabwe</option>
             </select>
         </div>
-        <img id="loginknop" src="Content/images/registrerenknop.png" /><br>
+        <img id="loginknop" src="Content/images/registrerenknop.png" data-ng-click="registreer();"/><br>
 
 
 
