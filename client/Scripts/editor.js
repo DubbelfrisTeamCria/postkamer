@@ -1221,6 +1221,6 @@ function editor() {
 
     $('#volgendeknop').click(function (e) {
         e.stopPropagation();
-        alert("Dit is niet geïmplementeerd");
+//        alert("Dit is niet geïmplementeerd");
     });
 }
