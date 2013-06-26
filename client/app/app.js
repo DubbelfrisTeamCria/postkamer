@@ -66,18 +66,18 @@ app.config(function ($routeProvider) {
         .when('/registreren',
         {
             controller: 'accountController',
-            templateUrl: '/postkamer/client/app/partials/Registreren.html'
+            templateUrl: 'app/partials/Registreren.html'
         })
         .when('/inloggen',
         {
             controller: 'accountController',
-            templateUrl: '/postkamer/client/app/partials/inloggen.html'
+            templateUrl: 'app/partials/inloggen.html'
         })
 
         .when('/mijnpostkamer',
         {
             controller: 'MijnPostkamerCtrl',
-            templateUrl: '/postkamer/client/app/partials/MijnPostKamer.html'
+            templateUrl: 'app/partials/MijnPostKamer.html'
         })
 
         .when('/adressen', {
