@@ -8,18 +8,15 @@ app.controller('accountController', function (serviceKlanten, $scope) {
             for (var i = 0; i < data.length; i++) {
                 var form = $('#inloggen');
                 var data2 = form.serializeFormJSON();
-                console.log(data2)
                 if (data[i].email == data2.email && data[i].password == data2.password) {
                     console.log("succesfull login");
                     localStorage.email = data[i].email;
-                    window.location = "./postkamer.html#/MijnPostKamer"
+                    window.location = "./postkamer.html#/MijnPostKamer";
                     checkIfLoggedIn();
 
-                } else {
-                    console.log("unsuccesfull login")
                 }
             }
-        })
+        });
     };
 
     $scope.registreer = function() {
