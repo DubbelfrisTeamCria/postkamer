@@ -6,13 +6,14 @@ app.controller('accountController', function (serviceKlanten, $scope) {
     $scope.login = function () {
         serviceKlanten.async().then(function (data) {
             for (var i = 0; i < data.length; i++) {
-                var $form = $('#inloggen');
-                var data2 = $form.serializeFormJSON();
+                var form = $('#inloggen');
+                var data2 = form.serializeFormJSON();
+                console.log(data2)
                 if (data[i].email == data2.email && data[i].password == data2.password) {
 
                     console.log("succesfull login");
                     localStorage.email = data[i].email;
-                    window.location = "postkamer/client/postkamer.html"
+                    window.location = "postkamer/client/MijnPostKamer.html"
                     checkIfLoggedIn();
 
                 } else {
