@@ -148,7 +148,7 @@ function addOverlay(){
     overlay.className = 'overlay';
     document.body.appendChild(overlay);
 }
-
+localStorage.email = 'null';
 checkIfLoggedIn();
 function checkIfLoggedIn(){
     if(localStorage.email == 'null'){
