@@ -26,3 +26,19 @@ app.controller('TemplateCtrl', function(service) {
         selecteerTemplate();
     });
 });
+
+app.controller('MijnPostkamerCtrl', function(service) {
+    'use strict';
+
+    service.async().then(function(data) {
+        document.body.removeChild(document.getElementById('overlay'));
+        var kaart;
+        for (kaart = 0; kaart < data.length; kaart++) {
+            if (localStorage.loggedIn === "loggedIn" && data[kaart].email === localStorage.email) { //false als boolean gaf problemen
+                getTemplate(data[kaart], data[kaart].positie);
+            }
+        }
+        document.body.style.cursor = 'default';
+        selecteerTemplate();
+    });
+});
