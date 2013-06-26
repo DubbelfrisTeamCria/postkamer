@@ -22,12 +22,10 @@ app.controller('accountController', function (serviceKlanten, $scope) {
         })
     };
 
-    var $form = $('#registreerform');
-    $form.on('submit', function (e) {
-        $('#loginknop').toggleClass("disabled");
-        var data = $form.serializeFormJSON();
-        serviceKlanten.saveKlant(data);
-        e.preventDefault();
-        return false;
-    });
+    $scope.registreer = function(){
+        var form = $('#registreerform');
+            var data = form.serializeFormJSON();
+            serviceKlanten.saveKlant(data);
+    }
+
 });
