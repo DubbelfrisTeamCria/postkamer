@@ -207,6 +207,7 @@ function editor() {
     this.getJSON = function () {
         var template = {
             "private":"true",
+            "enkel": localStorage.enkel,
             "positie":localStorage.positie,
             "voorkant":JSON.stringify(voorkantcanvas),
             "email":localStorage.email,
