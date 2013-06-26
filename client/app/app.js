@@ -71,7 +71,11 @@ app.config(function ($routeProvider) {
             controller: '',
             templateUrl: 'app/partials/inloggen.html'
         })
-
+        .when('/mijnpostkamer',
+        {
+            controller: 'accountController',
+            templateUrl: '/postkamer/client/app/partials/MijnPostKamer.html'
+        })
         .when('/adressen', {
             controller: '',
             templateUrl: 'app/partials/adressen.html'

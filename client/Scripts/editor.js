@@ -218,7 +218,7 @@ function editor() {
         };
         console.log(template);
         return template;
-    }
+    };
 
     /**
      * Haal het canvas op als json.
@@ -235,10 +235,10 @@ function editor() {
             "categorie":localStorage.categorie,
             "voorkant":JSON.stringify(voorkantcanvas),
             "templatePng":voorkantcanvas.toDataURL("image/png")
-        }
+        };
         console.log(template);
         return template;
-    }
+    };
 
     /**
      * Hiermee worden de onclick events gezet op de editor tools.
@@ -363,7 +363,7 @@ function editor() {
                 }
             }
         }
-    };
+    }
 
     /**
      * Deze functie is bedoeld voor het zetten van de displays van de tabs en extra bewerk opties die naast de canvas zitten wanneer hij niet op een envelop zit.
@@ -391,7 +391,7 @@ function editor() {
             }
             setVisibleTabAndPLus();
         }
-    };
+    }
 
     /**
      * Deze functie set de display van de plusje voor tekst toevoegen en colorpicker.
@@ -409,7 +409,7 @@ function editor() {
         } else {
             plusje.hide();
         }
-    };
+    }
 
     /**
      * Deze functie voegt een nieuw plaatje toe aan de kaart.
@@ -434,7 +434,7 @@ function editor() {
                 });
                 canvas.add(image);
             }
-        }
+        };
         reader.readAsDataURL(e.target.files[0]);
         canvas.calcOffset();
         canvas.renderAll();
@@ -489,7 +489,7 @@ function editor() {
                 image.lockMovementY = true;
                 image.lockRotation = true;
                 image.selectable = false;
-            }
+            };
             middelsteCanvas.calcOffset();
             middelsteCanvas.renderAll();
         }
@@ -522,11 +522,11 @@ function editor() {
                 currentIcoon = image;
             }
             canvas.add(image);
-        }
+        };
 
         canvas.calcOffset();
         canvas.renderAll();
-    };
+    }
 
     /**
      * Deze functie is om te vragen welke tekst hij wil zetten in de canvas.
@@ -584,7 +584,7 @@ function editor() {
      */
     this.setBold = function (image) {
         setChange("fontWeight", "bold", image);
-    }
+    };
 
     /**
      * Deze functie is bedoelt om de tekst op italic te zetten.
@@ -593,7 +593,7 @@ function editor() {
      */
     this.setItalic = function (image) {
         setChange("fontStyle", "italic", image);
-    }
+    };
 
     /**
      * Deze functie is bedoelt om tekst te onderstepen,
@@ -619,7 +619,7 @@ function editor() {
                 document.getElementById("align" + i).src = "Content/images/align" + i + ".png";
             }
         }
-    };
+    }
 
     /**
      * Deze functie is bedoelt om de align te zetten van de tekst.
@@ -654,7 +654,7 @@ function editor() {
         image.src = "Content/images/colorwheel.png";
         image.onload = function () {
             ctx.drawImage(image, 0, 0)
-        }
+        };
 
         function geefKleur(e) {
             //cordinaten van momentele positie
@@ -665,8 +665,7 @@ function editor() {
             var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
             var pixel = imageData.data;
             //rgb
-            var kleurPixel = "rgb(" + pixel[0] + ", " + pixel[1] + ", " + pixel[2] + ")";
-            return kleurPixel;
+            return "rgb(" + pixel[0] + ", " + pixel[1] + ", " + pixel[2] + ")";
         }
 
         //hier kies je een kleur eventhandler
@@ -686,7 +685,7 @@ function editor() {
             canvas.calcOffset();
             canvas.renderAll();
         })
-    };
+    }
 
     /**
      * Deze functie is bedoeld om de achtergrond plaatje te veranderen en achtergrondkleur te verwijderen.
@@ -707,7 +706,7 @@ function editor() {
                     canvas.renderAll();
                 });
             }
-        }
+        };
         reader.readAsDataURL(e.target.files[0]);
         canvas.calcOffset();
         canvas.renderAll();
@@ -728,7 +727,7 @@ function editor() {
             canvas.calcOffset();
             canvas.renderAll();
         }
-    };
+    }
 
     /**
      * Deze functie verandert de kleur van de achtergrond en verwijder het achtergrondplaatje.
@@ -827,7 +826,7 @@ function editor() {
      */
     function reset() {
         canvas.clear();
-    };
+    }
 
     /**
      * Deze functie is bedoeld om de iconengallery van envelop te updaten.
@@ -864,7 +863,7 @@ function editor() {
             }
             doubleObject = false;
         }
-    };
+    }
 
     /**
      * Deze functie is bedoeld om een object de verwijderen.
@@ -962,7 +961,7 @@ function editor() {
             }
             objectSelected.applyFilters(canvas.renderAll.bind(canvas));
         }
-    };
+    }
 
     /**
      * Deze functie wordt opgeroepen wanneer je de value verandert van de brightness.
@@ -1156,7 +1155,7 @@ function editor() {
             imagesOnCanvas.push(currentImage);
         }
         maakGalleryGebruikteIconen();
-    };
+    }
 
     /**
      * De functie maakGallery is bedoeld om een gallery te maken van de iconen die je op een kaart kunt zetten.
@@ -1178,7 +1177,7 @@ function editor() {
             };
 
         }
-    };
+    }
 
     /**
      * De functie maakGalleryGebruikteIconen is bedoeld om een gallery te maken voor de iconen die je gebruikt bij de kaart,
@@ -1201,7 +1200,7 @@ function editor() {
                 addImageToCanvas(this.src);
             };
         }
-    };
+    }
 
     /**
      * dit is de functie clearGallery, hij haalt eerst de div waar alle iconen van de envelop zitten op.
@@ -1217,7 +1216,7 @@ function editor() {
             }
         }
         return gallery;
-    };
+    }
 
     $('#volgendeknop').click(function (e) {
         e.stopPropagation();

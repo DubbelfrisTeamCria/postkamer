@@ -8,7 +8,9 @@
 </head>
 <body>
 
-
+<div ><a id="login" href="#/inloggen" >Login/Registreren</a></div>
+<div ><a id="mijnpostkamer" href="#/mijnpostkamer" >Mijn Postkamer</a></div>
+<div ><a id="logout" href="" onclick="logouts()">Log out</a></div>
 <nav id="homeNav" class="center">
     <ul class="center">
         <li><a id="home" data-ng-class="{'active':getClass('/home')}" href="#/home">
@@ -65,6 +67,7 @@
 <script src="app/controllers/overzichtController.js"></script>
 <script src="app/controllers/editorController.js"></script>
 <script src="app/controllers/templateController.js"></script>
+<script src="app/controllers/accountController.js"></script>
 <script src="app/services/service.js"></script>
 <script src="app/directives/animatedView.js"></script>
 <script src="Scripts/editor.js"></script>

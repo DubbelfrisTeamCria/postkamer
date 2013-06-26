@@ -671,6 +671,46 @@ h2{
     opacity:.30;
 }
 
+#login{
+    float:right;
+    padding-bottom: 15px;
+    padding-top: 20px;
+    padding-right: 10px;
+    font-size: 10px;
+    border: none;
+    background: none;
+    text-decoration: none;
+
+}
+
+#logout{
+    float:right;
+    padding-bottom: 15px;
+    padding-top: 20px;
+    padding-right: 10px;
+    font-size: 10px;
+    border: none;
+    background: none;
+    text-decoration: none;
+}
+
+#mijnpostkamer{
+    float:right;
+    padding-bottom: 15px;
+    padding-top: 20px;
+    padding-right: 10px;
+    font-size: 10px;
+    border: none;
+    background: none;
+    text-decoration: none;
+}
+
+#inloggenBlock{
+    margin-left: 35%;
+    position: relative;
+
+}
+
 
 
 
