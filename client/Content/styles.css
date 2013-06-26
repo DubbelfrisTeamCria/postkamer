@@ -1,92 +1,100 @@
 ﻿@font-face {
     font-family: 'helvetica custom';
     src: url('../Content/fonts/Helvetica_LT_25_Ultra_Light.eot');
-    src: url('../Content/fonts/Helvetica_LT_25_Ultra_Light.woff') format('woff'),
-    url('../Content/fonts/Helvetica_LT_25_Ultra_Light.ttf') format('truetype'),
-    url('../Content/fonts/fontscore.com_h_helvetica-neue-lt-std-25-ultra-light.otf');
+    src: url('../Content/fonts/Helvetica_LT_25_Ultra_Light.woff') format('woff'), url('../Content/fonts/Helvetica_LT_25_Ultra_Light.ttf') format('truetype'), url('../Content/fonts/fontscore.com_h_helvetica-neue-lt-std-25-ultra-light.otf');
 }
 
 @font-face {
     font-family: 'skinny';
     src: url('../Content/fonts/TheSkinny.eot');
-    src: url('../Content/fonts/TheSkinny.woff') format('woff'),
-    url('../Content/fonts/TheSkinny.ttf') format('truetype'),
-    url('../Content/fonts/TheSkinny.otf');
+    src: url('../Content/fonts/TheSkinny.woff') format('woff'), url('../Content/fonts/TheSkinny.ttf') format('truetype'), url('../Content/fonts/TheSkinny.otf');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'cookie';
     src: url('../Content/fonts/Cookie-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}@font-face {
+}
+
+@font-face {
     font-family: 'Bondoluo Peek';
     src: url('../Content/fonts/BondoluoPeek.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Harabara Hand';
     src: url('../Content/fonts/HarabaraHand.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Simply Glamorous';
     src: url('../Content/fonts/Simply Glamorous.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Marcelle';
     src: url('../Content/fonts/Marcsc___.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Bebas';
     src: url('../Content/fonts/BEBAS___.TTF') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Rosewood Std';
     src: url('../Content/fonts/Rosewood Std.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'basictitlefont';
     src: url('../Content/fonts/basictitlefont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'BDrouen';
     src: url('../Content/fonts/BDRouen.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Allura';
     src: url('../Content/fonts/Allura-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Julliscriptum';
     src: url('../Content/fonts/Julliscriptum-Reloaded.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'BD Marseille';
     src: url('../Content/fonts/BDMarseille.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
-
 
 body {
     background: url('../Content/images/achtergrondwebsite.jpg');
@@ -108,6 +116,7 @@ html {
 html * {
     font-family: "helvetica custom";
     letter-spacing: 0.55em;
+    color: #676767;
 }
 
 .wrapper {
@@ -120,18 +129,16 @@ p {
     font-family: Arial;
     font-size: 12px;
     letter-spacing: normal;
-
+    margin-bottom: 1.1em;
+    margin-top: 0;
 }
 
-h1,h2, h3, h4, h5, h6 {
-    font-family: "skinny";
+a {
     color: #676767;
 }
-h4{
-    text-align: center;
-}
-h5{
 
+h4 {
+    text-align: center;
 }
 
 #homeNav {
@@ -146,7 +153,6 @@ h5{
     display: inline-block;
     margin: -50px 25px 0 0;
     list-style: none;
-
 
 }
 
@@ -171,7 +177,7 @@ h5{
     width: 100%;
     position: relative;
     top: -80px;
-    z-index:-1;
+    z-index: -1;
 }
 
 .bottomlineBlock {
@@ -202,7 +208,7 @@ h5{
 }
 
 #smallTools {
-    float:right;
+    float: right;
     margin-left: -0px;
     /*margin-top: 20px;*/
     width: 30px;
@@ -249,47 +255,46 @@ h5{
 }
 
 .center {
-    display:-webkit-box;
-    -webkit-box-pack:center;
-    -webkit-box-align:center;
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
 
-    display:box;
-    box-pack:center;
-    box-align:center;
+    display: box;
+    box-pack: center;
+    box-align: center;
 
-    display:-moz-box;
-    -moz-box-pack:center;
-    -moz-box-align:center;
+    display: -moz-box;
+    -moz-box-pack: center;
+    -moz-box-align: center;
 
-    display:-ms-flexbox;
-    -ms-flex-pack:center;
-    -ms-flex-align:center;
+    display: -ms-flexbox;
+    -ms-flex-pack: center;
+    -ms-flex-align: center;
 }
 
-
 .left {
-    float:left;
+    float: left;
 
 }
 
 .right {
-    float:right;
+    float: right;
 }
 
 #editorTools {
     /*background-color: white;*/
-    box-sizing:border-box;
-    -moz-box-sizing:border-box; /* Firefox */
-    -webkit-box-sizing:border-box; /* Safari */
-    top:-25px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; /* Firefox */
+    -webkit-box-sizing: border-box; /* Safari */
+    top: -25px;
     position: relative;
     margin-left: 50px;
 }
 
 #editorTools button {
-    display:-webkit-box;
-    -webkit-box-pack:end;
-    -webkit-box-align:end;
+    display: -webkit-box;
+    -webkit-box-pack: end;
+    -webkit-box-align: end;
 }
 
 #templateForm label img {
@@ -297,34 +302,34 @@ h5{
 }
 
 .end {
-   margin-top: -40px;
-    display:-webkit-box;
-    -webkit-box-pack:end;
-    -webkit-box-align:end;
+    margin-top: -40px;
+    display: -webkit-box;
+    -webkit-box-pack: end;
+    -webkit-box-align: end;
 
-    display:-moz-box;
-    -moz-box-pack:end;
-    -moz-box-align:end;
+    display: -moz-box;
+    -moz-box-pack: end;
+    -moz-box-align: end;
 
-    display:box;
-    box-pack:end;
-    box-align:end;
+    display: box;
+    box-pack: end;
+    box-align: end;
 
-    display:-ms-flexbox;
-    -ms-flex-pack:end;
-    -ms-flex-align:end;
+    display: -ms-flexbox;
+    -ms-flex-pack: end;
+    -ms-flex-align: end;
 }
 
 #tabContainer {
     width: 353px;
-    box-sizing:border-box;
-    -webkit-box-sizing:border-box; /* Safari */
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box; /* Safari */
     border: 2.5px dotted white;
     border-top: none;
 
 }
 
-.navbutton{
+.navbutton {
     padding: 0;
     border: none;
     background: none;
@@ -345,7 +350,7 @@ h5{
     height: 41px;
     margin: 10px -40px 10px -0;
     display: inline-block;
-    float:right;
+    float: right;
 
 }
 
@@ -358,17 +363,18 @@ h5{
     margin-bottom: 25px;
 }
 
-.tabs>li{
-    float:left;
+.tabs>li {
+    float: left;
     list-style: none;
 }
+
 .tabscontent {
     width: 353px;
 
 }
 
 .tabscontent label {
-    color:#70c7a9;
+    color: #70c7a9;
 }
 
 .tabscontent * {
@@ -379,7 +385,6 @@ h5{
     text-align: center;
     margin: auto;
 
-
 }
 
 #combo {
@@ -388,8 +393,8 @@ h5{
     line-height: 1;
     border: 1px solid #70c7a9;
     -webkit-appearance: none;
-    -moz-appearance:none;
-    appearance:none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 #navKaart {
@@ -403,34 +408,33 @@ h5{
     margin: 0 25px;
 }
 
-a{
-    text-spacing: normal;
-}
-
 h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
     font-family: "skinny";
     color: #676767;
+    margin-top: -10px;
+    color: #676767;
+    font-weight: bold;
 }
-p {
-    margin-bottom: 1.1em;
-    margin-top: 0;
-}
+
 #main p.lastNode {
     margin-bottom: 0;
 }
+
 a:link img, a:visited img {
     border: none;
 }
+
 div.clearFloat {
     clear: both;
     font-size: 0;
     height: 0;
     line-height: 0px;
 }
+
 li.clearFloat {
     clear: both;
 }
+
 ul.symbolList {
     display: inline;
     float: left;
@@ -438,17 +442,21 @@ ul.symbolList {
     margin: 0;
     padding: 0;
 }
+
 .AbsWrap {
     position: relative;
     width: 100%;
 }
+
 .rowWrap {
     width: 100%;
 }
+
 #main {
     margin: 0 auto 0 0;
     width: 1152px;
 }
+
 .OVER_ONS {
     font-family: 'The Skinny bold', Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -464,7 +472,8 @@ ul.symbolList {
     float: left;
     margin-bottom: 0;
 }
-.Het_bedrijf{
+
+.Het_bedrijf {
     font-family: Arial, Helvetica, sans-serif;
 
     text-align: left;
@@ -482,15 +491,15 @@ ul.symbolList {
 
 input[type = range] {
     -webkit-appearance: none;
-    -moz-appearance:none;
+    -moz-appearance: none;
     appearance: none;
     background-color: #70c7a9;
-    height:2px;
+    height: 2px;
     margin-bottom: 20px;
 }
 
 #achtergrondImage {
-    background:url("../Content/images/knop-achtergrond-foto.png") no-repeat;
+    background: url("../Content/images/knop-achtergrond-foto.png") no-repeat;
     height: 43px;
     width: 230px;
     margin-bottom: 20px;
@@ -509,23 +518,24 @@ input[type = range] {
     height: 40px;
     margin-bottom: 20px;
 }
+
 input[type = file] {
     width: 228px;
     height: 40px;
     opacity: 0;
 }
 
-input::-webkit-slider-thumb{
-    -webkit-appearance:none;
-    -moz-appearance:none;
+input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
-    width:10px;
-    height:10px;
-    -webkit-border-radius:10px;
-    -moz-border-radius:10px;
-    -ms-border-radius:10px;
-    -o-border-radius:10px;
-    border-radius:10px;
+    width: 10px;
+    height: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
     background-color: #70c7a9;
 }
 
@@ -533,148 +543,147 @@ input::-webkit-slider-thumb{
     text-decoration: line-through
 }
 
-#steps{
-    float:left;
+#steps {
+    float: left;
     width: 1100px;
     height: auto;
 }
 
-.map{
-    float:right;
+.map {
+    float: right;
     width: 50%;
 }
 
-.formulier{
-    float:left;
+.formulier {
+    float: left;
     width: 50%;
 }
 
-#Contact{
+#Contact {
     margin: 10%;
     margin-top: -150px;
 }
 
-.inputbox{
-    border: 1px solid #70c7a9;
-
+.inputbox {
+    /*border: 1px solid #70c7a9; in bootstrap*/
+    float: left;
 }
 
-
-.block label{
-    float:left;
-    width:150px;
-    padding-right:5px;
-}
-.block{
-    overflow:hidden;
-}
-.block input{
-     float:left;
- }
-
-.block textarea{
-    float:left;
+.block label {
+    float: left;
+    width: 175px;
+    padding-right: 5px;
 }
 
-#onsteam{
-    float:right;
+.block {
+    overflow: hidden;
 }
 
-
-
-#registreerform{
-    text-align: center;
+.block textarea {
+    float: left;
 }
 
+#onsteam {
+    float: right;
+}
 
-.adresicon{
+#registreerform label {
+    float: left;
+}
+
+#registreerform input {
+    float: right;
+}
+
+.adresicon {
     width: 50px;
     float: left;
     height: 50px;
 }
 
-#adressen{
-
-
-
+#adressen {
     float: right;
-
-
 }
 
-#overzichtFormaat{
+#overzichtFormaat {
 
     margin-left: 15%;
     margin-right: 15%;
 }
 
-#voorkantPreview{
-    float:right;
+#voorkantPreview {
+    float: right;
     width: 50%;
-
 
 }
 
-
-#binnenkantPreview{
-    float:left;
+#binnenkantPreview {
+    float: left;
     width: 50%;
     height: 50%;
 }
 
-#envelopPreview{
-   float:left;
+#envelopPreview {
+    float: left;
     width: 50%;
     height: 50%;
 }
 
-#formaatSelectie{
-    float:left
+#formaatSelectie {
+    float: left
 }
 
-
-
-#binnenkantPreviewImage{
+#binnenkantPreviewImage {
     /*height: 80%;*/
 }
 
-#envelopPreviewImage{
-
+#envelopPreviewImage {
     /*height: 40%;*/
 }
 
-#voorkantPreviewImage{
-
+#voorkantPreviewImage {
     /*height: 20%;*/
     width: 700px;
-   height: 550px;
+    height: 550px;
     float: right;
-
     background-image: url('images/adressenboekje.png');
-
 }
 
-h2{
-  margin-top: -10px;
-}
-
-#FontsLoader *{
+#FontsLoader * {
     opacity: 0;
 }
 
-.overlay
-{
+.overlay {
     position: fixed;
     top: 0%;
     left: 0%;
     width: 100%;
     height: 100%;
     background-color: #ffffff;
-    opacity:.30;
+    opacity: .30;
 }
 
-#login{
-    float:right;
+#login {
+    float: right;
+    padding:20px 15px 15px 0;
+    color: #676767;
+    font-size: 10px;
+    border: none;
+    background: none;
+    text-decoration: none;
+}
+
+#logout {
+    float: right;
+    padding:20px 15px 15px 0;
+    font-size: 10px;
+    border: none;
+    background: none;
+    text-decoration: none;
+}
+
+#mijnpostkamer {
+    float: right;
     padding-bottom: 15px;
     padding-top: 20px;
     padding-right: 10px;
@@ -682,35 +691,42 @@ h2{
     border: none;
     background: none;
     text-decoration: none;
-
-}
-#logout{
-    float:right;
-    padding-bottom: 15px;
-    padding-top: 20px;
-    padding-right: 10px;
-    font-size: 10px;
-    border: none;
-    background: none;
-    text-decoration: none;
 }
 
-#mijnpostkamer{
-    float:right;
-    padding-bottom: 15px;
-    padding-top: 20px;
-    padding-right: 10px;
-    font-size: 10px;
-    border: none;
-    background: none;
-    text-decoration: none;
-}
-
-#inloggenBlock{
+#inloggenBlock {
     margin-left: 35%;
     position: relative;
-
 }
+
+#header {
+    font-weight: bold;
+    margin: 20px 0 30px 175px;
+}
+
+#inloggen {
+    margin-top: 25px;
+}
+
+#inloggen img {
+    margin: 10px 0 10px 178px;
+}
+
+#inloggen a {
+    text-align: center;
+    display:block;
+    margin: 5px 0 0 160px;
+    width: 200px;
+    font-size: 0.8em;
+    letter-spacing: 0.30em;
+    font-family: Arial;
+}
+
+#registreerform #huisnummer, #registreerform #toevoeging {
+    width: 60px;
+    margin-left: 15px;
+}
+
+
 
 
 

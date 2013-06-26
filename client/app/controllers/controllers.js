@@ -58,10 +58,15 @@ app.controller('EditorCtrl', function (service, $scope, $location) {
      * Daarna wordt de kaart opgeslagen in de database door de service (zie service.js)
      */
     $scope.save = function () {
-        var data = getJSON();
-        localStorage.opgeslagen = "opgeslagen";
-        alert("Het ontwerp is opgeslagen.");
-        service.saveTemplate(templatesUrl, data);
+        if (localStorage.email !== 'null') {
+            var data = getJSON();
+            localStorage.opgeslagen = "opgeslagen";
+            service.saveTemplate(templatesUrl, data);
+            alert("Het ontwerp is opgeslagen.");
+        } else {
+            alert ('Eerst inloggen a.u.b.');
+        }
+
     };
 
     /**
