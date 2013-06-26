@@ -159,6 +159,7 @@ function checkIfLoggedIn(){
     }
     else if(localStorage.email != 'null'){
         console.log("logged in!")
+        localStorage.loggedIn = "loggedIn";
         $('#login').hide();
         $('#logout').show();
         $('#mijnpostkamer').show();

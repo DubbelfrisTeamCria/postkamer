@@ -76,7 +76,7 @@ app.config(function ($routeProvider) {
 
         .when('/mijnpostkamer',
         {
-            controller: 'accountController',
+            controller: 'MijnPostkamerCtrl',
             templateUrl: '/postkamer/client/app/partials/MijnPostKamer.html'
         })
 

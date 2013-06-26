@@ -208,8 +208,8 @@ function editor() {
         var template = {
             "private":"true",
             "positie":localStorage.positie,
-            "categorie":localStorage.categorie,
             "voorkant":JSON.stringify(voorkantcanvas),
+            "email":localStorage.email,
             "midden":JSON.stringify(middelsteCanvas),
             "envelop":JSON.stringify(envelopcanvas),
             "templatePng":voorkantcanvas.toDataURL("image/png"),
