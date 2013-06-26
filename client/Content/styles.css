@@ -229,12 +229,13 @@ h5{
 
 /*Template Partial:*/
 #selectedTemplate {
-    box-shadow: 5px 5px 5px #ffffff;
+    box-shadow: 5px 5px 5px #3d3d3d;
 }
 
 .template {
     margin: 10px;
     background-color: #ffffff;
+    box-shadow: 5px 5px 5px #949494;
 }
 
 .templateliggend {
