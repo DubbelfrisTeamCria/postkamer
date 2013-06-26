@@ -63,19 +63,23 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/Contact.html'
         })
 
-        .when('/registreren', {
-            controller: '',
-            templateUrl: 'app/partials/Registreren.html'
+        .when('/registreren',
+        {
+            controller: 'accountController',
+            templateUrl: '/postkamer/client/app/partials/Registreren.html'
         })
-        .when('/inloggen', {
-            controller: '',
-            templateUrl: 'app/partials/inloggen.html'
+        .when('/inloggen',
+        {
+            controller: 'accountController',
+            templateUrl: '/postkamer/client/app/partials/inloggen.html'
         })
+
         .when('/mijnpostkamer',
         {
             controller: 'accountController',
             templateUrl: '/postkamer/client/app/partials/MijnPostKamer.html'
         })
+
         .when('/adressen', {
             controller: '',
             templateUrl: 'app/partials/adressen.html'
