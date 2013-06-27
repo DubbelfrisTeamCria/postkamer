@@ -273,5 +273,6 @@ app.controller('accountController', function (service, $scope) {
         var data = form.serializeFormJSON();
         service.saveKlant(klantenUrl, data);
         alert("U bent geregistreerd");
+        window.location = "./postkamer.html#/inloggen";
     };
 });
