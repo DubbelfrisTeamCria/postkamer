@@ -408,7 +408,7 @@ h4 {
     margin: 0 25px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h5, h6 {
     font-family: "skinny";
     color: #676767;
     margin-top: -10px;
@@ -417,7 +417,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #enkelkeus {
-    margin-top: 20px;
+    margin-top: 10px;
+    font-family: "skinny";
+    color: #676767;
+    font-weight: bold;
 }
 
 #main p.lastNode {
