@@ -256,7 +256,7 @@ app.controller('accountController', function (service, $scope) {
                 if (data[i].email == data2.email && data[i].password == data2.password) {
                     console.log("succesfull login");
                     localStorage.email = data[i].email;
-                    window.location = "./postkamer.html#/mijnpostkamer";
+                    window.location = "./postkamer.html#/home";
                     checkIfLoggedIn();
                     correct = true;
                 }
